@@ -1,0 +1,47 @@
+## Python & Pip
+
+Ubuntu 20.04 has Python 3.8 pre-installed, so only Pip remains to be installed.
+
+Run the following command in your VS Code terminal:
+
+```bash
+echo "PATH=\$PATH:\$HOME/.local/bin" >> ~/.bashrc
+source ~/.bashrc
+curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
+python3 /tmp/get-pip.py
+```
+
+## Poetry
+
+[Poetry](https://python-poetry.org/) is a modern Python package manager.
+
+Install Poetry running the following command in your VS Code terminal:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
+echo "PATH=\$PATH:\$HOME/.poetry/bin" >> ~/.bashrc
+source ~/.bashrc
+```
+
+## Direnv
+
+[Direnv](https://direnv.net/) is a great utility that will look for `.envrc` files in your directories. When you `cd` into directories with a `.envrc` files, paths will automatically be updated. In our case, this will simplify our workflow and allow us to not have to worry about Poetry managed Python virtual environments.
+
+```bash
+echo "layout_poetry() {" > ~/.direnvrc
+echo "  if [[ ! -f pyproject.toml ]]; then" >> ~/.direnvrc
+echo "    log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'" >> ~/.direnvrc
+echo "    exit 2" >> ~/.direnvrc
+echo "  fi" >> ~/.direnvrc
+echo "  poetry run true" >> ~/.direnvrc
+echo "  export VIRTUAL_ENV=\$(poetry env info --path)" >> ~/.direnvrc
+echo "  export POETRY_ACTIVE=1" >> ~/.direnvrc
+echo "  PATH_add \"\$VIRTUAL_ENV/bin\"" >> ~/.direnvrc
+echo "}" >> ~/.direnvrc
+```
+
+Then:
+
+```bash
+direnv hook bash >> ~/.bashrc
+```
