@@ -44,7 +44,7 @@ WINDOWS = %w[
   ssh_key
   gcp_setup
   virtual_machine
-  setup/windows_vscode
+  win_vscode
   vscode_remote_ssh
   vscode_extensions
   cli_tools

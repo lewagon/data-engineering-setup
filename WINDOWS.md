@@ -31,15 +31,34 @@ We highly recommend installing [Windows Terminal](https://apps.microsoft.com/sto
 </details>
 
 - Create a SSH key
+
+<details>
+  <summary markdown='span'>MacOS & Linux</summary>
+
 ```bash
 EMAIL="your_email@example.com" # replace with your GCP account email
 ssh-keygen -t ed25519 -C $EMAIL
 ```
+
+</details>
+
+<details>
+  <summary markdown='span'>Windows</summary>
+
+```bash
+EMAIL="your_email@example.com" # replace with your GCP account email
+ssh-keygen.exe -t ed25519 -C $EMAIL
+```
+</details>
+
 You should get the following message: `> Generating public/private algorithm key pair.`
 - When you are prompted `> Enter a file in which to save the key`, press Enter
 - You should be asked to `Enter a passphrase`, type a secure passphrase, it is like a password, but longer.
+
 ℹ️ Don't worry if nothing prompt when you type, that is perfectly normal for security reasons.
+
 - You should be asked to `Enter same passphrase again`, do it.
+
 **❗️ You must remember this passphrase.**
 
 
@@ -216,7 +235,13 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 
 <img alt="gcloud-console-add-manual-ssh-key" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-manual-ssh-key.png" width=500>
 
-- Copy your public SSH key which you've generated at the beginning and kept close.
+- In your terminal display your public SSH key:
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+- Copy your public SSH key and paste it:
 
 <img alt="gcloud-console-add-ssh-key-pub" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-ssh-key-pub.png" width=500>
 
@@ -254,33 +279,9 @@ Let's install [Visual Studio Code](https://code.visualstudio.com) text editor.
 - Open the file you have just downloaded.
 - Install it with few options:
 
-![VS Code installation options](https://github.com/lewagon/setup/blob/master/images/windows_vscode_installation.png)
+![VS Code installation options](images/windows_vscode_installation.png)
 
 When the installation is finished, launch VS Code.
-
-### Connecting VS Code to Ubuntu
-
-To make VS Code interact properly with Ubuntu, let's install the [Remote - WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) VS Code extension.
-
-Open your **Ubuntu terminal**.
-
-Copy-paste the following commands in the terminal:
-
-```bash
-code --install-extension ms-vscode-remote.remote-wsl
-```
-
-Then open VS Code from your terminal:
-
-```bash
-code .
-```
-
-:heavy_check_mark: If you see `WSL: Ubuntu` in a green box in the bottom left corner of the VS Code window, you're good to go :+1:
-
-![WSL Ubuntu Remote](https://github.com/lewagon/setup/blob/master/images/windows_remote_wsl.png)
-
-:x: Otherwise, please **contact a teacher**
 
 
 ### VS Code Remote SSH Extension
