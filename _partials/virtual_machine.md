@@ -55,7 +55,13 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 
 <img alt="gcloud-console-add-manual-ssh-key" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-manual-ssh-key.png" width=500>
 
-- Copy your public SSH key which you've generated at the beginning and kept close.
+- In your terminal display your public SSH key:
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+- Copy your public SSH key and paste it:
 
 <img alt="gcloud-console-add-ssh-key-pub" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-ssh-key-pub.png" width=500>
 
