@@ -274,21 +274,12 @@ Congrats, your virtual machine is up and running, it is time to connect it with 
 
 Let's install [Visual Studio Code](https://code.visualstudio.com) text editor.
 
-Copy (`Cmd` + `C`) the command below then paste it in your terminal (`Cmd` + `V`):
+- Go to [Visual Studio Code download page](https://code.visualstudio.com/download).
+- Click on "Mac" button
+- Uncompress the file you have just downloaded
+- Move the VS Code file to your Applications
 
-```bash
-brew install --cask visual-studio-code
-```
-
-Then launch VS Code by running the following command in your terminal:
-
-```bash
-code
-```
-
-:heavy_check_mark: If a VS Code window has just opened, you're good to go :+1:
-
-:x: Otherwise, please **contact a teacher**
+![VS Code to Application](images/osx_vscode.png)
 
 
 ### VS Code Remote SSH Extension
