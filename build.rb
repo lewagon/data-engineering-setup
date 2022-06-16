@@ -15,7 +15,7 @@ MAC_OS = %w[
   ssh_key
   gcp_setup
   virtual_machine
-  setup/macos_vscode
+  osx_vscode
   vscode_remote_ssh
   vscode_extensions
   cli_tools
