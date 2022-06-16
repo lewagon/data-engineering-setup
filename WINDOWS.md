@@ -712,8 +712,8 @@ Ubuntu 20.04 has Python 3.8 pre-installed, so only Pip remains to be installed.
 Run the following command in your VS Code terminal:
 
 ```bash
-echo "PATH=\$PATH:\$HOME/.local/bin" >> ~/.bashrc
-source ~/.bashrc
+echo "PATH=\$PATH:\$HOME/.local/bin" >> ~/.zshrc
+source ~/.zshrc
 curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
 python3 /tmp/get-pip.py
 ```
@@ -726,8 +726,8 @@ Install Poetry running the following command in your VS Code terminal:
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
-echo "PATH=\$PATH:\$HOME/.poetry/bin" >> ~/.bashrc
-source ~/.bashrc
+echo "PATH=\$PATH:\$HOME/.poetry/bin" >> ~/.zshrc
+source ~/.zshrc
 ```
 
 ## Direnv
@@ -750,7 +750,7 @@ echo "}" >> ~/.direnvrc
 Then:
 
 ```bash
-direnv hook bash >> ~/.bashrc
+direnv hook zsh >> ~/.zshrc
 ```
 
 
