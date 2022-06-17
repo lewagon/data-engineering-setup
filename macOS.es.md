@@ -538,6 +538,8 @@ sudo service docker stop
 ```
 
 
+
+
 ## Instalación de Python (con [`pyenv`](https://github.com/pyenv/pyenv))
 
 Ubuntu viene con una versión vieja de Python que no queremos usar. Tal vez ya hayas instalado Anaconda u otro programa para utilizar Python y paquetes de Ciencia de Datos. Si es así, no pasa nada ya que haremos una configuración profesional de Python que te permitirá cambiar de versión cuando quieras al escribir `python` en la terminal.
