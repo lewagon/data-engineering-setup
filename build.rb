@@ -22,6 +22,7 @@ MAC_OS = %w[
   setup/oh_my_zsh
   setup/gh_cli
   ubuntu_gcloud
+  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
@@ -51,6 +52,7 @@ WINDOWS = %w[
   setup/oh_my_zsh
   setup/gh_cli
   ubuntu_gcloud
+  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
@@ -80,6 +82,7 @@ LINUX = %w[
   setup/oh_my_zsh
   setup/gh_cli
   ubuntu_gcloud
+  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
