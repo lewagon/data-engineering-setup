@@ -30,6 +30,7 @@ MAC_OS = %w[
   dotfiles_new_laptop
   setup/ssh_agent
   ubuntu_docker
+  tldr
   ubuntu_python
   setup/kitt
 ].freeze
@@ -60,6 +61,7 @@ WINDOWS = %w[
   dotfiles_new_laptop
   setup/ssh_agent
   ubuntu_docker
+  tldr
   ubuntu_python
   setup/kitt
 ].freeze
@@ -90,6 +92,7 @@ LINUX = %w[
   dotfiles_new_laptop
   setup/ssh_agent
   ubuntu_docker
+  tldr
   ubuntu_python
   setup/kitt
 ]
