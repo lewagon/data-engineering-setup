@@ -69,6 +69,8 @@ You should get the following message: `> Generating public/private algorithm key
 
 ### Project setup
 
+**👌 Note: Skip to the next section if you already have a GCP project**
+
 - Go to [Google Cloud](https://console.cloud.google.com/) and create an account if you do not already have one
 - In the Cloud Console, on the project list, select or create a Cloud project
 
@@ -96,6 +98,8 @@ Then switch the language to english:
 - Click on **Select**
 
 ### Billing account
+
+**👌 Note: Skip to the next section if you already have a valid billing account**
 
 You will now link your account to your credit card. This step is required or you will not be able to use the services provided by GCP. Do not worry, you will be able to consume most GCP services through free credits throughout the bootcamp.
 
@@ -189,6 +193,8 @@ Go to your project [APIs dashboard](https://console.cloud.google.com/apis/dashbo
 
 ### Enable Compute Engine (virtual machines) API
 
+**👌 Note: Skip to the next section if you already have Compute Engine enabled**
+
 - In the search bar, type _compute_ and click on the Compute Engine result
     <img alt='APIs search' src="images/gcp_apis_search.png" width=500>
 - Click on `ENABLE`
@@ -199,90 +205,74 @@ Go to your project [APIs dashboard](https://console.cloud.google.com/apis/dashbo
 
 ## Virtual Machine (VM)
 
+**👌 Note: Skip to the next section if you already have a VM set up**
+
 _Note: The following section requires you already have a [Google Cloud Platform](https://cloud.google.com/) account associated with an active [Billing account](https://console.cloud.google.com/billing)._
 
 - Go to console.cloud.google.com > VM instances > Create instance
 - Name it `lewagon-data-eng-vm-<github_username>`, replace `<github_username>` with your own, e.g. `krokrob`
 - Region `europe-west1`, choose the closest one among the [available regions](https://cloud.google.com/compute/docs/regions-zones#available)
 
-<img alt="gcloud-console-vm-create-instance" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-instance.png" width=500>
-
+    <img alt="gcloud-console-vm-create-instance" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-instance.png" width=500>
 - In the section `Machine configuration`
 - Select General purpose > e2-standard-4
 
-<img alt="gcloud-console-vm-e2-standard4" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-e2-standard4.png" width=500>
-
+    <img alt="gcloud-console-vm-e2-standard4" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-e2-standard4.png" width=500>
 - Boot disk > Change
   - Operating system > Ubuntu
   - Version > Ubuntu 20.04 LTS
   - Boot disk type > Balanced persistent disk
   - Size > upgrade to 150GB
 
-<img alt="gcloud-console-vm-ubunt" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-ubunt.png" width=500>
-
+    <img alt="gcloud-console-vm-ubunt" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-ubunt.png" width=500>
 - Open `Networking, Disks, ...`
 - Open `Networking`
 
-<img alt="gcloud-console-vm-networking" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-networking.png" width=500>
-
+    <img alt="gcloud-console-vm-networking" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-networking.png" width=500>
 - Go to `Network interfaces` and click on `default default (...)` with a downward arrow on the right.
 
-<img alt="gcloud-console-vm-network-interfaces" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-network-interfaces.png" width=500>
-
+    <img alt="gcloud-console-vm-network-interfaces" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-network-interfaces.png" width=500>
 - This opened a box `Edit network interface`
 - Go to the dropdown `External IPv4 address`, click on it, click on `CREATE IP ADDRESS`
 
-<img alt="gcloud-console-vm-create-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-static-ip.png" width=500>
-
+    <img alt="gcloud-console-vm-create-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-static-ip.png" width=300>
 - Give it a name, like "lewagon-data-eng-vm-ip" and description "Le Wagon - Data Engineering VM IP". This will take a few seconds.
 
-<img alt="gcloud-console-reserve-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-reserve-static-ip.png" width=500>
-
+    <img alt="gcloud-console-reserve-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-reserve-static-ip.png" width=300>
 - You will now have a public IP associated with your account, and later to your VM instance. Click on `Done` at the bottom of the section `Edit network interface` you were in.
 
-<img alt="gcloud-console-new-external-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-new-external-ip.png" width=500>
-
+    <img alt="gcloud-console-new-external-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-new-external-ip.png" width=300>
 - Open the `Security` section
 
-<img alt="gcloud-console-vm-security" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-security.png" width=500>
-
+    <img alt="gcloud-console-vm-security" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-security.png" width=300>
 - Open the `Manage access` subsection
 
-<img alt="gcloud-console-manage-access" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-manage-access.png" width=500>
-
+    <img alt="gcloud-console-manage-access" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-manage-access.png" width=200>
 - Go to `Add manually generated SSH keys` and click `Add item`
 
-<img alt="gcloud-console-add-manual-ssh-key" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-manual-ssh-key.png" width=500>
-
+    <img alt="gcloud-console-add-manual-ssh-key" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-manual-ssh-key.png" width=500>
 - In your terminal display your public SSH key:
-
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
-
+    ```bash
+    cat ~/.ssh/id_ed25519.pub
+    ```
 - Copy your public SSH key and paste it:
 
-<img alt="gcloud-console-add-ssh-key-pub" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-ssh-key-pub.png" width=500>
-
+    <img alt="gcloud-console-add-ssh-key-pub" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-ssh-key-pub.png" width=500>
 - On the right hand side you should see
 
-<img alt="gcloud-console-vm-price-month" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-price-month.png" width=500>
-
+    <img alt="gcloud-console-vm-price-month" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-price-month.png" width=300>
 - You should be good to go and click `CREATE` at the bottom
 
-<img alt="gcloud-console-vm-create" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create.png" width=500>
-
+    <img alt="gcloud-console-vm-create" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create.png" width=500>
 - It will take a few minutes for your virtual machine (VM) to be created. Your instance will show up like below when ready, with a green circled tick, named `lewagon-data-eng-vm`.
 
-<img alt="gcloud-console-vm-instance-running" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-instance-running.png" width=500>
-
+    <img alt="gcloud-console-vm-instance-running" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-instance-running.png" width=500>
 - Click on your instance
 
-<img alt="gcloud-console-vm-running" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-running.png" width=500>
-
+    <img alt="gcloud-console-vm-running" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-running.png" width=500>
 - Go down to the section `SSH keys`, and write down your username
 
-<img alt="gcloud-console-vm-username" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-username.png" width=500>
+    <img alt="gcloud-console-vm-username" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-username.png" width=300>
 
 Congrats, your virtual machine is up and running, it is time to connect it with VS Code!
 
@@ -519,6 +509,8 @@ sudo apt-get install google-cloud-sdk-app-engine-python
 👉 [Install documentation](https://cloud.google.com/sdk/docs/install#deb)
 
 ### Create a service account key 🔑
+
+**👌 Note: Skip to the next section if you already have a service account key**
 
 Now that you have created a `GCP account` and a `project` (identified by its `PROJECT_ID`), we are going to configure the actions (API calls) that you want to allow your code to perform.
 
@@ -817,6 +809,8 @@ Run `docker run hello-world`, you should see something like:
 
 ### Enable Artifact Registry API
 
+**👌 Note: Skip to the next section if you already have an Artifact Registry repository**
+
 [Artifact Registry](https://cloud.google.com/artifact-registry) is a GCP service you will use to store artifacts such as Docker images. The storage units are called repositories.
 
 - Enable the service within your project using the `gcloud` CLI:
@@ -935,14 +929,18 @@ source ~/.zshrc
     ```
 - Paste the following lines
     ```bash
-    if [[ ! -f pyproject.toml ]]; then
-      log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'
-      exit 2
-    fi
-    poetry run true
-    export VIRTUAL_ENV=\$(poetry env info --path)
-    export POETRY_ACTIVE=1
-    PATH_add \"\$VIRTUAL_ENV/bin\"
+    layout_poetry() {
+      if [[ ! -f pyproject.toml ]]; then
+          log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'
+          exit 2
+      fi
+      # create venv if it doesn't exist
+      poetry run true
+
+      export VIRTUAL_ENV=$(poetry env info --path)
+      export POETRY_ACTIVE=1
+      PATH_add "$VIRTUAL_ENV/bin"
+    }
     ```
 - Save and close the file
 - Setup shell hook
