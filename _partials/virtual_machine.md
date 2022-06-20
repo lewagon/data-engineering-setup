@@ -4,7 +4,7 @@
 
 _Note: The following section requires you already have a [Google Cloud Platform](https://cloud.google.com/) account associated with an active [Billing account](https://console.cloud.google.com/billing)._
 
-- Go to console.cloud.google.com > VM instances > Create instance
+- Go to console.cloud.google.com > > Compute Engine > VM instances > Create instance
 - Name it `lewagon-data-eng-vm-<github_username>`, replace `<github_username>` with your own, e.g. `krokrob`
 - Region `europe-west1`, choose the closest one among the [available regions](https://cloud.google.com/compute/docs/regions-zones#available)
 

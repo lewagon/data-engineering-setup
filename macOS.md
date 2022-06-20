@@ -209,7 +209,7 @@ Go to your project [APIs dashboard](https://console.cloud.google.com/apis/dashbo
 
 _Note: The following section requires you already have a [Google Cloud Platform](https://cloud.google.com/) account associated with an active [Billing account](https://console.cloud.google.com/billing)._
 
-- Go to console.cloud.google.com > VM instances > Create instance
+- Go to console.cloud.google.com > > Compute Engine > VM instances > Create instance
 - Name it `lewagon-data-eng-vm-<github_username>`, replace `<github_username>` with your own, e.g. `krokrob`
 - Region `europe-west1`, choose the closest one among the [available regions](https://cloud.google.com/compute/docs/regions-zones#available)
 
@@ -840,7 +840,7 @@ You need to grant Docker access to push artifacts to (and pull from) your reposi
     ```bash
     gcloud auth configure-docker $HOSTNAME
     ```
-- Type `y` to accept the comfiguration
+- Type `y` to accept the configuration
 - Check your credentials helper is set:
     ```bash
     cat ~/.docker/config.json

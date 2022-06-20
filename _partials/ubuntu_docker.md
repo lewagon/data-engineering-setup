@@ -51,7 +51,7 @@ You need to grant Docker access to push artifacts to (and pull from) your reposi
     ```bash
     gcloud auth configure-docker $HOSTNAME
     ```
-- Type `y` to accept the comfiguration
+- Type `y` to accept the configuration
 - Check your credentials helper is set:
     ```bash
     cat ~/.docker/config.json
