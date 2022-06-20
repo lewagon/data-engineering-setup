@@ -185,14 +185,15 @@ You will use different GCP services during the bootcamp which needs to be activa
 
 Go to your project [APIs dashboard](https://console.cloud.google.com/apis/dashboard), you can see a bunch of APIs are already enabled:
 
-<img alt='GCP APIs dashboard' src="images/gcp_apis_dashboard.png" width=300>
+<img alt='GCP APIs dashboard' src="images/gcp_apis_dashboard.png" width=200>
 
 ### Enable Compute Engine (virtual machines) API
 
 - In the search bar, type _compute_ and click on the Compute Engine result
     <img alt='APIs search' src="images/gcp_apis_search.png" width=500>
 - Click on `ENABLE`
-    <img alt='APIs enable' src="images/gcp_apis_enable.png" width=500>
+
+    <img alt='APIs enable' src="images/gcp_apis_enable.png" width=300>
 - Compute Engine is now enabled on your project
 
 
