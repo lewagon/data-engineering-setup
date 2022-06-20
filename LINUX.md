@@ -612,6 +612,7 @@ gcloud config set project PROJECT_ID
 - List your active account and current project and check your project is present
 ```bash
 gcloud config list
+```
 
 
 ## Dotfiles
