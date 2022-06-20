@@ -28,6 +28,7 @@ MAC_OS = %w[
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
+  zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
   tldr
@@ -59,6 +60,7 @@ WINDOWS = %w[
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
+  zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
   tldr
@@ -90,6 +92,7 @@ LINUX = %w[
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
+  zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
   tldr

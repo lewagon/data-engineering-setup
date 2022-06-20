@@ -4,6 +4,8 @@
 
 ### Project setup
 
+**👌 Note: Skip to the next section if you already have a GCP project**
+
 - Go to [Google Cloud](https://console.cloud.google.com/) and create an account if you do not already have one
 - In the Cloud Console, on the project list, select or create a Cloud project
 
@@ -31,6 +33,8 @@ Then switch the language to english:
 - Click on **Select**
 
 ### Billing account
+
+**👌 Note: Skip to the next section if you already have a valid billing account**
 
 You will now link your account to your credit card. This step is required or you will not be able to use the services provided by GCP. Do not worry, you will be able to consume most GCP services through free credits throughout the bootcamp.
 
@@ -111,3 +115,24 @@ You may receive a validation or requests for more information within 30 minutes.
 Once the verification goes through, you should receive an email stating that "Your Google Cloud Platform billing account XXXXXX-XXXXXX-XXXXXX has been fully reinstated and is ready to use.".
 
 </details>
+
+## GCP APIs
+
+You will use different GCP services during the bootcamp which needs to be activated and configured.
+
+### Default APIs
+
+Go to your project [APIs dashboard](https://console.cloud.google.com/apis/dashboard), you can see a bunch of APIs are already enabled:
+
+<img alt='GCP APIs dashboard' src="images/gcp_apis_dashboard.png" width=200>
+
+### Enable Compute Engine (virtual machines) API
+
+**👌 Note: Skip to the next section if you already have Compute Engine enabled**
+
+- In the search bar, type _compute_ and click on the Compute Engine result
+    <img alt='APIs search' src="images/gcp_apis_search.png" width=500>
+- Click on `ENABLE`
+
+    <img alt='APIs enable' src="images/gcp_apis_enable.png" width=300>
+- Compute Engine is now enabled on your project
