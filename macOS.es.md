@@ -481,6 +481,8 @@ Ahora **cierra** todas las ventanas de tu terminal que tengas abiertas por favor
 </details>
 
 
+
+
 ## Desahilitación de la solicitud de SSH passphrase
 
 No vas a querer que te pidan tu passphrase cada vez que te comuniques con un repositorio remoto. Por eso debes agregarle plugin `ssh-agent` a `oh my zsh`:
