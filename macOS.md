@@ -1,10 +1,10 @@
 # Setup instructions
 
-You will find below the instructions to set up you computer for [Le Wagon Data Engineering course](https://www.lewagon.com/)
+You will find below the instructions to set up your computer for [Le Wagon Data Engineering course](https://www.lewagon.com/)
 
 A part of the setup will be done on your **local machine** but most of the configuration will be done on a **virtual machine**.
 
-Please **read them carefully and execute all commands in the following order**. If you get stuck, don't hesitate to ask a teacher for help :raising_hand:
+Please **read instructions carefully and execute all commands in the following order**. If you get stuck, don't hesitate to ask a teacher for help :raising_hand:
 
 Let's start :rocket:
 
@@ -69,6 +69,8 @@ You should get the following message: `> Generating public/private algorithm key
 
 ### Project setup
 
+**👌 Note: Skip to the next section if you already have a GCP project**
+
 - Go to [Google Cloud](https://console.cloud.google.com/) and create an account if you do not already have one
 - In the Cloud Console, on the project list, select or create a Cloud project
 
@@ -96,6 +98,8 @@ Then switch the language to english:
 - Click on **Select**
 
 ### Billing account
+
+**👌 Note: Skip to the next section if you already have a valid billing account**
 
 You will now link your account to your credit card. This step is required or you will not be able to use the services provided by GCP. Do not worry, you will be able to consume most GCP services through free credits throughout the bootcamp.
 
@@ -177,93 +181,98 @@ Once the verification goes through, you should receive an email stating that "Yo
 
 </details>
 
+## GCP APIs
+
+You will use different GCP services during the bootcamp which needs to be activated and configured.
+
+### Default APIs
+
+Go to your project [APIs dashboard](https://console.cloud.google.com/apis/dashboard), you can see a bunch of APIs are already enabled:
+
+<img alt='GCP APIs dashboard' src="images/gcp_apis_dashboard.png" width=200>
+
+### Enable Compute Engine (virtual machines) API
+
+**👌 Note: Skip to the next section if you already have Compute Engine enabled**
+
+- In the search bar, type _compute_ and click on the Compute Engine result
+    <img alt='APIs search' src="images/gcp_apis_search.png" width=500>
+- Click on `ENABLE`
+
+    <img alt='APIs enable' src="images/gcp_apis_enable.png" width=300>
+- Compute Engine is now enabled on your project
+
 
 ## Virtual Machine (VM)
+
+**👌 Note: Skip to the next section if you already have a VM set up**
 
 _Note: The following section requires you already have a [Google Cloud Platform](https://cloud.google.com/) account associated with an active [Billing account](https://console.cloud.google.com/billing)._
 
 - Go to console.cloud.google.com > VM instances > Create instance
-- Name it `lewagon-data-eng-vm`
-- Region `europe-west1`
+- Name it `lewagon-data-eng-vm-<github_username>`, replace `<github_username>` with your own, e.g. `krokrob`
+- Region `europe-west1`, choose the closest one among the [available regions](https://cloud.google.com/compute/docs/regions-zones#available)
 
-<img alt="gcloud-console-vm-create-instance" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-instance.png" width=500>
-
+    <img alt="gcloud-console-vm-create-instance" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-instance.png" width=500>
 - In the section `Machine configuration`
 - Select General purpose > e2-standard-4
 
-<img alt="gcloud-console-vm-e2-standard4" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-e2-standard4.png" width=500>
-
+    <img alt="gcloud-console-vm-e2-standard4" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-e2-standard4.png" width=500>
 - Boot disk > Change
   - Operating system > Ubuntu
   - Version > Ubuntu 20.04 LTS
   - Boot disk type > Balanced persistent disk
   - Size > upgrade to 150GB
 
-<img alt="gcloud-console-vm-ubunt" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-ubunt.png" width=500>
-
+    <img alt="gcloud-console-vm-ubunt" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-ubunt.png" width=500>
 - Open `Networking, Disks, ...`
 - Open `Networking`
 
-<img alt="gcloud-console-vm-networking" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-networking.png" width=500>
-
+    <img alt="gcloud-console-vm-networking" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-networking.png" width=500>
 - Go to `Network interfaces` and click on `default default (...)` with a downward arrow on the right.
 
-<img alt="gcloud-console-vm-network-interfaces" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-network-interfaces.png" width=500>
-
+    <img alt="gcloud-console-vm-network-interfaces" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-network-interfaces.png" width=500>
 - This opened a box `Edit network interface`
 - Go to the dropdown `External IPv4 address`, click on it, click on `CREATE IP ADDRESS`
 
-<img alt="gcloud-console-vm-create-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-static-ip.png" width=500>
-
+    <img alt="gcloud-console-vm-create-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-static-ip.png" width=300>
 - Give it a name, like "lewagon-data-eng-vm-ip" and description "Le Wagon - Data Engineering VM IP". This will take a few seconds.
 
-<img alt="gcloud-console-reserve-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-reserve-static-ip.png" width=500>
-
+    <img alt="gcloud-console-reserve-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-reserve-static-ip.png" width=300>
 - You will now have a public IP associated with your account, and later to your VM instance. Click on `Done` at the bottom of the section `Edit network interface` you were in.
 
-<img alt="gcloud-console-new-external-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-new-external-ip.png" width=500>
-
+    <img alt="gcloud-console-new-external-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-new-external-ip.png" width=300>
 - Open the `Security` section
 
-<img alt="gcloud-console-vm-security" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-security.png" width=500>
-
+    <img alt="gcloud-console-vm-security" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-security.png" width=300>
 - Open the `Manage access` subsection
 
-<img alt="gcloud-console-manage-access" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-manage-access.png" width=500>
-
+    <img alt="gcloud-console-manage-access" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-manage-access.png" width=200>
 - Go to `Add manually generated SSH keys` and click `Add item`
 
-<img alt="gcloud-console-add-manual-ssh-key" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-manual-ssh-key.png" width=500>
-
+    <img alt="gcloud-console-add-manual-ssh-key" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-manual-ssh-key.png" width=500>
 - In your terminal display your public SSH key:
-
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
-
+    ```bash
+    cat ~/.ssh/id_ed25519.pub
+    ```
 - Copy your public SSH key and paste it:
 
-<img alt="gcloud-console-add-ssh-key-pub" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-ssh-key-pub.png" width=500>
-
+    <img alt="gcloud-console-add-ssh-key-pub" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-ssh-key-pub.png" width=500>
 - On the right hand side you should see
 
-<img alt="gcloud-console-vm-price-month" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-price-month.png" width=500>
-
+    <img alt="gcloud-console-vm-price-month" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-price-month.png" width=300>
 - You should be good to go and click `CREATE` at the bottom
 
-<img alt="gcloud-console-vm-create" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create.png" width=500>
-
+    <img alt="gcloud-console-vm-create" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create.png" width=500>
 - It will take a few minutes for your virtual machine (VM) to be created. Your instance will show up like below when ready, with a green circled tick, named `lewagon-data-eng-vm`.
 
-<img alt="gcloud-console-vm-instance-running" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-instance-running.png" width=500>
-
+    <img alt="gcloud-console-vm-instance-running" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-instance-running.png" width=500>
 - Click on your instance
 
-<img alt="gcloud-console-vm-running" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-running.png" width=500>
-
+    <img alt="gcloud-console-vm-running" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-running.png" width=500>
 - Go down to the section `SSH keys`, and write down your username
 
-<img alt="gcloud-console-vm-username" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-username.png" width=500>
+    <img alt="gcloud-console-vm-username" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-username.png" width=300>
 
 Congrats, your virtual machine is up and running, it is time to connect it with VS Code!
 
@@ -351,6 +360,7 @@ code --install-extension KevinRose.vsc-python-indent
 code --install-extension ms-python.vscode-pylance
 code --install-extension redhat.vscode-yaml
 code --install-extension ms-azuretools.vscode-docker
+code --install-extension bungcip.better-toml
 ```
 
 Here is a list of the extensions you are installing:
@@ -361,6 +371,7 @@ Here is a list of the extensions you are installing:
 - [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
 - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+- [Better TOML](https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml)
 
 
 
@@ -379,7 +390,7 @@ Let's install them, along with other useful tools:
 
 ```bash
 sudo apt update
-sudo apt install -y vim tmux tree git ca-certificates curl jq unzip zsh apt-transport-https gnupg software-properties-common direnv sqlite3 docker-compose
+sudo apt install -y vim tmux tree git ca-certificates curl jq unzip zsh apt-transport-https gnupg software-properties-common direnv sqlite3 docker-compose make
 ```
 
 These commands will ask for your password: type it in.
@@ -495,25 +506,106 @@ sudo apt-get install google-cloud-sdk-app-engine-python
 ```
 👉 [Install documentation](https://cloud.google.com/sdk/docs/install#deb)
 
+### Create a service account key 🔑
+
+**👌 Note: Skip to the next section if you already have a service account key**
+
+Now that you have created a `GCP account` and a `project` (identified by its `PROJECT_ID`), we are going to configure the actions (API calls) that you want to allow your code to perform.
+
+<details>
+  <summary>🤔 Why do we need a service account key ?</summary>
+
+
+  You have created a `GCP account` linked to your credit card. Your account will be billed according to your usage of the ressources of the **Google Cloud Platform**. The billing will occur if you consume anything once the free trial is over, or if you exceed the amount of spending allowed during the free trial.
+
+  In your `GCP account`, you have created a single `GCP project`, identified by its `PROJECT_ID`. The `GCP projects` allow you to organize and monitor more precisely how you consume the **GCP** ressources. For the purpose of the bootcamp, we are only going to create a single project.
+
+  Now, we need a way to tell which ressources within a `GCP project` our code will be allowed to consume. Our code consumes GCP ressources through API calls.
+
+  Since API calls are not free, it is important to define with caution how our code will be allowed to use them. During the bootcamp this will not be an issue and we are going to allow our code to use all the API of **GCP** without any restrictions.
+
+  In the same way that there may be several projects associated with a GCP account, a project may be composed of several services (any bundle of code, whatever its form factor, that requires the usage of GCP API calls in order to fulfill its purpose).
+
+  GCP requires that the services of the projects using API calls are registered on the platform and their credentials configured through the access granted to a `service account`.
+
+  For the moment we will only need to use a single service and will create the corresponding `service account`.
+</details>
+
+Since the [service account](https://cloud.google.com/iam/docs/service-accounts) is what identifies your application (and therefore your GCP billing account and ultimately your credit card), you are going to want to be cautious with the next steps.
+
+⚠️ **Do not share you service account json file 🔑** ⚠️ Do not store it on your desktop, do not store it in your git codebase (even if your git repository is private), do not let it by the coffee machine, do not send it as a tweet.
+
+- Go to the [service accounts page](https://console.cloud.google.com/apis/credentials/serviceaccountkey)
+- Select your project in the list of recent projects if asked to
+- Create a service account:
+  - Click on **CREATE SERVICE ACCOUNT**:
+  - Give a `Service account name` to that account
+  - Click on **CREATE AND CONTINUE**
+  - Click on **Select a role** and choose `Quick access/Basic` then **Owner**, which gives full access to all ressources
+  - Click on **CONTINUE**
+  - Click on **DONE**
+- Download the service account json file 🔑:
+  - Click on the newly created service account
+  - Click on **KEYS**
+  - Click on **ADD KEY** then **Create new key**
+  - Select **JSON** and click on **CREATE**
+
+![](images/gcp_create_key.png)
+
+The browser has now saved the service account json file 🔑 in your downloads directory (it is named according to your service account name, something like `le-wagon-data-123456789abc.json`)
+
+
 ### Configure Cloud sdk
 
+- Open the service account json file with any text editor and copy the key
+    ```
+    # It looks like:
+    {
+        "type": "service_account",
+        "project_id": "kevin-bootcamp",
+        "private_key_id": "1234567890",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n-----END PRIVATE KEY-----\n",
+        "client_email": "bootcamp@kevin-bootcamp.iam.gserviceaccount.com",
+        "client_id": "1234567890",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bootcamp%40kevin-bootcamp.iam.gserviceaccount.com"
+    }
+    ```
+- Create a `/.gcp_keys` directory on your Virtual Machine, then create a json file in it:
+    ``` bash
+    mkdir ~/.gcp_keys
+    touch ~/.gcp_keys/le-wagon-de-bootcamp.json
+    ```
+- Open the json file then store the service account json file pasting the key:
+    ```bash
+    code ~/.gcp_keys/le-wagon-de-bootcamp.json
+    ```
+    ![service account json key](images/service_account_json_key.png)
+
+    ❗️Don't forget to **save** the file with `CMD` + `s` or `CTRL` + `s`
+
 - Authenticate the `gcloud` CLI with the google account you used for GCP
-```bash
-gcloud auth login
-```
-- Login to your Google account on the new tab opened in your web browser
+    ```bash
+    # Replace service_account_name@project_id.iam.gserviceaccount.com with your own
+    SERVICE_ACCOUNT_EMAIL=service_account_name@project_id.iam.gserviceaccount.com
+    KEY_FILE=$HOME/.gcp_keys/le-wagon-de-bootcamp.json
+    gcloud auth activate-service-account $SERVICE_ACCOUNT_EMAIL --key-file=$KEY_FILE
+    ```
 - List your active account and check your email address you used for GCP is present
-```bash
-gcloud auth list
-```
-- Set your current project (replace `PROJECT_ID` with the `ID` of your project, e.g. `wagon-bootcamp-123456`)
-```bash
-gcloud config set project PROJECT_ID
-```
+    ```bash
+    gcloud auth list
+    ```
+- Set your current project
+    ```bash
+    # Replace `PROJECT_ID` with the `ID` of your project, e.g. `wagon-bootcamp-123456`
+    gcloud config set project PROJECT_ID
+    ```
 - List your active account and current project and check your project is present
-```bash
-gcloud config list
-```
+    ```bash
+    gcloud config list
+    ```
 
 
 ## Dotfiles
@@ -660,6 +752,18 @@ Please now **quit** all your opened terminal windows.
 </details>
 
 
+### zsh default terminal
+
+Set `zsh` as your default VS Code terminal.
+
+- Open terminal default profile settings
+
+    <img alt="Terminal profile settings" src="images/terminal_profile_settings.png" width=500>
+- Select `zsh /usr/bin/zsh`
+
+    <img alt="Terminal zsh profile" src="images/terminal_zsh_profile.png" width=300>
+
+
 ## Disable SSH passphrase prompt
 
 You don't want to be asked for your passphrase every time you communicate with a distant repository. So, you need to add the plugin `ssh-agent` to `oh my zsh`:
@@ -701,6 +805,91 @@ Run `docker run hello-world`, you should see something like:
 
 ![](images/docker_hello.png)
 
+### Enable Artifact Registry API
+
+**👌 Note: Skip to the next section if you already have an Artifact Registry repository**
+
+[Artifact Registry](https://cloud.google.com/artifact-registry) is a GCP service you will use to store artifacts such as Docker images. The storage units are called repositories.
+
+- Enable the service within your project using the `gcloud` CLI:
+    ```bash
+    gcloud services enable artifactregistry.googleapis.com
+    ```
+- Create a new Docker repository:
+    ```bash
+    # Set the repository name
+    REPOSITORY=docker-hub
+    # Set the location of the repository. Available locations: gcloud artifacts locations list
+    LOCATION=europe-west1
+    gcloud artifacts repositories create $REPOSITORY \
+    --repository-format=docker \
+    --location=$LOCATION \
+    --description="Docker images storage" \
+    ```
+
+### Gcloud authentication for Docker
+
+You need to grant Docker access to push artifacts to (and pull from) your repository. There are different authentication methods, [gcloud credentials helper](https://cloud.google.com/artifact-registry/docs/docker/authentication#gcloud-helper) being the easiest.
+
+- Define the repository hostname matching the repository `$LOCATION`:
+    ```bash
+    # If $LOCATION is "europe-west1"
+    HOSTNAME=europe-west1-docker.pkg.dev
+    ```
+- Configure gcloud credentials helper:
+    ```bash
+    gcloud auth configure-docker $HOSTNAME
+    ```
+- Type `y` to accept the comfiguration
+- Check your credentials helper is set:
+    ```bash
+    cat ~/.docker/config.json
+    ```
+    You should get:
+    ```bash
+    {
+      "credHelpers": {
+        "europe-west1-docker.pkg.dev": "gcloud"
+      }
+    }%
+    ```
+
+
+
+## TLDR
+
+Add TLDR - a modern addition to MAN pages, which will help you find nice documentation and examples on most Linux commands:
+
+```bash
+echo "alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'" >> ~/.aliases
+source ~/.aliases
+```
+
+You can try `tldr` with:
+
+```bash
+tldr gh
+```
+
+ℹ️ It's normal that it takes ~1 minute the first time, as the cache needs to be built. Subsequent calls will be fast.
+
+Finally you should get:
+
+<img alt="tldr" src="images/tldr.png" width=500>
+
+## gRPCurl
+
+gRPCurl is `curl` for [gRPC servers](https://grpc.io/docs/what-is-grpc/introduction/).
+
+- Install `grpcurl`
+    ```bash
+    curl -s https://grpc.io/get_grpcurl | bash
+    ```
+- Add `grpcurl` to your `PATH`
+    ```bash
+    echo '# Add grpcurl to PATH' >> ~/.zshrc
+    echo 'PATH=$PATH:$HOME/.grpcurl/bin/' >> ~/.zshrc
+    ```
 
 
 ## Python & Pip
@@ -732,24 +921,30 @@ source ~/.zshrc
 
 [Direnv](https://direnv.net/) is a great utility that will look for `.envrc` files in your directories. When you `cd` into directories with a `.envrc` files, paths will automatically be updated. In our case, this will simplify our workflow and allow us to not have to worry about Poetry managed Python virtual environments.
 
-```bash
-echo "layout_poetry() {" > ~/.direnvrc
-echo "  if [[ ! -f pyproject.toml ]]; then" >> ~/.direnvrc
-echo "    log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'" >> ~/.direnvrc
-echo "    exit 2" >> ~/.direnvrc
-echo "  fi" >> ~/.direnvrc
-echo "  poetry run true" >> ~/.direnvrc
-echo "  export VIRTUAL_ENV=\$(poetry env info --path)" >> ~/.direnvrc
-echo "  export POETRY_ACTIVE=1" >> ~/.direnvrc
-echo "  PATH_add \"\$VIRTUAL_ENV/bin\"" >> ~/.direnvrc
-echo "}" >> ~/.direnvrc
-```
+- Open your direnv config file with VS Code:
+    ```bash
+    code ~/.direnvrc
+    ```
+- Paste the following lines
+    ```bash
+    layout_poetry() {
+      if [[ ! -f pyproject.toml ]]; then
+          log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'
+          exit 2
+      fi
+      # create venv if it doesn't exist
+      poetry run true
 
-Then:
-
-```bash
-direnv hook zsh >> ~/.zshrc
-```
+      export VIRTUAL_ENV=$(poetry env info --path)
+      export POETRY_ACTIVE=1
+      PATH_add "$VIRTUAL_ENV/bin"
+    }
+    ```
+- Save and close the file
+- Setup shell hook
+    ```bash
+    direnv hook zsh >> ~/.zshrc
+    ```
 
 
 ## Kitt

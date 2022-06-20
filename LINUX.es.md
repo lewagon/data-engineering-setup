@@ -363,6 +363,19 @@ sudo apt-get install google-cloud-sdk-app-engine-python
 👉 [Documentación para la instalación](https://cloud.google.com/sdk/docs/install#deb)
 
 
+- Guarda el archivo json de la cuenta de servicio en un lugar que recuerdes. Por ejemplo:
+
+``` bash
+/home/LINUX_USERNAME/code/GITHUB_NICKNAME/gcp/SERVICE_ACCOUNT_JSON_FILE_CONTAINING_YOUR_SECRET_KEY.json
+```
+
+- Guarda la **ruta absoluta** al archivo `JSON` como una variable de entorno:
+
+``` bash
+echo 'export GOOGLE_APPLICATION_CREDENTIALS=/path/to/the/SERVICE_ACCOUNT_JSON_FILE_CONTAINING_YOUR_SECRET_KEY.json' >> ~/.aliases
+```
+
+
 ## Dotfiles
 
 Hay tres opciones, escoge **una**:
@@ -500,6 +513,8 @@ Ahora **cierra** todas las ventanas de tu terminal que tengas abiertas por favor
 </details>
 
 
+
+
 ## Desahilitación de la solicitud de SSH passphrase
 
 No vas a querer que te pidan tu passphrase cada vez que te comuniques con un repositorio remoto. Por eso debes agregarle plugin `ssh-agent` a `oh my zsh`:
@@ -555,6 +570,8 @@ Debería aparecer el siguiente mensaje:
 ```bash
 sudo service docker stop
 ```
+
+
 
 
 ## Instalación de Python (con [`pyenv`](https://github.com/pyenv/pyenv))

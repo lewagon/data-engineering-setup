@@ -22,13 +22,16 @@ MAC_OS = %w[
   setup/oh_my_zsh
   setup/gh_cli
   ubuntu_gcloud
+  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
+  zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
+  tldr
   ubuntu_python
   setup/kitt
 ].freeze
@@ -51,13 +54,16 @@ WINDOWS = %w[
   setup/oh_my_zsh
   setup/gh_cli
   ubuntu_gcloud
+  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
+  zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
+  tldr
   ubuntu_python
   setup/kitt
 ].freeze
@@ -80,13 +86,16 @@ LINUX = %w[
   setup/oh_my_zsh
   setup/gh_cli
   ubuntu_gcloud
+  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
+  zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
+  tldr
   ubuntu_python
   setup/kitt
 ]

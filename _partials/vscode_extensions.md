@@ -16,6 +16,7 @@ code --install-extension KevinRose.vsc-python-indent
 code --install-extension ms-python.vscode-pylance
 code --install-extension redhat.vscode-yaml
 code --install-extension ms-azuretools.vscode-docker
+code --install-extension bungcip.better-toml
 ```
 
 Here is a list of the extensions you are installing:
@@ -26,5 +27,6 @@ Here is a list of the extensions you are installing:
 - [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
 - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+- [Better TOML](https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml)
 
 
