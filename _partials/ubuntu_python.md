@@ -27,21 +27,23 @@ source ~/.zshrc
 
 [Direnv](https://direnv.net/) is a great utility that will look for `.envrc` files in your directories. When you `cd` into directories with a `.envrc` files, paths will automatically be updated. In our case, this will simplify our workflow and allow us to not have to worry about Poetry managed Python virtual environments.
 
-```bash
-echo "layout_poetry() {" > ~/.direnvrc
-echo "  if [[ ! -f pyproject.toml ]]; then" >> ~/.direnvrc
-echo "    log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'" >> ~/.direnvrc
-echo "    exit 2" >> ~/.direnvrc
-echo "  fi" >> ~/.direnvrc
-echo "  poetry run true" >> ~/.direnvrc
-echo "  export VIRTUAL_ENV=\$(poetry env info --path)" >> ~/.direnvrc
-echo "  export POETRY_ACTIVE=1" >> ~/.direnvrc
-echo "  PATH_add \"\$VIRTUAL_ENV/bin\"" >> ~/.direnvrc
-echo "}" >> ~/.direnvrc
-```
-
-Then:
-
-```bash
-direnv hook zsh >> ~/.zshrc
-```
+- Open your direnv config file with VS Code:
+    ```bash
+    code ~/.direnvrc
+    ```
+- Paste the following lines
+    ```bash
+    if [[ ! -f pyproject.toml ]]; then
+      log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'
+      exit 2
+    fi
+    poetry run true
+    export VIRTUAL_ENV=\$(poetry env info --path)
+    export POETRY_ACTIVE=1
+    PATH_add \"\$VIRTUAL_ENV/bin\"
+    ```
+- Save and close the file
+- Setup shell hook
+    ```bash
+    direnv hook zsh >> ~/.zshrc
+    ```

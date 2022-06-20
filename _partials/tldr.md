@@ -18,3 +18,17 @@ tldr gh
 Finally you should get:
 
 <img alt="tldr" src="images/tldr.png" width=500>
+
+## gRPCurl
+
+gRPCurl is `curl` for [gRPC servers](https://grpc.io/docs/what-is-grpc/introduction/).
+
+- Install `grpcurl`
+    ```bash
+    curl -s https://grpc.io/get_grpcurl | bash
+    ```
+- Add `grpcurl` to your `PATH`
+    ```bash
+    echo '# Add grpcurl to PATH' >> ~/.zshrc
+    echo 'PATH=$PATH:$HOME/.grpcurl/bin/' >> ~/.zshrc
+    ```
