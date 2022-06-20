@@ -18,6 +18,8 @@ Run `docker run hello-world`, you should see something like:
 
 ### Enable Artifact Registry API
 
+**👌 Note: Skip to the next section if you already have an Artifact Registry repository**
+
 [Artifact Registry](https://cloud.google.com/artifact-registry) is a GCP service you will use to store artifacts such as Docker images. The storage units are called repositories.
 
 - Enable the service within your project using the `gcloud` CLI:

@@ -12,6 +12,8 @@ sudo apt-get install google-cloud-sdk-app-engine-python
 
 ### Create a service account key 🔑
 
+**👌 Note: Skip to the next section if you already have a service account key**
+
 Now that you have created a `GCP account` and a `project` (identified by its `PROJECT_ID`), we are going to configure the actions (API calls) that you want to allow your code to perform.
 
 <details>
