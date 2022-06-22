@@ -12,7 +12,7 @@ Let's install them, along with other useful tools:
 
 ```bash
 sudo apt update
-sudo apt install -y vim tmux tree git ca-certificates curl jq unzip zsh apt-transport-https gnupg software-properties-common direnv sqlite3 docker-compose make
+sudo apt install -y vim tmux tree git ca-certificates curl jq unzip zsh apt-transport-https gnupg software-properties-common direnv sqlite3 make
 ```
 
 These commands will ask for your password: type it in.
