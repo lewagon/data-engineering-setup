@@ -807,6 +807,26 @@ Run `docker run hello-world`, you should see something like:
 
 ![](images/docker_hello.png)
 
+### Install Docker Compose
+
+```bash
+# Download docker-compose standalone
+sudo curl -SL https://github.com/docker/compose/releases/download/v2.6.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+
+# Apply executable permissions
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Link
+sudo rm /usr/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
+
+Check your installation with:
+```bash
+docker-compose -v
+```
+It should print a Docker Compose version >=2.6.
+
 ### Enable Artifact Registry API
 
 **👌 Note: Skip to the next section if you already have an Artifact Registry repository**
