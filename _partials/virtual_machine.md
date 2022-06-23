@@ -31,7 +31,7 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 - Go to the dropdown `External IPv4 address`, click on it, click on `CREATE IP ADDRESS`
 
     <img alt="gcloud-console-vm-create-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-static-ip.png" width=300>
-- Give it a name, like "lewagon-data-eng-vm-ip" and description "Le Wagon - Data Engineering VM IP". This will take a few seconds.
+- Give it a name, like "lewagon-data-eng-vm-ip-<github_username>" (replace `<github_username>` with your own) and description "Le Wagon - Data Engineering VM IP". This will take a few seconds.
 
     <img alt="gcloud-console-reserve-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-reserve-static-ip.png" width=300>
 - You will now have a public IP associated with your account, and later to your VM instance. Click on `Done` at the bottom of the section `Edit network interface` you were in.
