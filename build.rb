@@ -31,8 +31,8 @@ MAC_OS = %w[
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
-  tldr
   ubuntu_python
+  tldr
   setup/kitt
 ].freeze
 
@@ -63,8 +63,8 @@ WINDOWS = %w[
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
-  tldr
   ubuntu_python
+  tldr
   setup/kitt
 ].freeze
 
@@ -95,8 +95,8 @@ LINUX = %w[
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
-  tldr
   ubuntu_python
+  tldr
   setup/kitt
 ]
 

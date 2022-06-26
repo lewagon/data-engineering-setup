@@ -3,9 +3,11 @@
 Add TLDR - a modern addition to MAN pages, which will help you find nice documentation and examples on most Linux commands:
 
 ```bash
-echo "alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'" >> ~/.aliases
-source ~/.aliases
+cd ~
+pip install -U pip
+pip install tldr
 ```
+❗️ It is one of the very few tools we will install from the default system python interpreter, because it has se few [dependencies](https://github.com/tldr-pages/tldr/blob/main/requirements.txt)
 
 You can try `tldr` with:
 
