@@ -19,7 +19,7 @@ Install Poetry running the following command in your VS Code terminal:
 
 ```bash
 curl -sSL https://install.python-poetry.org | python3 -
-echo "PATH=\$PATH:\$HOME/.poetry/bin" >> ~/.zshrc
+echo "PATH=\$PATH:\$HOME/.local/bin" >> ~/.zshrc
 source ~/.zshrc
 ```
 

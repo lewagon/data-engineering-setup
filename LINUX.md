@@ -917,7 +917,7 @@ Install Poetry running the following command in your VS Code terminal:
 
 ```bash
 curl -sSL https://install.python-poetry.org | python3 -
-echo "PATH=\$PATH:\$HOME/.poetry/bin" >> ~/.zshrc
+echo "PATH=\$PATH:\$HOME/.local/bin" >> ~/.zshrc
 source ~/.zshrc
 ```
 
@@ -957,8 +957,8 @@ Add TLDR - a modern addition to MAN pages, which will help you find nice documen
 
 ```bash
 cd ~
-pip install -U pip
-pip install tldr
+pip3 install -U pip
+pip3 install tldr
 ```
 ❗️ It is one of the very few tools we will install from the default system python interpreter, because it has se few [dependencies](https://github.com/tldr-pages/tldr/blob/main/requirements.txt)
 
