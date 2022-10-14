@@ -393,7 +393,7 @@ Let's install them, along with other useful tools:
 
 ```bash
 sudo apt update
-sudo apt install -y vim tmux tree git ca-certificates curl jq unzip zsh apt-transport-https gnupg software-properties-common direnv sqlite3 make
+sudo apt install -y vim tmux tree git ca-certificates curl jq unzip zsh apt-transport-https gnupg software-properties-common direnv sqlite3 make postgresql postgresql-contrib
 ```
 
 These commands will ask for your password: type it in.
@@ -879,6 +879,45 @@ You need to grant Docker access to push artifacts to (and pull from) your reposi
 
 
 
+## Kubernetes
+Kubernetes (K8s) is a system designed to make deploying auto-scaling containerized applications easily.
+
+### Install kubectl
+```bash
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+
+### Install minikube
+```bash
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+```
+
+### Test installation
+To test you can launch a cluster run:
+```bash
+minikube start
+```
+you should see your cluster booting up :
+
+![](images/minikube_start.png)
+
+Then to check the cluster run:
+```bash
+kubectl get po -A
+```
+you should be able to see your cluster running! :
+
+![](images/minikube_base.png)
+
+To tear it all down for now:
+
+```bash
+minikube delete --all
+```
+
+
 ## Python & Pip
 
 Ubuntu 20.04 has Python 3.8 pre-installed, so only Pip remains to be installed.
@@ -970,6 +1009,12 @@ gRPCurl is `curl` for [gRPC servers](https://grpc.io/docs/what-is-grpc/introduct
     echo '# Add grpcurl to PATH' >> ~/.zshrc
     echo 'PATH=$PATH:$HOME/.grpcurl/bin/' >> ~/.zshrc
     ```
+
+
+
+## DBeaver
+
+Download and install [DBeaver](https://dbeaver.io/), a free and open source powerful tool to connect to any database, explore the schema and even **run SQL queries**.
 
 
 ## Kitt

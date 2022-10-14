@@ -540,6 +540,45 @@ sudo service docker stop
 ```
 
 
+## Kubernetes
+Kubernetes (K8s) is a system designed to make deploying auto-scaling containerized applications easily.
+
+### Install kubectl
+```bash
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+
+### Install minikube
+```bash
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+```
+
+### Test installation
+To test you can launch a cluster run:
+```bash
+minikube start
+```
+you should see your cluster booting up :
+
+![](images/minikube_start.png)
+
+Then to check the cluster run:
+```bash
+kubectl get po -A
+```
+you should be able to see your cluster running! :
+
+![](images/minikube_base.png)
+
+To tear it all down for now:
+
+```bash
+minikube delete --all
+```
+
+
 ## Instalación de Python (con [`pyenv`](https://github.com/pyenv/pyenv))
 
 Ubuntu viene con una versión vieja de Python que no queremos usar. Tal vez ya hayas instalado Anaconda u otro programa para utilizar Python y paquetes de Ciencia de Datos. Si es así, no pasa nada ya que haremos una configuración profesional de Python que te permitirá cambiar de versión cuando quieras al escribir `python` en la terminal.
@@ -580,6 +619,12 @@ exec zsh
 Para verificar que esto haya funcionado, ejecuta `python --version`. Si ves `3.8.12`, ¡todo está bien! Si no, pídele ayuda a un TA para resolver el problema por medio de `versiones de pyenv` y `type -a python` (`python` debería estar usando la versión `.pyenv/shims` de primero).
 
 
+
+
+
+## DBeaver
+
+DDescarga e instala [DBeaver](https://dbeaver.io/), una herramienta poderosa, gratuita y de código abierto para conectar con cualquier base de datos, explorar su esquema e incluso **hacer consultas SQL**.
 
 
 ## Kitt
