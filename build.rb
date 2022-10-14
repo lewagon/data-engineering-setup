@@ -31,6 +31,7 @@ MAC_OS = %w[
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
+  kubernetes
   ubuntu_python
   tldr
   setup/kitt
@@ -63,6 +64,7 @@ WINDOWS = %w[
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
+  kubernetes
   ubuntu_python
   tldr
   setup/kitt
@@ -95,6 +97,7 @@ LINUX = %w[
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
+  kubernetes
   ubuntu_python
   tldr
   setup/kitt
