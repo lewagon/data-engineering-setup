@@ -34,6 +34,7 @@ MAC_OS = %w[
   kubernetes
   ubuntu_python
   tldr
+  dbeaver
   setup/kitt
 ].freeze
 
@@ -67,6 +68,7 @@ WINDOWS = %w[
   kubernetes
   ubuntu_python
   tldr
+  dbeaver
   setup/kitt
 ].freeze
 
@@ -100,6 +102,7 @@ LINUX = %w[
   kubernetes
   ubuntu_python
   tldr
+  dbeaver
   setup/kitt
 ]
 
