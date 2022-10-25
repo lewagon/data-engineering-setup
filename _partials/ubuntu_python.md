@@ -38,7 +38,9 @@ Now `tldr` should be globally available, test it out with:
 tldr ls
 ```
 
-Much more readable than the classic `man ls` (although sometimes you will still need to delve into the man pages to get all of the details!)
+Much more readable than the classic `man ls` (although sometimes you will still need to delve into the man pages to get all of the details!) and it even has pages not included in man such as `tldr gh`:
+
+<img alt="tldr" src="images/tldr.png" width=500>
 
 ## Poetry
 
