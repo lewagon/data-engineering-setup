@@ -1,15 +1,44 @@
 ## Python & Pip
 
-Ubuntu 20.04 has Python 3.8 pre-installed, so only Pip remains to be installed.
+Ubuntu 20.04 has Python 3.8 pre-installed, but we want to have the latest security release of python 3.8 ([3.8.14](https://www.python.org/downloads/release/python-3814/))
 
-Run the following command in your VS Code terminal:
+Lets install pyenv to manage our python versions:
 
 ```bash
-echo "PATH=\$PATH:\$HOME/.local/bin" >> ~/.zshrc
-source ~/.zshrc
-curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
-python3 /tmp/get-pip.py
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+exec zsh
 ```
+Now install 3.8.14:
+```bash
+pyenv install 3.8.14
+pyenv global
+```
+Now `python --version` should return `3.8.14`
+
+## Pipx
+
+Next we are going to install [pipx](https://pypa.github.io/pipx/) to install python packages we want globally available while still using virtual environments
+
+```bash
+pip install --upgrade pip
+python -m pip install --user pipx
+python -m pipx ensurepath
+exec zsh
+```
+
+Lets install a [tldr](https://github.com/tldr-pages/tldr) with pipx
+
+```bash
+pipx install tldr
+```
+
+Now `tldr` should be globally available, test it out with:
+
+```bash
+tldr ls
+```
+
+Much more readable than the classic `man ls` (although sometimes you will still need to delve into the man pages to get all of the details!)
 
 ## Poetry
 
@@ -18,9 +47,7 @@ python3 /tmp/get-pip.py
 Install Poetry running the following command in your VS Code terminal:
 
 ```bash
-curl -sSL https://install.python-poetry.org | python3 -
-echo "PATH=\$PATH:\$HOME/.local/bin" >> ~/.zshrc
-source ~/.zshrc
+pipx install poetry
 ```
 
 ## Direnv
