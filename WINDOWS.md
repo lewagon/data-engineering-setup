@@ -220,7 +220,7 @@ _Note: The following section requires you already have a [Google Cloud Platform]
     <img alt="gcloud-console-vm-e2-standard4" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-e2-standard4.png" width=500>
 - Boot disk > Change
   - Operating system > Ubuntu
-  - Version > Ubuntu 20.04 LTS
+  - Version > Ubuntu 22.04 LTS
   - Boot disk type > Balanced persistent disk
   - Size > upgrade to 150GB
 
@@ -243,7 +243,7 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 - You will now have a public IP associated with your account, and later to your VM instance. Click on `Done` at the bottom of the section `Edit network interface` you were in.
 
     <img alt="gcloud-console-new-external-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-new-external-ip.png" width=300>
-    
+
 ### Public SSH key
 - Open the `Security` section
 
@@ -344,6 +344,24 @@ That's the only extension you should install on your _local_ machine, we will in
 <br>
 <img alt="vscode-terminal" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-terminal.png" width=500>
 
+- Lets create a more readable version of your machine to connect to!
+
+Lets go to the ssh config
+
+```bash
+code ~/.ssh/config
+```
+
+You should see something like the following:
+
+```bash
+Host <machine ip>
+  HostName <machine ip>
+  IdentityFile <file path for your ssh key>
+  User <username>
+```
+You can now change Host to whatever you would like to see as the name of your connection or in terminal with `ssh <Host>`!
+
 ℹ️ From now on, the setup of your local machine is over. The following steps aim at configuring your **virtual machine**.
 
 
@@ -395,7 +413,11 @@ Let's install them, along with other useful tools:
 
 ```bash
 sudo apt update
-sudo apt install -y vim tmux tree git ca-certificates curl jq unzip zsh apt-transport-https gnupg software-properties-common direnv sqlite3 make postgresql postgresql-contrib
+sudo apt install -y vim tmux tree git ca-certificates curl jq unzip zsh \
+apt-transport-https gnupg software-properties-common direnv sqlite3 make \
+postgresql postgresql-contrib build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 ```
 
 These commands will ask for your password: type it in.
@@ -886,9 +908,17 @@ Kubernetes (K8s) is a system designed to make deploying auto-scaling containeriz
 
 ### Install kubectl
 ```bash
-sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+kubectl version --client
+kubectl version --client --output=yaml
 ```
+
 
 ### Install minikube
 ```bash
@@ -922,16 +952,47 @@ minikube delete --all
 
 ## Python & Pip
 
-Ubuntu 20.04 has Python 3.8 pre-installed, so only Pip remains to be installed.
+Ubuntu 20.04 has Python 3.8 pre-installed, but we want to have the latest security release of python 3.8 ([3.8.14](https://www.python.org/downloads/release/python-3814/))
 
-Run the following command in your VS Code terminal:
+Lets install pyenv to manage our python versions:
 
 ```bash
-echo "PATH=\$PATH:\$HOME/.local/bin" >> ~/.zshrc
-source ~/.zshrc
-curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
-python3 /tmp/get-pip.py
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+exec zsh
 ```
+Now install 3.8.14:
+```bash
+pyenv install 3.8.14
+pyenv global
+```
+Now `python --version` should return `3.8.14`
+
+## Pipx
+
+Next we are going to install [pipx](https://pypa.github.io/pipx/) to install python packages we want globally available while still using virtual environments
+
+```bash
+pip install --upgrade pip
+python -m pip install --user pipx
+python -m pipx ensurepath
+exec zsh
+```
+
+Lets install a [tldr](https://github.com/tldr-pages/tldr) with pipx
+
+```bash
+pipx install tldr
+```
+
+Now `tldr` should be globally available, test it out with:
+
+```bash
+tldr ls
+```
+
+Much more readable than the classic `man ls` (although sometimes you will still need to delve into the man pages to get all of the details!) and it even has pages not included in man such as `tldr gh`:
+
+<img alt="tldr" src="images/tldr.png" width=500>
 
 ## Poetry
 
@@ -940,9 +1001,7 @@ python3 /tmp/get-pip.py
 Install Poetry running the following command in your VS Code terminal:
 
 ```bash
-curl -sSL https://install.python-poetry.org | python3 -
-echo "PATH=\$PATH:\$HOME/.local/bin" >> ~/.zshrc
-source ~/.zshrc
+pipx install poetry
 ```
 
 ## Direnv
@@ -972,44 +1031,6 @@ source ~/.zshrc
 - Setup shell hook
     ```bash
     direnv hook zsh >> ~/.zshrc
-    ```
-
-
-## TLDR
-
-Add TLDR - a modern addition to MAN pages, which will help you find nice documentation and examples on most Linux commands:
-
-```bash
-cd ~
-pip3 install -U pip
-pip3 install tldr
-```
-❗️ It is one of the very few tools we will install from the default system python interpreter, because it has se few [dependencies](https://github.com/tldr-pages/tldr/blob/main/requirements.txt)
-
-You can try `tldr` with:
-
-```bash
-tldr gh
-```
-
-ℹ️ It's normal that it takes ~1 minute the first time, as the cache needs to be built. Subsequent calls will be fast.
-
-Finally you should get:
-
-<img alt="tldr" src="images/tldr.png" width=500>
-
-## gRPCurl
-
-gRPCurl is `curl` for [gRPC servers](https://grpc.io/docs/what-is-grpc/introduction/).
-
-- Install `grpcurl`
-    ```bash
-    curl -s https://grpc.io/get_grpcurl | bash
-    ```
-- Add `grpcurl` to your `PATH`
-    ```bash
-    echo '# Add grpcurl to PATH' >> ~/.zshrc
-    echo 'PATH=$PATH:$HOME/.grpcurl/bin/' >> ~/.zshrc
     ```
 
 
