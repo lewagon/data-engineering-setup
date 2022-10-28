@@ -358,7 +358,7 @@ Host <machine ip>
   IdentityFile <file path for your ssh key>
   User <username>
 ```
-You can now change Host to whatever you would like to see as the name of your connection or in terminal with `ssh <Host>`!
+You can now change Host to whatever you would like to see as the name of your connection or in terminal with `ssh <Host>`! (surround the Host with double quotes if the name contains spaces `Host "my host"`)
 
 ℹ️ From now on, the setup of your local machine is over. The following steps aim at configuring your **virtual machine**.
 
