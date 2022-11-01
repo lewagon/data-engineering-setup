@@ -31,8 +31,9 @@ MAC_OS = %w[
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
+  kubernetes
   ubuntu_python
-  tldr
+  dbeaver
   setup/kitt
 ].freeze
 
@@ -63,8 +64,9 @@ WINDOWS = %w[
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
+  kubernetes
   ubuntu_python
-  tldr
+  dbeaver
   setup/kitt
 ].freeze
 
@@ -95,8 +97,9 @@ LINUX = %w[
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
+  kubernetes
   ubuntu_python
-  tldr
+  dbeaver
   setup/kitt
 ]
 

@@ -46,4 +46,22 @@ That's the only extension you should install on your _local_ machine, we will in
 <br>
 <img alt="vscode-terminal" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-terminal.png" width=500>
 
+- Lets create a more readable version of your machine to connect to!
+
+Lets go to the ssh config
+
+```bash
+code ~/.ssh/config
+```
+
+You should see something like the following:
+
+```bash
+Host <machine ip>
+  HostName <machine ip>
+  IdentityFile <file path for your ssh key>
+  User <username>
+```
+You can now change Host to whatever you would like to see as the name of your connection or in terminal with `ssh <Host>`! (surround the Host with double quotes if the name contains spaces `Host "my host"`)
+
 ℹ️ From now on, the setup of your local machine is over. The following steps aim at configuring your **virtual machine**.

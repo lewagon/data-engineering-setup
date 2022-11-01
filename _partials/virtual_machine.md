@@ -15,7 +15,7 @@ _Note: The following section requires you already have a [Google Cloud Platform]
     <img alt="gcloud-console-vm-e2-standard4" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-e2-standard4.png" width=500>
 - Boot disk > Change
   - Operating system > Ubuntu
-  - Version > Ubuntu 20.04 LTS
+  - Version > Ubuntu 22.04 LTS
   - Boot disk type > Balanced persistent disk
   - Size > upgrade to 150GB
 
@@ -38,7 +38,7 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 - You will now have a public IP associated with your account, and later to your VM instance. Click on `Done` at the bottom of the section `Edit network interface` you were in.
 
     <img alt="gcloud-console-new-external-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-new-external-ip.png" width=300>
-    
+
 ### Public SSH key
 - Open the `Security` section
 
