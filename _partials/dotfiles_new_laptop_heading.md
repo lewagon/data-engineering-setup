@@ -2,5 +2,5 @@ OR
 
 <details>
     <summary>
-        <strong>I already attended Web Development (FullStack) bootcamp at Le Wagon <em>but I have a new laptop</em></strong>
+        <strong>I already attended Web-Dev or Data-Science bootcamp at Le Wagon <em>but not on this VM</em></strong>
     </summary>

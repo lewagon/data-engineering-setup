@@ -16,7 +16,7 @@
         "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bootcamp%40kevin-bootcamp.iam.gserviceaccount.com"
     }
     ```
-- Create a `/.gcp_keys` directory on your Virtual Machine, then create a json file in it:
+- Create a `~/.gcp_keys` directory on your Virtual Machine, then create a json file in it:
     ``` bash
     mkdir ~/.gcp_keys
     touch ~/.gcp_keys/le-wagon-de-bootcamp.json
