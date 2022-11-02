@@ -42,9 +42,26 @@ Much more readable than the classic `man ls` (although sometimes you will still 
 
 <img alt="tldr" src="images/tldr.png" width=500>
 
-## Poetry
 
-[Poetry](https://python-poetry.org/) is a modern Python package manager.
+Lets add a few more packages we want globally available
+
+### pytest
+
+[pytest](https://docs.pytest.org/en/7.2.x/) for writing tests
+```bash
+pipx install pytest
+```
+
+### black
+
+[black](https://black.readthedocs.io/en/stable/) for helping to format code
+```bash
+pipx install black
+```
+
+### Poetry
+
+[Poetry](https://python-poetry.org/) is a modern Python package manager we will use throughout the bootcamp.
 
 Install Poetry running the following command in your VS Code terminal:
 
