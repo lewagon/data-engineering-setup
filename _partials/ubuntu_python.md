@@ -11,7 +11,7 @@ exec zsh
 Now install 3.8.14:
 ```bash
 pyenv install 3.8.14
-pyenv global
+pyenv global 3.8.14
 ```
 Now `python --version` should return `3.8.14`
 
@@ -21,7 +21,7 @@ Next we are going to install [pipx](https://pypa.github.io/pipx/) to install pyt
 
 ```bash
 pip install --upgrade pip
-python -m pip install --user pipx
+python -m pip install --user pipx # --user so that each ubuntu user can have his own 'pipx'
 python -m pipx ensurepath
 exec zsh
 ```
@@ -32,7 +32,7 @@ Lets install a [tldr](https://github.com/tldr-pages/tldr) with pipx
 pipx install tldr
 ```
 
-Now `tldr` should be globally available, test it out with:
+Now `tldr` should be globally available (for the current user), test it out with:
 
 ```bash
 tldr ls
@@ -56,10 +56,21 @@ pipx install poetry
 
 [Direnv](https://direnv.net/) is a great utility that will look for `.envrc` files in your directories. When you `cd` into directories with a `.envrc` files, paths will automatically be updated. In our case, this will simplify our workflow and allow us to not have to worry about Poetry managed Python virtual environments.
 
-- Open your direnv config file with VS Code:
-    ```bash
-    code ~/.direnvrc
-    ```
+1. First, setup the *direnv hook* to your zsh shell so that direnv gets activated anytime a `.envrc` file exists in current working directory.
+
+```bash
+code ~/.zshrc
+```
+
+```bash
+plugins=(... direnv) # add this direnv to the existing list of plugins
+```
+
+2. Second, let's configure what will happens anytime `.envrc` file is found
+
+```bash
+code ~/.direnvrc
+```
 - Paste the following lines
     ```bash
     layout_poetry() {
@@ -76,7 +87,5 @@ pipx install poetry
     }
     ```
 - Save and close the file
-- Setup shell hook
-    ```bash
-    direnv hook zsh >> ~/.zshrc
-    ```
+
+😎 Now, anytime you `cd` into a challenge folder which contains a `.envrc` file which contains `layout_poetry()` command inside, the function will get executed and your virtual env will switch to the poetry one that is defined by the `pyproject.toml` ! Each challenge will have its own virtual env and it will be seemless for you to switch.

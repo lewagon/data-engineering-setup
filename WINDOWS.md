@@ -360,7 +360,15 @@ Host <machine ip>
   IdentityFile <file path for your ssh key>
   User <username>
 ```
-You can now change Host to whatever you would like to see as the name of your connection or in terminal with `ssh <Host>`! (surround the Host with double quotes if the name contains spaces `Host "my host"`)
+You can now change Host to whatever you would like to see as the name of your connection or in terminal with `ssh <Host>`!
+
+```bash
+# For instance
+Host "data engineering bootcamp"
+  HostName 35.240.107.210
+  IdentityFile <file path for your ssh key>
+  User <username>
+```
 
 ℹ️ From now on, the setup of your local machine is over. The following steps aim at configuring your **virtual machine**.
 
@@ -600,7 +608,7 @@ The browser has now saved the service account json file 🔑 in your downloads d
         "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bootcamp%40kevin-bootcamp.iam.gserviceaccount.com"
     }
     ```
-- Create a `/.gcp_keys` directory on your Virtual Machine, then create a json file in it:
+- Create a `~/.gcp_keys` directory on your Virtual Machine, then create a json file in it:
     ``` bash
     mkdir ~/.gcp_keys
     touch ~/.gcp_keys/le-wagon-de-bootcamp.json
@@ -641,7 +649,7 @@ There are three options, choose **one**:
 
 <details>
     <summary>
-        <strong>I already attended Web Development (FullStack) bootcamp at Le Wagon <em>on the same laptop</em></strong>
+        <strong>I already attended Web-Dev or Data-Science bootcamp at Le Wagon <em>on the same VM (highly unlikely!)</em></strong>
     </summary>
 
 This means that you already forked the GitHub repo `lewagon/dotfiles`, but at that time the configuration was maybe not ready for the new Data Science bootcamp.
@@ -672,7 +680,7 @@ OR
 
 <details>
     <summary>
-        <strong>I did not attend the Web Dev bootcamp at Le Wagon</strong>
+        <strong>I did not attend the Web-Dev or Data-Science bootcamp at Le Wagon</strong>
     </summary>
 
 Hackers love to refine and polish their shell and tools. We'll start with a great default configuration provided by [Le Wagon](http://github.com/lewagon/dotfiles), stored on GitHub. As your configuration is personal, you need your own repository storing it, so you first need to fork it to your GitHub account.
@@ -731,7 +739,7 @@ OR
 
 <details>
     <summary>
-        <strong>I already attended Web Development (FullStack) bootcamp at Le Wagon <em>but I have a new laptop</em></strong>
+        <strong>I already attended Web-Dev or Data-Science bootcamp at Le Wagon <em>but not on this VM</em></strong>
     </summary>
 
 
@@ -963,7 +971,7 @@ exec zsh
 Now install 3.8.14:
 ```bash
 pyenv install 3.8.14
-pyenv global
+pyenv global 3.8.14
 ```
 Now `python --version` should return `3.8.14`
 
@@ -973,7 +981,7 @@ Next we are going to install [pipx](https://pypa.github.io/pipx/) to install pyt
 
 ```bash
 pip install --upgrade pip
-python -m pip install --user pipx
+python -m pip install --user pipx # --user so that each ubuntu user can have his own 'pipx'
 python -m pipx ensurepath
 exec zsh
 ```
@@ -984,7 +992,7 @@ Lets install a [tldr](https://github.com/tldr-pages/tldr) with pipx
 pipx install tldr
 ```
 
-Now `tldr` should be globally available, test it out with:
+Now `tldr` should be globally available (for the current user), test it out with:
 
 ```bash
 tldr ls
@@ -1008,10 +1016,21 @@ pipx install poetry
 
 [Direnv](https://direnv.net/) is a great utility that will look for `.envrc` files in your directories. When you `cd` into directories with a `.envrc` files, paths will automatically be updated. In our case, this will simplify our workflow and allow us to not have to worry about Poetry managed Python virtual environments.
 
-- Open your direnv config file with VS Code:
-    ```bash
-    code ~/.direnvrc
-    ```
+1. First, setup the *direnv hook* to your zsh shell so that direnv gets activated anytime a `.envrc` file exists in current working directory.
+
+```bash
+code ~/.zshrc
+```
+
+```bash
+plugins=(... direnv) # add this direnv to the existing list of plugins
+```
+
+2. Second, let's configure what will happens anytime `.envrc` file is found
+
+```bash
+code ~/.direnvrc
+```
 - Paste the following lines
     ```bash
     layout_poetry() {
@@ -1028,16 +1047,14 @@ pipx install poetry
     }
     ```
 - Save and close the file
-- Setup shell hook
-    ```bash
-    direnv hook zsh >> ~/.zshrc
-    ```
+
+😎 Now, anytime you `cd` into a challenge folder which contains a `.envrc` file which contains `layout_poetry()` command inside, the function will get executed and your virtual env will switch to the poetry one that is defined by the `pyproject.toml` ! Each challenge will have its own virtual env and it will be seemless for you to switch.
 
 
 
 ## DBeaver
 
-Download and install [DBeaver](https://dbeaver.io/), a free and open source powerful tool to connect to any database, explore the schema and even **run SQL queries**.
+Download and install [DBeaver](https://dbeaver.io/) on your local machine, a free and open source powerful tool to connect to any database, explore the schema and even **run SQL queries**.
 
 
 ## Kitt
