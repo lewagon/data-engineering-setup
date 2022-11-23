@@ -225,7 +225,7 @@ _Note: The following section requires you already have a [Google Cloud Platform]
   - Size > upgrade to 150GB
 
     <img alt="gcloud-console-vm-ubunt" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-ubunt.png" width=500>
-- Open `Networking, Disks, ...` under `Advanced options`
+- Open `Networking, Disks, ...`
 - Open `Networking`
 
     <img alt="gcloud-console-vm-networking" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-networking.png" width=500>
