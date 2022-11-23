@@ -877,7 +877,7 @@ It should print a Docker Compose version >=2.6.
     gcloud artifacts repositories create $REPOSITORY \
     --repository-format=docker \
     --location=$LOCATION \
-    --description="Docker images storage" \
+    --description="Docker images storage"
     ```
 
 ### Gcloud authentication for Docker
