@@ -273,7 +273,7 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 - Click on your instance
 
     <img alt="gcloud-console-vm-running" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-running.png" width=500>
-- Go down to the section `SSH keys`, and write down your username (this may already be written down)
+- Go down to the section `SSH keys`, and write down your username (you need it for the next section)
 
     <img alt="gcloud-console-vm-username" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-username.png" width=300>
 
