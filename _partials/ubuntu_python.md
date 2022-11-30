@@ -105,4 +105,6 @@ code ~/.direnvrc
     ```
 - Save and close the file
 
-😎 Now, anytime you `cd` into a challenge folder which contains a `.envrc` file which contains `layout_poetry()` command inside, the function will get executed and your virtual env will switch to the poetry one that is defined by the `pyproject.toml` ! Each challenge will have its own virtual env and it will be seemless for you to switch.
+😎 Now, **anytime you `cd` into a challenge folder which contains a `.envrc` file which contains `layout_poetry()` command inside, the function will get executed and your virtual env will switch to the poetry one that is defined by the `pyproject.toml` !**
+- No need to prefix all commands by `poetry run <my_command>`, but simply `<my_command>`
+- Each challenge will have its own virtual env, and it will be seemless for you to switch between challenges/envs
