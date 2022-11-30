@@ -1035,6 +1035,20 @@ Install Poetry running the following command in your VS Code terminal:
 pipx install poetry
 ```
 
+Then, let's update default poetry behavior so that virtual envs are always created where `poetry install` is run.
+During the bootcamp, you'll see a `.venv` folder being created inside each challenge folder.
+
+```bash
+poetry config virtualenvs.in-project true
+```
+
+Finally, update your VScode settings to tell it that this `.venv` relative folder path will be your default interpreter !
+
+(Preference: Open Remote Settings (JSON))
+```yml
+"python.defaultInterpreterPath": ".venv/bin/python",
+```
+
 ## Direnv
 
 [Direnv](https://direnv.net/) is a great utility that will look for `.envrc` files in your directories. When you `cd` into directories with a `.envrc` files, paths will automatically be updated. In our case, this will simplify our workflow and allow us to not have to worry about Poetry managed Python virtual environments.
