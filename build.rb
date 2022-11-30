@@ -33,6 +33,7 @@ MAC_OS = %w[
   ubuntu_docker
   kubernetes
   ubuntu_python
+  repo_overview
   dbeaver
   setup/kitt
 ].freeze
@@ -66,6 +67,7 @@ WINDOWS = %w[
   ubuntu_docker
   kubernetes
   ubuntu_python
+  repo_overview
   dbeaver
   setup/kitt
 ].freeze
@@ -99,6 +101,7 @@ LINUX = %w[
   ubuntu_docker
   kubernetes
   ubuntu_python
+  repo_overview
   dbeaver
   setup/kitt
 ]
@@ -108,7 +111,7 @@ LINUX_KC = %w[
   python_checkup
 ]
 
-LOCALES = ["", "es"]  # english + spanish locales
+LOCALES = [""]  # english
 
 FILENAMES = {
   "WINDOWS" => ["WINDOWS", WINDOWS],

@@ -1037,6 +1037,20 @@ Install Poetry running the following command in your VS Code terminal:
 pipx install poetry
 ```
 
+Then, let's update default poetry behavior so that virtual envs are always created where `poetry install` is run.
+During the bootcamp, you'll see a `.venv` folder being created inside each challenge folder.
+
+```bash
+poetry config virtualenvs.in-project true
+```
+
+Finally, update your VScode settings to tell it that this `.venv` relative folder path will be your default interpreter !
+
+(Preference: Open Remote Settings (JSON))
+```yml
+"python.defaultInterpreterPath": ".venv/bin/python",
+```
+
 ## Direnv
 
 [Direnv](https://direnv.net/) is a great utility that will look for `.envrc` files in your directories. When you `cd` into directories with a `.envrc` files, paths will automatically be updated. In our case, this will simplify our workflow and allow us to not have to worry about Poetry managed Python virtual environments.
@@ -1073,7 +1087,56 @@ code ~/.direnvrc
     ```
 - Save and close the file
 
-😎 Now, anytime you `cd` into a challenge folder which contains a `.envrc` file which contains `layout_poetry()` command inside, the function will get executed and your virtual env will switch to the poetry one that is defined by the `pyproject.toml` ! Each challenge will have its own virtual env and it will be seemless for you to switch.
+😎 Now, **anytime you `cd` into a challenge folder which contains a `.envrc` file which contains `layout_poetry()` command inside, the function will get executed and your virtual env will switch to the poetry one that is defined by the `pyproject.toml` !**
+- No need to prefix all commands by `poetry run <my_command>`, but simply `<my_command>`
+- Each challenge will have its own virtual env, and it will be seemless for you to switch between challenges/envs
+
+
+## Your challenge repository structure
+
+Take a look at your `data-engineering-challenges` structure with `tree -a -L 2`
+
+```bash
+.
+├── 01-Software-Engineering-Best-Practices # Module level
+│   ├── 01-Setup                           # Unit level
+│   │   ├── 01-Package-creation            # Challenge level
+            ├── .venv                      # your virtual-env for this challenge, created automatically by poetry
+            ├── README.md                  # Kitt-displayed readme
+            ├── my_package
+            │   ├── __init__.py
+            │   └── main.py     # YOUR CODE HERE
+            ├── makefile                   # Contains `make test` and `make install` commands for you
+            ├── poetry.lock                # Created by you when running `make install`
+            ├── pyproject.toml             # We already wrote this for you so that poetry install will create all you need
+            └── tests
+...
+...
+...
+├── .dockerignore
+├── .gitignore          # globally ignore file pattern (.env, etc...)
+├── CHEATSHEET.md       # Some tips for you
+├── Makefile            # Gobal bootcamp commands (e.g. run all `make install` for each challenges, run all tests etc...)
+├── make.inc            # This file is accessed by every challenges-level makefile (for refactoring purposes)
+├── README.md
+├── common              # Le Wagon shared logic between all challenges (used for test purposes)
+├── direnvrc-template   # You can remove it once you've added it to your ~/.direnvrc
+└── yapf                # Formatting rules for you to auto-format your code
+```
+
+## Let's Make!
+
+From challenge folder root, we'll run `make install`, which triggers 3 operations:
+
+- `make install-poetry`: `cd` inside each challenge folders, and `poetry install` inside each! (takes a while)
+- `make allow-envrc`: allow direnv to execute inside each folder (otherwise you have to manually "allow" it)
+- `make own-repo`: allows your user to be the linux "owner" of all files in this challenge folder
+
+Let's go! (You've got time for a coffee ☕️)
+
+```bash
+make install
+```
 
 
 
