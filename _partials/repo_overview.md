@@ -1,4 +1,4 @@
-## Your challenge repository
+## Your challenge repository structure
 
 Take a look at your `data-engineering-challenges` structure with `tree -a -L 2`
 
@@ -28,4 +28,18 @@ Take a look at your `data-engineering-challenges` structure with `tree -a -L 2`
 ├── common              # Le Wagon shared logic between all challenges (used for test purposes)
 ├── direnvrc-template   # You can remove it once you've added it to your ~/.direnvrc
 └── yapf                # Formatting rules for you to auto-format your code
+```
+
+## Let's Make!
+
+From challenge folder root, we'll run `make install`, which triggers 3 operations:
+
+- `make install-poetry`: `cd` inside each challenge folders, and `poetry install` inside each! (takes a while)
+- `make allow-envrc`: allow direnv to execute inside each folder (otherwise you have to manually "allow" it)
+- `make own-repo`: allows your user to be the linux "owner" of all files in this challenge folder
+
+Let's go! (You've got time for a coffee ☕️)
+
+```bash
+make install
 ```
