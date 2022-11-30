@@ -111,7 +111,7 @@ LINUX_KC = %w[
   python_checkup
 ]
 
-LOCALES = ["", "es"]  # english + spanish locales
+LOCALES = [""]  # english
 
 FILENAMES = {
   "WINDOWS" => ["WINDOWS", WINDOWS],
