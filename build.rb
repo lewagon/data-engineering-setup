@@ -11,6 +11,9 @@ CONSTANTS = {
 # NOTE(ssaunier): This script needs https://github.com/lewagon/setup to be cloned as well
 MAC_OS = %w[
   intro
+  setup/zoom
+  setup/macos_slack
+  setup/slack_settings
   setup/github
   ssh_key
   gcp_setup
@@ -45,6 +48,9 @@ MAC_OS_KC = %w[
 
 WINDOWS = %w[
   intro
+  setup/zoom
+  setup/windows_slack
+  setup/slack_settings
   setup/github
   ssh_key
   gcp_setup
@@ -79,6 +85,9 @@ WINDOWS_KC = %w[
 
 LINUX = %w[
   intro
+  setup/zoom
+  setup/ubuntu_slack
+  setup/slack_settings
   setup/github
   ssh_key
   gcp_setup

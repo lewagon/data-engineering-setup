@@ -9,6 +9,72 @@ Please **read instructions carefully and execute all commands in the following o
 Let's start :rocket:
 
 
+## Zoom
+
+To be able to interact when we are not in the same physical room, we will be using [Zoom](https://zoom.us/), a video conferencing tool.
+
+:warning: If you already have Zoom installed, please make sure that the version is at least **5.6**.
+
+Go to [zoom.us/download](https://zoom.us/download).
+
+Under **Zoom Client** click the **Download** button.
+
+Open the file you have just downloaded to install the app.
+
+Open the Zoom app.
+
+If you already have a Zoom account, sign in using your credentials.
+
+If not, click on the **Sign Up Free** link:
+
+![Sign Up Free to Zoom](https://github.com/lewagon/setup/blob/master/images/zoom_sign_up_free.png)
+
+You will be redirected to Zoom's website to complete a form.
+
+When it's done, go back to the Zoom app and sign in using your credentials.
+
+You should then see a screen like this:
+
+![Zoom Home Screen](https://github.com/lewagon/setup/blob/master/images/zoom_home_screen.png)
+
+You can now close the Zoom app.
+
+
+## Slack
+
+[Slack](https://slack.com/) is a communcation platform pretty popular in the tech industry.
+
+### Installation
+
+[Download the Slack app](https://itunes.apple.com/us/app/slack/id803453959?mt=12) and install it.
+
+:warning: If you are already using Slack in your browser, please download and install **the desktop app** which is fully featured.
+
+
+### Settings
+
+Launch the app and sign in to `lewagon-alumni` organization.
+
+Make sure you **upload a profile picture** :point_down:
+
+![How to upload a profile picture on Slack](https://github.com/lewagon/setup/blob/master/images/slack_profile_picture.gif)
+
+The idea is that you'll have Slack open all day, so that you can share useful links / ask for help / decide where to go to lunch / etc.
+
+To ensure that everything is working fine for video calls, let's test your camera and microphone:
+- Open the Slack app
+- In any channel message bar type `/call --test` and press `Enter`
+- Click on the "Start test" green button
+
+![Check microphone and webcam with Slack](https://github.com/lewagon/setup/blob/master/images/slack_call_test.png)
+
+:heavy_check_mark: When the test is finished, you should see green "Succeed" messages at least for your microphone and camera. :+1:
+
+:x: If not, **contact a teacher**.
+
+You can also install Slack app on your phone and sign in `lewagon-alumni`!
+
+
 ## GitHub account
 
 Have you signed up to GitHub? If not, [do it right away](https://github.com/join).
