@@ -6,7 +6,7 @@ From challenge folder root, we'll run `make install`, which triggers 3 operation
 - `make allow-envrc`: allow direnv to execute inside each folder (otherwise you have to manually "allow" it)
 - `make own-repo`: allows your user to be the linux "owner" of all files in this challenge folder
 
-Let's make! (You've got time for a coffee ☕️, or to move to next step)
+Let's make! (You've got time for a coffee ☕️, or start next step during the install)
 
 ```bash
 make install
