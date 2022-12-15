@@ -491,7 +491,8 @@ sudo apt install -y vim tmux tree git ca-certificates curl jq unzip zsh \
 apt-transport-https gnupg software-properties-common direnv sqlite3 make \
 postgresql postgresql-contrib build-essential libssl-dev zlib1g-dev \
 libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
+gcc default-mysql-server default-libmysqlclient-dev libpython3.8-dev
 ```
 
 These commands will ask for your password: type it in.
