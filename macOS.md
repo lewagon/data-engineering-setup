@@ -1078,13 +1078,6 @@ Much more readable than the classic `man ls` (although sometimes you will still 
 
 Lets add a few more packages we want globally available
 
-### pytest
-
-[pytest](https://docs.pytest.org/en/7.2.x/) for writing tests
-```bash
-pipx install pytest
-```
-
 ### black
 
 [black](https://black.readthedocs.io/en/stable/) for helping to format code
