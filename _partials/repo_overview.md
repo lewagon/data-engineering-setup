@@ -17,7 +17,7 @@ You want this setup
 
 <img src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/W0D1/repo-setup.png" width=700 />
 
-Check your remotes match `origin` your data engineerg challenges and `upstream` lewagon's!
+Check your remotes match `origin` your data engineering challenges and `upstream` lewagon's!
 ```bash
 git remote -v
 origin          git@github.com:brunolajoie/data-engineering-challenges.git (fetch)
