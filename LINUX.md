@@ -1182,7 +1182,7 @@ export GITHUB_USERNAME=`gh api user | jq -r '.login'`
 echo $GITHUB_USERNAME
 ```
 
-👇 We'll first `fork` the lewagon repo to your own github account, then `clone` this one inside your VM
+Then
 
 ```bash
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
