@@ -1,6 +1,20 @@
 ## Let's Make!
 
-From challenge folder root, we'll run `make install`, which triggers 3 operations:
+Lets clone the challenges onto your **virtual machine**
+
+```bash
+export GITHUB_USERNAME=`gh api user | jq -r '.login'`
+echo $GITHUB_USERNAME
+```
+
+Then
+
+```bash
+mkdir -p ~/code/$GITHUB_USERNAME && cd $_
+gh repo fork lewagon/data-engineering-setup --clone
+```
+
+From challenge folder root **on the vm**, we'll run `make install`, which triggers 3 operations:
 
 - `make install-poetry`: `cd` inside each challenge folders, and `poetry install` inside each! (takes a while)
 - `make allow-envrc`: allow direnv to execute inside each folder (otherwise you have to manually "allow" it)
