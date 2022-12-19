@@ -6,6 +6,7 @@ Lets install pyenv to manage our python versions:
 
 ```bash
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+source ~/.zprofile
 exec zsh
 ```
 Now install 3.8.14:
