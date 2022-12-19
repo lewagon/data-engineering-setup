@@ -11,7 +11,7 @@ Then
 
 ```bash
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
-gh repo fork lewagon/data-engineering-setup --clone
+gh repo fork lewagon/data-engineering-challenges --clone
 ```
 
 From challenge folder root **on the vm**, we'll run `make install`, which triggers 3 operations:
