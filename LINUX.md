@@ -792,7 +792,7 @@ Time to fork the repo and clone it on your laptop:
 
 ```bash
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
-gh repo fork lewagon/dotfiles --clone
+gh repo clone lewagon/dotfiles
 ```
 
 Run the `dotfiles` installer.
@@ -844,7 +844,7 @@ Time to fork the repo and clone it on your laptop:
 
 ```bash
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
-gh repo fork lewagon/dotfiles --clone
+gh repo clone lewagon/dotfiles
 ```
 
 Run the `dotfiles` installer.
@@ -1061,6 +1061,7 @@ Lets install pyenv to manage our python versions:
 
 ```bash
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+source ~/.zprofile
 exec zsh
 ```
 Now install 3.8.14:
