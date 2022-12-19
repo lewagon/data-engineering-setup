@@ -1,5 +1,7 @@
 ## Dotfiles
 
+Let's pimp your zsh and and vscode by installing lewagon recommanded dotfiles **on your Virtual Machine**
+
 There are three options, choose **one**:
 
 <details>

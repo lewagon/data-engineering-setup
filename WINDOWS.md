@@ -492,7 +492,7 @@ apt-transport-https gnupg software-properties-common direnv sqlite3 make \
 postgresql postgresql-contrib build-essential libssl-dev zlib1g-dev \
 libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
-gcc default-mysql-server default-libmysqlclient-dev libpython3.8-dev
+gcc default-mysql-server default-libmysqlclient-dev libpython3-dev
 ```
 
 These commands will ask for your password: type it in.
@@ -675,7 +675,7 @@ The browser has now saved the service account json file 🔑 in your downloads d
         "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bootcamp%40kevin-bootcamp.iam.gserviceaccount.com"
     }
     ```
-- Create a `~/.gcp_keys` directory on your Virtual Machine, then create a json file in it:
+- **on your Virtual Machine**, create a `~/.gcp_keys` directory, then create a json file in it:
     ``` bash
     mkdir ~/.gcp_keys
     touch ~/.gcp_keys/le-wagon-de-bootcamp.json
@@ -711,6 +711,8 @@ The browser has now saved the service account json file 🔑 in your downloads d
 
 
 ## Dotfiles
+
+Let's pimp your zsh and and vscode by installing lewagon recommanded dotfiles **on your Virtual Machine**
 
 There are three options, choose **one**:
 
