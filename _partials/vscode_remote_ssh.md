@@ -70,4 +70,4 @@ Host "data engineering bootcamp"
   User <username>
 ```
 
-ℹ️ From now on, the setup of your local machine is over. The following steps aim at configuring your **virtual machine**.
+**The setup of your local machine is over. All following commands will be run from within your 🚨 virtual machine**🚨 terminal (via VS code for instance)
