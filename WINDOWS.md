@@ -410,9 +410,7 @@ That's the only extension you should install on your _local_ machine, we will in
 <br>
 <img alt="vscode-terminal" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-terminal.png" width=500>
 
-- Lets create a more readable version of your machine to connect to!
-
-Lets go to the ssh config
+- Still on your *local* computer, lets create a more readable version of your machine to connect to!
 
 ```bash
 code ~/.ssh/config
