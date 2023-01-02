@@ -6,7 +6,7 @@ There are three options, choose **one**:
 
 <details>
     <summary>
-        <strong>I already attended Web-Dev or Data-Science bootcamp at Le Wagon <em>on the same VM (highly unlikely!)</em></strong>
+        <strong>I already attended Web-Dev or Data-Science bootcamp at Le Wagon <em>🚨 on the same Virtual Machine (highly unlikely!🚨)</em></strong>
     </summary>
 
 This means that you already forked the GitHub repo `lewagon/dotfiles`, but at that time the configuration was maybe not ready for the new Data Science bootcamp.
