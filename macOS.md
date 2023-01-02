@@ -1166,17 +1166,18 @@ Then
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
 gh repo fork lewagon/data-engineering-challenges --clone
 ```
-You want this setup
+You want this setup:
 
 <img src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/W0D1/repo-setup.png" width=700 />
 
 Check your remotes match `origin` your data engineering challenges and `upstream` lewagon's!
 ```bash
+cd data-engineering-challenges
 git remote -v
-origin          git@github.com:brunolajoie/data-engineering-challenges.git (fetch)
-origin          git@github.com:brunolajoie/data-engineering-challenges.git (push)
-upstream        git@github.com:lewagon/data-engineering-challenges.git (fetch)
-upstream        git@github.com:lewagon/data-engineering-challenges.git (push)
+# origin          git@github.com:your_github_username/data-engineering-challenges.git (fetch)
+# origin          git@github.com:your_github_username/data-engineering-challenges.git (push)
+# upstream        git@github.com:lewagon/data-engineering-challenges.git (fetch)
+# upstream        git@github.com:lewagon/data-engineering-challenges.git (push)
 ```
 
 From challenge folder root **on the vm**, we'll run `make install`, which triggers 3 operations:
