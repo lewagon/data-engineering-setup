@@ -35,6 +35,7 @@ MAC_OS = %w[
   setup/ssh_agent
   ubuntu_docker
   kubernetes
+  terraform
   ubuntu_python
   repo_overview
   dbeaver
@@ -72,6 +73,7 @@ WINDOWS = %w[
   setup/ssh_agent
   ubuntu_docker
   kubernetes
+  terraform
   ubuntu_python
   repo_overview
   dbeaver
@@ -109,6 +111,7 @@ LINUX = %w[
   setup/ssh_agent
   ubuntu_docker
   kubernetes
+  terraform
   ubuntu_python
   repo_overview
   dbeaver
