@@ -49,6 +49,7 @@ Lets add a few more packages we want globally available
 ### black
 
 [black](https://black.readthedocs.io/en/stable/) for helping to format code
+
 ```bash
 pipx install black
 ```
@@ -61,6 +62,14 @@ Install Poetry running the following command in your VS Code terminal:
 
 ```bash
 pipx install poetry
+```
+
+### ipdb
+
+[ipdb]](https://pypi.org/project/ipdb/) is an improved version of the default python debugger pdb.
+
+```bash
+pipx install ipdb
 ```
 
 Then, let's update default poetry behavior so that virtual envs are always created where `poetry install` is run.
