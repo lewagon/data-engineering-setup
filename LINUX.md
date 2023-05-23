@@ -923,11 +923,35 @@ Then:
 
 Docker is an open platform for developing, shipping, and running applications.
 
-### Install Docker
+### Install Docker and Docker Compose
+
+Setup the dock apt repo
 
 ```bash
-sudo apt update -y
-sudo apt install -y docker.io
+sudo install -m 0755 -d /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+```bash
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Install the right packages
+
+```
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+Finally give your user permission to use `docker`
+
+```bash
 sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
@@ -936,26 +960,6 @@ newgrp docker
 Run `docker run hello-world`, you should see something like:
 
 ![](images/docker_hello.png)
-
-### Install Docker Compose
-
-```bash
-# Download docker-compose standalone
-sudo curl -SL https://github.com/docker/compose/releases/download/v2.6.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-
-# Apply executable permissions
-sudo chmod +x /usr/local/bin/docker-compose
-
-# Link
-sudo rm /usr/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-```
-
-Check your installation with:
-```bash
-docker-compose -v
-```
-It should print a Docker Compose version >=2.6.
 
 ### Enable Artifact Registry API
 
@@ -1005,7 +1009,6 @@ You need to grant Docker access to push artifacts to (and pull from) your reposi
       }
     }%
     ```
-
 
 
 ## Kubernetes
