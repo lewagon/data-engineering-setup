@@ -890,11 +890,35 @@ Then:
 
 Docker is an open platform for developing, shipping, and running applications.
 
-### Install Docker
+### Install Docker and Docker Compose
+
+Setup the dock apt repo
 
 ```bash
-sudo apt update -y
-sudo apt install -y docker.io
+sudo install -m 0755 -d /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+```bash
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Install the right packages
+
+```
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+Finally give your user permission to use `docker`
+
+```bash
 sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
@@ -903,26 +927,6 @@ newgrp docker
 Run `docker run hello-world`, you should see something like:
 
 ![](images/docker_hello.png)
-
-### Install Docker Compose
-
-```bash
-# Download docker-compose standalone
-sudo curl -SL https://github.com/docker/compose/releases/download/v2.6.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-
-# Apply executable permissions
-sudo chmod +x /usr/local/bin/docker-compose
-
-# Link
-sudo rm /usr/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-```
-
-Check your installation with:
-```bash
-docker-compose -v
-```
-It should print a Docker Compose version >=2.6.
 
 ### Enable Artifact Registry API
 
@@ -972,7 +976,6 @@ You need to grant Docker access to push artifacts to (and pull from) your reposi
       }
     }%
     ```
-
 
 
 ## Kubernetes
@@ -1030,6 +1033,49 @@ minikube delete --all
 ```
 
 
+## Terraform
+
+Terraform is a tool for infrastructure as code (IAC) to define resources to create in the cloud!
+
+### Install terraform
+
+Install some basic requirements
+```bash
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+```
+
+Terraform is not avaliable to apt by default so we need to make it avaliable!
+```bash
+wget -O- https://apt.releases.hashicorp.com/gpg | \
+    gpg --dearmor | \
+    sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+```
+
+```bash
+gpg --no-default-keyring \
+    --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+    --fingerprint
+```
+
+```bash
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+    https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+    sudo tee /etc/apt/sources.list.d/hashicorp.list
+```
+
+Now we can install terraform directly with apt 👇
+```bash
+sudo apt update
+sudo apt-get install terraform
+```
+
+Verify the installation with:
+
+```bash
+terraform --version
+```
+
+
 ## Python & Pip
 
 Ubuntu 20.04 has Python 3.8 pre-installed, but we want to have the latest security release of python 3.8 ([3.8.14](https://www.python.org/downloads/release/python-3814/))
@@ -1081,6 +1127,7 @@ Lets add a few more packages we want globally available
 ### black
 
 [black](https://black.readthedocs.io/en/stable/) for helping to format code
+
 ```bash
 pipx install black
 ```

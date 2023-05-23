@@ -49,6 +49,7 @@ Lets add a few more packages we want globally available
 ### black
 
 [black](https://black.readthedocs.io/en/stable/) for helping to format code
+
 ```bash
 pipx install black
 ```
