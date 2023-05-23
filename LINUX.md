@@ -1172,14 +1172,6 @@ Install Poetry running the following command in your VS Code terminal:
 pipx install poetry
 ```
 
-### ipdb
-
-[ipdb]](https://pypi.org/project/ipdb/) is an improved version of the default python debugger pdb.
-
-```bash
-pipx install ipdb
-```
-
 Then, let's update default poetry behavior so that virtual envs are always created where `poetry install` is run.
 During the bootcamp, you'll see a `.venv` folder being created inside each challenge folder.
 
