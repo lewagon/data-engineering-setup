@@ -1,6 +1,6 @@
 ## Python & Pip
 
-Ubuntu 20.04 has Python 3.8 pre-installed, but we want to have the latest security release of python 3.8 ([3.8.14](https://www.python.org/downloads/release/python-3814/))
+Ubuntu 22.04 has Python 3.8 pre-installed, but we want to have the latest security release of python 3.8 ([3.8.14](https://www.python.org/downloads/release/python-3814/))
 
 Lets install pyenv to manage our python versions:
 
