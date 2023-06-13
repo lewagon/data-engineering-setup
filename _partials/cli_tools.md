@@ -20,7 +20,7 @@ libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-d
 gcc default-mysql-server default-libmysqlclient-dev libpython3-dev
 ```
 
-These commands will ask for your password: type it in.
+These commands might ask for your password, if they do: type it in.
 
 :warning: When you type your password, nothing will show up on the screen, **that's normal**. This is a security feature to mask not only your password as a whole but also its length. Just type in your password and when you're done, press `Enter`.
 
