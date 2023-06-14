@@ -1151,7 +1151,7 @@ poetry config virtualenvs.in-project true
 
 Finally, update your VScode settings to tell it that this `.venv` relative folder path will be your default interpreter !
 
-(Preference: Open Remote Settings (JSON))
+(Command Palette - **Preference: Open Remote Settings (JSON)**, then add the following line to the panel that opens on the right)
 ```yml
 "python.defaultInterpreterPath": ".venv/bin/python",
 ```
