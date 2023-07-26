@@ -377,7 +377,7 @@ We need to connect VS Code to a virtual machine in the cloud so you will only wo
 
 That's the only extension you should install on your _local_ machine, we will install additional VS Code extensions on your _virtual machine_.
 
-### Virtual Machine connexion
+### Virtual Machine connection
 
 - Open VS Code > Open the [command palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) > Type `Remote-SSH: Connect to Host...`
 
@@ -569,7 +569,7 @@ If you already have SSH keys, you will see instead `Upload your SSH public key t
 
 `Enter a passphrase for your new SSH key (Optional)`. Type something you want and that you'll remember. It's a password to protect your private key stored on your hard drive. Then press `Enter`.
 
-:warning: When you type your passphrase, nothing will show up on the screen, **that's normal**. This is a security feature to mask not only your passphrase as a whole but also its length. Just type your passphrase and when you're done, press `Enter`.
+`Title for your SSH key`. You can leave it at the proposed "GitHub CLI", press `Enter`.
 
 You will then get the following output:
 
