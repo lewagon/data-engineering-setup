@@ -493,7 +493,7 @@ apt-transport-https gnupg software-properties-common direnv sqlite3 make \
 postgresql postgresql-contrib build-essential libssl-dev zlib1g-dev \
 libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
-gcc default-mysql-server default-libmysqlclient-dev libpython3-dev
+gcc default-mysql-server default-libmysqlclient-dev libpython3-dev openjdk-8-jdk-headless
 ```
 
 These commands might ask for your password, if they do: type it in.
@@ -1073,6 +1073,44 @@ Verify the installation with:
 
 ```bash
 terraform --version
+```
+
+
+
+## Spark
+
+Spark is a data processing framework:
+
+Move to your home directory:
+
+```bash
+cd ~
+```
+
+Download spark:
+
+```bash
+wget https://downloads.apache.org/spark/spark-3.5.0/spark-3.5.0-bin-hadoop3.tgz
+```
+
+Open the tarball:
+
+```
+mkdir -p ~/spark && tar -xvzf spark-3.5.0-bin-hadoop3.tgz -C ~/spark
+```
+
+Set the environment variables needed by spark:
+
+```bash
+echo "export SPARK_HOME=$PWD/spark" >> .zshrc
+echo "export PATH=$PATH:$SPARK_HOME/bin" >> .zshrc
+```
+
+Test it works by running:
+
+```bash
+exec zsh
+spark-shell
 ```
 
 
