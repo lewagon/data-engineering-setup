@@ -36,6 +36,7 @@ MAC_OS = %w[
   ubuntu_docker
   kubernetes
   terraform
+  ubuntu_spark
   ubuntu_python
   repo_overview
   dbeaver
@@ -74,6 +75,7 @@ WINDOWS = %w[
   ubuntu_docker
   kubernetes
   terraform
+  ubuntu_spark
   ubuntu_python
   repo_overview
   dbeaver
@@ -112,6 +114,7 @@ LINUX = %w[
   ubuntu_docker
   kubernetes
   terraform
+  ubuntu_spark
   ubuntu_python
   repo_overview
   dbeaver
