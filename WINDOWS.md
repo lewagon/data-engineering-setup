@@ -1102,8 +1102,8 @@ mkdir -p ~/spark && tar -xvzf spark-3.5.0-bin-hadoop3.tgz -C ~/spark
 Set the environment variables needed by spark:
 
 ```bash
-echo "export SPARK_HOME=$PWD/spark" >> .zshrc
-echo "export PATH=$PATH:$SPARK_HOME/bin" >> .zshrc
+echo "export SPARK_HOME=$HOME/spark/spark-3.5.0-bin-hadoop3" >> .zshrc
+echo 'export PATH=$PATH:$SPARK_HOME/bin' >> .zshrc
 ```
 
 Test it works by running:
