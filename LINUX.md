@@ -464,7 +464,7 @@ You can now change Host to whatever you would like to see as the name of your co
 
 ```bash
 # For instance
-Host "data engineering bootcamp"
+Host data_engineering_bootcamp # Pick a name without spaces, as they currently produce errors. 
   HostName 35.240.107.210
   IdentityFile <file path for your ssh key>
   User <username>
