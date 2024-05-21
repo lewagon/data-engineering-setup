@@ -752,7 +752,7 @@ Once this is good, commit and push your changes:
 
 ```bash
 git add zshrc
-git commit -m "Update zshrc for Data Science bootcamp"
+git commit -m "Update zshrc for Data Engineering bootcamp"
 git push origin master
 ```
 
