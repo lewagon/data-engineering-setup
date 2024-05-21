@@ -446,9 +446,11 @@ Host <machine ip>
 ```
 You can now change Host to whatever you would like to see as the name of your connection or in terminal with `ssh <Host>`!
 
+❗️ It is important that the `Host` alias does not contain any whitespaces ❗️
+
 ```bash
 # For instance
-Host "data engineering bootcamp"
+Host "de-bootcamp-vm"
   HostName 35.240.107.210
   IdentityFile <file path for your ssh key>
   User <username>
