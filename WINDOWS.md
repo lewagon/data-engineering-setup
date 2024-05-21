@@ -298,13 +298,13 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 - Region `europe-west1`, choose the closest one among the [available regions](https://cloud.google.com/compute/docs/regions-zones#available)
 
     <img alt="gcloud-console-vm-create-instance" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-instance.png" width=500>
-- In the section `Machine configuration`
-- Select General purpose > e2-standard-4
+- In the section `Machine configuration` under the sub-heading `Machine type`
+- Select General purpose > PRESET > e2-standard-4
 
-    <img alt="gcloud-console-vm-e2-standard4" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-e2-standard4.png" width=500>
+    <img alt="gcloud-console-vm-e2-standard4" src="https://wagon-public-assets.s3.eu-west-3.amazonaws.com/v9dv42llst8qjp2uj0d1yr00po1g" width=500>
 - Boot disk > Change
   - Operating system > Ubuntu
-  - Version > Ubuntu 22.04 LTS
+  - Version > Ubuntu 22.04 LTS x86/64
   - Boot disk type > Balanced persistent disk
   - Size > upgrade to 150GB
 
@@ -317,9 +317,9 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 
     <img alt="gcloud-console-vm-network-interfaces" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-network-interfaces.png" width=500>
 - This opened a box `Edit network interface`
-- Go to the dropdown `External IPv4 address`, click on it, click on `CREATE IP ADDRESS`
+- Go to the dropdown `External IPv4 address`, click on it, click on `RESERVE STATIC EXTERNAL IP ADDRESS`
 
-    <img alt="gcloud-console-vm-create-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-static-ip.png" width=300>
+    <img alt="gcloud-console-vm-create-static-ip" src="https://wagon-public-assets.s3.eu-west-3.amazonaws.com/1ax09j2zld7x0lsvpp9p8ld8u5vc" width=300>
 - Give it a name, like "lewagon-data-eng-vm-ip-<github_username>" (replace `<github_username>` with your own) and description "Le Wagon - Data Engineering VM IP". This will take a few seconds.
 
     <img alt="gcloud-console-reserve-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-reserve-static-ip.png" width=300>
@@ -339,9 +339,13 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 
     <img alt="gcloud-console-add-manual-ssh-key" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-manual-ssh-key.png" width=500>
 - In your terminal display your public SSH key:
-    ```bash
-    cat ~/.ssh/id_ed25519.pub
-    ```
+    - Windows: navigate to where you created your SSH key and open `id_ed25519.pub`
+
+    - Mac/Linux users can use:
+        ```bash
+        cat ~/.ssh/id_ed25519.pub
+        # OR cat ~/.ssh/de-bootcamp.pub if you created a unique key
+        ```
 - Copy your public SSH key and paste it:
 
     <img alt="gcloud-console-add-ssh-key-pub" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-ssh-key-pub.png" width=500>
