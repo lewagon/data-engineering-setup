@@ -788,7 +788,7 @@ Time to fork the repo and clone it on your laptop:
 
 ```bash
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
-gh repo clone lewagon/dotfiles
+gh repo fork lewagon/dotfiles --clone
 ```
 
 Run the `dotfiles` installer.
@@ -840,7 +840,7 @@ Time to fork the repo and clone it on your laptop:
 
 ```bash
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
-gh repo clone lewagon/dotfiles
+gh repo fork lewagon/dotfiles --clone
 ```
 
 Run the `dotfiles` installer.
