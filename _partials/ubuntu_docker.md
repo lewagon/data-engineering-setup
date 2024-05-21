@@ -38,18 +38,17 @@ newgrp docker
 
 Run `docker run hello-world`, you should see something like:
 
-![](images/docker_hello.png)
-
 <details>
-  <summary markdown='span'>❗️ I recieved a permission denied when trying to connect to the Docker Daemon socket. </summary>
+  <summary markdown='span'>❗️ Permission denied while trying to connect to the Docker daemon socket. ❗️ </summary>
 
-If you recieved an error similar to the one below. navigate to the (GCP Compute Engine Console)[https://console.cloud.google.com/compute/instances] and STOP your VM (closing VSCode is not enough).
+If you received an error similar to the one below. navigate to the [GCP Compute Engine Console](https://console.cloud.google.com/compute/instances) and shut down your VM by selecting the tick box next to your VM instance and clicking STOP (closing and reopening VSCode is not enough).
 
 ![](images/docker_permission_denied_socket.png)
 
-It will take a few minutes for your VM to turn off. Once it's fully off, turn your VM on again (check the box and click START) and try `docker run hello-world` again. If this doesn't work, raise a ticket with a teacher.
-
+It will take a few minutes for your VM to turn off. Once it's fully off, turn your VM on again by checking the box next to the VM instance and clicking START. Give the VM a few minutes to fully start up and connect through VSCode. Once connected try `docker run hello-world` again. If you don't get an output similar to the below image, raise a ticket with a teacher.
 </details>
+
+![](images/docker_hello.png)
 
 ### Enable Artifact Registry API
 
