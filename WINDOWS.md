@@ -1165,7 +1165,7 @@ pyenv global 3.8.14
 ```
 Now `python --version` should return `3.8.14`
 
-We'll also install a useful `pyenv` plugin called [`pyenv-virtualenv`](https://github.com/pyenv/pyenv-virtualenv). Although we will primarily be using `poetry` for package management, `pyenv-virtualenv` is useful for controlling the python version locally.
+We'll also install a useful `pyenv` plugin called [`pyenv-virtualenv`](https://github.com/pyenv/pyenv-virtualenv). Although we will be using `poetry` for package and virtual environment management, `pyenv-virtualenv` is useful for controlling python versions locally.
 
 ```bash
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
