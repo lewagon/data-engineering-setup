@@ -86,6 +86,8 @@ Have you signed up to GitHub? If not, [do it right away](https://github.com/join
 
 ![GitHub picture](https://github.com/lewagon/setup/blob/master/images/github_picture.png)
 
+:point_right: **[Enable Two-Factor Authentication (2FA)](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-text-messages)**. GitHub will send you text messages with a code when you try to log in. This is important for security and also will soon be required in order to contribute code on GitHub.
+
 
 ## SSH key
 
@@ -102,27 +104,27 @@ We highly recommend installing [Windows Terminal](https://apps.microsoft.com/sto
 - Create a SSH key
 
 <details>
-  <summary markdown='span'>MacOS & Linux</summary>
-
-```bash
-EMAIL="your_email@example.com" # replace with your GCP account email
-ssh-keygen -t ed25519 -C $EMAIL
-```
-
-</details>
-
-<details>
   <summary markdown='span'>Windows</summary>
 
 ```bash
-EMAIL="your_email@example.com" # replace with your GCP account email
-ssh-keygen.exe -t ed25519 -C $EMAIL
+# replace "your_email@example.com" with your GCP account email
+ssh-keygen.exe -t ed25519 -C "your_email@example.com"
 ```
 </details>
 
+<details>
+  <summary markdown='span'>MacOS & Linux</summary>
+
+```bash
+# replace "your_email@example.com" with your GCP account email
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+</details>
+
+
 You should get the following message: `> Generating public/private algorithm key pair.`
 - When you are prompted `> Enter a file in which to save the key`, press Enter
-- You should be asked to `Enter a passphrase`, type a secure passphrase, it is like a password, but longer.
+- You should be asked to `Enter a passphrase` - this is optional if you want additional security. To continue without a passphrase press enter without typing anything when asked to enter a passphrase.
 
 ℹ️ Don't worry if nothing prompt when you type, that is perfectly normal for security reasons.
 
@@ -130,6 +132,19 @@ You should get the following message: `> Generating public/private algorithm key
 
 **❗️ You must remember this passphrase.**
 
+<details>
+  <summary markdown='span'> ❗️ /home/your_username/.ssh/id_ed25519 already exists.</summary>
+If you receive this message, you may already have an SSH Key with the same name (if you are a Le Wagon Alumni or are using SSH Authentication with Github).
+
+To create a separate SSH key to exclusively use for this bootcamp use the following:
+
+```bash
+# replace "your_email@example.com" with your GCP account email
+ssh-keygen -t ed25519 -f ~/.ssh/de-bootcamp -C "your_email@example.com"
+```
+
+Your new SSH Key will be named `de-bootcamp`. Make sure to remember it for later!
+</details>
 
 
 ## Google Cloud Platform setup
@@ -283,13 +298,13 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 - Region `europe-west1`, choose the closest one among the [available regions](https://cloud.google.com/compute/docs/regions-zones#available)
 
     <img alt="gcloud-console-vm-create-instance" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-instance.png" width=500>
-- In the section `Machine configuration`
-- Select General purpose > e2-standard-4
+- In the section `Machine configuration` under the sub-heading `Machine type`
+- Select General purpose > PRESET > e2-standard-4
 
-    <img alt="gcloud-console-vm-e2-standard4" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-e2-standard4.png" width=500>
+    <img alt="gcloud-console-vm-e2-standard4" src="https://wagon-public-assets.s3.eu-west-3.amazonaws.com/v9dv42llst8qjp2uj0d1yr00po1g" width=500>
 - Boot disk > Change
   - Operating system > Ubuntu
-  - Version > Ubuntu 22.04 LTS
+  - Version > Ubuntu 22.04 LTS x86/64
   - Boot disk type > Balanced persistent disk
   - Size > upgrade to 150GB
 
@@ -302,9 +317,9 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 
     <img alt="gcloud-console-vm-network-interfaces" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-network-interfaces.png" width=500>
 - This opened a box `Edit network interface`
-- Go to the dropdown `External IPv4 address`, click on it, click on `CREATE IP ADDRESS`
+- Go to the dropdown `External IPv4 address`, click on it, click on `RESERVE STATIC EXTERNAL IP ADDRESS`
 
-    <img alt="gcloud-console-vm-create-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-create-static-ip.png" width=300>
+    <img alt="gcloud-console-vm-create-static-ip" src="https://wagon-public-assets.s3.eu-west-3.amazonaws.com/1ax09j2zld7x0lsvpp9p8ld8u5vc" width=300>
 - Give it a name, like "lewagon-data-eng-vm-ip-<github_username>" (replace `<github_username>` with your own) and description "Le Wagon - Data Engineering VM IP". This will take a few seconds.
 
     <img alt="gcloud-console-reserve-static-ip" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-reserve-static-ip.png" width=300>
@@ -324,9 +339,13 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 
     <img alt="gcloud-console-add-manual-ssh-key" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-manual-ssh-key.png" width=500>
 - In your terminal display your public SSH key:
-    ```bash
-    cat ~/.ssh/id_ed25519.pub
-    ```
+    - Windows: navigate to where you created your SSH key and open `id_ed25519.pub`
+
+    - Mac/Linux users can use:
+        ```bash
+        cat ~/.ssh/id_ed25519.pub
+        # OR cat ~/.ssh/de-bootcamp.pub if you created a unique key
+        ```
 - Copy your public SSH key and paste it:
 
     <img alt="gcloud-console-add-ssh-key-pub" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-ssh-key-pub.png" width=500>
@@ -462,9 +481,11 @@ Host <machine ip>
 ```
 You can now change Host to whatever you would like to see as the name of your connection or in terminal with `ssh <Host>`!
 
+❗️ It is important that the `Host` alias does not contain any whitespaces ❗️
+
 ```bash
 # For instance
-Host "data engineering bootcamp"
+Host "de-bootcamp-vm"
   HostName 35.240.107.210
   IdentityFile <file path for your ssh key>
   User <username>
@@ -491,7 +512,7 @@ code --install-extension KevinRose.vsc-python-indent
 code --install-extension ms-python.vscode-pylance
 code --install-extension redhat.vscode-yaml
 code --install-extension ms-azuretools.vscode-docker
-code --install-extension bungcip.better-toml
+code --install-extension tamasfe.even-better-toml
 ```
 
 Here is a list of the extensions you are installing:
@@ -502,9 +523,7 @@ Here is a list of the extensions you are installing:
 - [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
 - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
-- [Better TOML](https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml)
-
-
+- [Even Better TOML](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)
 
 
 ## Command line tools
@@ -772,7 +791,7 @@ Once this is good, commit and push your changes:
 
 ```bash
 git add zshrc
-git commit -m "Update zshrc for Data Science bootcamp"
+git commit -m "Update zshrc for Data Engineering bootcamp"
 git push origin master
 ```
 
@@ -808,7 +827,7 @@ Time to fork the repo and clone it on your laptop:
 
 ```bash
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
-gh repo clone lewagon/dotfiles
+gh repo fork lewagon/dotfiles --clone
 ```
 
 Run the `dotfiles` installer.
@@ -830,9 +849,11 @@ Run the git installer:
 cd ~/code/$GITHUB_USERNAME/dotfiles && zsh git_setup.sh
 ```
 
-:point_up: This will **prompt** you for your name (`FirstName LastName`) and your email. Be careful
-you **need** to put one of the email listed above thanks to the previous `gh api ...` command. If you
-don't do that, Kitt won't be able to track your progress.
+:point_up: This will **prompt** you for your name (`FirstName LastName`) and your email.
+
+:warning: You **need** to put one of the emails listed above thanks to the previous `gh api ...` command.
+If you don't do that, Kitt won't be able to track your progress. 💡 Select the `@users.noreply.github.com` address if
+you don't want your email to appear in public repositories you may contribute to.
 
 Please now **quit** all your opened terminal windows.
 </details>
@@ -860,7 +881,7 @@ Time to fork the repo and clone it on your laptop:
 
 ```bash
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
-gh repo clone lewagon/dotfiles
+gh repo fork lewagon/dotfiles --clone
 ```
 
 Run the `dotfiles` installer.
@@ -882,9 +903,11 @@ Run the git installer:
 cd ~/code/$GITHUB_USERNAME/dotfiles && zsh git_setup.sh
 ```
 
-:point_up: This will **prompt** you for your name (`FirstName LastName`) and your email. Be careful
-you **need** to put one of the email listed above thanks to the previous `gh api ...` command. If you
-don't do that, Kitt won't be able to track your progress.
+:point_up: This will **prompt** you for your name (`FirstName LastName`) and your email.
+
+:warning: You **need** to put one of the emails listed above thanks to the previous `gh api ...` command.
+If you don't do that, Kitt won't be able to track your progress. 💡 Select the `@users.noreply.github.com` address if
+you don't want your email to appear in public repositories you may contribute to.
 
 Please now **quit** all your opened terminal windows.
 </details>
@@ -958,6 +981,16 @@ newgrp docker
 ```
 
 Run `docker run hello-world`, you should see something like:
+
+<details>
+  <summary markdown='span'>❗️ Permission denied while trying to connect to the Docker daemon socket. ❗️ </summary>
+
+If you receive an error similar to the one below, navigate to the [GCP Compute Engine Console](https://console.cloud.google.com/compute/instances) and shut down your VM by selecting the tick box next to your VM instance and clicking STOP (closing and reopening VSCode is not enough).
+
+![](images/docker_permission_denied_socket.png)
+
+It will take a few minutes for your VM to turn off. Once it's fully off, turn your VM on again by checking the box next to the VM instance and clicking START. Give the VM a few minutes to fully start up and connect through VSCode. Once connected try `docker run hello-world` again. If you don't get an output similar to the below image, raise a ticket with a teacher.
+</details>
 
 ![](images/docker_hello.png)
 
@@ -1123,19 +1156,19 @@ cd ~
 Download spark:
 
 ```bash
-wget https://downloads.apache.org/spark/spark-3.5.0/spark-3.5.0-bin-hadoop3.tgz
+wget https://downloads.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz
 ```
 
 Open the tarball:
 
 ```
-mkdir -p ~/spark && tar -xvzf spark-3.5.0-bin-hadoop3.tgz -C ~/spark
+mkdir -p ~/spark && tar -xvzf spark-3.5.1-bin-hadoop3.tgz -C ~/spark
 ```
 
 Set the environment variables needed by spark:
 
 ```bash
-echo "export SPARK_HOME=$HOME/spark/spark-3.5.0-bin-hadoop3" >> .zshrc
+echo "export SPARK_HOME=$HOME/spark/spark-3.5.1-bin-hadoop3" >> .zshrc
 echo 'export PATH=$PATH:$SPARK_HOME/bin' >> .zshrc
 ```
 
@@ -1164,6 +1197,13 @@ pyenv install 3.8.14
 pyenv global 3.8.14
 ```
 Now `python --version` should return `3.8.14`
+
+We'll also install a useful `pyenv` plugin called [`pyenv-virtualenv`](https://github.com/pyenv/pyenv-virtualenv). Although we will be using `poetry` for package and virtual environment management, `pyenv-virtualenv` is useful for controlling python versions locally.
+
+```bash
+git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+exec zsh
+```
 
 ## Pipx
 
