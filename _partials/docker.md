@@ -21,7 +21,7 @@ docker info
 You should get:
 
 <details>
-  <summary markdown='span'>❗️ I recieved a permission denied when trying to connect to the Docker Daemon socket. </summary>
+  <summary markdown='span'>❗️ I received a permission denied when trying to connect to the Docker Daemon socket. </summary>
 
 If you recieved an error similar to the one below. navigate to the (GCP Compute Engine Console)[https://console.cloud.google.com/compute/instances] and STOP your VM (closing VSCode is not enough).
 
