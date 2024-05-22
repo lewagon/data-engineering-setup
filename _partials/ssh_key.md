@@ -43,7 +43,7 @@ You should get the following message: `> Generating public/private algorithm key
 
 <details>
   <summary markdown='span'> ❗️ /home/your_username/.ssh/id_ed25519 already exists.</summary>
-If you receive this message, you may already have an SSH Key with the same name (if you are a Le Wagon Alumni or you using SSH Authentication with Github).
+If you receive this message, you may already have an SSH Key with the same name (if you are a Le Wagon Alumni or are using SSH Authentication with Github).
 
 To create a separate SSH key to exclusively use for this bootcamp use the following:
 
