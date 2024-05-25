@@ -1316,6 +1316,8 @@ Let's make! (You've got time for a coffee ☕️, or start next step during the 
 make install
 ```
 
+⚠️ If at the very end of this process you get 3-4 errors like: `direnv: error .envrc file not found` - that is normal and nothing to worry about.
+
 
 
 ## DBeaver
