@@ -42,7 +42,7 @@ You can now close the Zoom app.
 
 ## Slack
 
-[Slack](https://slack.com/) is a communcation platform pretty popular in the tech industry.
+[Slack](https://slack.com/) is a communication platform pretty popular in the tech industry.
 
 ### Installation
 
@@ -1156,7 +1156,7 @@ cd ~
 Download spark:
 
 ```bash
-wget https://downloads.apache.org/spark/spark-3.5.2/spark-3.5.2-bin-hadoop3.tgz
+wget https://downloads.apache.org/spark/spark-3.5.3/spark-3.5.3-bin-hadoop3.tgz
 ```
 
 Open the tarball:
