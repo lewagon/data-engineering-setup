@@ -1146,35 +1146,61 @@ exec zsh
 spark-shell
 ```
 
+You should see an output similar to:
+
+```bash
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/01/15 11:33:07 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Spark context Web UI available at http://de-vm-lrae-test.europe-north1-b.c.wagon-de.internal:4040
+Spark context available as 'sc' (master = local[*], app id = local-1736940788403).
+Spark session available as 'spark'.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.5.3
+      /_/
+
+Using Scala version 2.12.18 (OpenJDK 64-Bit Server VM, Java 1.8.0_432)
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala>
+```
+Type `:quit` and hit enter to exit the spark-shell and continue.
+
 
 ## Python & Pip
 
-Ubuntu 22.04 has Python 3.8 pre-installed, but we want to have the latest security release of python 3.8 ([3.8.14](https://www.python.org/downloads/release/python-3814/))
+Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. We are going to use Python 3.12 ([3.12.8](https://www.python.org/downloads/release/python-3128/)).
 
-Lets install pyenv to manage our python versions:
+Let's install pyenv to manage our python versions:
 
 ```bash
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 source ~/.zprofile
 exec zsh
 ```
-Now install 3.8.14:
-```bash
-pyenv install 3.8.14
-pyenv global 3.8.14
-```
-Now `python --version` should return `3.8.14`
 
-We'll also install a useful `pyenv` plugin called [`pyenv-virtualenv`](https://github.com/pyenv/pyenv-virtualenv). Although we will be using `poetry` for package and virtual environment management, `pyenv-virtualenv` is useful for controlling python versions locally.
+We'll also install a useful `pyenv` plugin called [`pyenv-virtualenv`](https://github.com/pyenv/pyenv-virtualenv). Although we will be using `poetry` for Python package and virtual environment management, `pyenv-virtualenv` is useful for controlling python versions locally.
 
 ```bash
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 exec zsh
 ```
 
+Now install Python 3.12.8:
+```bash
+pyenv install 3.12.8
+pyenv global 3.12.8
+```
+Now `python --version` should return `3.12.8`
+
+
 ## Pipx
 
-Next we are going to install [pipx](https://pypa.github.io/pipx/) to install python packages we want globally available while still using virtual environments
+Next we are going to install [pipx](https://pypa.github.io/pipx/) to install python packages we want globally available while still using virtual environments:
 
 ```bash
 pip install --upgrade pip
@@ -1227,9 +1253,13 @@ During the bootcamp, you'll see a `.venv` folder being created inside each chall
 poetry config virtualenvs.in-project true
 ```
 
-Finally, update your VScode settings to tell it that this `.venv` relative folder path will be your default interpreter !
+Finally, update your VScode settings to tell it that this `.venv` relative folder path will be your default interpreter!
 
-(Command Palette - **Preference: Open Remote Settings (JSON)**, then add the following line to the panel that opens on the right)
+1. Open the Command Palette ( 🪟 ctrl + shift + P / 🍎 cmd + shift + P )
+2. Search for: **Preference: Open Remote Settings (JSON)** - when you open your settings that should be two panels.
+3. In the panel that opens on the **right side** search for the line: `python.defaultInterpreterPath`
+4. Replace the value (probably `"~/.pyenv/shims/python"`) so that it looks like:
+
 ```yml
 "python.defaultInterpreterPath": ".venv/bin/python",
 ```
@@ -1245,7 +1275,7 @@ code ~/.zshrc
 ```
 
 ```bash
-plugins=(... direnv) # add this direnv to the existing list of plugins
+plugins=(git gitfast ... pyenv ssh-agent direnv) # add `direnv` to the existing list of plugins
 ```
 
 2. Second, let's configure what will happens anytime `.envrc` file is found
@@ -1271,8 +1301,8 @@ code ~/.direnvrc
 - Save and close the file
 
 😎 Now, **anytime you `cd` into a challenge folder which contains a `.envrc` file which contains `layout_poetry()` command inside, the function will get executed and your virtual env will switch to the poetry one that is defined by the `pyproject.toml` !**
-- No need to prefix all commands by `poetry run <my_command>`, but simply `<my_command>`
-- Each challenge will have its own virtual env, and it will be seemless for you to switch between challenges/envs
+- No need to prefix all commands with `poetry run <my_command>`, but simply `<my_command>`
+- Each challenge will have its own virtual env, and it will be seamless for you to switch between challenges/envs
 
 
 ## Let's Make!
@@ -1284,17 +1314,21 @@ export GITHUB_USERNAME=`gh api user | jq -r '.login'`
 echo $GITHUB_USERNAME
 ```
 
-Then
+Then:
 
 ```bash
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
 gh repo fork lewagon/data-engineering-challenges --clone
 ```
-You want this setup:
+
+Our setup will look a bit like this:
 
 <img src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/W0D1/repo-setup.png" width=700 />
 
+This allows you to work on challenges, but if we push any changes to the content, you can still access them!
+
 Check your remotes match `origin` your data engineering challenges and `upstream` lewagon's!
+
 ```bash
 cd data-engineering-challenges
 git remote -v
@@ -1310,13 +1344,15 @@ From challenge folder root **on the vm**, we'll run `make install`, which trigge
 - `make allow-envrc`: allow direnv to execute inside each folder (otherwise you have to manually "allow" it)
 - `make own-repo`: allows your user to be the linux "owner" of all files in this challenge folder
 
-Let's make! (You've got time for a coffee ☕️, or start next step during the install)
+Let's make!
 
 ```bash
 make install
 ```
 
-⚠️ If at the very end of this process you get 3-4 errors like: `direnv: error .envrc file not found` - that is normal and nothing to worry about.
+This will take a while. You have time to grab a coffee ☕️, take a break, or start the next step while all your poetry environments are installing.
+
+⚠️ If at the very end of this process you get a few errors like: `direnv: error .envrc file not found` or a Python version isn't available (relating to `Dask`) - that is normal and nothing to worry about 👌
 
 
 
