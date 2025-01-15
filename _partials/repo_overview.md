@@ -7,17 +7,21 @@ export GITHUB_USERNAME=`gh api user | jq -r '.login'`
 echo $GITHUB_USERNAME
 ```
 
-Then
+Then:
 
 ```bash
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
 gh repo fork lewagon/data-engineering-challenges --clone
 ```
-You want this setup:
+
+Our setup will look a bit like this:
 
 <img src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/W0D1/repo-setup.png" width=700 />
 
+This allows you to work on challenges, but if we push any changes to the content, you can still access them!
+
 Check your remotes match `origin` your data engineering challenges and `upstream` lewagon's!
+
 ```bash
 cd data-engineering-challenges
 git remote -v
@@ -33,10 +37,12 @@ From challenge folder root **on the vm**, we'll run `make install`, which trigge
 - `make allow-envrc`: allow direnv to execute inside each folder (otherwise you have to manually "allow" it)
 - `make own-repo`: allows your user to be the linux "owner" of all files in this challenge folder
 
-Let's make! (You've got time for a coffee ☕️, or start next step during the install)
+Let's make!
 
 ```bash
 make install
 ```
 
-⚠️ If at the very end of this process you get 3-4 errors like: `direnv: error .envrc file not found` - that is normal and nothing to worry about.
+This will take a while. You have time to grab a coffee ☕️, take a break, or start the next step while all your poetry environments are installing.
+
+⚠️ If at the very end of this process you get a few errors like: `direnv: error .envrc file not found` or a Python version isn't available (relating to `Dask`) - that is normal and nothing to worry about 👌

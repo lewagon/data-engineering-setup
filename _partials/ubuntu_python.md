@@ -1,31 +1,33 @@
 ## Python & Pip
 
-Ubuntu 22.04 has Python 3.8 pre-installed, but we want to have the latest security release of python 3.8 ([3.8.14](https://www.python.org/downloads/release/python-3814/))
+Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. We are going to use Python 3.12 ([3.12.8](https://www.python.org/downloads/release/python-3128/)).
 
-Lets install pyenv to manage our python versions:
+Let's install pyenv to manage our python versions:
 
 ```bash
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 source ~/.zprofile
 exec zsh
 ```
-Now install 3.8.14:
-```bash
-pyenv install 3.8.14
-pyenv global 3.8.14
-```
-Now `python --version` should return `3.8.14`
 
-We'll also install a useful `pyenv` plugin called [`pyenv-virtualenv`](https://github.com/pyenv/pyenv-virtualenv). Although we will be using `poetry` for package and virtual environment management, `pyenv-virtualenv` is useful for controlling python versions locally.
+We'll also install a useful `pyenv` plugin called [`pyenv-virtualenv`](https://github.com/pyenv/pyenv-virtualenv). Although we will be using `poetry` for Python package and virtual environment management, `pyenv-virtualenv` is useful for controlling python versions locally.
 
 ```bash
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 exec zsh
 ```
 
+Now install Python 3.12.8:
+```bash
+pyenv install 3.12.8
+pyenv global 3.12.8
+```
+Now `python --version` should return `3.12.8`
+
+
 ## Pipx
 
-Next we are going to install [pipx](https://pypa.github.io/pipx/) to install python packages we want globally available while still using virtual environments
+Next we are going to install [pipx](https://pypa.github.io/pipx/) to install python packages we want globally available while still using virtual environments:
 
 ```bash
 pip install --upgrade pip
@@ -78,9 +80,13 @@ During the bootcamp, you'll see a `.venv` folder being created inside each chall
 poetry config virtualenvs.in-project true
 ```
 
-Finally, update your VScode settings to tell it that this `.venv` relative folder path will be your default interpreter !
+Finally, update your VScode settings to tell it that this `.venv` relative folder path will be your default interpreter!
 
-(Command Palette - **Preference: Open Remote Settings (JSON)**, then add the following line to the panel that opens on the right)
+1. Open the Command Palette ( 🪟 ctrl + shift + P / 🍎 cmd + shift + P )
+2. Search for: **Preference: Open Remote Settings (JSON)** - when you open your settings that should be two panels.
+3. In the panel that opens on the **right side** search for the line: `python.defaultInterpreterPath`
+4. Replace the value (probably `"~/.pyenv/shims/python"`) so that it looks like:
+
 ```yml
 "python.defaultInterpreterPath": ".venv/bin/python",
 ```
@@ -96,7 +102,7 @@ code ~/.zshrc
 ```
 
 ```bash
-plugins=(... direnv) # add this direnv to the existing list of plugins
+plugins=(git gitfast ... pyenv ssh-agent direnv) # add `direnv` to the existing list of plugins
 ```
 
 2. Second, let's configure what will happens anytime `.envrc` file is found
@@ -122,5 +128,5 @@ code ~/.direnvrc
 - Save and close the file
 
 😎 Now, **anytime you `cd` into a challenge folder which contains a `.envrc` file which contains `layout_poetry()` command inside, the function will get executed and your virtual env will switch to the poetry one that is defined by the `pyproject.toml` !**
-- No need to prefix all commands by `poetry run <my_command>`, but simply `<my_command>`
-- Each challenge will have its own virtual env, and it will be seemless for you to switch between challenges/envs
+- No need to prefix all commands with `poetry run <my_command>`, but simply `<my_command>`
+- Each challenge will have its own virtual env, and it will be seamless for you to switch between challenges/envs
