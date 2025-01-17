@@ -12,7 +12,7 @@ cd ~
 Download spark:
 
 ```bash
-wget https://downloads.apache.org/spark/spark-3.5.3/spark-3.5.3-bin-hadoop3.tgz
+wget https://archive.apache.org/dist/spark/spark-3.5.3/spark-3.5.3-bin-hadoop3.tgz
 ```
 
 Open the tarball:
