@@ -93,58 +93,49 @@ Have you signed up to GitHub? If not, [do it right away](https://github.com/join
 
 We want to safely communicate with your virtual machine using [SSH protocol](https://en.wikipedia.org/wiki/Secure_Shell). We need to generate a SSH key to authenticate.
 
-- Open your terminal
-
-<details>
-  <summary markdown='span'>💡 Windows tip</summary>
-
-We highly recommend installing [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=fr-fr&gl=FR) from the Windows Store (installed on Windows 11 by default) to perform this operation
-</details>
-
-- Create a SSH key
-
 <details>
   <summary markdown='span'>Windows</summary>
 
-```bash
-# replace "your_email@example.com" with your GCP account email
-ssh-keygen.exe -t ed25519 -C "your_email@example.com"
-```
+  - We highly recommend installing [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701) from the Windows Store (installed on Windows 11 by default) to perform this operation.
+  - Open Windows Terminal
+  - Run one of the following commands:
+    - If you're using _Windows PowerShell_:
+      ```bash
+      # replace "your_email@example.com" with your GCP account email
+      ssh-keygen.exe -t ed25519 -f $HOME\.ssh\de-bootcamp -C "your_email@example.com"
+      ```
+    - If you're using the classic _Command Prompt_:
+      ```bash
+      # replace "your_email@example.com" with your GCP account email
+      ssh-keygen.exe -t ed25519 -f %HOMEPATH%\.ssh\de-bootcamp -C "your_email@example.com"
+      ```
+
+
 </details>
 
 <details>
   <summary markdown='span'>MacOS & Linux</summary>
 
-```bash
-# replace "your_email@example.com" with your GCP account email
-ssh-keygen -t ed25519 -C "your_email@example.com"
-```
+  - Open your Terminal
+  - Run the following command:
+    ```bash
+    # replace "your_email@example.com" with your GCP account email
+    ssh-keygen -t ed25519 -f ~/.ssh/de-bootcamp -C "your_email@example.com"
+    ```
 </details>
 
 
 You should get the following message: `> Generating public/private algorithm key pair.`
-- When you are prompted `> Enter a file in which to save the key`, press Enter
-- You should be asked to `Enter a passphrase` - this is optional if you want additional security. To continue without a passphrase press enter without typing anything when asked to enter a passphrase.
 
-ℹ️ Don't worry if nothing prompt when you type, that is perfectly normal for security reasons.
+You should be asked to `Enter a passphrase` - this is optional if you want additional security. To continue without a passphrase press _Enter_ without typing anything when asked to enter a passphrase.
 
-- You should be asked to `Enter same passphrase again`, do it.
+ℹ️ Don't worry if nothing is shown when you are typing, that is perfectly normal for security reasons.
+
+You should be asked to `Enter same passphrase again`, do it.
 
 **❗️ You must remember this passphrase.**
 
-<details>
-  <summary markdown='span'> ❗️ /home/your_username/.ssh/id_ed25519 already exists.</summary>
-If you receive this message, you may already have an SSH Key with the same name (if you are a Le Wagon Alumni or are using SSH Authentication with Github).
-
-To create a separate SSH key to exclusively use for this bootcamp use the following:
-
-```bash
-# replace "your_email@example.com" with your GCP account email
-ssh-keygen -t ed25519 -f ~/.ssh/de-bootcamp -C "your_email@example.com"
-```
-
-Your new SSH Key will be named `de-bootcamp`. Make sure to remember it for later!
-</details>
+Your new SSH Key will be named `de-bootcamp`.
 
 
 ## Google Cloud Platform setup
@@ -339,13 +330,19 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 
     <img alt="gcloud-console-add-manual-ssh-key" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-manual-ssh-key.png" width=500>
 - In your terminal display your public SSH key:
-    - Windows: navigate to where you created your SSH key and open `id_ed25519.pub`
+    - Windows:
+        ```bash
+        # If you use Windows Terminal
+        more $HOME\.ssh\de-bootcamp.pub
+        # OR if you use Command Prompt:
+        # more %HOMEPATH%\.ssh\de-bootcamp.pub
+        ```
 
     - Mac/Linux users can use:
         ```bash
-        cat ~/.ssh/id_ed25519.pub
-        # OR cat ~/.ssh/de-bootcamp.pub if you created a unique key
+        cat ~/.ssh/de-bootcamp.pub
         ```
+
 - Copy your public SSH key and paste it:
 
     <img alt="gcloud-console-add-ssh-key-pub" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-ssh-key-pub.png" width=500>
@@ -403,7 +400,7 @@ That's the only extension you should install on your _local_ machine, we will in
 <img alt="vscode-connect-to-host" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-connect-to-host.png" width=500>
 
 - Click on `Add a new host`
-- Type `ssh -i <path/to/your/private/key> <username>@<ip address>`, for instance, my username is `somedude`, my private SSH key is located at `~/.ssh/id_rsa` on my local computer, my VM has a public IP of `34.77.50.76`: I'll type `ssh -i ~/.ssh/id_rsa somedude@34.77.50.76`
+- Type `ssh -i <path/to/your/private/key> <username>@<ip address>`, for instance, my username is `somedude`, my private SSH key is located at `~/.ssh/de-bootcamp` on my local computer, my VM has a public IP of `34.77.50.76`: I'll type `ssh -i ~/.ssh/de-bootcamp somedude@34.77.50.76`
 
 <img alt="vscode-ssh-connection-command" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-ssh-connection-command.png" width=500>
 
