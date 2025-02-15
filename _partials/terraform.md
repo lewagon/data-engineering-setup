@@ -13,7 +13,7 @@ Terraform is not avaliable to apt by default so we need to make it avaliable!
 ```bash
 wget -O- https://apt.releases.hashicorp.com/gpg | \
     gpg --dearmor | \
-    sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
 ```
 
 ```bash
