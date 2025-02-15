@@ -15,7 +15,7 @@ sudo apt update
 sudo apt install -y vim tmux tree git ca-certificates curl jq unzip zsh \
 apt-transport-https gnupg software-properties-common direnv sqlite3 make \
 postgresql postgresql-contrib build-essential libssl-dev zlib1g-dev \
-libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+libbz2-dev libreadline-dev libsqlite3-dev wget llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
 gcc default-mysql-server default-libmysqlclient-dev libpython3-dev openjdk-8-jdk-headless
 ```

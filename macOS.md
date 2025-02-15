@@ -508,7 +508,7 @@ sudo apt update
 sudo apt install -y vim tmux tree git ca-certificates curl jq unzip zsh \
 apt-transport-https gnupg software-properties-common direnv sqlite3 make \
 postgresql postgresql-contrib build-essential libssl-dev zlib1g-dev \
-libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+libbz2-dev libreadline-dev libsqlite3-dev wget llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
 gcc default-mysql-server default-libmysqlclient-dev libpython3-dev openjdk-8-jdk-headless
 ```
@@ -819,8 +819,6 @@ cd ~/code/$GITHUB_USERNAME/dotfiles && zsh git_setup.sh
 :warning: You **need** to put one of the emails listed above thanks to the previous `gh api ...` command.
 If you don't do that, Kitt won't be able to track your progress. 💡 Select the `@users.noreply.github.com` address if
 you don't want your email to appear in public repositories you may contribute to.
-
-Please now **quit** all your opened terminal windows.
 </details>
 
 
@@ -873,8 +871,6 @@ cd ~/code/$GITHUB_USERNAME/dotfiles && zsh git_setup.sh
 :warning: You **need** to put one of the emails listed above thanks to the previous `gh api ...` command.
 If you don't do that, Kitt won't be able to track your progress. 💡 Select the `@users.noreply.github.com` address if
 you don't want your email to appear in public repositories you may contribute to.
-
-Please now **quit** all your opened terminal windows.
 </details>
 
 
@@ -1079,7 +1075,7 @@ Terraform is not avaliable to apt by default so we need to make it avaliable!
 ```bash
 wget -O- https://apt.releases.hashicorp.com/gpg | \
     gpg --dearmor | \
-    sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
 ```
 
 ```bash
@@ -1127,7 +1123,7 @@ wget https://archive.apache.org/dist/spark/spark-3.5.3/spark-3.5.3-bin-hadoop3.t
 Open the tarball:
 
 ```bash
-mkdir -p ~/spark && tar -xvzf spark-3.5.3-bin-hadoop3.tgz -C ~/spark
+mkdir -p ~/spark && tar -xzf spark-3.5.3-bin-hadoop3.tgz -C ~/spark
 ```
 
 Set the environment variables needed by spark:
@@ -1137,10 +1133,15 @@ echo "export SPARK_HOME=$HOME/spark/spark-3.5.3-bin-hadoop3" >> .zshrc
 echo 'export PATH=$PATH:$SPARK_HOME/bin' >> .zshrc
 ```
 
-Test it works by running:
+Let's restart our shell:
 
 ```bash
 exec zsh
+```
+
+Test Spark works by running:
+
+```bash
 spark-shell
 ```
 
@@ -1198,10 +1199,17 @@ Now `python --version` should return `3.12.8`
 
 ## Pipx
 
-Next we are going to install [pipx](https://pypa.github.io/pipx/) to install python packages we want globally available while still using virtual environments:
+Next we are going to install [pipx](https://pypa.github.io/pipx/) to install python packages we want globally available while still using virtual environments.
+
+Let's upgrade `pip` first:
 
 ```bash
 pip install --upgrade pip
+```
+
+And install `pipx`:
+
+```bash
 python -m pip install --user pipx # --user so that each ubuntu user can have his own 'pipx'
 python -m pipx ensurepath
 exec zsh
