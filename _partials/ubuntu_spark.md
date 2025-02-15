@@ -18,7 +18,7 @@ wget https://archive.apache.org/dist/spark/spark-3.5.3/spark-3.5.3-bin-hadoop3.t
 Open the tarball:
 
 ```bash
-mkdir -p ~/spark && tar -xvzf spark-3.5.3-bin-hadoop3.tgz -C ~/spark
+mkdir -p ~/spark && tar -xzf spark-3.5.3-bin-hadoop3.tgz -C ~/spark
 ```
 
 Set the environment variables needed by spark:
@@ -28,10 +28,15 @@ echo "export SPARK_HOME=$HOME/spark/spark-3.5.3-bin-hadoop3" >> .zshrc
 echo 'export PATH=$PATH:$SPARK_HOME/bin' >> .zshrc
 ```
 
-Test it works by running:
+Let's restart our shell:
 
 ```bash
 exec zsh
+```
+
+Test Spark works by running:
+
+```bash
 spark-shell
 ```
 
