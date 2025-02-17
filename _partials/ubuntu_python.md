@@ -27,10 +27,17 @@ Now `python --version` should return `3.12.8`
 
 ## Pipx
 
-Next we are going to install [pipx](https://pypa.github.io/pipx/) to install python packages we want globally available while still using virtual environments:
+Next we are going to install [pipx](https://pypa.github.io/pipx/) to install python packages we want globally available while still using virtual environments.
+
+Let's upgrade `pip` first:
 
 ```bash
 pip install --upgrade pip
+```
+
+And install `pipx`:
+
+```bash
 python -m pip install --user pipx # --user so that each ubuntu user can have his own 'pipx'
 python -m pipx ensurepath
 exec zsh
