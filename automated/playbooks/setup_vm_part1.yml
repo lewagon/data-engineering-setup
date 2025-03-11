@@ -1,0 +1,285 @@
+---
+- name: Setup VM Part 1 - Update VM with non-dependant software
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    my_user: "{{ lookup('env', 'USER') }}"
+    architecture: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+  tasks:
+    - name: Debug Variables
+      debug:
+        msg:
+          - "Running playbook as the user: {{ my_user }}"
+          - "Running Ubuntu version: {{ ansible_distribution_release }}"
+          - "On architecture: {{ architecture }}"
+
+    - name: Install apt packages
+      block:
+        - name: Check last apt update time
+          stat:
+            path: /var/lib/apt/periodic/update-success-stamp
+          register: apt_stamp
+          tags: apt
+
+        - name: Update apt package list if update >24 hours ago
+          apt:
+            update_cache: true
+          become: true
+          when: apt_stamp.stat.exists == false or (ansible_date_time.epoch | int - apt_stamp.stat.mtime | int) > 86400
+          tags: apt
+
+        - name: Install required apt packages
+          apt:
+            name:
+              - vim
+              - tmux
+              - tree
+              - git
+              - ca-certificates
+              - curl
+              - jq
+              - unzip
+              - zsh
+              - apt-transport-https
+              - gnupg
+              - software-properties-common
+              - direnv
+              - sqlite3
+              - make
+              - postgresql
+              - postgresql-contrib
+              - build-essential
+              - libssl-dev
+              - zlib1g-dev
+              - libbz2-dev
+              - libreadline-dev
+              - libsqlite3-dev
+              - wget
+              - llvm
+              - libncursesw5-dev
+              - xz-utils
+              - tk-dev
+              - libxml2-dev
+              - libxmlsec1-dev
+              - libffi-dev
+              - liblzma-dev
+              - gcc
+              - default-mysql-server
+              - default-libmysqlclient-dev
+              - libpython3-dev
+              - openjdk-8-jdk-headless
+            state: present
+          become: true
+          tags: apt
+
+    - name: Set zsh as default shell
+      user:
+        name: "{{ my_user }}"
+        shell: /usr/bin/zsh
+
+    - name: Install Oh My Zsh
+      block:
+        - name: Check if Oh My Zsh is installed
+          stat:
+            path: "/home/{{ my_user }}/.oh-my-zsh"
+          register: omz_check
+          tags: omz
+
+        - name: Install Oh My Zsh from repo
+          shell: |
+            sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+          become_user: "{{ my_user }}"
+          when: not omz_check.stat.exists
+          tags: omz
+
+    - name: Install Docker
+      block:
+        - name: Check if Docker is installed
+          stat:
+            path: /usr/bin/docker
+          register: docker_check
+          tags: docker
+
+        - name: Add Docker GPG key
+          apt_key:
+            url: "https://download.docker.com/linux/ubuntu/gpg"
+            keyring: "/etc/apt/keyrings/docker.gpg"
+            state: present
+          when: not docker_check.stat.exists
+          tags: docker
+
+        - name: Add Docker APT repository
+          apt_repository:
+            repo: "deb [arch={{ architecture }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+            state: present
+          when: not docker_check.stat.exists
+          tags: docker
+
+        - name: Update APT cache
+          apt:
+            update_cache: true
+          when: not docker_check.stat.exists
+
+        - name: Install Docker packages
+          apt:
+            name:
+              - docker-ce
+              - docker-ce-cli
+              - containerd.io
+              - docker-buildx-plugin
+              - docker-compose-plugin
+            state: present
+          when: not docker_check.stat.exists
+
+        - name: Ensure docker group exists
+          group:
+            name: docker
+            state: present
+          tags: docker
+
+        - name: Add user to the docker group
+          user:
+            name: "{{ my_user }}"
+            groups: docker
+            append: true
+          tags: docker
+
+    - name: Authenticate gcloud with Docker
+      block:
+        - name: Check if Docker authentication config exists
+          stat:
+            path: "/home/{{ my_user }}/.docker/config.json"
+          register: docker_config
+          tags: docker
+
+        - name: Check if gcloud is authenticated with Docker
+          shell: "grep -q 'gcr.io' /home/{{ my_user }}/.docker/config.json"
+          become_user: "{{ my_user }}"
+          register: gcloud_docker_check
+          ignore_errors: true
+          changed_when: false
+          when: docker_config.stat.exists
+          tags: docker
+
+        - name: Authenticate gcloud with Docker
+          shell: |
+            gcloud auth configure-docker
+          become_user: "{{ my_user }}"
+          when: not docker_config.stat.exists or gcloud_docker_check.rc != 0
+          tags: docker
+
+    - name: Enable GCP Artifact Registry API
+      block:
+        - name: Check if GCP Artifact Registry API is enabled
+          shell: |
+            gcloud services list --enabled --format="value(config.name)" | grep -q "^artifactregistry.googleapis.com$"
+          become_user: "{{ my_user }}"
+          register: gcp_ar_check
+          ignore_errors: true
+          changed_when: false
+          tags: gcp_ar
+
+        - name: Enable GCP Artifact Registry API
+          shell: |
+            gcloud services enable artifactregistry.googleapis.com
+          become_user: "{{ my_user }}"
+          when: gcp_ar_check.rc != 0
+          tags: gcp_ar
+
+    - name: Install kubectl
+      block:
+        - name: Check if kubectl is installed
+          stat:
+            path: /usr/local/bin/kubectl
+          register: kubectl_check
+          tags: kubectl
+
+        - name: Download kubectl binary and add to path
+          get_url:
+            url: "https://dl.k8s.io/release/{{ lookup('url', 'https://dl.k8s.io/release/stable.txt') }}/bin/linux/amd64/kubectl"
+            dest: "/usr/local/bin/kubectl"
+            mode: "0755"
+          when: not kubectl_check.stat.exists
+          tags: kubectl
+
+    - name: Install minikube
+      block:
+        - name: Chech if minikube is installed
+          stat:
+            path: /usr/local/bin/minikube
+          register: minikube_check
+          tags: minikube
+
+        - name: Download minikube binary and add to path
+          get_url:
+            url: "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
+            dest: "/usr/local/bin/minikube"
+            mode: "0755"
+          when: not minikube_check.stat.exists
+          tags: minikube
+
+    - name: Install terraform
+      block:
+        - name: Check if terraform is installed
+          stat:
+            path: /usr/bin/terraform
+          register: terraform_check
+          tags: terraform
+
+        - name: Add HashiCorp GPG key
+          apt_key:
+            url: "https://apt.releases.hashicorp.com/gpg"
+            keyring: "/usr/share/keyrings/hashicorp-archive-keyring.gpg"
+            state: present
+          tags: terraform
+
+        - name: Add HashiCorp GPG repository
+          apt_repository:
+            repo: "deb [arch={{ architecture }} signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+            state: present
+          when: not terraform_check.stat.exists
+          tags: terraform
+
+        - name: Update APT cache
+          apt:
+            update_cache: true
+          when: not terraform_check.stat.exists
+          tags: terraform
+
+        - name: Install terraform
+          apt:
+            name: terraform
+            state: present
+          when: not terraform_check.stat.exists
+          tags: terraform
+
+    - name: Install Github CLI
+      block:
+        - name: Check if Github CLI is installed
+          stat:
+            path: /usr/bin/gh
+          register: gh_check
+          tags: gh_cli
+
+        - name: Add GitHub CLI GPG key
+          get_url:
+            url: "https://cli.github.com/packages/githubcli-archive-keyring.gpg"
+            dest: "/usr/share/keyrings/githubcli-archive-keyring.gpg"
+            mode: "0644"
+          when: not gh_check.stat.exists
+          tags: gh_cli
+
+        - name: Add GitHub CLI APT repository
+          apt_repository:
+            repo: "deb [arch={{ architecture }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+            state: present
+          when: not gh_check.stat.exists
+          tags: gh_cli
+
+        - name: Install GitHub CLI
+          apt:
+            name: gh
+            state: present
+          when: not gh_check.stat.exists
+          tags: gh_cli

@@ -1,0 +1,261 @@
+---
+- name: Setup VM Part 2 - Update VM with dependant software
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    my_user: "{{ lookup('env', 'USER') }}"
+    architecture: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+    ansible_shell_executable: /usr/bin/zsh
+  tasks:
+    - name: Debug Variables
+      debug:
+        msg:
+          - "Running playbook as the user: {{ my_user }}"
+          - "Running Ubuntu version: {{ ansible_distribution_release }}"
+          - "On architecture: {{ architecture }}"
+
+    - name: Install Spark
+      block:
+        - name: Check if Spark is installed
+          stat:
+            path: "/home/{{ my_user }}/spark/spark-3.5.3-bin-hadoop3"
+          register: spark_installed
+          tags: spark
+
+        - name: Install Spark (Async)
+          shell: |
+            wget -q https://archive.apache.org/dist/spark/spark-3.5.3/spark-3.5.3-bin-hadoop3.tgz -O /tmp/spark.tgz
+            mkdir -p ~/spark && tar -xzf /tmp/spark.tgz -C ~/spark
+          become_user: "{{ my_user }}"
+          when: not spark_installed.stat.exists
+          async: 1800 # Runs in the background for up to 30 minutes
+          poll: 0 # Continue running other tasks
+          register: spark_async
+          tags: spark
+
+        - name: Debug Spark async job ID
+          debug:
+            msg: "Spark async job ID: {{ spark_async.ansible_job_id }}"
+
+    - name: Add .zshrc plugins - direnv, pyenv, gcloud
+      lineinfile:
+        path: "~/.zshrc"
+        regexp: "plugins="
+        line: "plugins=(git gitfast last-working-dir common-aliases zsh-syntax-highlighting history-substring-search pyenv ssh-agent direnv gcloud)"
+        create: true
+      become_user: "{{ my_user }}"
+      tags: zshrc
+
+    - name: Add spark, pyenv, pipx to path
+      blockinfile:
+        path: "~/.zshrc"
+        block: |
+          # Spark
+          export SPARK_HOME=$HOME/spark/spark-3.5.3-bin-hadoop3
+          export PATH=$PATH:$SPARK_HOME/bin
+
+          # pyenv
+          export PYENV_ROOT="$HOME/.pyenv"
+          [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+          eval "$(pyenv init - zsh)"
+
+          # pipx
+          export PATH="$HOME/.local/bin:$PATH"
+        marker: "# {mark} ANSIBLE CREATED BLOCK: path vars"
+        create: true
+      become_user: "{{ my_user }}"
+      tags: zshrc
+
+    - name: Create direnv Poetry Hook
+      blockinfile:
+        path: "~/.direnvrc"
+        block: |
+          layout_poetry() {
+            if [[ ! -f pyproject.toml ]]; then
+                log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'
+                exit 2
+            fi
+            # create venv if it doesn't exist
+            poetry run true
+
+            export VIRTUAL_ENV=$(poetry env info --path)
+            export POETRY_ACTIVE=1
+            PATH_add "$VIRTUAL_ENV/bin"
+          }
+        marker: "# {mark} ANSIBLE CREATED BLOCK: layout_poetry"
+        create: true
+        mode: "0644"
+      become_user: "{{ my_user }}"
+
+    - name: Update VS Code python interpreter
+      lineinfile:
+        path: "~/.vscode-server/data/Machine/settings.json"
+        regexp: '    "python.defaultInterpreterPath": "~/.pyenv/shims/python",'
+        line: '    "python.defaultInterpreterPath": ".venv/bin/python",'
+        create: true
+      become_user: "{{ my_user }}"
+
+    - name: Insall pyenv
+      block:
+        - name: Check if pyenv is installed
+          stat:
+            path: "/home/{{ my_user }}/.pyenv"
+          register: pyenv_installed
+          tags: pyenv
+
+        - name: Install pyenv
+          git:
+            repo: "https://github.com/pyenv/pyenv.git"
+            dest: "/home/{{ my_user }}/.pyenv"
+          become_user: "{{ my_user }}"
+          when: not pyenv_installed.stat.exists
+          tags: pyenv
+
+        - name: Check if pyenv-virtualenv is installed
+          stat:
+            path: "/home/{{ my_user }}/.pyenv/plugins/pyenv-virtualenv"
+          register: pyenv_virtualenv_installed
+          tags: pyenv
+
+        - name: Install pyenv-virtualenv
+          git:
+            repo: "https://github.com/pyenv/pyenv-virtualenv.git"
+            dest: "/home/{{ my_user }}/.pyenv/plugins/pyenv-virtualenv"
+          become_user: "{{ my_user }}"
+          when: not pyenv_virtualenv_installed.stat.exists
+          tags: pyenv
+
+    - name: Install Python 3.12.8 using pyenv
+      block:
+        - name: Check if Python 3.12.8 is installed
+          command: >
+            zsh -c 'export PYENV_ROOT="$HOME/.pyenv";
+            export PATH="$PYENV_ROOT/bin:$PATH";
+            eval "$(pyenv init --path)";
+            pyenv versions --bare'
+          become_user: "{{ my_user }}"
+          register: python_installed
+          changed_when: false
+          tags: python
+
+        - name: Install Python 3.12.8 with pyenv
+          command: >
+            zsh -c 'export PYENV_ROOT="$HOME/.pyenv";
+            export PATH="$PYENV_ROOT/bin:$PATH";
+            eval "$(pyenv init --path)";
+            pyenv install 3.12.8 && pyenv global 3.12.8'
+          become_user: "{{ my_user }}"
+          when: "'3.12.8' not in python_installed.stdout"
+          tags: python
+
+    - name: Install pipx
+      block:
+        - name: Check if pipx is installed
+          stat:
+            path: "/home/{{ my_user }}/.local/bin/pipx"
+          register: pipx_installed
+          tags: pipx
+
+        - name: Install pipx
+          shell: |
+            source ~/.zshrc
+            pip install --upgrade pip
+            python -m ensurepip --default-pip
+            python -m pip install --user pipx
+            python -m pipx ensurepath
+          become_user: "{{ my_user }}"
+          when: not pipx_installed.stat.exists
+          tags: pipx
+
+    - name: Install pipx packages
+      block:
+        - name: Check installed pipx packages
+          command: "/home/{{ my_user }}/.local/bin/pipx list"
+          become_user: "{{ my_user }}"
+          register: pipx_list
+          changed_when: false
+          tags: pipx_packages
+
+        - name: Install missing pipx packages - poetry, tldr, ruff
+          command: "/home/{{ my_user }}/.local/bin/pipx install {{ item }}"
+          loop:
+            - poetry
+            - tldr
+            - ruff
+          become_user: "{{ my_user }}"
+          when: "item not in pipx_list.stdout"
+          tags: pipx_packages
+
+    - name: Ensure Poetry venv is set to in-project
+      shell: |
+        source ~/.zshrc
+        poetry config virtualenvs.in-project true
+      become_user: "{{ my_user }}"
+      changed_when: false
+
+    - name: Fork and clone lewagon/data-engineering-challenges
+      block:
+        - name: Get GitHub Username using gh CLI
+          command: gh api user --jq '.login'
+          become_user: "{{ my_user }}"
+          register: github_username
+          changed_when: false
+          tags: github
+
+        - name: Check if repository already exists
+          stat:
+            path: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
+          register: repo_exists
+          tags: github
+
+        - name: Fork repository if not already forked
+          command: gh repo fork lewagon/data-engineering-challenges --remote
+          become_user: "{{ my_user }}"
+          when: not repo_exists.stat.exists
+          tags: github
+
+        - name: Clone repository if not already cloned
+          git:
+            repo: "git@github.com:{{ github_username.stdout }}/data-engineering-challenges.git"
+            dest: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
+            clone: true
+            update: false
+            accept_hostkey: true
+          become_user: "{{ my_user }}"
+          when: not repo_exists.stat.exists
+          tags: github
+
+        - name: Check upstream remote
+          command: git remote -v
+          args:
+            chdir: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
+          become_user: "{{ my_user }}"
+          register: existing_remotes
+          changed_when: false
+          tags: github
+
+        - name: Add upstream remote
+          command: git remote add upstream git@github.com:lewagon/data-engineering-challenges.git
+          args:
+            chdir: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
+          become_user: "{{ my_user }}"
+          when: "'upstream' not in existing_remotes.stdout"
+          tags: github
+
+    - name: Wait for Spark installation to complete - This can take a while. Spark is big! 1 Retry = 30 seconds
+      async_status:
+        jid: "{{ spark_async.ansible_job_id }}"
+      become_user: "{{ my_user }}"
+      register: spark_result
+      until: spark_result.finished
+      retries: 60
+      delay: 30
+      when: spark_async.ansible_job_id is defined
+      tags: spark
+
+    # - name: Create Poetry environments
+    #   shell: |
+    #     GITHUB_USERNAME=$(gh api user | jq -r '.login')
+    #     cd ~/code/$GITHUB_USERNAME/data-engineering-challenges && make install
+    #   become_user: "{{ my_user }}"
