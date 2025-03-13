@@ -43,23 +43,23 @@ We'll start with some communication tools that are widely used.
 
 ## 1.1. Zoom
 
-Use existing fragment
+Use existing partial
 
 ## 1.2. Slack
 
-Use existing fragment
+Use existing partial
 
 ## 1.3. Github
 
-Use existing fragment
+Use existing partial
 
 ## 1.4. Google Cloud Platform Setup
 
-Use existing fragment
+Use existing partial
 
 ## 1.5. GCP API's
 
-Use existing fragment
+Use existing partial
 
 ## ✨ 1.6. Download `gcloud` locally
 
@@ -78,7 +78,7 @@ Use the installer
 <details>
 <summary markdown='span'>🍎 MacOS</summary>
 
-Use existing fragment from DS setup
+Use existing partial from DS setup
 </details>
 
 <br>
@@ -86,14 +86,14 @@ Use existing fragment from DS setup
 <details>
 <summary markdown='span'>🐧 Linux</summary>
 
-Use existing fragment from DS setup
+Use existing partial from DS setup
 </details>
 
 Cut Service account key here.
 
 ## 1.7. Authorize local `gcloud`
 
-Use existing fragment from DS setup
+Use existing partial from DS setup
 
 Add something about Windows for the installer
 
@@ -102,7 +102,7 @@ Add something about Windows for the installer
 
 ## 1.8. Visual Studio Code
 
-Use existing fragment
+Use existing partial
 
 ## ✨ 1.9. Install Terraform Locally
 
@@ -207,7 +207,7 @@ TODO: Add image asset
 
 ## ✨ 2.2. Authenticate GCP CLI and ADC
 
-Use existing fragment for bulk of this.
+Use existing partial for bulk of this.
 
 `gcloud` comes pre-installed on GCP Virtual Machines!
 
@@ -246,9 +246,6 @@ curl -L -o ~/vm-ansible-setup/hosts https://raw.githubusercontent.com/lewagon/da
 curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part1.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automated/vm-ansible-setup/playbooks/setup_vm_part1.yml
 ```
 
-- `curl` from github or s3 to a specific target. Probably `~/playbooks`
-
-
 And run with:
 
 ```bash
@@ -261,13 +258,13 @@ TODO: Add image assets
 
 ## 2.4. Github CLI Auth
 
-Use existing fragment
+Use existing partial
 
 Can't be easily automated without creating and copying SSH keys.
 
 ## 2.5. Copy LW Dotfiles
 
-Use existing fragment
+Use existing partial
 
 Can't be easily automated, needs student input.
 
@@ -311,7 +308,7 @@ docker run hello-world
 
 ❗ If you get a permission error, SHUT DOWN your VM from the GCP console and turn it on again. Closing VS Code and opening it again is insufficient.
 
-TODO: Add image assets from existing fragment
+TODO: Add image assets from existing partial
 
 Minikube:
 
@@ -326,7 +323,7 @@ kubectl get po -A
 minikube delete --all
 ```
 
-TODO: Add image assets from existing fragment
+TODO: Add image assets from existing partial
 
 Terraform:
 
@@ -334,7 +331,7 @@ Terraform:
 terraform --version
 ```
 
-TODO: Add image assets from existing fragment
+TODO: Add image assets from existing partial
 
 Spark:
 
@@ -342,7 +339,7 @@ Spark:
 spark-shell
 ```
 
-TODO: Add image assets from existing fragment
+TODO: Add image assets from existing partial
 
 Pyenv:
 
@@ -358,7 +355,7 @@ python --version
 # 3.12.8
 ```
 
-TODO: Add image assets from existing fragment
+TODO: Add image assets from existing partial
 
 Pipx:
 
