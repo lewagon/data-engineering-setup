@@ -140,7 +140,7 @@ sudo apt update && sudo apt install terraform
 
 ## ✨ 1.10. Create your VM with Terraform
 
-Download files. This will be a `curl` from the repo or s3.
+Download files. This will be a `curl` from the repo.
 
 For testing, copy the terraform files from `infra/` in the repo into `~/code/<GH_USERNAME>/de-vm-setup`. Files to copy:
 - `main.tf`
@@ -238,21 +238,26 @@ gcloud config list
 
 Download the first ansible playbook with the following:
 
+```bash
+# TODO: Update if merged
+mkdir -p ~/vm-ansible-setup/playbooks
+curl -L -o ~/vm-ansible-setup/ansible.cfg https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automated/vm-ansible-setup/ansible.cfg
+curl -L -o ~/vm-ansible-setup/hosts https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automated/vm-ansible-setup/hosts
+curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part1.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automated/vm-ansible-setup/playbooks/setup_vm_part1.yml
+```
+
 - `curl` from github or s3 to a specific target. Probably `~/playbooks`
 
-For testing, copy from the repo.
-
-Create the folder:
-
-```bash
-mkdir ~/playbooks
-```
 
 And run with:
 
 ```bash
-cd ~/playbooks && ansible-playbook setup_vm_part1.yml
+cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part1.yml
 ```
+
+Close all your terminals and open a new one. It should look like:
+
+TODO: Add image assets
 
 ## 2.4. Github CLI Auth
 
@@ -281,19 +286,19 @@ In this section we'll run a second `ansible` playbook and check our setup
 
 Download the second ansible playbook with the following:
 
-- `curl` from github or s3 to a specific target. Probably `~/playbooks`
-
-For testing, copy and paste from repo.
+```bash
+curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automated/vm-ansible-setup/playbooks/setup_vm_part2.yml
+```
 
 And run with:
 
 ```bash
-cd ~/playbooks && ansible-playbook setup_vm_part2.yml
+cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part2.yml
 ```
 
-Close all your terminals and open a new one. It should look like:
+Once the playbook has finished, we need to completely SHUT DOWN your VM from the GCP console at [this link here](https://console.cloud.google.com/compute/instances?). Closing your VS Code and opening it again is not sufficient.
 
-TODO: Add image assets
+TODO: add image assets
 
 ## ✨ 3.2. Check your Setup
 
