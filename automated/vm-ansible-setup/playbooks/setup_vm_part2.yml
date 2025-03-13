@@ -89,15 +89,47 @@
         mode: "0644"
       become_user: "{{ my_user }}"
 
-    - name: Update VS Code python interpreter
-      lineinfile:
-        path: "~/.vscode-server/data/Machine/settings.json"
-        regexp: '    "python.defaultInterpreterPath": "~/.pyenv/shims/python",'
-        line: '    "python.defaultInterpreterPath": ".venv/bin/python",'
-        create: true
-      become_user: "{{ my_user }}"
+    - name: VS Code Config
+      block:
+        - name: Detect VS Code CLI path
+          shell: |
+            find /home/{{ my_user }}/.vscode-server/cli/servers/ -maxdepth 5 -type f -name "code" | head -n 1
+          register: vscode_cli_path
+          changed_when: false
+          tags: vscode
 
-    - name: Insall pyenv
+        - name: Check installed VS Code extensions
+          shell: "{{ vscode_cli_path.stdout }} --list-extensions"
+          register: vscode_installed_extensions
+          changed_when: false
+          when: vscode_cli_path.stdout | length > 0
+          tags: vscode
+
+        - name: Install missing VS Code extensions
+          shell: "{{ vscode_cli_path.stdout }} --install-extension {{ item }}"
+          loop:
+            - ms-vscode.sublime-keybindings
+            - emmanuelbeziat.vscode-great-icons
+            - ms-python.python
+            - KevinRose.vsc-python-indent
+            - ms-python.vscode-pylance
+            - redhat.vscode-yaml
+            - ms-azuretools.vscode-docker
+            - tamasfe.even-better-toml
+          when: vscode_cli_path.stdout | length > 0 and vscode_installed_extensions.stdout is defined and (item not in vscode_installed_extensions.stdout)
+          become_user: "{{ my_user }}"
+          tags: vscode
+
+        - name: Update VS Code python interpreter
+          lineinfile:
+            path: "~/.vscode-server/data/Machine/settings.json"
+            regexp: '    "python.defaultInterpreterPath": "~/.pyenv/shims/python",'
+            line: '    "python.defaultInterpreterPath": ".venv/bin/python",'
+            create: true
+          become_user: "{{ my_user }}"
+          tags: vscode
+
+    - name: Install pyenv and pyenv-virtualenv
       block:
         - name: Check if pyenv is installed
           stat:
