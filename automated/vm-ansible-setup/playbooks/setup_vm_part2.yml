@@ -215,10 +215,20 @@
         - name: Fork lewagon/data-engineering-challenges repo
           command: gh repo fork lewagon/data-engineering-challenges --remote
           become_user: "{{ my_user }}"
-          when: not fork_exists.stdout | trim == ""
+          when: fork_exists.stdout | trim == ""
           tags: github
 
-        - name: Check if ~/code/<user>/data-engineering-challenges exist on the VM
+        - name: Wait for GitHub fork to be fully available
+          command: "gh repo view {{ github_username.stdout }}/data-engineering-challenges"
+          become_user: "{{ my_user }}"
+          register: fork_ready
+          retries: 10
+          delay: 10
+          until: fork_ready.rc == 0
+          changed_when: false
+          tags: github
+
+        - name: Check if ~/code/{{ github_username.stdout }}/data-engineering-challenges exist on the VM
           stat:
             path: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
           register: local_repo_exists
@@ -252,7 +262,7 @@
           when: "'upstream' not in existing_remotes.stdout"
           tags: github
 
-    - name: Wait for Spark installation to complete - This can take a while. Spark is big! 1 Retry = 30 seconds
+    - name: Wait for Spark installation to complete - Can take a while. 1 Retry = 30 seconds
       async_status:
         jid: "{{ spark_async.ansible_job_id }}"
       become_user: "{{ my_user }}"
