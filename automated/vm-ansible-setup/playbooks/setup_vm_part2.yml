@@ -29,7 +29,7 @@
             mkdir -p ~/spark && tar -xzf /tmp/spark.tgz -C ~/spark
           become_user: "{{ my_user }}"
           when: not spark_installed.stat.exists
-          async: 1800 # Runs in the background for up to 30 minutes
+          async: 3600 # Runs in the background for up to 60 minutes
           poll: 0 # Continue running other tasks
           register: spark_async
           tags: spark
@@ -37,6 +37,7 @@
         - name: Debug Spark async job ID
           debug:
             msg: "Spark async job ID: {{ spark_async.ansible_job_id }}"
+          when: not spark_installed.stat.exists
 
     - name: Add .zshrc plugins - direnv, pyenv, gcloud
       lineinfile:
@@ -203,19 +204,27 @@
           changed_when: false
           tags: github
 
-        - name: Check if repository already exists
-          stat:
-            path: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
-          register: repo_exists
+        - name: Check if lewagon/data-engineering-challenges has been forked
+          command: gh repo list --json nameWithOwner --jq '.[] | select(.nameWithOwner == "{{ github_username.stdout }}/data-engineering-challenges")'
+          become_user: "{{ my_user }}"
+          register: fork_exists
+          changed_when: false
+          failed_when: false
           tags: github
 
-        - name: Fork repository if not already forked
+        - name: Fork lewagon/data-engineering-challenges repo
           command: gh repo fork lewagon/data-engineering-challenges --remote
           become_user: "{{ my_user }}"
-          when: not repo_exists.stat.exists
+          when: not fork_exists.stdout | trim == ""
           tags: github
 
-        - name: Clone repository if not already cloned
+        - name: Check if ~/code/<user>/data-engineering-challenges exist on the VM
+          stat:
+            path: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
+          register: local_repo_exists
+          tags: github
+
+        - name: Clone data-engineering-challenges to VM
           git:
             repo: "git@github.com:{{ github_username.stdout }}/data-engineering-challenges.git"
             dest: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
@@ -223,10 +232,10 @@
             update: false
             accept_hostkey: true
           become_user: "{{ my_user }}"
-          when: not repo_exists.stat.exists
+          when: not local_repo_exists.stat.exists
           tags: github
 
-        - name: Check upstream remote
+        - name: Check data-engineering-challenges git remotes
           command: git remote -v
           args:
             chdir: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
@@ -235,7 +244,7 @@
           changed_when: false
           tags: github
 
-        - name: Add upstream remote
+        - name: Add upstream remote to data-engineering-challenges
           command: git remote add upstream git@github.com:lewagon/data-engineering-challenges.git
           args:
             chdir: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
@@ -249,7 +258,7 @@
       become_user: "{{ my_user }}"
       register: spark_result
       until: spark_result.finished
-      retries: 60
+      retries: 150
       delay: 30
       when: spark_async.ansible_job_id is defined
       tags: spark
