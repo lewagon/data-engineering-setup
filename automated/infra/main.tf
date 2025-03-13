@@ -14,7 +14,7 @@ resource "google_compute_instance" "my-instance" {
   network_interface {
     network = "default"
     access_config {
-      network_tier = "STANDARD"
+      # assigns an ephemeral external IP address
     }
   }
 
