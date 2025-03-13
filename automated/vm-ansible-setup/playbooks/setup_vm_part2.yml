@@ -48,7 +48,7 @@
       become_user: "{{ my_user }}"
       tags: zshrc
 
-    - name: Add spark, pyenv, pipx to path
+    - name: Add Spark, pyenv, pipx to PATH
       blockinfile:
         path: "~/.zshrc"
         block: |
@@ -68,7 +68,7 @@
       become_user: "{{ my_user }}"
       tags: zshrc
 
-    - name: Create direnv Poetry Hook
+    - name: Create direnv Poetry function
       blockinfile:
         path: "~/.direnvrc"
         block: |
@@ -120,7 +120,7 @@
           become_user: "{{ my_user }}"
           tags: vscode
 
-        - name: Update VS Code python interpreter
+        - name: Update VS Code python interpreter to poetry venv
           lineinfile:
             path: "~/.vscode-server/data/Machine/settings.json"
             regexp: '    "python.defaultInterpreterPath": "~/.pyenv/shims/python",'
@@ -294,14 +294,14 @@
           when: "'upstream' not in existing_remotes.stdout"
           tags: github
 
-    - name: Wait for Spark installation to complete - Can take a while. 1 Retry = 30 seconds
+    - name: Wait for Spark installation to complete - Can take a while. 1 Retry = 60s
       async_status:
         jid: "{{ spark_async.ansible_job_id }}"
       become_user: "{{ my_user }}"
       register: spark_result
       until: spark_result.finished
       retries: 150
-      delay: 30
+      delay: 60
       when: spark_async.ansible_job_id is defined
       tags: spark
 

@@ -205,7 +205,7 @@
 
     - name: Install minikube
       block:
-        - name: Chech if minikube is installed
+        - name: Check if minikube is installed
           stat:
             path: /usr/local/bin/minikube
           register: minikube_check
