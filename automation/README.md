@@ -63,6 +63,8 @@ Use existing partial
 
 ## ✨ 1.6. Download `gcloud` locally
 
+Link to `gcloud` CLI install docs at this [link here](https://cloud.google.com/sdk/docs/install).
+
 
 <details>
 <summary markdown='span'>🪟 Windows</summary>
@@ -89,7 +91,7 @@ Use existing partial from DS setup
 Use existing partial from DS setup
 </details>
 
-Cut Service account key here.
+Remove section on creating a service account. Or leave it in but don't create a key for it.
 
 ## 1.7. Authorize local `gcloud`
 
@@ -102,7 +104,7 @@ Add something about Windows for the installer
 
 ## 1.8. Visual Studio Code
 
-Use existing partial
+Use existing partial. Modify for **Remote - SSH** connection.
 
 ## ✨ 1.9. Install Terraform Locally
 
@@ -140,7 +142,20 @@ sudo apt update && sudo apt install terraform
 
 ## ✨ 1.10. Create your VM with Terraform
 
-Download files. This will be a `curl` from the repo.
+Will require different instructions for Windows, MacOS, and Linux.
+
+Download the `terraform` files needed to provision your VM. This will be a `curl` from the repo.
+
+```bash
+# MacOS & Linux. TODO: add Windows
+# TODO: Change branch name if before merging
+mkdir -p ~/wagon-de-bootcamp
+curl -L -o ~/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/main.tf
+curl -L -o ~/wagon-de-bootcamp/provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/provider.tf
+curl -L -o ~/wagon-de-bootcamp/variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/variables.tf
+curl -L -o ~/wagon-de-bootcamp/terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/terraform.tfvars
+curl -L -o ~/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/.terraform.lock.hcl
+```
 
 For testing, copy the terraform files from `infra/` in the repo into `~/code/<GH_USERNAME>/de-vm-setup`. Files to copy:
 - `main.tf`
@@ -148,12 +163,12 @@ For testing, copy the terraform files from `infra/` in the repo into `~/code/<GH
 - `variables.tf`
 - `terraform.tfvars`
 
-Start with finding the username of your LOCAL computer, this is important to know and set.
+We'll need the username of your LOCAL computer, this is important to know and set.
 - 🪟 Windows: TODO - unsure.
 - 🍎 MacOS: type `whoami` in the terminal
 - 🐧 Linux: type `whoami` in the terminal
 
-Update the values in `terraform.tfvars`:
+Open up `terraform.tfvars` in VS Code and take a look at it, it should look like:
 
 ```bash
 project_id    = "<YOUR_GCP_PROJECT>"
@@ -162,6 +177,10 @@ zone          = "<YOUR_GCP_ZONE>"
 instance_name = "<YOUR_GCP_INSTANCE_NAME>"
 instance_user = "<YOUR_COMPUTER_USER_NAME>"
 ```
+
+You'll need to change some values in this file. A good reference is the GCP Console available at this [link here](console.cloud.google.com).
+
+To determine your `region` and `zone`, take a look at the GCP Region and Zones documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones). We strongly recommend that you select a region that is as close to you geographically.
 
 It should look something similar to:
 
@@ -252,9 +271,12 @@ And run with:
 cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part1.yml
 ```
 
-Close all your terminals and open a new one. It should look like:
+❗ If any errors occur, contact a teacher. You can safely run the playbook again.
+
+Close all your terminals and open a new one (you might have to do it a few times, it should go from `bash` to `zsh`). It should look like:
 
 TODO: Add image assets
+(Imagine basic zsh + OMZ)
 
 ## 2.4. Github CLI Auth
 
@@ -268,10 +290,10 @@ Use existing partial
 
 Can't be easily automated, needs student input.
 
-Close all terminals and open a new terminal (I had to do it twice), it should look like:
+Close all terminals and open a new terminal, it should look like:
 
 TODO: Add image asset
-(Imagine basic zsh + OMZ)
+(Imagine LW zsh setup)
 
 <br>
 
@@ -293,6 +315,8 @@ And run with:
 cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part2.yml
 ```
 
+❗ If any errors occur, contact a teacher. You can safely run the playbook again.
+
 Once the playbook has finished, we need to completely SHUT DOWN your VM from the GCP console at [this link here](https://console.cloud.google.com/compute/instances?). Closing your VS Code and opening it again is not sufficient.
 
 TODO: add image assets
@@ -300,6 +324,38 @@ TODO: add image assets
 ## ✨ 3.2. Check your Setup
 
 Things to check:
+
+Python:
+
+```bash
+python --version
+# 3.12.8
+```
+
+TODO: Add image assets from existing partial
+
+Pyenv:
+
+```bash
+pyenv versions
+# 3.12.8
+```
+TODO: Add image asset
+
+Pipx:
+
+```bash
+pipx list
+```
+
+TODO: Add image asset
+
+Data Engineering Challenges repo remotes:
+
+```bash
+cd ~/code/<your_username>/data-engineering-challenges
+git remote -v
+```
 
 Docker:
 ```bash
@@ -341,39 +397,10 @@ spark-shell
 
 TODO: Add image assets from existing partial
 
-Pyenv:
-
-```bash
-pyenv virtualenvs
-# 3.12.8
-```
-
-Python:
-
-```bash
-python --version
-# 3.12.8
-```
-
-TODO: Add image assets from existing partial
-
-Pipx:
-
-```bash
-pipx list
-```
-
-TODO: Add image asset
-
-Data Engineering Challenges repo remotes:
-
-```bash
-cd ~/code/<your_username>/data-engineering-challenges
-git remote -v
-```
-
 
 ## 3.3. Run make install
+
+To create python venvs.
 
 ```bash
 export GITHUB_USERNAME=`gh api user | jq -r '.login'`
