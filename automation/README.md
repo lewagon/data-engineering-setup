@@ -241,9 +241,9 @@ Download the first ansible playbook with the following:
 ```bash
 # TODO: Update if merged
 mkdir -p ~/vm-ansible-setup/playbooks
-curl -L -o ~/vm-ansible-setup/ansible.cfg https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automated/vm-ansible-setup/ansible.cfg
-curl -L -o ~/vm-ansible-setup/hosts https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automated/vm-ansible-setup/hosts
-curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part1.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automated/vm-ansible-setup/playbooks/setup_vm_part1.yml
+curl -L -o ~/vm-ansible-setup/ansible.cfg https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/vm-ansible-setup/ansible.cfg
+curl -L -o ~/vm-ansible-setup/hosts https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/vm-ansible-setup/hosts
+curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part1.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml
 ```
 
 And run with:
@@ -260,7 +260,7 @@ TODO: Add image assets
 
 Use existing partial
 
-Can't be easily automated without creating and copying SSH keys.
+Can't be easily automated without creating & copying SSH keys, and generating GitHub PAT tokens.
 
 ## 2.5. Copy LW Dotfiles
 
@@ -284,7 +284,7 @@ In this section we'll run a second `ansible` playbook and check our setup
 Download the second ansible playbook with the following:
 
 ```bash
-curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automated/vm-ansible-setup/playbooks/setup_vm_part2.yml
+curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml
 ```
 
 And run with:
