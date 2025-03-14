@@ -195,18 +195,27 @@ instance_user = "taylorswift" # the result of `whoami`
 Make sure to save the `terraform.tfvars` file and run:
 
 ```bash
+# MacOS & Linux. TODO: add Windows
+cd ~/wagon-de-bootcamp
+
 terraform init
 
 terraform apply -auto-approve
 ```
 
+Your VM should now be up and running! Check the GCP Compute Engine Console at this [link here](console.cloud.google.com/compute/instances) to confirm.
+
 ## ✨ 1.11. Connect to your VM
+
+In a terminal enter the following command:
 
 ```bash
 gcloud compute config-ssh
 ```
 
-And connect via VS Code
+And connect via VS Code.
+
+TODO: Add image assets
 
 <br>
 
@@ -282,7 +291,7 @@ TODO: Add image assets
 
 Use existing partial
 
-Can't be easily automated without creating & copying SSH keys, and generating GitHub PAT tokens.
+Can't be easily automated without creating and copying SSH keys, and generating GitHub PAT tokens.
 
 ## 2.5. Copy LW Dotfiles
 
@@ -317,7 +326,7 @@ cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part2.yml
 
 ❗ If any errors occur, contact a teacher. You can safely run the playbook again.
 
-Once the playbook has finished, we need to completely SHUT DOWN your VM from the GCP console at [this link here](https://console.cloud.google.com/compute/instances?). Closing your VS Code and opening it again is not sufficient.
+Once the playbook has finished, you need to completely SHUT DOWN your VM from the GCP console at [this link here](https://console.cloud.google.com/compute/instances). Closing your VS Code and opening it again is not sufficient.
 
 TODO: add image assets
 
@@ -340,6 +349,7 @@ Pyenv:
 pyenv versions
 # 3.12.8
 ```
+
 TODO: Add image asset
 
 Pipx:
@@ -356,6 +366,8 @@ Data Engineering Challenges repo remotes:
 cd ~/code/<your_username>/data-engineering-challenges
 git remote -v
 ```
+
+TODO: Add image asset
 
 Docker:
 ```bash
@@ -399,6 +411,8 @@ TODO: Add image assets from existing partial
 
 
 ## 3.3. Run make install
+
+Use existing partial
 
 To create python venvs.
 
