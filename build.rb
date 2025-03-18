@@ -15,30 +15,27 @@ MAC_OS = %w[
   setup/macos_slack
   setup/slack_settings
   setup/github
-  ssh_key
+  chrome
   gcp_setup
-  virtual_machine
+  homebrew
   osx_vscode
   vscode_remote_ssh
-  vscode_extensions
-  cli_tools
-  setup/oh_my_zsh
+  gcp_cli_setup
+  gcloud_oauth
+  terraform
+  terraform_vm
+  vscode_ssh_connection
+  gcp_adc_auth
+  gcp_cli_oauth
+  ubuntu_ansible_part1
   setup/gh_cli
-  ubuntu_gcloud
-  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
-  zsh_default_terminal
-  setup/ssh_agent
-  ubuntu_docker
-  kubernetes
-  terraform
-  ubuntu_spark
-  ubuntu_python
-  repo_overview
+  ubuntu_ansible_part2
+  ubuntu_vm_test
   dbeaver
   setup/kitt
 ].freeze
@@ -54,30 +51,26 @@ WINDOWS = %w[
   setup/windows_slack
   setup/slack_settings
   setup/github
-  ssh_key
+  chrome
   gcp_setup
-  virtual_machine
   win_vscode
   vscode_remote_ssh
-  vscode_extensions
-  cli_tools
-  setup/oh_my_zsh
+  gcp_cli_setup
+  gcloud_oauth
+  terraform
+  terraform_vm
+  vscode_ssh_connection
+  gcp_adc_auth
+  gcp_cli_oauth
+  ubuntu_ansible_part1
   setup/gh_cli
-  ubuntu_gcloud
-  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
-  zsh_default_terminal
-  setup/ssh_agent
-  ubuntu_docker
-  kubernetes
-  terraform
-  ubuntu_spark
-  ubuntu_python
-  repo_overview
+  ubuntu_ansible_part2
+  ubuntu_vm_test
   dbeaver
   setup/kitt
 ].freeze
@@ -93,30 +86,26 @@ LINUX = %w[
   setup/ubuntu_slack
   setup/slack_settings
   setup/github
-  ssh_key
+  chrome
   gcp_setup
-  virtual_machine
   setup/ubuntu_vscode
   vscode_remote_ssh
-  vscode_extensions
-  cli_tools
-  setup/oh_my_zsh
+  gcp_cli_setup
+  gcloud_oauth
+  terraform
+  terraform_vm
+  vscode_ssh_connection
+  gcp_adc_auth
+  gcp_cli_oauth
+  ubuntu_ansible_part1
   setup/gh_cli
-  ubuntu_gcloud
-  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
-  zsh_default_terminal
-  setup/ssh_agent
-  ubuntu_docker
-  kubernetes
-  terraform
-  ubuntu_spark
-  ubuntu_python
-  repo_overview
+  ubuntu_ansible_part2
+  ubuntu_vm_test
   dbeaver
   setup/kitt
 ]
