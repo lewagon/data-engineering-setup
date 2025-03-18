@@ -10,7 +10,7 @@ ansible --version
 
 You should get an output similar to (some version numbers might change, that's fine):
 
-```bash
+```
 ansible [core 2.17.9]
   config file = /etc/ansible/ansible.cfg
   configured module search path = ['/home/tswift/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
@@ -66,4 +66,4 @@ Once the playbook has finished running. Kill your terminal (little trash can at 
 
 ![](/images/vscode_after_ansible1.png)
 
-Your terminal should be `zsh`.
+The terminal should read as `zsh`.

@@ -41,3 +41,15 @@ And you are connected! It should look similar too:
 Notice the connection in the very bottom-left corner of your VS Code window. It should have the Connection type (SSH), and the name of the host you are connected to.
 
 **The setup of your local machine is over. All following commands will be run from within your 🚨 virtual machine**🚨 terminal (via VS Code)
+
+<details>
+<summary markdown='span'>Viewing your SSH Configuration</summary>
+
+If you want to view your SSH configuration:
+1. Start by clicking the symbol in the bottom-left corner of VS Code
+2. Click on **Connect to Host...**
+3. Click on **Configure SSH Hosts...***
+4. Select the configuration file. Usually the file at the top of the list.
+5. View your configuration file! You may need to edit this configuration if you change computers, or want to work on more than one computer during the bootcamp.
+
+</details>

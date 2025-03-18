@@ -118,7 +118,7 @@ terraform plan
 ```
 $LINUX_END
 
-And check the output, if you have any errors, raise a ticket with a teacher.
+❗ And check the output, if you have any errors, raise a ticket with a teacher.
 
 If everything was successful, create your VM with:
 
