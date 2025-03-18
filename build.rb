@@ -21,7 +21,7 @@ MAC_OS = %w[
   osx_vscode
   vscode_remote_ssh
   gcp_cli_setup
-  gcloud_oauth
+  gcp_cli_oauth
   terraform
   terraform_vm
   vscode_ssh_connection
@@ -56,7 +56,7 @@ WINDOWS = %w[
   win_vscode
   vscode_remote_ssh
   gcp_cli_setup
-  gcloud_oauth
+  gcp_cli_oauth
   terraform
   terraform_vm
   vscode_ssh_connection
@@ -91,7 +91,7 @@ LINUX = %w[
   setup/ubuntu_vscode
   vscode_remote_ssh
   gcp_cli_setup
-  gcloud_oauth
+  gcp_cli_oauth
   terraform
   terraform_vm
   vscode_ssh_connection
