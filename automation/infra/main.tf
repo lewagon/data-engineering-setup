@@ -1,3 +1,9 @@
+resource "google_compute_address" "static_ip" {
+  name   = "${var.instance_name}-static-ip"
+  region = var.region
+}
+
+
 resource "google_compute_instance" "my-instance" {
   name         = var.instance_name
   machine_type = "e2-standard-4"
@@ -14,7 +20,8 @@ resource "google_compute_instance" "my-instance" {
   network_interface {
     network = "default"
     access_config {
-      # assigns an ephemeral external IP address
+      nat_ip       = google_compute_address.static_ip.address
+      network_tier = "PREMIUM"
     }
   }
 
