@@ -172,7 +172,7 @@
           changed_when: false
           tags: python
 
-        - name: Install Python 3.12.8 with pyenv
+        - name: Install Python 3.12.8 with pyenv - takes a while
           command: >
             zsh -c 'export PYENV_ROOT="$HOME/.pyenv";
             export PATH="$PYENV_ROOT/bin:$PATH";
