@@ -328,7 +328,7 @@ gcloud --version
 
 ### Authenticate gcloud
 
-We need to authenticate the `gcloud` CLI tool and set the project so it can interact with google services.
+We need to authenticate the `gcloud` CLI tool and set the project so it can interact with Google from the terminal.
 
 To authenticate `gcloud`, run:
 
@@ -346,7 +346,7 @@ To set your project, replace `<YOUR_PROJECT_ID>` with your GCP Project ID and ru
 gcloud config set project <YOUR_PROJECT_ID>
 ```
 
-To confirm your setup, run:
+Confirm your setup with:
 
 ```bash
 gcloud config list
@@ -354,7 +354,7 @@ gcloud config list
 
 You should get an output similar to:
 
-```bash
+```
 [core]
 account = taylorswift@domain.com # Should be your GCP email
 disable_usage_reporting = True
@@ -366,7 +366,7 @@ Your active configuration is: [default]
 
 ## Terraform
 
-Terraform is a tool for infrastructure as code (IAC) to create (and destroy) resources to create in the cloud!
+Terraform is a tool for infrastructure as code (IAC) to create (and destroy) resources to create in the cloud.
 
 To install terraform, download the binary from the Terraform install page at this [link here 🔗](https://developer.hashicorp.com/terraform/install).
 
@@ -396,13 +396,11 @@ Creating and running a Virtual Machine on Google Cloud Platform costs money.
 
 If you have created a new Google Cloud Platform account, the cost of the Virtual machine will be covered by the $300 USD credit for the first 90 days if you are diligent with turning off your Virtual Machine (or finish the auto shutdown challenge 😎).
 
-The cost of running a Virtual Machine with our configuration 24 hours a day, 7 days a week is ~$130 USD per month! But you can drastically reduce the cost by only running the Virtual Machine when you use it. You will not be charged for the CPU and RAM while the Virtual Machine is off!
-
-You will always pay for the Storage (Hard Disk Drive) and Static IP. Google can't rent out stateful resources to other users without wiping your data.
+The cost of running a Virtual Machine with our configuration 24 hours a day, 7 days a week is ~$130 USD per month. You can massively reduce the cost by only running the Virtual Machine when you use it. You will not be charged for the CPU and RAM while the Virtual Machine is off!
 
 ### Download terraform files
 
-We almost have all the necessary parts to create your VM using **terraform**. We just need to download the terraform files and change a few values.
+We almost have all the necessary parts to create your VM using **terraform**. We need to download the terraform files and change a few values.
 
 First we'll create a folder and download the terraform files with:
 
@@ -435,8 +433,8 @@ instance_user = "<YOUR_COMPUTER_USER_NAME>"
 We'll need to change some values in this file. Here's were you can find the required values:
 - **project_id:** from the GCP Console at this [link here](https://console.cloud.google.com).
 - **region:** take a look at the GCP Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones). We strongly recommend you choose the closest geographical region.
-- **zone:** Zone is a subset of region. it is usually the same as region appended with a `-a`, `-b`, or `-c`.
-- **instance_name:** we recommend naming this: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>`
+- **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`.
+- **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
 - **instance_user:** in your terminal, run `whoami` and hit enter.
 
 After completing this file, it should look similar to:
@@ -451,8 +449,8 @@ instance_user = "taylorswift" # result of `whoami`
 
 Make sure to save the `terraform.tfvars` file and then run:
 
-```bash
-cd ~/wagon-de-bootcamp
+```cmd
+cd %USERPROFILE%\wagon-de-bootcamp
 
 terraform init
 
@@ -490,11 +488,11 @@ For example, try running:
 # $ ssh lw-de-vm-<GITHUB_USERNAME>.<GCP_ZONE>.<GCP_PROJECT_ID>
 ```
 
-To connect to your Virtual Machine, click on the small symbol at the very far bottom-left of your VS Code:
+To connect to your Virtual Machine, click on the small symbol at the very bottom-left corner of VS Code:
 
 ![](/images/vscode_remote_highlight.png)
 
-It should bring up a menu:
+It should bring up a menu, click on **Connect to Host...**:
 
 ![](/images/vscode_remote_menu.png)
 
@@ -502,7 +500,7 @@ Click on the name of your Virtual Machine:
 
 ![](/images/vscode_remote_hosts.png)
 
-A new VS Code window will open. You will be asked to _fingerprint_ the connection. This is asking if you trust the remote host you are trying to connect to. Hit enter to continue.
+A new VS Code window will open. You will be asked to _fingerprint_ the connection. VS Code is asking if you trust the remote host you are trying to connect to. Hit enter to continue.
 
 ![](/images/vscode_remote_fingerprint.png)
 
@@ -529,10 +527,12 @@ To authenticate your Application Default Credentials, in your terminal run:
 gcloud auth application-default login
 ```
 
+And follow the prompts.
+
 
 ### Authenticate gcloud
 
-We need to authenticate the `gcloud` CLI tool and set the project so it can interact with google services.
+We need to authenticate the `gcloud` CLI tool and set the project so it can interact with Google from the terminal.
 
 To authenticate `gcloud`, run:
 
@@ -550,7 +550,7 @@ To set your project, replace `<YOUR_PROJECT_ID>` with your GCP Project ID and ru
 gcloud config set project <YOUR_PROJECT_ID>
 ```
 
-To confirm your setup, run:
+Confirm your setup with:
 
 ```bash
 gcloud config list
@@ -558,7 +558,7 @@ gcloud config list
 
 You should get an output similar to:
 
-```bash
+```
 [core]
 account = taylorswift@domain.com # Should be your GCP email
 disable_usage_reporting = True
@@ -570,7 +570,7 @@ Your active configuration is: [default]
 
 ## VM configuration with Ansible
 
-We'll be using **ansible** to configure your Virtual Machine with some software, configurations, packages, and frameworks that you'll use in the bootcamp.
+We'll be using [Ansible](https://docs.ansible.com/ansible/latest/getting_started/introduction.html) to configure your Virtual Machine with some software, configurations, packages, and frameworks that you'll use in the bootcamp.
 
 Let's start by confirming that ansible is installed. In your terminal run:
 
@@ -592,11 +592,11 @@ ansible [core 2.17.9]
   libyaml = True
 ```
 
-If not, raise a ticket with a teacher.
+❗ If not, raise a ticket with a teacher.
 
 ### Ansible Playbook 1
 
-If everything looks ok, lets create a folder and download the ansible files:
+Create a folder and download the ansible files:
 
 ```bash
 mkdir -p ~/vm-ansible-setup/playbooks
@@ -615,7 +615,7 @@ ansible-playbook playbooks/setup_vm_part1.yml
 
 And the playbook should start running!
 
-❗ If any errors occur, raise a ticket with a teacher. You can safely run the playbook again.
+❗ If an errors occur, raise a ticket with a teacher. You can safely run the playbook again.
 
 ### What is the playbook installing?
 
@@ -632,9 +632,11 @@ This playbook is installing a few things, while the playbook is running, let's g
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
 
-Once the playbook has finished running. Kill your terminal (little trash can) and re-open it (you might have to do it a few times) until it looks similar to:
+Once the playbook has finished running. Kill your terminal (little trash can at the top right of the terminal window) and re-open it. You might have to do it a few times until it looks similar to:
 
 ![](/images/vscode_after_ansible1.png)
+
+Your terminal should be `zsh`.
 
 
 ## GitHub CLI
@@ -839,7 +841,7 @@ you don't want your email to appear in public repositories you may contribute to
 
 ### Ansible Playbook 2
 
-We'll be using a second **ansible** playbook to further configure your Virtual Machine.
+We'll be using a second **Ansible** playbook to further configure your Virtual Machine.
 
 Start by downloading the ansible playbook:
 
@@ -857,6 +859,12 @@ ansible-playbook playbooks/setup_vm_part2.yml
 And the playbook should start running!
 
 ❗ If any errors occur, raise a ticket with a teacher. You can safely run the playbook again.
+
+<details>
+<summary markdown='span'>❓ Why two Ansible playbooks?</summary>
+
+This second ansible playbook requires GitHub authorisation to fork the `lewagon/data-engineering-challenges` repository and it is also editing some of the Le Wagon recommended **dotfiles**. So we separated the process into two steps.
+</details>
 
 ### What is the playbook installing?
 
@@ -901,12 +909,6 @@ Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. W
 
 The challenges that you'll be working on throughout the bootcamp! The playbook is forking the **data-engineering-challenges** repository from **lewagon** to your own GitHub user. Then cloning that repository from your GitHub account down onto your Virtual Machine.
 
-Here is an image of how the Repository setup works:
-
-![](/images/repo_overview.png)
-
-This allows you to work on challenges, but if we push any changes to the content, you can still access them!
-
 ### Restart Virtual Machine
 
 Once the playbook has finished running, you need to completely shutdown your Virtual Machine so that some of the configuration updates (specifically **pyenv** and **Docker**).
@@ -924,7 +926,7 @@ When the VM is completely off, turn it on again by selecting the check box next 
 
 ## Check your Virtual Machine Setup
 
-We've used two ansible playbooks to configure our Virtual Machine. Let's run some manual checks to make sure that everything has installed correctly.
+We've used two ansible playbooks to configure our Virtual Machine. Let's run some manual checks in the terminal to make sure that everything has installed correctly.
 
 ❗ If any of these checks error out, raise a ticket with a teacher.
 
@@ -938,7 +940,7 @@ python --version
 
 Should return:
 
-```bash
+```
 Python 3.12.8
 ```
 
@@ -952,7 +954,7 @@ pyenv versions
 
 Should return:
 
-```bash
+```
   system
 * 3.12.8 (set by /home/<your_username>/.pyenv/version)
 ```
@@ -969,7 +971,7 @@ pipx list
 
 Should return something similar too:
 
-```bash
+```
 venvs are in /home/<your_username>/.local/share/pipx/venvs
 apps are exposed on your $PATH at /home/<your_username>/.local/bin
 manual pages are exposed at /home/<your_username>/.local/share/man
@@ -982,24 +984,6 @@ manual pages are exposed at /home/<your_username>/.local/share/man
     - man1/tldr.1
 ```
 
-#### Data Engineering Challenges repo remotes
-
-To test:
-
-```bash
-cd ~/code/$(gh api user | jq -r '.login')/data-engineering-challenges
-git remote -v
-```
-
-Should return:
-
-```bash
-origin  git@github.com:<your_github_username>/data-engineering-challenges.git (fetch)
-origin  git@github.com:<your_github_username>/data-engineering-challenges.git (push)
-upstream        git@github.com:lewagon/data-engineering-challenges.git (fetch)
-upstream        git@github.com:lewagon/data-engineering-challenges.git (push)
-```
-
 #### Docker
 
 To test:
@@ -1010,7 +994,7 @@ docker run hello-world
 
 Should return:
 
-```bash
+```
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
 e6590344b1a5: Pull complete
@@ -1050,7 +1034,7 @@ minikube start
 
 Should return:
 
-```bash
+```
 😄  minikube v1.35.0 on Ubuntu 22.04 (amd64)
 ✨  Automatically selected the docker driver. Other choices: none, ssh
 📌  Using Docker driver with root privileges
@@ -1080,7 +1064,7 @@ kubectl get po -A
 
 Should return something similar too:
 
-```bash
+```
 NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE
 kube-system   coredns-668d6bf9bc-mg7b6           1/1     Running   0             72s
 kube-system   etcd-minikube                      1/1     Running   0             78s
@@ -1100,7 +1084,7 @@ minikube delete --all
 
 Should return:
 
-```bash
+```
 🔥  Deleting "minikube" in docker ...
 🔥  Removing /home/<your_username>/.minikube/machines/minikube ...
 💀  Removed all traces of the "minikube" cluster.
@@ -1117,7 +1101,7 @@ terraform --version
 
 Should return:
 
-```bash
+```
 Terraform v1.11.2
 on linux_amd64
 ```
@@ -1132,7 +1116,7 @@ spark-shell
 
 Should take you into the spark shell that looks like:
 
-```bash
+```
 Setting default log level to "WARN".
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
 25/03/18 08:54:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
@@ -1155,7 +1139,7 @@ scala>
 
 Type `:quit` and hit enter to exit the spark-shell and continue.
 
-That's everything for now!
+That's all the testing we'll do for now!
 
 
 
