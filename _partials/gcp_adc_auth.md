@@ -11,3 +11,5 @@ To authenticate your Application Default Credentials, in your terminal run:
 ```bash
 gcloud auth application-default login
 ```
+
+And follow the prompts.

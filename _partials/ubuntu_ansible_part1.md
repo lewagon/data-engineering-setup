@@ -1,6 +1,6 @@
 ## VM configuration with Ansible
 
-We'll be using **ansible** to configure your Virtual Machine with some software, configurations, packages, and frameworks that you'll use in the bootcamp.
+We'll be using [Ansible](https://docs.ansible.com/ansible/latest/getting_started/introduction.html) to configure your Virtual Machine with some software, configurations, packages, and frameworks that you'll use in the bootcamp.
 
 Let's start by confirming that ansible is installed. In your terminal run:
 
@@ -22,11 +22,11 @@ ansible [core 2.17.9]
   libyaml = True
 ```
 
-If not, raise a ticket with a teacher.
+❗ If not, raise a ticket with a teacher.
 
 ### Ansible Playbook 1
 
-If everything looks ok, lets create a folder and download the ansible files:
+Create a folder and download the ansible files:
 
 ```bash
 mkdir -p ~/vm-ansible-setup/playbooks
@@ -45,7 +45,7 @@ ansible-playbook playbooks/setup_vm_part1.yml
 
 And the playbook should start running!
 
-❗ If any errors occur, raise a ticket with a teacher. You can safely run the playbook again.
+❗ If an errors occur, raise a ticket with a teacher. You can safely run the playbook again.
 
 ### What is the playbook installing?
 
@@ -62,6 +62,8 @@ This playbook is installing a few things, while the playbook is running, let's g
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
 
-Once the playbook has finished running. Kill your terminal (little trash can) and re-open it (you might have to do it a few times) until it looks similar to:
+Once the playbook has finished running. Kill your terminal (little trash can at the top right of the terminal window) and re-open it. You might have to do it a few times until it looks similar to:
 
 ![](/images/vscode_after_ansible1.png)
+
+Your terminal should be `zsh`.

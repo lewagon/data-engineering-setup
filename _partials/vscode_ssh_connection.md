@@ -18,11 +18,11 @@ For example, try running:
 # $ ssh lw-de-vm-<GITHUB_USERNAME>.<GCP_ZONE>.<GCP_PROJECT_ID>
 ```
 
-To connect to your Virtual Machine, click on the small symbol at the very far bottom-left of your VS Code:
+To connect to your Virtual Machine, click on the small symbol at the very bottom-left corner of VS Code:
 
 ![](/images/vscode_remote_highlight.png)
 
-It should bring up a menu:
+It should bring up a menu, click on **Connect to Host...**:
 
 ![](/images/vscode_remote_menu.png)
 
@@ -30,7 +30,7 @@ Click on the name of your Virtual Machine:
 
 ![](/images/vscode_remote_hosts.png)
 
-A new VS Code window will open. You will be asked to _fingerprint_ the connection. This is asking if you trust the remote host you are trying to connect to. Hit enter to continue.
+A new VS Code window will open. You will be asked to _fingerprint_ the connection. VS Code is asking if you trust the remote host you are trying to connect to. Hit enter to continue.
 
 ![](/images/vscode_remote_fingerprint.png)
 

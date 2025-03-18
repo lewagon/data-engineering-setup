@@ -1,6 +1,6 @@
 ## Terraform
 
-Terraform is a tool for infrastructure as code (IAC) to create (and destroy) resources to create in the cloud!
+Terraform is a tool for infrastructure as code (IAC) to create (and destroy) resources to create in the cloud.
 
 $MAC_START
 You can use `brew` to install terraform. In your terminal, run:
@@ -16,12 +16,12 @@ To install terraform, download the binary from the Terraform install page at thi
 TODO: Unsure if anything needs to be added to PATH to get it to work
 $WINDOWS_END
 $LINUX_START
-Install some basic requirements
+Install some basic requirements:
 ```bash
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
 ```
 
-Terraform is not available to apt by default so we need to make it available!
+Terraform is not available to **apt** by default so we need to make it available.
 ```bash
 wget -O- https://apt.releases.hashicorp.com/gpg | \
     gpg --dearmor | \
@@ -40,7 +40,7 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
     sudo tee /etc/apt/sources.list.d/hashicorp.list
 ```
 
-Now we can install terraform directly with apt 👇
+Now we can install terraform directly with **apt** 👇
 ```bash
 sudo apt update
 sudo apt-get install terraform

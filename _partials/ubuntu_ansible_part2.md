@@ -2,7 +2,7 @@
 
 ### Ansible Playbook 2
 
-We'll be using a second **ansible** playbook to further configure your Virtual Machine.
+We'll be using a second **Ansible** playbook to further configure your Virtual Machine.
 
 Start by downloading the ansible playbook:
 
@@ -20,6 +20,12 @@ ansible-playbook playbooks/setup_vm_part2.yml
 And the playbook should start running!
 
 ❗ If any errors occur, raise a ticket with a teacher. You can safely run the playbook again.
+
+<details>
+<summary markdown='span'>❓ Why two Ansible playbooks?</summary>
+
+This second ansible playbook requires GitHub authorisation to fork the `lewagon/data-engineering-challenges` repository and it is also editing some of the Le Wagon recommended **dotfiles**. So we separated the process into two steps.
+</details>
 
 ### What is the playbook installing?
 
@@ -63,12 +69,6 @@ Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. W
 **Data Engineering Challenges Repository**
 
 The challenges that you'll be working on throughout the bootcamp! The playbook is forking the **data-engineering-challenges** repository from **lewagon** to your own GitHub user. Then cloning that repository from your GitHub account down onto your Virtual Machine.
-
-Here is an image of how the Repository setup works:
-
-![](/images/repo_overview.png)
-
-This allows you to work on challenges, but if we push any changes to the content, you can still access them!
 
 ### Restart Virtual Machine
 

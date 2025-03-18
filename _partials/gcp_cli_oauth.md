@@ -1,6 +1,6 @@
 ### Authenticate gcloud
 
-We need to authenticate the `gcloud` CLI tool and set the project so it can interact with google services.
+We need to authenticate the `gcloud` CLI tool and set the project so it can interact with Google from the terminal.
 
 To authenticate `gcloud`, run:
 
@@ -18,7 +18,7 @@ To set your project, replace `<YOUR_PROJECT_ID>` with your GCP Project ID and ru
 gcloud config set project <YOUR_PROJECT_ID>
 ```
 
-To confirm your setup, run:
+Confirm your setup with:
 
 ```bash
 gcloud config list
@@ -26,7 +26,7 @@ gcloud config list
 
 You should get an output similar to:
 
-```bash
+```
 [core]
 account = taylorswift@domain.com # Should be your GCP email
 disable_usage_reporting = True

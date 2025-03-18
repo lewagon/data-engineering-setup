@@ -15,13 +15,11 @@ Creating and running a Virtual Machine on Google Cloud Platform costs money.
 
 If you have created a new Google Cloud Platform account, the cost of the Virtual machine will be covered by the $300 USD credit for the first 90 days if you are diligent with turning off your Virtual Machine (or finish the auto shutdown challenge 😎).
 
-The cost of running a Virtual Machine with our configuration 24 hours a day, 7 days a week is ~$130 USD per month! But you can drastically reduce the cost by only running the Virtual Machine when you use it. You will not be charged for the CPU and RAM while the Virtual Machine is off!
-
-You will always pay for the Storage (Hard Disk Drive) and Static IP. Google can't rent out stateful resources to other users without wiping your data.
+The cost of running a Virtual Machine with our configuration 24 hours a day, 7 days a week is ~$130 USD per month. You can massively reduce the cost by only running the Virtual Machine when you use it. You will not be charged for the CPU and RAM while the Virtual Machine is off!
 
 ### Download terraform files
 
-We almost have all the necessary parts to create your VM using **terraform**. We just need to download the terraform files and change a few values.
+We almost have all the necessary parts to create your VM using **terraform**. We need to download the terraform files and change a few values.
 
 First we'll create a folder and download the terraform files with:
 
@@ -76,8 +74,8 @@ instance_user = "<YOUR_COMPUTER_USER_NAME>"
 We'll need to change some values in this file. Here's were you can find the required values:
 - **project_id:** from the GCP Console at this [link here](https://console.cloud.google.com).
 - **region:** take a look at the GCP Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones). We strongly recommend you choose the closest geographical region.
-- **zone:** Zone is a subset of region. it is usually the same as region appended with a `-a`, `-b`, or `-c`.
-- **instance_name:** we recommend naming this: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>`
+- **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`.
+- **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
 - **instance_user:** in your terminal, run `whoami` and hit enter.
 
 After completing this file, it should look similar to:
@@ -92,6 +90,7 @@ instance_user = "taylorswift" # result of `whoami`
 
 Make sure to save the `terraform.tfvars` file and then run:
 
+$MAC_START
 ```bash
 cd ~/wagon-de-bootcamp
 
@@ -99,6 +98,25 @@ terraform init
 
 terraform plan
 ```
+$MAC_END
+$WINDOWS_START
+```cmd
+cd %USERPROFILE%\wagon-de-bootcamp
+
+terraform init
+
+terraform plan
+```
+$WINDOWS_END
+$LINUX_START
+```bash
+cd ~/wagon-de-bootcamp
+
+terraform init
+
+terraform plan
+```
+$LINUX_END
 
 And check the output, if you have any errors, raise a ticket with a teacher.
 

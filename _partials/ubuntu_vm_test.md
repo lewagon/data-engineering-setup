@@ -1,6 +1,6 @@
 ## Check your Virtual Machine Setup
 
-We've used two ansible playbooks to configure our Virtual Machine. Let's run some manual checks to make sure that everything has installed correctly.
+We've used two ansible playbooks to configure our Virtual Machine. Let's run some manual checks in the terminal to make sure that everything has installed correctly.
 
 ❗ If any of these checks error out, raise a ticket with a teacher.
 
@@ -14,7 +14,7 @@ python --version
 
 Should return:
 
-```bash
+```
 Python 3.12.8
 ```
 
@@ -28,7 +28,7 @@ pyenv versions
 
 Should return:
 
-```bash
+```
   system
 * 3.12.8 (set by /home/<your_username>/.pyenv/version)
 ```
@@ -45,7 +45,7 @@ pipx list
 
 Should return something similar too:
 
-```bash
+```
 venvs are in /home/<your_username>/.local/share/pipx/venvs
 apps are exposed on your $PATH at /home/<your_username>/.local/bin
 manual pages are exposed at /home/<your_username>/.local/share/man
@@ -58,24 +58,6 @@ manual pages are exposed at /home/<your_username>/.local/share/man
     - man1/tldr.1
 ```
 
-#### Data Engineering Challenges repo remotes
-
-To test:
-
-```bash
-cd ~/code/$(gh api user | jq -r '.login')/data-engineering-challenges
-git remote -v
-```
-
-Should return:
-
-```bash
-origin  git@github.com:<your_github_username>/data-engineering-challenges.git (fetch)
-origin  git@github.com:<your_github_username>/data-engineering-challenges.git (push)
-upstream        git@github.com:lewagon/data-engineering-challenges.git (fetch)
-upstream        git@github.com:lewagon/data-engineering-challenges.git (push)
-```
-
 #### Docker
 
 To test:
@@ -86,7 +68,7 @@ docker run hello-world
 
 Should return:
 
-```bash
+```
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
 e6590344b1a5: Pull complete
@@ -126,7 +108,7 @@ minikube start
 
 Should return:
 
-```bash
+```
 😄  minikube v1.35.0 on Ubuntu 22.04 (amd64)
 ✨  Automatically selected the docker driver. Other choices: none, ssh
 📌  Using Docker driver with root privileges
@@ -156,7 +138,7 @@ kubectl get po -A
 
 Should return something similar too:
 
-```bash
+```
 NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE
 kube-system   coredns-668d6bf9bc-mg7b6           1/1     Running   0             72s
 kube-system   etcd-minikube                      1/1     Running   0             78s
@@ -176,7 +158,7 @@ minikube delete --all
 
 Should return:
 
-```bash
+```
 🔥  Deleting "minikube" in docker ...
 🔥  Removing /home/<your_username>/.minikube/machines/minikube ...
 💀  Removed all traces of the "minikube" cluster.
@@ -193,7 +175,7 @@ terraform --version
 
 Should return:
 
-```bash
+```
 Terraform v1.11.2
 on linux_amd64
 ```
@@ -208,7 +190,7 @@ spark-shell
 
 Should take you into the spark shell that looks like:
 
-```bash
+```
 Setting default log level to "WARN".
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
 25/03/18 08:54:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
@@ -231,4 +213,4 @@ scala>
 
 Type `:quit` and hit enter to exit the spark-shell and continue.
 
-That's everything for now!
+That's all the testing we'll do for now!
