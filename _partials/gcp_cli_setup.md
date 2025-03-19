@@ -23,7 +23,11 @@ $WINDOWS_START
 
 To install download the Google Cloud CLI installer from this [link here 🔗](https://cloud.google.com/sdk/docs/install#windows).
 
-Once it's finished downloading, launch the installer as administrator and follow the prompts.
+Once it's finished downloading, launch the installer and follow the prompts.
+
+On the last screen of the installer there will be four check boxes. Makes sure that the box for `run gcloud init` is selected. On confirmation this should open a new command prompt and ask a series of questions like:
+- **Do you want to log in?** - type `y` and hit enter and following the prompts
+- **Select your region and zone?** - type `y` and hit enter and select the geographic **region** that is closest to you. Refer to the GCP Region and Zone documentation at this [link here 🔗](https://cloud.google.com/compute/docs/regions-zones). There may be multiple options for each **region**, denoted by `-a`, `-b`, or `-c`, it doesn't matter which one you choose.
 
 $WINDOWS_END
 $LINUX_START
