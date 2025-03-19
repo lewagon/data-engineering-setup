@@ -412,7 +412,7 @@ Install some basic requirements:
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
 ```
 
-Terraform is not available to **apt** by default so we need to make it available.
+Terraform is not available to **apt** by default, so we need to manually add the repository.
 ```bash
 wget -O- https://apt.releases.hashicorp.com/gpg | \
     gpg --dearmor | \
@@ -496,7 +496,7 @@ We'll need to change some values in this file. Here's were you can find the requ
 - **region:** take a look at the GCP Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones). We strongly recommend you choose the closest geographical region.
 - **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`.
 - **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
-- **instance_user:** in your terminal, run `whoami` and hit enter.
+- **instance_user:** in your terminal, run `whoami`
 
 After completing this file, it should look similar to:
 
@@ -505,7 +505,7 @@ project_id    = "wagon-bootcamp"
 region        = "europe-west1"
 zone          = "europe-west1-b"
 instance_name = "lw-de-vm-tswift"
-instance_user = "taylorswift" # result of `whoami`
+instance_user = "taylorswift"
 ```
 
 Make sure to save the `terraform.tfvars` file and then run:

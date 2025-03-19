@@ -316,7 +316,11 @@ The `gcloud` Command Line Interface (CLI) is used to communicate with Google Clo
 
 To install download the Google Cloud CLI installer from this [link here 🔗](https://cloud.google.com/sdk/docs/install#windows).
 
-Once it's finished downloading, launch the installer as administrator and follow the prompts.
+Once it's finished downloading, launch the installer and follow the prompts.
+
+On the last screen of the installer there will be four check boxes. Makes sure that the box for `run gcloud init` is selected. On confirmation this should open a new command prompt and ask a series of questions like:
+- **Do you want to log in?** - type `y` and hit enter and following the prompts
+- **Select your region and zone?** - type `y` and hit enter and select the geographic **region** that is closest to you. Refer to the GCP Region and Zone documentation at this [link here 🔗](https://cloud.google.com/compute/docs/regions-zones). There may be multiple options for each **region**, denoted by `-a`, `-b`, or `-c`, it doesn't matter which one you choose.
 
 
 To test your install, run the following in your terminal:
@@ -368,9 +372,38 @@ Your active configuration is: [default]
 
 Terraform is a tool for infrastructure as code (IAC) to create (and destroy) resources to create in the cloud.
 
-To install terraform, download the binary from the Terraform install page at this [link here 🔗](https://developer.hashicorp.com/terraform/install).
+### Download
 
-TODO: Unsure if anything needs to be added to PATH to get it to work
+To install terraform, download the **zip archive** from the Terraform install page at this [link here 🔗](https://developer.hashicorp.com/terraform/install).
+
+❗ If you are using Windows 10 or 11, download the **AMD64** version (64 bit version).
+
+1. Using file explorer to go to the location you downloaded the **terraform zip archive**
+
+2. **Unzip** the archive and two files should appear: `terraform.exe` and `license.txt`.
+
+3. Copy `terraform.exe`
+
+4. Navigate to your home directory (`C:\Users\<YOUR_USERNAME>\`) and create a directory named **cli_apps**
+
+5. Paste `terraform.exe` in the **cli_apps** directory
+
+### Add terraform to PATH
+
+We need to manually add **Terraform** to the `PATH` environment variable. The `PATH` variable contains a list of directories that your computer looks in for programs that we run from the command prompt.
+
+To update your path:
+1. Open Windows Search and search for: **Environment Variables**
+
+2. Click **Environment Variables** or **Edit environment variables for your account**
+
+3. Click **New** on to top right of this window
+
+4. Enter: `C:\Users\YOUR_USERNAME\cli_apps` - Make sure to replace `YOUR_USERNAME` with your computers user name.
+
+5. Click **Ok** to close the `Path` variable window, and click **Ok** again to close the Environment Variable window.
+
+6. Close **Command Prompt** and open it again
 
 Verify the installation with:
 
@@ -435,7 +468,7 @@ We'll need to change some values in this file. Here's were you can find the requ
 - **region:** take a look at the GCP Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones). We strongly recommend you choose the closest geographical region.
 - **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`.
 - **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
-- **instance_user:** in your terminal, run `whoami` and hit enter.
+- **instance_user:** in the command prompt, run `echo %username%`
 
 After completing this file, it should look similar to:
 
@@ -444,7 +477,7 @@ project_id    = "wagon-bootcamp"
 region        = "europe-west1"
 zone          = "europe-west1-b"
 instance_name = "lw-de-vm-tswift"
-instance_user = "taylorswift" # result of `whoami`
+instance_user = "taylorswift"
 ```
 
 Make sure to save the `terraform.tfvars` file and then run:
