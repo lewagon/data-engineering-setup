@@ -68,8 +68,6 @@ Notice the connection in the very bottom-left corner of your VS Code window. It 
 
 **The setup of your local machine is over. All following commands will be run from within your 🚨 virtual machine**🚨 terminal (via VS Code)
 
-We'll be doing some of the steps again, but that's because the virtual machine is a completely new computer!
-
 <details>
 <summary markdown='span'>Viewing your SSH Configuration</summary>
 

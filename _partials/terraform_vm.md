@@ -16,8 +16,6 @@ The specifications of the Virtual Machine and Network Settings you'll use for th
 - Storage (Persistent Disk): 100 GB balanced
 - Static External IP address - so it's easier to login.
 
-The image that we are creating our VM from also has some useful GCP utilities pre-installed, like `gcloud`!
-
 ### Cost 💸
 
 Creating and running a Virtual Machine on Google Cloud Platform costs money!
