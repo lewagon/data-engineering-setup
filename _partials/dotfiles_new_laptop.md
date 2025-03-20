@@ -40,3 +40,10 @@ cd ~/code/$GITHUB_USERNAME/dotfiles && zsh git_setup.sh
 If you don't do that, Kitt won't be able to track your progress. 💡 Select the `@users.noreply.github.com` address if
 you don't want your email to appear in public repositories you may contribute to.
 </details>
+
+
+Once you have finished installing the **dotfiles**, kill your terminal (little trash can at the top right of the terminal window) and re-open it. You might have to do it a few times until it looks similar to:
+
+![](/images/vscode_after_ansible1.png)
+
+The terminal should read as `zsh`.

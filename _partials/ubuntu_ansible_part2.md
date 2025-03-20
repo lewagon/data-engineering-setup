@@ -17,7 +17,7 @@ cd ~/vm-ansible-setup
 ansible-playbook playbooks/setup_vm_part2.yml
 ```
 
-And the playbook should start running!
+And the playbook should start running! If you're asked if you want VS Code to behave more like Sublime Text, click accept.
 
 ❗ If any errors occur, raise a ticket with a teacher. You can safely run the playbook again.
 

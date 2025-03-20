@@ -61,9 +61,3 @@ This playbook is installing a few things, while the playbook is running, let's g
 - Install the **GitHub CLI**: the CLI tool that we'll use to interact with your GitHub account directly from the terminal.
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
-
-Once the playbook has finished running. Kill your terminal (little trash can at the top right of the terminal window) and re-open it. You might have to do it a few times until it looks similar to:
-
-![](/images/vscode_after_ansible1.png)
-
-The terminal should read as `zsh`.
