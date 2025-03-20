@@ -36,6 +36,7 @@ MAC_OS = %w[
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
+  dotfiles_terminal
   ubuntu_ansible_part2
   ubuntu_vm_test
   repo_overview
@@ -73,6 +74,7 @@ WINDOWS = %w[
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
+  dotfiles_terminal
   ubuntu_ansible_part2
   ubuntu_vm_test
   repo_overview
@@ -111,6 +113,7 @@ LINUX = %w[
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
+  dotfiles_terminal
   ubuntu_ansible_part2
   ubuntu_vm_test
   repo_overview
