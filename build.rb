@@ -22,11 +22,12 @@ MAC_OS = %w[
   vscode_remote_ssh
   gcp_cli_setup
   gcp_cli_oauth
+  gcp_adc_auth
   terraform
   terraform_vm
   vscode_ssh_connection
-  gcp_adc_auth
   gcp_cli_oauth
+  gcp_adc_auth
   ubuntu_ansible_part1
   setup/gh_cli
   dotfiles
@@ -56,12 +57,12 @@ WINDOWS = %w[
   win_vscode
   vscode_remote_ssh
   gcp_cli_setup
-  gcp_cli_oauth
+  gcp_adc_auth
   terraform
   terraform_vm
   vscode_ssh_connection
-  gcp_adc_auth
   gcp_cli_oauth
+  gcp_adc_auth
   ubuntu_ansible_part1
   setup/gh_cli
   dotfiles
@@ -92,11 +93,12 @@ LINUX = %w[
   vscode_remote_ssh
   gcp_cli_setup
   gcp_cli_oauth
+  gcp_adc_auth
   terraform
   terraform_vm
   vscode_ssh_connection
-  gcp_adc_auth
   gcp_cli_oauth
+  gcp_adc_auth
   ubuntu_ansible_part1
   setup/gh_cli
   dotfiles
