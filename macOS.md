@@ -431,7 +431,7 @@ gcloud config list
 
 You should get an output similar to:
 
-```
+```bash
 [core]
 account = taylorswift@domain.com # Should be your GCP email
 disable_usage_reporting = True
@@ -522,7 +522,9 @@ curl -L -o ~/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent
 
 ### Set variables
 
-Open up the file `terraform.tfvars` in VS Code or any other code editor. It should look like:
+Open up the file `~/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
+
+It should look like:
 
 ```bash
 project_id    = "<YOUR_GCP_PROJECT>"
@@ -549,11 +551,15 @@ instance_name = "lw-de-vm-tswift"
 instance_user = "taylorswift"
 ```
 
-Make sure to save the `terraform.tfvars` file and then run:
+Make sure to save the `terraform.tfvars` file, nagivate into the directory with the terraform files with:
 
 ```
 cd ~/wagon-de-bootcamp
+```
 
+And initialise and test the files with:
+
+```bash
 terraform init
 
 terraform plan
@@ -681,7 +687,7 @@ gcloud config list
 
 You should get an output similar to:
 
-```
+```bash
 [core]
 account = taylorswift@domain.com # Should be your GCP email
 disable_usage_reporting = True
@@ -915,13 +921,6 @@ you don't want your email to appear in public repositories you may contribute to
 </details>
 
 
-Once you have finished installing the **dotfiles**, kill your terminal (little trash can at the top right of the terminal window) and re-open it. You might have to do it a few times until it looks similar to:
-
-![](/images/vscode_after_ansible1.png)
-
-The terminal should read as `zsh`.
-
-
 OR
 
 <details>
@@ -973,6 +972,8 @@ If you don't do that, Kitt won't be able to track your progress. 💡 Select the
 you don't want your email to appear in public repositories you may contribute to.
 </details>
 
+
+---
 
 Once you have finished installing the **dotfiles**, kill your terminal (little trash can at the top right of the terminal window) and re-open it. You might have to do it a few times until it looks similar to:
 
@@ -1076,7 +1077,7 @@ We've used two ansible playbooks to configure our Virtual Machine. Let's run som
 
 #### Python
 
-To test:
+🧪 To test:
 
 ```bash
 python --version
@@ -1090,7 +1091,7 @@ Python 3.12.8
 
 #### Pyenv
 
-To test:
+🧪 To test:
 
 ```bash
 pyenv versions
@@ -1107,7 +1108,7 @@ Note: There should be an `*` next to 3.12.8
 
 #### Pipx
 
-To test:
+🧪 To test:
 
 ```bash
 pipx list
@@ -1130,7 +1131,7 @@ manual pages are exposed at /home/<your_username>/.local/share/man
 
 #### Docker
 
-To test:
+🧪 To test:
 
 ```bash
 docker run hello-world
@@ -1237,7 +1238,7 @@ Should return:
 
 #### Terraform
 
-To test:
+🧪 To test:
 
 ```bash
 terraform --version
@@ -1252,7 +1253,7 @@ on linux_amd64
 
 #### Spark
 
-To test:
+🧪 To test:
 
 ```bash
 spark-shell

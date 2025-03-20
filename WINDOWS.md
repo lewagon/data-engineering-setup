@@ -318,7 +318,7 @@ To install, download the Google Cloud CLI installer from this [link here 🔗](h
 
 Once it's finished downloading, launch the installer and follow the prompts. You only need to install `gcloud` for the current user.
 
-On the last screen of the installer there will be four check boxes. Makes sure that the box for `run gcloud init` is selected. On confirmation this should open a new **Command Prompt** window and ask a series of questions like:
+On the last screen of the installer there will be four check boxes. Makes sure that the boxes for `Start Google SDK Shell` and `Run gcloud init to configure the Google Cloud CLI` are selected then click **Finish**. This should open a new **Command Prompt** window and ask a series of questions like:
 - **Do you want to log in?** - type `y` and hit enter and following the prompts. It should open a web-browser to log in to your Google account.
 - **Pick cloud project to use** - Select your GCP Project ID that you want to connect with `gcloud`
 - **Select your region and zone** - You can safely enter `n`. It's not important to us at the moment.
@@ -374,9 +374,9 @@ To install terraform, download the **zip archive** from the Terraform install pa
 
 3. Copy `terraform.exe`
 
-4. Navigate to your home directory (`C:\Users\<YOUR_USERNAME>\`) and create a directory named **cli_apps**
+4. Navigate to your home directory (`C:\Users\<YOUR_USERNAME>\`) and create a directory named `cli_apps`
 
-5. Paste `terraform.exe` in the **cli_apps** directory
+5. Paste `terraform.exe` in the `cli_apps` directory
 
 ### Add terraform to PATH
 
@@ -442,21 +442,26 @@ First we'll create a folder and download the terraform files with:
 
 Using the Command Prompt (cmd), run the following:
 
-TODO: Requires testing
-
 ```cmd
 mkdir %USERPROFILE%\wagon-de-bootcamp
+
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\main.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/main.tf
+
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\provider.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/provider.tf
+
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\variables.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/variables.tf
+
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/terraform.tfvars
+
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/.terraform.lock.hcl
 ```
 
 
 ### Set variables
 
-Open up the file `terraform.tfvars` in VS Code or any other code editor. It should look like:
+Open up the file `C:\Users\<YOUR_USERNAME>\wagon-de-bootcamp\terraform.tfvars` in VS Code or any other code editor.
+
+It should look like:
 
 ```bash
 project_id    = "<YOUR_GCP_PROJECT>"
@@ -471,7 +476,7 @@ We'll need to change some values in this file. Here's were you can find the requ
 - **region:** take a look at the GCP Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones). We strongly recommend you choose the closest geographical region.
 - **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`.
 - **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
-- **instance_user:** in the command prompt, run `echo %username%`
+- **instance_user:** in Command Prompt, run `echo %username%`
 
 After completing this file, it should look similar to:
 
@@ -483,11 +488,15 @@ instance_name = "lw-de-vm-tswift"
 instance_user = "taylorswift"
 ```
 
-Make sure to save the `terraform.tfvars` file and then run:
+Make sure to save the `terraform.tfvars` file, nagivate into the directory with the terraform files with:
 
 ```
 cd %USERPROFILE%\wagon-de-bootcamp
+```
 
+And initialise and test the files with:
+
+```bash
 terraform init
 
 terraform plan
@@ -549,17 +558,25 @@ Windows has strict permissions for SSH files by default, we need to alter some p
 In Command Prompt run:
 
 ```cmd
-icacls %USERPROFILE%\.ssh\config /inheritence:r
+icacls %USERPROFILE%\.ssh\config /inheritance:r
+
 icacls %USERPROFILE%\.ssh\config /grant:r %USERNAME%:(R)
+
 icacls %USERPROFILE%\.ssh\config /grant:r SYSTEM:(R)
+
+icacls %USERPROFILE%\.ssh\config
 ```
 
 And:
 
 ```cmd
-icacls %USERPROFILE%\.ssh\google_compute_engine /inheritence:r
+icacls %USERPROFILE%\.ssh\google_compute_engine /inheritance:r
+
 icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r %USERNAME%:(R)
+
 icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r SYSTEM:(R)
+
+icacls %USERPROFILE%\.ssh\google_compute_engine
 ```
 
 ### Connect with VS Code
@@ -634,7 +651,7 @@ gcloud config list
 
 You should get an output similar to:
 
-```
+```bash
 [core]
 account = taylorswift@domain.com # Should be your GCP email
 disable_usage_reporting = True
@@ -868,13 +885,6 @@ you don't want your email to appear in public repositories you may contribute to
 </details>
 
 
-Once you have finished installing the **dotfiles**, kill your terminal (little trash can at the top right of the terminal window) and re-open it. You might have to do it a few times until it looks similar to:
-
-![](/images/vscode_after_ansible1.png)
-
-The terminal should read as `zsh`.
-
-
 OR
 
 <details>
@@ -926,6 +936,8 @@ If you don't do that, Kitt won't be able to track your progress. 💡 Select the
 you don't want your email to appear in public repositories you may contribute to.
 </details>
 
+
+---
 
 Once you have finished installing the **dotfiles**, kill your terminal (little trash can at the top right of the terminal window) and re-open it. You might have to do it a few times until it looks similar to:
 
@@ -1029,7 +1041,7 @@ We've used two ansible playbooks to configure our Virtual Machine. Let's run som
 
 #### Python
 
-To test:
+🧪 To test:
 
 ```bash
 python --version
@@ -1043,7 +1055,7 @@ Python 3.12.8
 
 #### Pyenv
 
-To test:
+🧪 To test:
 
 ```bash
 pyenv versions
@@ -1060,7 +1072,7 @@ Note: There should be an `*` next to 3.12.8
 
 #### Pipx
 
-To test:
+🧪 To test:
 
 ```bash
 pipx list
@@ -1083,7 +1095,7 @@ manual pages are exposed at /home/<your_username>/.local/share/man
 
 #### Docker
 
-To test:
+🧪 To test:
 
 ```bash
 docker run hello-world
@@ -1190,7 +1202,7 @@ Should return:
 
 #### Terraform
 
-To test:
+🧪 To test:
 
 ```bash
 terraform --version
@@ -1205,7 +1217,7 @@ on linux_amd64
 
 #### Spark
 
-To test:
+🧪 To test:
 
 ```bash
 spark-shell
