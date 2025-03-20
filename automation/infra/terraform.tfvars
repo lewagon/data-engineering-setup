@@ -1,0 +1,5 @@
+project_id    = "<YOUR_GCP_PROJECT>"
+region        = "<YOUR_GCP_REGION>"
+zone          = "<YOUR_GCP_ZONE>"
+instance_name = "<YOUR_GCP_INSTANCE_NAME>"
+instance_user = "<YOUR_COMPUTER_USER_NAME>"

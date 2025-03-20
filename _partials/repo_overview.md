@@ -1,34 +1,27 @@
 ## Let's Make!
 
-Lets clone the challenges onto your **virtual machine**
-
-```bash
-export GITHUB_USERNAME=`gh api user | jq -r '.login'`
-echo $GITHUB_USERNAME
-```
-
-Then:
-
-```bash
-mkdir -p ~/code/$GITHUB_USERNAME && cd $_
-gh repo fork lewagon/data-engineering-challenges --clone
-```
+Almost there! In the second ansible playbook, the `lewagon/data-engineering-challenges` repository was forked from Le Wagon to you. Let's review how it works.
 
 Our setup will look a bit like this:
 
-<img src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/W0D1/repo-setup.png" width=700 />
+![](/images/repo_overview.png)
 
 This allows you to work on challenges, but if we push any changes to the content, you can still access them!
 
 Check your remotes match `origin` your data engineering challenges and `upstream` lewagon's!
 
 ```bash
-cd data-engineering-challenges
+cd ~/code/$(gh api user | jq -r '.login')/data-engineering-challenges
 git remote -v
-# origin          git@github.com:your_github_username/data-engineering-challenges.git (fetch)
-# origin          git@github.com:your_github_username/data-engineering-challenges.git (push)
-# upstream        git@github.com:lewagon/data-engineering-challenges.git (fetch)
-# upstream        git@github.com:lewagon/data-engineering-challenges.git (push)
+```
+
+Should return:
+
+```
+origin  git@github.com:<your_github_username>/data-engineering-challenges.git (fetch)
+origin  git@github.com:<your_github_username>/data-engineering-challenges.git (push)
+upstream        git@github.com:lewagon/data-engineering-challenges.git (fetch)
+upstream        git@github.com:lewagon/data-engineering-challenges.git (push)
 ```
 
 From challenge folder root **on the vm**, we'll run `make install`, which triggers 3 operations:
