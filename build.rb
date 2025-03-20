@@ -38,6 +38,7 @@ MAC_OS = %w[
   dotfiles_new_laptop
   ubuntu_ansible_part2
   ubuntu_vm_test
+  repo_overview
   dbeaver
   setup/kitt
 ].freeze
@@ -74,6 +75,7 @@ WINDOWS = %w[
   dotfiles_new_laptop
   ubuntu_ansible_part2
   ubuntu_vm_test
+  repo_overview
   dbeaver
   setup/kitt
 ].freeze
@@ -111,6 +113,7 @@ LINUX = %w[
   dotfiles_new_laptop
   ubuntu_ansible_part2
   ubuntu_vm_test
+  repo_overview
   dbeaver
   setup/kitt
 ]
