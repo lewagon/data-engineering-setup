@@ -720,12 +720,6 @@ This playbook is installing a few things, while the playbook is running, let's g
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
 
-Once the playbook has finished running. Kill your terminal (little trash can at the top right of the terminal window) and re-open it. You might have to do it a few times until it looks similar to:
-
-![](/images/vscode_after_ansible1.png)
-
-The terminal should read as `zsh`.
-
 
 ## GitHub CLI
 
@@ -873,6 +867,13 @@ you don't want your email to appear in public repositories you may contribute to
 </details>
 
 
+Once you have finished installing the **dotfiles**, kill your terminal (little trash can at the top right of the terminal window) and re-open it. You might have to do it a few times until it looks similar to:
+
+![](/images/vscode_after_ansible1.png)
+
+The terminal should read as `zsh`.
+
+
 OR
 
 <details>
@@ -925,6 +926,13 @@ you don't want your email to appear in public repositories you may contribute to
 </details>
 
 
+Once you have finished installing the **dotfiles**, kill your terminal (little trash can at the top right of the terminal window) and re-open it. You might have to do it a few times until it looks similar to:
+
+![](/images/vscode_after_ansible1.png)
+
+The terminal should read as `zsh`.
+
+
 ## VM configuration with Ansible - Part 2
 
 ### Ansible Playbook 2
@@ -944,7 +952,7 @@ cd ~/vm-ansible-setup
 ansible-playbook playbooks/setup_vm_part2.yml
 ```
 
-And the playbook should start running!
+And the playbook should start running! If you're asked if you want VS Code to behave more like Sublime Text, click accept.
 
 ❗ If any errors occur, raise a ticket with a teacher. You can safely run the playbook again.
 
