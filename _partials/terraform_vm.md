@@ -1,21 +1,34 @@
 ## Provisioning your Virtual Machine with Terraform
 
+You can create Cloud Resources like Virtual Machines in different ways:
+- Through the Google Cloud [Compute Engine Console 🔗](https://console.cloud.google.com/compute/overview)
+- Using `gcloud`
+- With **Infrastructure as Code** tools like Terraform
+
+We'll be creating our Virtual Machine with Terraform
+
 We're almost at the point of creating your Virtual Machine.
 
-The specifications of the machine you'll use for the bootcamp are:
+The specifications of the Virtual Machine and Network Settings you'll use for the bootcamp are:
 - Operation System: Ubuntu 22.04 LTS
-- CPU: 4 Virtual CPU cores
+- CPU: 4 Virtual CPU cores (2 physical CPU cores)
 - RAM: 16 GB
-- Storage: 100 GB
-- Network: Static External IP address
+- Storage (Persistent Disk): 100 GB balanced
+- Static External IP address - so it's easier to login.
 
 ### Cost 💸
 
-Creating and running a Virtual Machine on Google Cloud Platform costs money.
+Creating and running a Virtual Machine on Google Cloud Platform costs money!
 
-If you have created a new Google Cloud Platform account, the cost of the Virtual machine will be covered by the $300 USD credit for the first 90 days if you are diligent with turning off your Virtual Machine (or finish the auto shutdown challenge 😎).
+If you have created a new Google Cloud Platform account, the cost of the Virtual machine will be covered by the $300 USD credit for the first 90 days if you are diligent with turning off your Virtual Machine (or finish the _Linux and Bash_ challenge today 😎).
 
-The cost of running a Virtual Machine with our configuration 24 hours a day, 7 days a week is ~$130 USD per month. You can massively reduce the cost by only running the Virtual Machine when you use it. You will not be charged for the CPU and RAM while the Virtual Machine is off!
+❗ **The cost of running a Virtual Machine with our configuration 24 hours a day, 7 days a week is ~$150 USD per month.** ❗
+
+You can massively reduce the cost by only running the Virtual Machine when you use it. You will _NOT_ be charged for the vCPU's and RAM while the Virtual Machine is off!
+
+You will always pay for the Storage (equivalent of your hard-drive on your local computer). It's ~$10 USD per month for 100 GB.
+
+The rule of thumb is: if Google can rent the resource out to someone else when your not using it, you only pay for it when you are using the resource. That's why you don't pay for the CPU and RAM when you are not using it, Google can rent it out to someone else, but always pay for Storage, Google can't rent it out to someone else because it has your data on it.
 
 ### Download terraform files
 
@@ -98,35 +111,33 @@ instance_user = "taylorswift"
 
 Make sure to save the `terraform.tfvars` file and then run:
 
-$MAC_START
-```bash
-cd ~/wagon-de-bootcamp
-
-terraform init
-
-terraform plan
 ```
+$MAC_START
+cd ~/wagon-de-bootcamp
 $MAC_END
 $WINDOWS_START
-```cmd
 cd %USERPROFILE%\wagon-de-bootcamp
-
-terraform init
-
-terraform plan
-```
 $WINDOWS_END
 $LINUX_START
-```bash
 cd ~/wagon-de-bootcamp
+$LINUX_END
 
 terraform init
 
 terraform plan
 ```
-$LINUX_END
 
-❗ And check the output, if you have any errors, raise a ticket with a teacher.
+And check the output. Towards the bottom there should be a line:
+
+```
+Plan: 2 to add, 0 to change, 0 to destroy
+```
+
+We'll be adding:
+- A compute engine instance
+- A static external IP address
+
+❗ If you have any errors, read the error and debug. If you need some help, raise a ticket with a teacher.
 
 If everything was successful, create your VM with:
 
@@ -134,4 +145,10 @@ If everything was successful, create your VM with:
 terraform apply -auto-approve
 ```
 
-And your Virtual Machine should be up and running! Check the GCP Compute Engine console at this [link here](https://console.cloud.google.com/compute/instances) to confirm.
+It might take a while for Terraform to create the cloud resources. Once you see:
+
+```
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+```
+
+Your Virtual Machine should be up and running! Check the GCP Compute Engine console at this [link here](https://console.cloud.google.com/compute/instances) to confirm.

@@ -11,24 +11,51 @@ Install with `brew`:
 brew install --cask google-cloud-sdk
 ```
 
-Then you can:
+Then install `gcloud` with:
 
 ```bash
 $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/install.sh
 ```
 
-👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#)
+To test your install, open a new terminal and run:
+
+```bash
+gcloud --version
+```
+
+👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#mac)
 $MAC_END
 $WINDOWS_START
 
-To install download the Google Cloud CLI installer from this [link here 🔗](https://cloud.google.com/sdk/docs/install#windows).
+To install, download the Google Cloud CLI installer from this [link here 🔗](https://cloud.google.com/sdk/docs/install#windows).
 
-Once it's finished downloading, launch the installer and follow the prompts.
+Once it's finished downloading, launch the installer and follow the prompts. You only need to install `gcloud` for the current user.
 
-On the last screen of the installer there will be four check boxes. Makes sure that the box for `run gcloud init` is selected. On confirmation this should open a new command prompt and ask a series of questions like:
-- **Do you want to log in?** - type `y` and hit enter and following the prompts
-- **Select your region and zone?** - type `y` and hit enter and select the geographic **region** that is closest to you. Refer to the GCP Region and Zone documentation at this [link here 🔗](https://cloud.google.com/compute/docs/regions-zones). There may be multiple options for each **region**, denoted by `-a`, `-b`, or `-c`, it doesn't matter which one you choose.
+On the last screen of the installer there will be four check boxes. Makes sure that the box for `run gcloud init` is selected. On confirmation this should open a new **Command Prompt** window and ask a series of questions like:
+- **Do you want to log in?** - type `y` and hit enter and following the prompts. It should open a web-browser to log in to your Google account.
+- **Pick cloud project to use** - Select your GCP Project ID that you want to connect with `gcloud`
+- **Select your region and zone** - You can safely enter `n`. It's not important to us at the moment.
 
+Once you've completed the `gcloud` setup, close **Command Prompt** and re-open it, then run:
+
+```bash
+gcloud config list
+```
+
+You should get an output similar to:
+
+```
+[accessibility]
+screen_reader = True/False # depends on install options
+[core]
+account = your_email@domain.com
+disable_usage_reporting = True/False # depends on install options
+project = your_gcp_project
+
+Your active configurations: [default]
+```
+
+Now `gcloud` is installed and authenticated 🚀
 $WINDOWS_END
 $LINUX_START
 Add the `APT` repository and install with:
@@ -41,11 +68,10 @@ sudo apt-get update && sudo apt-get install google-cloud-sdk
 sudo apt-get install google-cloud-sdk-app-engine-python
 ```
 
-👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#deb)
-$LINUX_END
-
-To test your install, run the following in your terminal:
+To test your install, open a new terminal and run:
 
 ```bash
 gcloud --version
 ```
+👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#deb)
+$LINUX_END
