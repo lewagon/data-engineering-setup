@@ -490,8 +490,6 @@ The specifications of the Virtual Machine and Network Settings you'll use for th
 - Storage (Persistent Disk): 100 GB balanced
 - Static External IP address - so it's easier to login.
 
-The image that we are creating our VM from also has some useful GCP utilities pre-installed, like `gcloud`!
-
 ### Cost 💸
 
 Creating and running a Virtual Machine on Google Cloud Platform costs money!
@@ -637,8 +635,6 @@ Notice the connection in the very bottom-left corner of your VS Code window. It 
 
 **The setup of your local machine is over. All following commands will be run from within your 🚨 virtual machine**🚨 terminal (via VS Code)
 
-We'll be doing some of the steps again, but that's because the virtual machine is a completely new computer!
-
 <details>
 <summary markdown='span'>Viewing your SSH Configuration</summary>
 
@@ -650,6 +646,11 @@ If you want to view your SSH configuration:
 5. View your configuration file! You may need to edit this configuration if you change computers, or want to work on more than one computer during the bootcamp.
 
 </details>
+
+
+## VM gcloud and Application Default Credentials
+
+We'll be doing some of the steps again, but that's because the virtual machine is a completely new computer! Luckily for us, `gcloud` comes pre-installed on the virtual machine.
 
 
 ### Authenticate gcloud
