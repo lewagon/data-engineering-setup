@@ -31,7 +31,7 @@ To install, download the Google Cloud CLI installer from this [link here 🔗](h
 
 Once it's finished downloading, launch the installer and follow the prompts. You only need to install `gcloud` for the current user.
 
-On the last screen of the installer there will be four check boxes. Makes sure that the box for `run gcloud init` is selected. On confirmation this should open a new **Command Prompt** window and ask a series of questions like:
+On the last screen of the installer there will be four check boxes. Makes sure that the boxes for `Start Google SDK Shell` and `Run gcloud init to configure the Google Cloud CLI` are selected then click **Finish**. This should open a new **Command Prompt** window and ask a series of questions like:
 - **Do you want to log in?** - type `y` and hit enter and following the prompts. It should open a web-browser to log in to your Google account.
 - **Pick cloud project to use** - Select your GCP Project ID that you want to connect with `gcloud`
 - **Select your region and zone** - You can safely enter `n`. It's not important to us at the moment.

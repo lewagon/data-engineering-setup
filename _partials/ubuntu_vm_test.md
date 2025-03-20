@@ -6,7 +6,7 @@ We've used two ansible playbooks to configure our Virtual Machine. Let's run som
 
 #### Python
 
-To test:
+🧪 To test:
 
 ```bash
 python --version
@@ -20,7 +20,7 @@ Python 3.12.8
 
 #### Pyenv
 
-To test:
+🧪 To test:
 
 ```bash
 pyenv versions
@@ -37,7 +37,7 @@ Note: There should be an `*` next to 3.12.8
 
 #### Pipx
 
-To test:
+🧪 To test:
 
 ```bash
 pipx list
@@ -60,7 +60,7 @@ manual pages are exposed at /home/<your_username>/.local/share/man
 
 #### Docker
 
-To test:
+🧪 To test:
 
 ```bash
 docker run hello-world
@@ -167,7 +167,7 @@ Should return:
 
 #### Terraform
 
-To test:
+🧪 To test:
 
 ```bash
 terraform --version
@@ -182,7 +182,7 @@ on linux_amd64
 
 #### Spark
 
-To test:
+🧪 To test:
 
 ```bash
 spark-shell

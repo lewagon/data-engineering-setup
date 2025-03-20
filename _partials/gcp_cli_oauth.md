@@ -26,7 +26,7 @@ gcloud config list
 
 You should get an output similar to:
 
-```
+```bash
 [core]
 account = taylorswift@domain.com # Should be your GCP email
 disable_usage_reporting = True

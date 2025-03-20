@@ -23,9 +23,9 @@ To install terraform, download the **zip archive** from the Terraform install pa
 
 3. Copy `terraform.exe`
 
-4. Navigate to your home directory (`C:\Users\<YOUR_USERNAME>\`) and create a directory named **cli_apps**
+4. Navigate to your home directory (`C:\Users\<YOUR_USERNAME>\`) and create a directory named `cli_apps`
 
-5. Paste `terraform.exe` in the **cli_apps** directory
+5. Paste `terraform.exe` in the `cli_apps` directory
 
 ### Add terraform to PATH
 

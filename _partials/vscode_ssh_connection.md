@@ -28,17 +28,25 @@ Windows has strict permissions for SSH files by default, we need to alter some p
 In Command Prompt run:
 
 ```cmd
-icacls %USERPROFILE%\.ssh\config /inheritence:r
+icacls %USERPROFILE%\.ssh\config /inheritance:r
+
 icacls %USERPROFILE%\.ssh\config /grant:r %USERNAME%:(R)
+
 icacls %USERPROFILE%\.ssh\config /grant:r SYSTEM:(R)
+
+icacls %USERPROFILE%\.ssh\config
 ```
 
 And:
 
 ```cmd
-icacls %USERPROFILE%\.ssh\google_compute_engine /inheritence:r
+icacls %USERPROFILE%\.ssh\google_compute_engine /inheritance:r
+
 icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r %USERNAME%:(R)
+
 icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r SYSTEM:(R)
+
+icacls %USERPROFILE%\.ssh\google_compute_engine
 ```
 $WINDOWS_END
 

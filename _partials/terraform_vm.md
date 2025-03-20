@@ -49,14 +49,17 @@ $MAC_END
 $WINDOWS_START
 Using the Command Prompt (cmd), run the following:
 
-TODO: Requires testing
-
 ```cmd
 mkdir %USERPROFILE%\wagon-de-bootcamp
+
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\main.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/main.tf
+
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\provider.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/provider.tf
+
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\variables.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/variables.tf
+
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/terraform.tfvars
+
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/.terraform.lock.hcl
 ```
 $WINDOWS_END
@@ -74,7 +77,17 @@ $LINUX_END
 
 ### Set variables
 
-Open up the file `terraform.tfvars` in VS Code or any other code editor. It should look like:
+$MAC_START
+Open up the file `~/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
+$MAC_END
+$WINDOWS_START
+Open up the file `C:\Users\<YOUR_USERNAME>\wagon-de-bootcamp\terraform.tfvars` in VS Code or any other code editor.
+$WINDOWS_END
+$LINUX_START
+Open up the file `~/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
+$LINUX_END
+
+It should look like:
 
 ```bash
 project_id    = "<YOUR_GCP_PROJECT>"
@@ -93,7 +106,7 @@ $MAC_START
 - **instance_user:** in your terminal, run `whoami`
 $MAC_END
 $WINDOWS_START
-- **instance_user:** in the command prompt, run `echo %username%`
+- **instance_user:** in Command Prompt, run `echo %username%`
 $WINDOWS_END
 $LINUX_START
 - **instance_user:** in your terminal, run `whoami`
@@ -109,7 +122,7 @@ instance_name = "lw-de-vm-tswift"
 instance_user = "taylorswift"
 ```
 
-Make sure to save the `terraform.tfvars` file and then run:
+Make sure to save the `terraform.tfvars` file, nagivate into the directory with the terraform files with:
 
 ```
 $MAC_START
@@ -121,7 +134,11 @@ $WINDOWS_END
 $LINUX_START
 cd ~/wagon-de-bootcamp
 $LINUX_END
+```
 
+And initialise and test the files with:
+
+```bash
 terraform init
 
 terraform plan
