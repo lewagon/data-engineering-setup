@@ -26,6 +26,7 @@ MAC_OS = %w[
   terraform
   terraform_vm
   vscode_ssh_connection
+  gcp_auth_vm_heading
   gcp_cli_oauth
   gcp_adc_auth
   ubuntu_ansible_part1
@@ -61,6 +62,7 @@ WINDOWS = %w[
   terraform
   terraform_vm
   vscode_ssh_connection
+  gcp_auth_vm_heading
   gcp_cli_oauth
   gcp_adc_auth
   ubuntu_ansible_part1
@@ -97,6 +99,7 @@ LINUX = %w[
   terraform
   terraform_vm
   vscode_ssh_connection
+  gcp_auth_vm_heading
   gcp_cli_oauth
   gcp_adc_auth
   ubuntu_ansible_part1
