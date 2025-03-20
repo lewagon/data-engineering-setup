@@ -356,13 +356,12 @@ sudo apt-get update && sudo apt-get install google-cloud-sdk
 sudo apt-get install google-cloud-sdk-app-engine-python
 ```
 
-👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#deb)
-
-To test your install, run the following in your terminal:
+To test your install, open a new terminal and run:
 
 ```bash
 gcloud --version
 ```
+👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#deb)
 
 
 ### Authenticate gcloud
@@ -401,6 +400,19 @@ project = my-gcp-project # Should be your GCP Project ID
 
 Your active configuration is: [default]
 ```
+
+
+### Application Default Credentials
+
+Application Default Credentials are for authenticating our **code** (Terraform and Python 🐍) to interact with Google services and resources. It's a small distinction between `gcloud` and **code**, but an important one.
+
+To authenticate your **Application Default Credentials**, in your terminal run:
+
+```bash
+gcloud auth application-default login
+```
+
+And follow the prompts. It should open a web-page to login to your Google account.
 
 
 ## Terraform
@@ -446,22 +458,37 @@ terraform --version
 
 ## Provisioning your Virtual Machine with Terraform
 
+You can create Cloud Resources like Virtual Machines in different ways:
+- Through the Google Cloud [Compute Engine Console 🔗](https://console.cloud.google.com/compute/overview)
+- Using `gcloud`
+- With **Infrastructure as Code** tools like Terraform
+
+We'll be creating our Virtual Machine with Terraform
+
 We're almost at the point of creating your Virtual Machine.
 
-The specifications of the machine you'll use for the bootcamp are:
+The specifications of the Virtual Machine and Network Settings you'll use for the bootcamp are:
 - Operation System: Ubuntu 22.04 LTS
-- CPU: 4 Virtual CPU cores
+- CPU: 4 Virtual CPU cores (2 physical CPU cores)
 - RAM: 16 GB
-- Storage: 100 GB
-- Network: Static External IP address
+- Storage (Persistent Disk): 100 GB balanced
+- Static External IP address - so it's easier to login.
+
+The image that we are creating our VM from also has some useful GCP utilities pre-installed, like `gcloud`!
 
 ### Cost 💸
 
-Creating and running a Virtual Machine on Google Cloud Platform costs money.
+Creating and running a Virtual Machine on Google Cloud Platform costs money!
 
-If you have created a new Google Cloud Platform account, the cost of the Virtual machine will be covered by the $300 USD credit for the first 90 days if you are diligent with turning off your Virtual Machine (or finish the auto shutdown challenge 😎).
+If you have created a new Google Cloud Platform account, the cost of the Virtual machine will be covered by the $300 USD credit for the first 90 days if you are diligent with turning off your Virtual Machine (or finish the _Linux and Bash_ challenge today 😎).
 
-The cost of running a Virtual Machine with our configuration 24 hours a day, 7 days a week is ~$130 USD per month. You can massively reduce the cost by only running the Virtual Machine when you use it. You will not be charged for the CPU and RAM while the Virtual Machine is off!
+❗ **The cost of running a Virtual Machine with our configuration 24 hours a day, 7 days a week is ~$150 USD per month.** ❗
+
+You can massively reduce the cost by only running the Virtual Machine when you use it. You will _NOT_ be charged for the vCPU's and RAM while the Virtual Machine is off!
+
+You will always pay for the Storage (equivalent of your hard-drive on your local computer). It's ~$10 USD per month for 100 GB.
+
+The rule of thumb is: if Google can rent the resource out to someone else when your not using it, you only pay for it when you are using the resource. That's why you don't pay for the CPU and RAM when you are not using it, Google can rent it out to someone else, but always pay for Storage, Google can't rent it out to someone else because it has your data on it.
 
 ### Download terraform files
 
@@ -510,7 +537,7 @@ instance_user = "taylorswift"
 
 Make sure to save the `terraform.tfvars` file and then run:
 
-```bash
+```
 cd ~/wagon-de-bootcamp
 
 terraform init
@@ -518,7 +545,17 @@ terraform init
 terraform plan
 ```
 
-❗ And check the output, if you have any errors, raise a ticket with a teacher.
+And check the output. Towards the bottom there should be a line:
+
+```
+Plan: 2 to add, 0 to change, 0 to destroy
+```
+
+We'll be adding:
+- A compute engine instance
+- A static external IP address
+
+❗ If you have any errors, read the error and debug. If you need some help, raise a ticket with a teacher.
 
 If everything was successful, create your VM with:
 
@@ -526,10 +563,18 @@ If everything was successful, create your VM with:
 terraform apply -auto-approve
 ```
 
-And your Virtual Machine should be up and running! Check the GCP Compute Engine console at this [link here](https://console.cloud.google.com/compute/instances) to confirm.
+It might take a while for Terraform to create the cloud resources. Once you see:
+
+```
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+```
+
+Your Virtual Machine should be up and running! Check the GCP Compute Engine console at this [link here](https://console.cloud.google.com/compute/instances) to confirm.
 
 
-### Virtual Machine connection
+## Virtual Machine connection
+
+### Create SSH keys
 
 We need to connect VS Code to our Virtual Machine in the cloud so you will only work on that machine during the bootcamp. We'll use the [Remote - SSH Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) that we previously installed.
 
@@ -539,7 +584,7 @@ To create the VS Code SSH configuration, run the following in your terminal:
 gcloud compute config-ssh
 ```
 
-You should get an output similar to:
+`gcloud` may tell you it needs to create a directory to continue. Accept and you should get an output similar to:
 
 ```bash
 You should now be able to use ssh/scp with your instances.
@@ -548,6 +593,9 @@ For example, try running:
   $ ssh lw-de-vm-tswift.europe-west1-b.wagon-bootcamp
 # $ ssh lw-de-vm-<GITHUB_USERNAME>.<GCP_ZONE>.<GCP_PROJECT_ID>
 ```
+
+
+### Connect with VS Code
 
 To connect to your Virtual Machine, click on the small symbol at the very bottom-left corner of VS Code:
 
@@ -561,7 +609,7 @@ Click on the name of your Virtual Machine:
 
 ![](/images/vscode_remote_hosts.png)
 
-A new VS Code window will open. You will be asked to _fingerprint_ the connection. VS Code is asking if you trust the remote host you are trying to connect to. Hit enter to continue.
+A new VS Code window will open. You may be asked to select the platform of the remote host, select **Linux**. You will then be asked to _fingerprint_ the connection. VS Code is asking if you trust the remote host you are trying to connect to. Hit enter to continue.
 
 ![](/images/vscode_remote_fingerprint.png)
 
@@ -572,6 +620,8 @@ And you are connected! It should look similar too:
 Notice the connection in the very bottom-left corner of your VS Code window. It should have the Connection type (SSH), and the name of the host you are connected to.
 
 **The setup of your local machine is over. All following commands will be run from within your 🚨 virtual machine**🚨 terminal (via VS Code)
+
+We'll be doing some of the steps again, but that's because the virtual machine is a completely new computer!
 
 <details>
 <summary markdown='span'>Viewing your SSH Configuration</summary>
@@ -584,23 +634,6 @@ If you want to view your SSH configuration:
 5. View your configuration file! You may need to edit this configuration if you change computers, or want to work on more than one computer during the bootcamp.
 
 </details>
-
-
-## Google Authentication
-
-Since we're now on a Virtual Machine, it is like a fresh, new computer, we need to re-authenticate some services with Google. Luckily for us, `gcloud` comes pre-installed.
-
-### Application Default Credentials
-
-Application Default Credentials are for authenticating our **code** (the Python 🐍 code we will write in the future) to interact with Google services and resources. It's a small distinction between `gcloud` and **code**, but an important one.
-
-To authenticate your Application Default Credentials, in your terminal run:
-
-```bash
-gcloud auth application-default login
-```
-
-And follow the prompts.
 
 
 ### Authenticate gcloud
@@ -639,6 +672,19 @@ project = my-gcp-project # Should be your GCP Project ID
 
 Your active configuration is: [default]
 ```
+
+
+### Application Default Credentials
+
+Application Default Credentials are for authenticating our **code** (Terraform and Python 🐍) to interact with Google services and resources. It's a small distinction between `gcloud` and **code**, but an important one.
+
+To authenticate your **Application Default Credentials**, in your terminal run:
+
+```bash
+gcloud auth application-default login
+```
+
+And follow the prompts. It should open a web-page to login to your Google account.
 
 
 ## VM configuration with Ansible
