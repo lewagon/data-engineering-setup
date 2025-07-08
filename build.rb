@@ -14,29 +14,30 @@ MAC_OS = %w[
   setup/macos_slack
   setup/slack_settings
   setup/github
-  ssh_key
+  chrome
   gcp_setup
-  virtual_machine
+  homebrew
   osx_vscode
   vscode_remote_ssh
-  vscode_extensions
-  cli_tools
-  setup/oh_my_zsh
+  gcp_cli_setup
+  gcp_cli_oauth
+  gcp_adc_auth
+  terraform
+  terraform_vm
+  vscode_ssh_connection
+  gcp_auth_vm_heading
+  gcp_cli_oauth
+  gcp_adc_auth
+  ubuntu_ansible_part1
   setup/gh_cli
-  ubuntu_gcloud
-  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
-  zsh_default_terminal
-  setup/ssh_agent
-  ubuntu_docker
-  kubernetes
-  terraform
-  ubuntu_spark
-  ubuntu_python
+  dotfiles_terminal
+  ubuntu_ansible_part2
+  ubuntu_vm_test
   repo_overview
   dbeaver
   setup/kitt
@@ -52,29 +53,28 @@ WINDOWS = %w[
   setup/windows_slack
   setup/slack_settings
   setup/github
-  ssh_key
+  chrome
   gcp_setup
-  virtual_machine
   win_vscode
   vscode_remote_ssh
-  vscode_extensions
-  cli_tools
-  setup/oh_my_zsh
+  gcp_cli_setup
+  gcp_adc_auth
+  terraform
+  terraform_vm
+  vscode_ssh_connection
+  gcp_auth_vm_heading
+  gcp_cli_oauth
+  gcp_adc_auth
+  ubuntu_ansible_part1
   setup/gh_cli
-  ubuntu_gcloud
-  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
-  zsh_default_terminal
-  setup/ssh_agent
-  ubuntu_docker
-  kubernetes
-  terraform
-  ubuntu_spark
-  ubuntu_python
+  dotfiles_terminal
+  ubuntu_ansible_part2
+  ubuntu_vm_test
   repo_overview
   dbeaver
   setup/kitt
@@ -90,29 +90,29 @@ LINUX = %w[
   setup/ubuntu_slack
   setup/slack_settings
   setup/github
-  ssh_key
+  chrome
   gcp_setup
-  virtual_machine
   setup/ubuntu_vscode
   vscode_remote_ssh
-  vscode_extensions
-  cli_tools
-  setup/oh_my_zsh
+  gcp_cli_setup
+  gcp_cli_oauth
+  gcp_adc_auth
+  terraform
+  terraform_vm
+  vscode_ssh_connection
+  gcp_auth_vm_heading
+  gcp_cli_oauth
+  gcp_adc_auth
+  ubuntu_ansible_part1
   setup/gh_cli
-  ubuntu_gcloud
-  gcp_setup_linux
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
   dotfiles_new_laptop_heading
   dotfiles_new_laptop
-  zsh_default_terminal
-  setup/ssh_agent
-  ubuntu_docker
-  kubernetes
-  terraform
-  ubuntu_spark
-  ubuntu_python
+  dotfiles_terminal
+  ubuntu_ansible_part2
+  ubuntu_vm_test
   repo_overview
   dbeaver
   setup/kitt

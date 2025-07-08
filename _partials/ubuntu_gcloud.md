@@ -10,7 +10,7 @@ sudo apt-get install google-cloud-sdk-app-engine-python
 ```
 👉 [Install documentation](https://cloud.google.com/sdk/docs/install#deb)
 
-### Create a service account key 🔑
+<!-- ### Create a service account key 🔑
 
 **👌 Note: Skip to the next section if you already have a service account key**
 
@@ -56,4 +56,4 @@ Since the [service account](https://cloud.google.com/iam/docs/service-accounts) 
 
 ![](images/gcp_create_key.png)
 
-The browser has now saved the service account json file 🔑 in your downloads directory (it is named according to your service account name, something like `le-wagon-data-123456789abc.json`)
+The browser has now saved the service account json file 🔑 in your downloads directory (it is named according to your service account name, something like `le-wagon-data-123456789abc.json`) -->
