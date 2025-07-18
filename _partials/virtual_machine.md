@@ -50,13 +50,19 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 
     <img alt="gcloud-console-add-manual-ssh-key" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-manual-ssh-key.png" width=500>
 - In your terminal display your public SSH key:
-    - Windows: navigate to where you created your SSH key and open `id_ed25519.pub`
+    - Windows:
+        ```bash
+        # If you use Windows Terminal
+        more $HOME\.ssh\de-bootcamp.pub
+        # OR if you use Command Prompt:
+        # more %HOMEPATH%\.ssh\de-bootcamp.pub
+        ```
 
     - Mac/Linux users can use:
         ```bash
-        cat ~/.ssh/id_ed25519.pub
-        # OR cat ~/.ssh/de-bootcamp.pub if you created a unique key
+        cat ~/.ssh/de-bootcamp.pub
         ```
+
 - Copy your public SSH key and paste it:
 
     <img alt="gcloud-console-add-ssh-key-pub" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-add-ssh-key-pub.png" width=500>
