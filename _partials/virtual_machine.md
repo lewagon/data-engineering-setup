@@ -1,7 +1,13 @@
 
 ## Virtual Machine (VM)
 
-<iframe src="https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg" width="100%" height="800" allow="fullscreen" style="aspect-ratio: 1 / 1; border: 0; min-height: 480px"></iframe>
+![![scribe gcp vm](images/scribe_gcp_vm.png)](https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg)
+
+![[scribe gcp vm](images/scribe_gcp_vm.png)](https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg)
+
+![![scribe gcp vm](https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg)](images/scribe_gcp_vm.png)
+
+![[scribe gcp vm](https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg)](images/scribe_gcp_vm.png)
 
 **👌 Note: Skip to the next section if you already have a VM set up**
 
