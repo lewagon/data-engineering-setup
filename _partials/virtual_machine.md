@@ -5,7 +5,7 @@
   <img src="images/scribe_gcp_vm.png" alt="scribe gcp vm" width="500">
 </a>
 
-**👌 Note: Skip to the next section if you already have a VM set up**
+**👆 Follow [this guide](https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg) or skip to the next section if you already have a VM set up**
 
 _Note: The following section requires you already have a [Google Cloud Platform](https://cloud.google.com/) account associated with an active [Billing account](https://console.cloud.google.com/billing)._
 
