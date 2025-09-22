@@ -263,6 +263,8 @@ _Note: The VM setup requires a [Google Cloud Platform](https://cloud.google.com/
 
 ℹ️ In the guide, left click to drag the screenshots if necessary
 
+ℹ️ You may adjust the aspect ratio of your browser window to see the full screenshots
+
 <a href="https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg">
   <img src="images/scribe_gcp_vm.png" alt="scribe gcp vm" width="500">
 </a>
