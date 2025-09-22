@@ -1,4 +1,7 @@
+
 ## Virtual Machine (VM)
+
+<iframe src="https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg" width="100%" height="800" allow="fullscreen" style="aspect-ratio: 1 / 1; border: 0; min-height: 480px"></iframe>
 
 **👌 Note: Skip to the next section if you already have a VM set up**
 
