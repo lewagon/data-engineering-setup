@@ -259,7 +259,7 @@ Go to your project [APIs dashboard](https://console.cloud.google.com/apis/dashbo
 
 ## Virtual Machine (VM)
 
-_Note: The VM setup requires you already have a [Google Cloud Platform](https://cloud.google.com/) account associated with an active [Billing account](https://console.cloud.google.com/billing)_
+_Note: The VM setup requires a [Google Cloud Platform](https://cloud.google.com/) account associated with an active [Billing account](https://console.cloud.google.com/billing)_
 
 <a href="https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg">
   <img src="images/scribe_gcp_vm.png" alt="scribe gcp vm" width="500">
