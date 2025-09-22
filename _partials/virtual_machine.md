@@ -1,7 +1,7 @@
 
 ## Virtual Machine (VM)
 
-![![scribe gcp vm](images/scribe_gcp_vm.png)](https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg)
+[![scribe gcp vm](images/scribe_gcp_vm.png)](https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg)
 
 ![[scribe gcp vm](images/scribe_gcp_vm.png)](https://scribehow.com/embed/Create_a_Google_Cloud_VM_Instance_with_SSH_Key__1ohFlAbSR9yoG28S0PDfwg)
 
