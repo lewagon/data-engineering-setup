@@ -271,18 +271,14 @@ _Note: The following section requires you already have a [Google Cloud Platform]
 - Select General purpose > PRESET > e2-standard-4
 
     <img alt="gcloud-console-vm-e2-standard4" src="https://wagon-public-assets.s3.eu-west-3.amazonaws.com/v9dv42llst8qjp2uj0d1yr00po1g" width=500>
-- Boot disk > Change
+- OS and storage > Change
   - Operating system > Ubuntu
-  - Version > Ubuntu 22.04 LTS x86/64
+  - Version > Ubuntu 24.04 LTS x86/64
   - Boot disk type > Balanced persistent disk
   - Size > upgrade to 150GB
 
     <img alt="gcloud-console-vm-ubunt" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-ubunt.png" width=500>
-- Open `Networking, Disks, ...` under `Advanced options`
-- Open `Networking`
-
-    <img alt="gcloud-console-vm-networking" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-networking.png" width=500>
-- Go to `Network interfaces` and click on `default default (...)` with a downward arrow on the right.
+- Networking > Network interfaces and click on `default default (...)` with a downward arrow on the right.
 
     <img alt="gcloud-console-vm-network-interfaces" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/gcloud-console-vm-network-interfaces.png" width=500>
 - This opened a box `Edit network interface`
