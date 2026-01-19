@@ -44,19 +44,11 @@ In a terminal, run the following commands:
 mkdir -p ~/code/wagon-de-bootcamp
 ```
 ```bash
-curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf
-```
-```bash
-curl -L -o ~/code/wagon-de-bootcamp/provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf
-```
-```bash
-curl -L -o ~/code/wagon-de-bootcamp/variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf
-```
-```bash
-curl -L -o ~/code/wagon-de-bootcamp/terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars
-```
-```bash
-curl -L -o ~/code/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
+curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars \
+&& curl -L -o ~/code/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
 ```
 
 $MAC_END
@@ -65,22 +57,16 @@ $WINDOWS_START
 
 Using the **Command Prompt** (cmd), run the following:
 
+❗ Note: The below commands will only work in **Command Prompt** - they will not work in Windows Powershell.
+
 ```cmd
 mkdir %USERPROFILE%\wagon-de-bootcamp
 ```
 ```cmd
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\main.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf
-```
-```cmd
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\provider.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf
-```
-```cmd
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\variables.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf
-```
-```cmd
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars
-```
-```cmd
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\main.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf && ^
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\provider.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf && ^
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\variables.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf && ^
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars && ^
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
 ```
 
@@ -92,19 +78,11 @@ $LINUX_START
 mkdir -p ~/code/wagon-de-bootcamp
 ```
 ```bash
-curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf
-```
-```bash
-curl -L -o ~/code/wagon-de-bootcamp/provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf
-```
-```bash
-curl -L -o ~/code/wagon-de-bootcamp/variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf
-```
-```bash
-curl -L -o ~/code/wagon-de-bootcamp/terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars
-```
-```bash
-curl -L -o ~/code/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
+curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars \
+&& curl -L -o ~/code/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
 ```
 
 $LINUX_END
