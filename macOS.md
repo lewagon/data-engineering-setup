@@ -662,7 +662,7 @@ If you want to view your SSH configuration:
 
 ---
 
-# Part 2: Configure your Virtual Machine - Part 1
+# Part 2: Configure your Virtual Machine 1
 
 
 ## VM gcloud and Application Default Credentials
@@ -993,7 +993,7 @@ Once you have finished installing the **dotfiles**, kill your terminal (little t
 The terminal should read as `zsh`.
 
 
-# Part 3: Configure your Virtual Machine - Part 2
+# Part 3: Configure your Virtual Machine 2
 
 ## VM configuration with Ansible - Part 2
 
