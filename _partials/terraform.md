@@ -2,15 +2,16 @@
 
 Terraform is a tool for infrastructure as code (IAC) to create (and destroy) resources to create in the cloud.
 
-$MAC_START
+<!-- $MAC_START -->
 You can use `brew` to install terraform. In your terminal, run:
 
 ```bash
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 ```
-$MAC_END
-$WINDOWS_START
+<!-- $MAC_END -->
+
+<!-- $WINDOWS_START -->
 ### Download
 
 To install terraform, download the **zip archive** from the Terraform install page at this [link here 🔗](https://developer.hashicorp.com/terraform/install).
@@ -43,8 +44,11 @@ To update your path:
 5. Click **Ok** to close the `Path` variable window, and click **Ok** again to close the Environment Variable window.
 
 6. Close **Command Prompt** and open it again
-$WINDOWS_END
-$LINUX_START
+
+<!-- $WINDOWS_END -->
+
+<!-- $LINUX_START -->
+
 Install some basic requirements:
 ```bash
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
@@ -74,7 +78,7 @@ Now we can install terraform directly with **apt** 👇
 sudo apt update
 sudo apt-get install terraform
 ```
-$LINUX_END
+<!-- $LINUX_END -->
 
 Verify the installation with:
 
