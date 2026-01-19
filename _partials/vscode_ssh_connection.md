@@ -90,4 +90,4 @@ If you want to view your SSH configuration:
 
 ---
 
-# Part 2: Configure your Virtual Machine - Part 1
+# Part 2: Configure your Virtual Machine 1

@@ -1,4 +1,4 @@
-# Part 3: Configure your Virtual Machine - Part 2
+# Part 3: Configure your Virtual Machine 2
 
 ## VM configuration with Ansible - Part 2
 
