@@ -25,7 +25,7 @@ $WINDOWS_START
 
 Windows has strict permissions for SSH files by default, we need to alter some permissions on the SSH configuration that was created by `gcloud` so VS Code can read the files and manage the SSH connection.
 
-In Command Prompt run:
+In **Command Prompt** run:
 
 ```cmd
 icacls %USERPROFILE%\.ssh\config /inheritance:r
