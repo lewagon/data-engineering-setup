@@ -14,7 +14,6 @@ MAC_OS = %w[
   setup/macos_slack
   setup/slack_settings
   setup/github
-  chrome
   gcp_setup
   homebrew
   osx_vscode
@@ -53,7 +52,6 @@ WINDOWS = %w[
   setup/windows_slack
   setup/slack_settings
   setup/github
-  chrome
   gcp_setup
   win_vscode
   vscode_remote_ssh
@@ -90,7 +88,6 @@ LINUX = %w[
   setup/ubuntu_slack
   setup/slack_settings
   setup/github
-  chrome
   gcp_setup
   setup/ubuntu_vscode
   vscode_remote_ssh
