@@ -16,19 +16,6 @@
 
     - name: Install apt packages
       block:
-        - name: Check last apt update time
-          stat:
-            path: /var/lib/apt/periodic/update-success-stamp
-          register: apt_stamp
-          tags: apt
-
-        - name: Update apt package list if update >24 hours ago
-          apt:
-            update_cache: true
-          become: true
-          when: apt_stamp.stat.exists == false or (ansible_date_time.epoch | int - apt_stamp.stat.mtime | int) > 86400
-          tags: apt
-
         - name: Install required apt packages
           apt:
             name:
