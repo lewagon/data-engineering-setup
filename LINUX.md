@@ -99,17 +99,6 @@ Have you signed up to GitHub? If not, [do it right away](https://github.com/join
 :point_right: **[Enable Two-Factor Authentication (2FA)](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-text-messages)**. GitHub will send you text messages with a code when you try to log in. This is important for security and also will soon be required in order to contribute code on GitHub.
 
 
-## Chrome - your browser
-
-Install the Google Chrome browser if you haven't got it already and set it as a __default browser__.
-
-Follow the steps for your system from this link :point_right: [Install Google Chrome](https://support.google.com/chrome/answer/95346?co=GENIE.Platform%3DDesktop&hl=en-GB)
-
-__Why Chrome?__
-
-We recommend to use it as your default browser as it's most compatible with testing or running your code, as well as working with Google Cloud Platform. Another alternative is Firefox, however we don't recommend using other tools like Opera, Internet Explorer or Safari.
-
-
 ## Google Cloud Platform setup
 
 [GCP](https://cloud.google.com/) is a cloud solution that you are going to use in order to work on a virtual machine.
