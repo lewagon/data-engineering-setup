@@ -565,7 +565,7 @@ For example, try running:
 
 Windows has strict permissions for SSH files by default, we need to alter some permissions on the SSH configuration that was created by `gcloud` so VS Code can read the files and manage the SSH connection.
 
-In Command Prompt run:
+In **Command Prompt** run:
 
 ```cmd
 icacls %USERPROFILE%\.ssh\config /inheritance:r
@@ -959,6 +959,8 @@ Once you have finished installing the **dotfiles**, kill your terminal (little t
 
 The terminal should read as `zsh`.
 
+
+# Part 3: Configure your Virtual Machine - Part 2
 
 ## VM configuration with Ansible - Part 2
 

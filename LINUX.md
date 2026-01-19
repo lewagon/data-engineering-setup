@@ -984,6 +984,8 @@ Once you have finished installing the **dotfiles**, kill your terminal (little t
 The terminal should read as `zsh`.
 
 
+# Part 3: Configure your Virtual Machine - Part 2
+
 ## VM configuration with Ansible - Part 2
 
 ### Ansible Playbook 2
