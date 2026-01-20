@@ -6,8 +6,8 @@ A part of the setup will be done on your **local machine** but most of the confi
 
 Please **read instructions carefully and execute all commands in the following order**. If you get stuck, don't hesitate to ask a teacher for help :raising_hand:
 
-This setup is largely automated with [**Terraform** 🔗](https://developer.hashicorp.com/terraform) and [**Ansible** 🔗](https://docs.ansible.com/). **Terraform** and **ansible** are [_Infrastructure as Code_ 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) tools.
-- **Terraform** excels at creating and destroying cloud resources, like virtual machines, IP addresses, databases and more!
+This setup is largely automated with [**Terraform** 🔗](https://developer.hashicorp.com/terraform) and [**Ansible** 🔗](https://docs.ansible.com/). **Terraform** and **Ansible** are [_Infrastructure as Code_ 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) tools.
+- **Terraform** excels at creating and destroying cloud resources - like virtual machines, IP addresses, databases and more!
 - **Ansible** is used to configure linux machines with specific settings and software. Perfect for fine-tuning the Virtual Machine you will be creating with Terraform!
 
 There are three main components to the setup!
@@ -41,7 +41,7 @@ In this section you will:
 2. Test your set up to make sure that everything has installed correctly
 3. Create isolated python environments for all your challenges
 
-Don't worry, we'll go into more detail in each of the individual sections.
+Don't worry, we'll go into more detail in each of the individual sections 👌
 
 Let's start :rocket:
 
