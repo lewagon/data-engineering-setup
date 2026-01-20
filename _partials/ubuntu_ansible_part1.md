@@ -50,7 +50,7 @@ And the playbook should start running!
 
 ### What is the playbook installing?
 
-This playbook is installing a few things, while the playbook is running, let's go through them:
+While this playbook is running, lets go through what is being installed and configured:
 - Updating system packages. Ubuntu uses the `APT` package manager.
 - Changing the default shell from **bash** to **zsh**, a more customizable shell that is extensible and looks great!
 - Installing the **Oh-My-ZSH** plugin for the **zsh** shell. We'll use it a bit later to add some quality of life plugins and extensions for `zsh`.
@@ -62,3 +62,5 @@ This playbook is installing a few things, while the playbook is running, let's g
 - Install the **GitHub CLI**: the CLI tool that we'll use to interact with your GitHub account directly from the terminal.
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
+
+💡 Curious about how Ansible playbooks are defined, take a look at the playbook being run at this [link here 🔗](https://github.com/lewagon/data-engineering-setup/blob/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml)
