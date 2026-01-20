@@ -29,11 +29,7 @@ MAC_OS = %w[
   gcp_adc_auth
   ubuntu_ansible_part1
   setup/gh_cli
-  dotfiles
-  dotfiles_new_student
-  dotfiles_new_laptop
-  dotfiles_new_laptop_heading
-  dotfiles_new_laptop
+  dotfiles_simple
   dotfiles_terminal
   ubuntu_ansible_part2
   ubuntu_vm_test
@@ -65,11 +61,7 @@ WINDOWS = %w[
   gcp_adc_auth
   ubuntu_ansible_part1
   setup/gh_cli
-  dotfiles
-  dotfiles_new_student
-  dotfiles_new_laptop
-  dotfiles_new_laptop_heading
-  dotfiles_new_laptop
+  dotfiles_simple
   dotfiles_terminal
   ubuntu_ansible_part2
   ubuntu_vm_test
@@ -102,11 +94,7 @@ LINUX = %w[
   gcp_adc_auth
   ubuntu_ansible_part1
   setup/gh_cli
-  dotfiles
-  dotfiles_new_student
-  dotfiles_new_laptop
-  dotfiles_new_laptop_heading
-  dotfiles_new_laptop
+  dotfiles_simple
   dotfiles_terminal
   ubuntu_ansible_part2
   ubuntu_vm_test
