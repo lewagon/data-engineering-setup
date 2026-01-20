@@ -45,7 +45,7 @@ ansible-playbook playbooks/setup_vm_part1.yml
 
 And the playbook should start running!
 
-❗ If an errors occur, raise a ticket with a teacher. You can safely run the ansible playbook again.
+❗ If an errors occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required.
 
 ### What is the playbook installing?
 

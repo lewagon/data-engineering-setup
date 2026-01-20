@@ -33,7 +33,7 @@ Should return:
 * 3.12.8 (set by /home/<your_username>/.pyenv/version)
 ```
 
-Note: There should be an `*` next to 3.12.8
+❗ Note: There should be a `*` next to 3.12.8
 
 #### Pipx
 
@@ -49,11 +49,11 @@ Should return something similar too:
 venvs are in /home/<your_username>/.local/share/pipx/venvs
 apps are exposed on your $PATH at /home/<your_username>/.local/bin
 manual pages are exposed at /home/<your_username>/.local/share/man
-   package poetry 2.1.1, installed using Python 3.12.8
+   package poetry 2.3.1, installed using Python 3.12.8
     - poetry
-   package ruff 0.11.0, installed using Python 3.12.8
+   package ruff 0.14.13, installed using Python 3.12.8
     - ruff
-   package tldr 3.3.0, installed using Python 3.12.8
+   package tldr 3.4.3, installed using Python 3.12.8
     - tldr
     - man1/tldr.1
 ```
@@ -129,7 +129,7 @@ Should return:
 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
 
-And then make sure the kubernetes CLI utility, `kubectl`, works with:
+And then to make sure the kubernetes CLI utility, `kubectl`, works, run the following in your terminal:
 
 ```bash
 # Get pods
@@ -176,7 +176,7 @@ terraform --version
 Should return:
 
 ```
-Terraform v1.11.2
+Terraform v1.14.3
 on linux_amd64
 ```
 

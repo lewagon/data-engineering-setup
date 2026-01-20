@@ -1,6 +1,6 @@
 ## Terraform
 
-Terraform is a tool for infrastructure as code (IAC) to create (and destroy) resources to create in the cloud.
+Terraform is a tool for [Infrastructure as Code (IaC) 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) to create, destroy, and manage resources in the cloud.
 
 $MAC_START
 
@@ -10,6 +10,7 @@ You can use `brew` to install terraform. In your terminal, run:
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 ```
+
 $MAC_END
 
 $WINDOWS_START

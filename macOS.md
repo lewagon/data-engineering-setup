@@ -6,8 +6,8 @@ A part of the setup will be done on your **local machine** but most of the confi
 
 Please **read instructions carefully and execute all commands in the following order**. If you get stuck, don't hesitate to ask a teacher for help :raising_hand:
 
-This setup is largely automated with [**Terraform** 🔗](https://developer.hashicorp.com/terraform) and [**Ansible** 🔗](https://docs.ansible.com/). **Terraform** and **ansible** are [_Infrastructure as Code_ 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) tools.
-- **Terraform** excels at creating and destroying cloud resources, like virtual machines, IP addresses, databases and more!
+This setup is largely automated with [**Terraform** 🔗](https://developer.hashicorp.com/terraform) and [**Ansible** 🔗](https://docs.ansible.com/). **Terraform** and **Ansible** are [_Infrastructure as Code_ 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) tools.
+- **Terraform** excels at creating and destroying cloud resources - like virtual machines, IP addresses, databases and more!
 - **Ansible** is used to configure linux machines with specific settings and software. Perfect for fine-tuning the Virtual Machine you will be creating with Terraform!
 
 There are three main components to the setup!
@@ -41,7 +41,7 @@ In this section you will:
 2. Test your set up to make sure that everything has installed correctly
 3. Create isolated python environments for all your challenges
 
-Don't worry, we'll go into more detail in each of the individual sections.
+Don't worry, we'll go into more detail in each of the individual sections 👌
 
 Let's start :rocket:
 
@@ -430,7 +430,7 @@ And follow the prompts. It should open a web-page to login to your Google accoun
 
 ## Terraform
 
-Terraform is a tool for infrastructure as code (IAC) to create (and destroy) resources to create in the cloud.
+Terraform is a tool for [Infrastructure as Code (IaC) 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) to create, destroy, and manage resources in the cloud.
 
 
 You can use `brew` to install terraform. In your terminal, run:
@@ -439,6 +439,7 @@ You can use `brew` to install terraform. In your terminal, run:
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 ```
+
 
 
 
@@ -768,7 +769,7 @@ ansible-playbook playbooks/setup_vm_part1.yml
 
 And the playbook should start running!
 
-❗ If an errors occur, raise a ticket with a teacher. You can safely run the ansible playbook again.
+❗ If an errors occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required.
 
 ### What is the playbook installing?
 
@@ -840,11 +841,11 @@ gh auth status
 
 ## Dotfiles
 
-Let's jazz up your terminal, zsh, and VS Code by installing Le Wagon's curated [dotfiles](http://github.com/lewagon/dotfiles) **on your Virtual Machine**.
+Let's enhance the developer experience on your Virtual Machine by install Le Wagon's pre-configured [dotfiles 🔗](https://github.com/lewagon/dotfiles) for your terminal, zsh and VS Code.
 
-To make this setup your own and customise it further to suit yourself, you'll need to make a _fork_ of it and store it on your own Github account.
+To customise this configuration for yourself, you'll need to **fork** the repository to your own Github account.
 
-Forking means that it will create a new repo in your GitHub account, identical to the original one. You'll have a new repository on your GitHub account, `your_github_username/dotfiles`. We need to fork because each of you will need to put specific information (e.g. your name) in those files.
+**Forking** creates a copy of the repository under your account (`your_github_username/dotfiles`), which you can then modify with your personal information, such as your name.
 
 Open your terminal on your VM and run the following command:
 
@@ -857,7 +858,7 @@ You should see your Github username printed.
 
 ❗ If you do not see your Github username being printed - **stop here** - and raise a ticket with a TA 🙋 There may be a problem with the previous step (`gh auth`).
 
-Time to fork the repo and clone it on your Virtual Machine:
+To fork the Le Wagon dotfiles repository and clone it on your Virtual Machine. Execute the following command:
 
 ```bash
 mkdir -p ~/code/$GITHUB_USERNAME && cd $_
@@ -885,8 +886,10 @@ cd ~/code/$GITHUB_USERNAME/dotfiles && zsh git_setup.sh
 
 :point_up: This will **prompt** you for your name (`FirstName LastName`) and your email.
 
-:warning: You **need** to put one of the emails listed above thanks to the previous `gh api ...` command.
-If you don't enter a valid email, Kitt will not be able to track your progress. 💡 Select the `@users.noreply.github.com` address if you don't want your email to appear in public repositories you may contribute to.
+:warning: You **need** to put one of the emails listed above from the previous `gh api ...` command.
+If you do not enter a valid email, Kitt will not be able to track your progress.
+
+💡 Select the `...@users.noreply.github.com` address if you don't want your email to appear in public repositories you may contribute to.
 
 
 ---
@@ -1022,7 +1025,7 @@ Should return:
 * 3.12.8 (set by /home/<your_username>/.pyenv/version)
 ```
 
-Note: There should be an `*` next to 3.12.8
+❗ Note: There should be a `*` next to 3.12.8
 
 #### Pipx
 
@@ -1038,11 +1041,11 @@ Should return something similar too:
 venvs are in /home/<your_username>/.local/share/pipx/venvs
 apps are exposed on your $PATH at /home/<your_username>/.local/bin
 manual pages are exposed at /home/<your_username>/.local/share/man
-   package poetry 2.1.1, installed using Python 3.12.8
+   package poetry 2.3.1, installed using Python 3.12.8
     - poetry
-   package ruff 0.11.0, installed using Python 3.12.8
+   package ruff 0.14.13, installed using Python 3.12.8
     - ruff
-   package tldr 3.3.0, installed using Python 3.12.8
+   package tldr 3.4.3, installed using Python 3.12.8
     - tldr
     - man1/tldr.1
 ```
@@ -1118,7 +1121,7 @@ Should return:
 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
 
-And then make sure the kubernetes CLI utility, `kubectl`, works with:
+And then to make sure the kubernetes CLI utility, `kubectl`, works, run the following in your terminal:
 
 ```bash
 # Get pods
@@ -1165,7 +1168,7 @@ terraform --version
 Should return:
 
 ```
-Terraform v1.11.2
+Terraform v1.14.3
 on linux_amd64
 ```
 
@@ -1231,10 +1234,10 @@ upstream        git@github.com:lewagon/data-engineering-challenges.git (fetch)
 upstream        git@github.com:lewagon/data-engineering-challenges.git (push)
 ```
 
-From challenge folder root **on the vm**, we'll run `make install`, which triggers 3 operations:
+From the `data-engineering-challenges` folder root **on your VM**, we'll run `make install`, which triggers 3 operations:
 
-- `make install-poetry`: `cd` inside each challenge folders, and `poetry install` inside each! (takes a while)
-- `make allow-envrc`: allow direnv to execute inside each folder (otherwise you have to manually "allow" it)
+- `make install-poetry`: `cd` (**c**hange **d**irectory) into each challenge folder, and run `poetry install` inside each! (takes a while)
+- `make allow-envrc`: allow `direnv` to execute inside each folder (otherwise you have to manually "allow" it)
 - `make own-repo`: allows your user to be the linux "owner" of all files in this challenge folder
 
 Let's make!
@@ -1243,7 +1246,7 @@ Let's make!
 make install
 ```
 
-This will take a while. You have time to grab a coffee ☕️, take a break, or start the next step while all your poetry environments are installing.
+This might take a while. You have time to grab a coffee ☕️, take a break, or start the next step while all your poetry environments are installing.
 
 ⚠️ If at the very end of this process you get a few errors like: `direnv: error .envrc file not found` or a Python version isn't available (relating to `Dask`) - that is normal and nothing to worry about 👌
 
