@@ -12,6 +12,7 @@
 ![](images/gcp-create-project.png)
 
 - Give it a name such as `Wagon Bootcamp` for example
+- ❗ It is important that your project **does not** have an organisation ❗
 - Notice the `ID` automatically created for the project, e.g. `wagon-bootcamp-123456`
 
 ![](images/gcp_project.png)

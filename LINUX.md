@@ -113,6 +113,7 @@ Have you signed up to GitHub? If not, [do it right away](https://github.com/join
 ![](images/gcp-create-project.png)
 
 - Give it a name such as `Wagon Bootcamp` for example
+- ❗ It is important that your project **does not** have an organisation ❗
 - Notice the `ID` automatically created for the project, e.g. `wagon-bootcamp-123456`
 
 ![](images/gcp_project.png)
@@ -641,11 +642,13 @@ If you want to view your SSH configuration:
 
 </details>
 
-🚨🚨🚨 **The setup of your local machine is complete. All following terminal commands will be run from within your virtual machine terminal (via VS Code)** 🚨🚨🚨
+Congratulations, the setup of you local laptop is complete 🎉 We just need to fine tune your Virtual Machine 🪛
 
 ---
 
 # Part 2: Configure your Virtual Machine 1
+
+🚨🚨🚨 **All following terminal commands will be run from within your virtual machine terminal, via VS Code** 🚨🚨🚨
 
 
 ## VM gcloud and Application Default Credentials
@@ -756,7 +759,7 @@ And the playbook should start running!
 
 ### What is the playbook installing?
 
-This playbook is installing a few things, while the playbook is running, let's go through them:
+While this playbook is running, lets go through what is being installed and configured:
 - Updating system packages. Ubuntu uses the `APT` package manager.
 - Changing the default shell from **bash** to **zsh**, a more customizable shell that is extensible and looks great!
 - Installing the **Oh-My-ZSH** plugin for the **zsh** shell. We'll use it a bit later to add some quality of life plugins and extensions for `zsh`.
@@ -768,6 +771,8 @@ This playbook is installing a few things, while the playbook is running, let's g
 - Install the **GitHub CLI**: the CLI tool that we'll use to interact with your GitHub account directly from the terminal.
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
+
+💡 Curious about how Ansible playbooks are defined, take a look at the playbook being run at this [link here 🔗](https://github.com/lewagon/data-engineering-setup/blob/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml)
 
 
 ## GitHub CLI
@@ -908,15 +913,9 @@ And the playbook should start running! If you're asked if you want VS Code to be
 
 ❗ If any errors occur, raise a ticket with a teacher. You can safely run the playbook again.
 
-<details>
-<summary markdown='span'>❓ Why two Ansible playbooks?</summary>
-
-This second ansible playbook requires GitHub authorisation to fork the `lewagon/data-engineering-challenges` repository and it is also editing some of the Le Wagon recommended **dotfiles**. So we separated the process into two steps.
-</details>
-
 ### What is the playbook installing?
 
-This playbook is installing and configuring a things, while the playbook is running, let's go through them:
+While the playbook is running, let's go through what is being installed and configured.
 
 **Python and Poetry**
 
@@ -951,15 +950,23 @@ Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. W
     - **gcloud**: Auto-complete for the gcloud CLI tool
     - **ssh-agent**: Saves your SSH password so you only have to enter it once per session.
     - **direnv**: A tool to load `.envrc` files when you `cd` into a directory. Great for loading environment variables.
-- Installing **Spark**: Spark is a distributed data processing framework
+- Installing **Spark**: A distributed data processing framework
 
 **Data Engineering Challenges Repository**
 
 The challenges that you'll be working on throughout the bootcamp! The playbook is forking the **data-engineering-challenges** repository from **lewagon** to your own GitHub user. Then cloning that repository from your GitHub account down onto your Virtual Machine.
 
+💡 Curious about how Ansible playbooks are defined, take a look at the playbook being run at this [link here 🔗](https://github.com/lewagon/data-engineering-setup/blob/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml)
+
+<details>
+<summary markdown='span'>❓ Why two Ansible playbooks?</summary>
+
+This second ansible playbook requires GitHub authorisation to fork the `lewagon/data-engineering-challenges` repository and it is also editing some of the Le Wagon recommended **dotfiles**. So we separated the process into two steps.
+</details>
+
 ### Restart Virtual Machine
 
-Once the playbook has finished running, you need to completely shutdown your Virtual Machine so that some of the configuration updates (specifically **pyenv** and **Docker**).
+Once the playbook has finished running, you need to completely shutdown your Virtual Machine so that some of the configuration updates properly (specifically **pyenv** and **Docker**).
 
 To shutdown your VM, navigate to the GCP Compute Engine Instances [console page 🔗](https://console.cloud.google.com/compute/instances).
 
@@ -967,7 +974,7 @@ Select your VM instance and click on the stop button:
 
 ![](/images/gcp_vm_stop.png)
 
-Wait for a few minutes until the VM shows that it is completely off. You may need to refresh the page, the GCP Console doesn't dynamically update.
+Wait for a few minutes until the VM shows that it is completely off. You may need to refresh the page, the GCP Console (web GUI) doesn't dynamically update.
 
 When the VM is completely off, turn it on again by selecting the check box next to your instance and clicking **START/RESUME**. Give it a minute to turn on, then connect via VS Code.
 

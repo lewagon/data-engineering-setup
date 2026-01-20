@@ -80,8 +80,10 @@ If you want to view your SSH configuration:
 
 </details>
 
-🚨🚨🚨 **The setup of your local machine is complete. All following terminal commands will be run from within your virtual machine terminal (via VS Code)** 🚨🚨🚨
+Congratulations, the setup of you local laptop is complete 🎉 We just need to fine tune your Virtual Machine 🪛
 
 ---
 
 # Part 2: Configure your Virtual Machine 1
+
+🚨🚨🚨 **All following terminal commands will be run from within your virtual machine terminal, via VS Code** 🚨🚨🚨
