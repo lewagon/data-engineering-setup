@@ -559,27 +559,21 @@ For example, try running:
 
 Windows has strict permissions for SSH files by default, we need to alter some permissions on the SSH configuration that was created by `gcloud` so VS Code can read the files and manage the SSH connection.
 
-In **Command Prompt** run:
+In **Command Prompt**, copy and execute the entire block of commands:
 
 ```cmd
-icacls %USERPROFILE%\.ssh\config /inheritance:r
-
-icacls %USERPROFILE%\.ssh\config /grant:r %USERNAME%:(R)
-
-icacls %USERPROFILE%\.ssh\config /grant:r SYSTEM:(R)
-
+icacls %USERPROFILE%\.ssh\config /inheritance:r && ^
+icacls %USERPROFILE%\.ssh\config /grant:r %USERNAME%:(R) && ^
+icacls %USERPROFILE%\.ssh\config /grant:r SYSTEM:(R) && ^
 icacls %USERPROFILE%\.ssh\config
 ```
 
 And:
 
 ```cmd
-icacls %USERPROFILE%\.ssh\google_compute_engine /inheritance:r
-
-icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r %USERNAME%:(R)
-
-icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r SYSTEM:(R)
-
+icacls %USERPROFILE%\.ssh\google_compute_engine /inheritance:r && ^
+icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r %USERNAME%:(R) && ^
+icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r SYSTEM:(R) && ^
 icacls %USERPROFILE%\.ssh\google_compute_engine
 ```
 
