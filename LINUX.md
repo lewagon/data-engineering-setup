@@ -736,17 +736,18 @@ Create a folder and download the ansible files:
 
 ```bash
 mkdir -p ~/vm-ansible-setup/playbooks
+```
 
-curl -L -o ~/vm-ansible-setup/ansible.cfg https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/vm-ansible-setup/ansible.cfg
-curl -L -o ~/vm-ansible-setup/hosts https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/vm-ansible-setup/hosts
-curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part1.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml
+```bash
+curl -L -o ~/vm-ansible-setup/ansible.cfg https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/ansible.cfg \
+&& curl -L -o ~/vm-ansible-setup/hosts https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/hosts \
+&& curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part1.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml
 ```
 
 And run with:
 
 ```bash
-cd ~/vm-ansible-setup
-ansible-playbook playbooks/setup_vm_part1.yml
+cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part1.yml
 ```
 
 And the playbook should start running!
@@ -894,14 +895,13 @@ We'll be using a second **Ansible** playbook to further configure your Virtual M
 Start by downloading the ansible playbook:
 
 ```bash
-curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml
+curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml
 ```
 
 And run with:
 
 ```bash
-cd ~/vm-ansible-setup
-ansible-playbook playbooks/setup_vm_part2.yml
+cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part2.yml
 ```
 
 And the playbook should start running! If you're asked if you want VS Code to behave more like Sublime Text, click accept.
@@ -969,7 +969,7 @@ Select your VM instance and click on the stop button:
 
 Wait for a few minutes until the VM shows that it is completely off. You may need to refresh the page, the GCP Console doesn't dynamically update.
 
-When the VM is completely off, turn it on again by selecting the check box next to your instance and clicking **START/RESUME**. Give it a minute to spin up, then connect via VS Code.
+When the VM is completely off, turn it on again by selecting the check box next to your instance and clicking **START/RESUME**. Give it a minute to turn on, then connect via VS Code.
 
 
 ## Check your Virtual Machine Setup
