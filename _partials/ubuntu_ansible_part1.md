@@ -30,17 +30,18 @@ Create a folder and download the ansible files:
 
 ```bash
 mkdir -p ~/vm-ansible-setup/playbooks
+```
 
-curl -L -o ~/vm-ansible-setup/ansible.cfg https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/vm-ansible-setup/ansible.cfg
-curl -L -o ~/vm-ansible-setup/hosts https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/vm-ansible-setup/hosts
-curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part1.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml
+```bash
+curl -L -o ~/vm-ansible-setup/ansible.cfg https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/ansible.cfg \
+&& curl -L -o ~/vm-ansible-setup/hosts https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/hosts \
+&& curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part1.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml
 ```
 
 And run with:
 
 ```bash
-cd ~/vm-ansible-setup
-ansible-playbook playbooks/setup_vm_part1.yml
+cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part1.yml
 ```
 
 And the playbook should start running!
