@@ -118,21 +118,28 @@ Once the verification goes through, you should receive an email stating that "Yo
 
 ## GCP APIs
 
-You will use different GCP services during the bootcamp which needs to be activated and configured.
+When you create a GCP Project, not every service is enabled by default. To enable a service (like using a VM or storing a Docker image in Artifact Registry) you have to enable the GCP API for that service.
 
 ### Default APIs
 
-Go to your project [APIs dashboard](https://console.cloud.google.com/apis/dashboard), you can see a bunch of APIs are already enabled:
+Go to your project [APIs dashboard 🔗](https://console.cloud.google.com/apis/dashboard), you can see a bunch of APIs are already enabled:
 
 <img alt='GCP APIs dashboard' src="images/gcp_apis_dashboard.png" width=200>
 
-### Enable Compute Engine (virtual machines) API
+### Enable additional APIs
 
-**👌 Note: Skip to the next section if you already have Compute Engine enabled**
+You'll need to enable some additional API's so that Terraform can create cloud resources on your behalf.
 
-- In the search bar, type _compute_ and click on the Compute Engine result
-    <img alt='APIs search' src="images/gcp_apis_search.png" width=500>
-- Click on `ENABLE`
+**Cloud Resource Manager**
 
-    <img alt='APIs enable' src="images/gcp_apis_enable.png" width=300>
-- Compute Engine is now enabled on your project
+On the [APIs dashboard 🔗](https://console.cloud.google.com/apis/dashboard) page, click on [Enable APIs and services 🔗](https://console.cloud.google.com/apis/library) and make sure your project is selected in the box in the top left.
+
+In the search box, search for: _cloud resource manager api_ and select the **Cloud Resource Manager API**. On the next page, click on **Enable**.
+
+**Service Usage**
+
+Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _service usage api_ and select the top result: **Service Usage API**. On the next page, click on **Enable**. ❗ This API might already enabled - not a problem if it is!
+
+**Compute Engine**
+
+Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _compute engine api_ and select: **Compute Engine API**. On the next page, click on **Enable**. ❗ This API might already enabled - not a problem if it is!

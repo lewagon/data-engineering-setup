@@ -11,7 +11,7 @@ ansible --version
 You should get an output similar to (some version numbers might change, that's fine):
 
 ```
-ansible [core 2.17.9]
+ansible [core 2.19.5]
   config file = /etc/ansible/ansible.cfg
   configured module search path = ['/home/tswift/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
   ansible python module location = /usr/lib/python3/dist-packages/ansible
@@ -22,7 +22,7 @@ ansible [core 2.17.9]
   libyaml = True
 ```
 
-❗ If not, raise a ticket with a teacher.
+❗ If not, raise a ticket with a teacher 🙋
 
 ### Ansible Playbook 1
 
@@ -45,7 +45,7 @@ ansible-playbook playbooks/setup_vm_part1.yml
 
 And the playbook should start running!
 
-❗ If an errors occur, raise a ticket with a teacher. You can safely run the playbook again.
+❗ If an errors occur, raise a ticket with a teacher. You can safely run the ansible playbook again.
 
 ### What is the playbook installing?
 

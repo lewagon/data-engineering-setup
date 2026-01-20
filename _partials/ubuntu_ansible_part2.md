@@ -1,3 +1,5 @@
+# Part 3: Configure your Virtual Machine 2
+
 ## VM configuration with Ansible - Part 2
 
 ### Ansible Playbook 2

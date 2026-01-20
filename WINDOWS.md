@@ -6,19 +6,21 @@ A part of the setup will be done on your **local machine** but most of the confi
 
 Please **read instructions carefully and execute all commands in the following order**. If you get stuck, don't hesitate to ask a teacher for help :raising_hand:
 
-This setup is largely automated with **Terraform** and **Ansible**. There are three main components to the setup! **Terraform** and **ansible** are _Infrastructure as Code_ tools.
+This setup is largely automated with [**Terraform** 🔗](https://developer.hashicorp.com/terraform) and [**Ansible** 🔗](https://docs.ansible.com/). **Terraform** and **ansible** are [_Infrastructure as Code_ 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) tools.
 - **Terraform** excels at creating and destroying cloud resources, like virtual machines, IP addresses, databases and more!
-- **Ansible** is used to configure linux machines with specific settings and software. Perfect for fine-tuning the Virtual Machine you will be creating!
+- **Ansible** is used to configure linux machines with specific settings and software. Perfect for fine-tuning the Virtual Machine you will be creating with Terraform!
+
+There are three main components to the setup!
 
 ## Part 1: Setup your local computer
 
-In this section you'll setup your local computer and create some accounts. It will include things like:
-1. Install some communication tools: Zoom, Slack
+In this section you'll setup your local computer and create some accounts. It will include:
+1. Installing the primary communication tool you'll use on the bootcamp: **Slack**!
 2. Create some accounts: Github, Google Cloud Platform (GCP)
-3. Install Visual Studio Code (VS Code)
+3. Install **Visual Studio Code (VS Code)**
 4. Install and authentication the GCP command line tool: `gcloud`
-5. Install **terraform** on your local computer
-6. Create your virtual machine with **terraform** and connect to it with **VS Code**!
+5. Install **Terraform** on your local computer
+6. Create your virtual machine with **Terraform** and connect to it with **VS Code**!
 
 ## Part 2: Configure your Virtual Machine Part 1
 
@@ -26,7 +28,7 @@ All parts of this section happen on your virtual machine.
 
 This section includes:
 1. Authenticate your virtual machine with `gcloud`
-2. Download and run an **ansible** playbook to partially configure your virtual machine
+2. Download and run an **Ansible** playbook to partially configure your virtual machine
 3. Login to the Github command line tool on your virtual machine
 4. Copy the Le Wagon recommended **dotfiles**. **Dotfiles** are settings that will enhance your terminal and developer experience!
 
@@ -35,14 +37,17 @@ This section includes:
 All parts of this section happen on your virtual machine.
 
 In this section you will:
-1. Download and run a second **ansible** playbook for some more fine tuning
+1. Download and run a second **Ansible** playbook for some more VM fine tuning
 2. Test your set up to make sure that everything has installed correctly
 3. Create isolated python environments for all your challenges
-
 
 Don't worry, we'll go into more detail in each of the individual sections.
 
 Let's start :rocket:
+
+---
+
+# Part 1: Local Setup
 
 
 ## Slack
@@ -92,17 +97,6 @@ Have you signed up to GitHub? If not, [do it right away](https://github.com/join
 ![GitHub picture](https://github.com/lewagon/setup/blob/master/images/github_picture.png)
 
 :point_right: **[Enable Two-Factor Authentication (2FA)](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-text-messages)**. GitHub will send you text messages with a code when you try to log in. This is important for security and also will soon be required in order to contribute code on GitHub.
-
-
-## Chrome - your browser
-
-Install the Google Chrome browser if you haven't got it already and set it as a __default browser__.
-
-Follow the steps for your system from this link :point_right: [Install Google Chrome](https://support.google.com/chrome/answer/95346?co=GENIE.Platform%3DDesktop&hl=en-GB)
-
-__Why Chrome?__
-
-We recommend to use it as your default browser as it's most compatible with testing or running your code, as well as working with Google Cloud Platform. Another alternative is Firefox, however we don't recommend using other tools like Opera, Internet Explorer or Safari.
 
 
 ## Google Cloud Platform setup
@@ -225,24 +219,31 @@ Once the verification goes through, you should receive an email stating that "Yo
 
 ## GCP APIs
 
-You will use different GCP services during the bootcamp which needs to be activated and configured.
+When you create a GCP Project, not every service is enabled by default. To enable a service (like using a VM or storing a Docker image in Artifact Registry) you have to enable the GCP API for that service.
 
 ### Default APIs
 
-Go to your project [APIs dashboard](https://console.cloud.google.com/apis/dashboard), you can see a bunch of APIs are already enabled:
+Go to your project [APIs dashboard 🔗](https://console.cloud.google.com/apis/dashboard), you can see a bunch of APIs are already enabled:
 
 <img alt='GCP APIs dashboard' src="images/gcp_apis_dashboard.png" width=200>
 
-### Enable Compute Engine (virtual machines) API
+### Enable additional APIs
 
-**👌 Note: Skip to the next section if you already have Compute Engine enabled**
+You'll need to enable some additional API's so that Terraform can create cloud resources on your behalf.
 
-- In the search bar, type _compute_ and click on the Compute Engine result
-    <img alt='APIs search' src="images/gcp_apis_search.png" width=500>
-- Click on `ENABLE`
+**Cloud Resource Manager**
 
-    <img alt='APIs enable' src="images/gcp_apis_enable.png" width=300>
-- Compute Engine is now enabled on your project
+On the [APIs dashboard 🔗](https://console.cloud.google.com/apis/dashboard) page, click on [Enable APIs and services 🔗](https://console.cloud.google.com/apis/library) and make sure your project is selected in the box in the top left.
+
+In the search box, search for: _cloud resource manager api_ and select the **Cloud Resource Manager API**. On the next page, click on **Enable**.
+
+**Service Usage**
+
+Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _service usage api_ and select the top result: **Service Usage API**. On the next page, click on **Enable**. ❗ This API might already enabled - not a problem if it is!
+
+**Compute Engine**
+
+Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _compute engine api_ and select: **Compute Engine API**. On the next page, click on **Enable**. ❗ This API might already enabled - not a problem if it is!
 
 
 ## Visual Studio Code
@@ -283,6 +284,7 @@ The `gcloud` Command Line Interface (CLI) is used to communicate with Google Clo
 ### Install gcloud
 
 
+
 To install, download the Google Cloud CLI installer from this [link here 🔗](https://cloud.google.com/sdk/docs/install#windows).
 
 Once it's finished downloading, launch the installer and follow the prompts. You only need to install `gcloud` for the current user.
@@ -290,7 +292,7 @@ Once it's finished downloading, launch the installer and follow the prompts. You
 On the last screen of the installer there will be four check boxes. Makes sure that the boxes for `Start Google SDK Shell` and `Run gcloud init to configure the Google Cloud CLI` are selected then click **Finish**. This should open a new **Command Prompt** window and ask a series of questions like:
 - **Do you want to log in?** - type `y` and hit enter and following the prompts. It should open a web-browser to log in to your Google account.
 - **Pick cloud project to use** - Select your GCP Project ID that you want to connect with `gcloud`
-- **Select your region and zone** - You can safely enter `n`. It's not important to us at the moment.
+- **Select your region and zone** - You can safely enter `n`. It's not important at the moment.
 
 Once you've completed the `gcloud` setup, close **Command Prompt** and re-open it, then run:
 
@@ -300,7 +302,7 @@ gcloud config list
 
 You should get an output similar to:
 
-```
+```bash
 [accessibility]
 screen_reader = True/False # depends on install options
 [core]
@@ -312,6 +314,8 @@ Your active configurations: [default]
 ```
 
 Now `gcloud` is installed and authenticated 🚀
+
+
 
 
 ### Application Default Credentials
@@ -331,11 +335,13 @@ And follow the prompts. It should open a web-page to login to your Google accoun
 
 Terraform is a tool for infrastructure as code (IAC) to create (and destroy) resources to create in the cloud.
 
+
+
 ### Download
 
 To install terraform, download the **zip archive** from the Terraform install page at this [link here 🔗](https://developer.hashicorp.com/terraform/install).
 
-❗ If you are using Windows 10 or 11, download the **AMD64** version (64 bit version).
+❗ If you are using Windows 10 or 11, download the **AMD64** version (64 bit version). ❗
 
 1. Using file explorer to go to the location you downloaded the **terraform zip archive**
 
@@ -343,7 +349,7 @@ To install terraform, download the **zip archive** from the Terraform install pa
 
 3. Copy `terraform.exe`
 
-4. Navigate to your home directory (`C:\Users\<YOUR_USERNAME>\`) and create a directory named `cli_apps`
+4. Navigate to your home directory (`C:\Users\<YOUR_USERNAME>\`) and create a directory named `terraform_cli`
 
 5. Paste `terraform.exe` in the `cli_apps` directory
 
@@ -352,22 +358,41 @@ To install terraform, download the **zip archive** from the Terraform install pa
 We need to manually add **Terraform** to the `PATH` environment variable. The `PATH` variable contains a list of directories that your computer looks in for programs that we run from the command prompt.
 
 To update your path:
-1. Open Windows Search and search for: **Environment Variables**
+1. Open Windows Search and search for: **Environment variables**
 
-2. Click **Environment Variables** or **Edit environment variables for your account**
+2. Select and open **Edit environment variables for your account**
 
-3. Click **New** on to top right of this window
+3. Under **User variables for <YOUR_USERNAME>** click on the variable named: `Path` to select it, then click on **Edit**
 
-4. Enter: `C:\Users\YOUR_USERNAME\cli_apps` - Make sure to replace `YOUR_USERNAME` with your computers user name.
+3. In the new pop out window, click **New** on to top right
+
+4. Enter: `C:\Users\YOUR_USERNAME\terraform_cli` - Make sure to replace `YOUR_USERNAME` with _your user name_. You can obtain your user name by running `echo %username%` in **Command Prompt**
 
 5. Click **Ok** to close the `Path` variable window, and click **Ok** again to close the Environment Variable window.
 
 6. Close **Command Prompt** and open it again
 
+
+
 Verify the installation with:
 
 ```bash
 terraform --version
+```
+
+The output should look similar to:
+
+```bash
+Terraform v1.14.3
+on <your_operating_system>_<your_cpu_architecture>
+
+# Windows example
+# Terraform v1.14.3
+# on windows_amd64
+
+# Linux example
+# Terraform v1.14.3
+# on linux_amd64
 ```
 
 
@@ -391,17 +416,17 @@ The specifications of the Virtual Machine and Network Settings you'll use for th
 
 ### Cost 💸
 
-Creating and running a Virtual Machine on Google Cloud Platform costs money!
+Creating and running a Virtual Machine on Google Cloud Platform costs money! 💸
 
 If you have created a new Google Cloud Platform account, the cost of the Virtual machine will be covered by the $300 USD credit for the first 90 days if you are diligent with turning off your Virtual Machine (or finish the _Linux and Bash_ challenge today 😎).
 
 ❗ **The cost of running a Virtual Machine with our configuration 24 hours a day, 7 days a week is ~$150 USD per month.** ❗
 
-You can massively reduce the cost by only running the Virtual Machine when you use it. You will _NOT_ be charged for the vCPU's and RAM while the Virtual Machine is off!
+You can massively reduce the cost by only running the Virtual Machine when you use it. You will **NOT** be charged for the vCPU's and RAM while the Virtual Machine is off!
 
 You will always pay for the Storage (equivalent of your hard-drive on your local computer). It's ~$10 USD per month for 100 GB.
 
-The rule of thumb is: if Google can rent the resource out to someone else when your not using it, you only pay for it when you are using the resource. That's why you don't pay for the CPU and RAM when you are not using it, Google can rent it out to someone else, but always pay for Storage, Google can't rent it out to someone else because it has your data on it.
+💡 A rule of thumb is: if a cloud provider can rent the resource out to someone else when your not using it, you only pay for it when you are using the resource. That's why you don't pay for the CPU and RAM when you are not using it, Google can rent it out to someone else - but will always pay for Storage, Google can't rent it out to someone else because it has your data on it.
 
 ### Download terraform files
 
@@ -409,26 +434,32 @@ We almost have all the necessary parts to create your VM using **terraform**. We
 
 First we'll create a folder and download the terraform files with:
 
-Using the Command Prompt (cmd), run the following:
+
+
+Using the **Command Prompt** (cmd), run the following:
+
+❗ Note: The below commands will only work in **Command Prompt** - they will not work in Windows Powershell.
 
 ```cmd
 mkdir %USERPROFILE%\wagon-de-bootcamp
-
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\main.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/main.tf
-
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\provider.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/provider.tf
-
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\variables.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/variables.tf
-
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/terraform.tfvars
-
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/.terraform.lock.hcl
 ```
+```cmd
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\main.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf && ^
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\provider.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf && ^
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\variables.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf && ^
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars && ^
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
+```
+
 
 
 ### Set variables
 
+
+
 Open up the file `C:\Users\<YOUR_USERNAME>\wagon-de-bootcamp\terraform.tfvars` in VS Code or any other code editor.
+
+
 
 It should look like:
 
@@ -447,7 +478,7 @@ We'll need to change some values in this file. Here's were you can find the requ
 - **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
 - **instance_user:** in Command Prompt, run `echo %username%`
 
-After completing this file, it should look similar to:
+After completing this file, it might look similar to:
 
 ```bash
 project_id    = "wagon-bootcamp"
@@ -457,31 +488,35 @@ instance_name = "lw-de-vm-tswift"
 instance_user = "taylorswift"
 ```
 
-Make sure to save the `terraform.tfvars` file, nagivate into the directory with the terraform files with:
+Make sure to save the `terraform.tfvars` file, navigate into the directory with the terraform files using your terminal with:
 
-```
+```bash
 cd %USERPROFILE%\wagon-de-bootcamp
 ```
 
-And initialise and test the files with:
+Initialise and test the terraform config files with:
 
 ```bash
 terraform init
+```
 
+Then:
+
+```bash
 terraform plan
 ```
 
 And check the output. Towards the bottom there should be a line:
 
-```
+```bash
 Plan: 2 to add, 0 to change, 0 to destroy
 ```
 
-We'll be adding:
+Terraform is telling you what it will create:
 - A compute engine instance
 - A static external IP address
 
-❗ If you have any errors, read the error and debug. If you need some help, raise a ticket with a teacher.
+**❗ If you have any errors, read the error and debug. If you need some help, raise a ticket with a teacher. ❗**
 
 If everything was successful, create your VM with:
 
@@ -491,11 +526,11 @@ terraform apply -auto-approve
 
 It might take a while for Terraform to create the cloud resources. Once you see:
 
-```
+```bash
 Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 ```
 
-Your Virtual Machine should be up and running! Check the GCP Compute Engine console at this [link here](https://console.cloud.google.com/compute/instances) to confirm.
+Your Virtual Machine should be up and running! Check the GCP Compute Engine console at this [link here 🔗](https://console.cloud.google.com/compute/instances) to confirm.
 
 
 ## Virtual Machine connection
@@ -524,7 +559,7 @@ For example, try running:
 
 Windows has strict permissions for SSH files by default, we need to alter some permissions on the SSH configuration that was created by `gcloud` so VS Code can read the files and manage the SSH connection.
 
-In Command Prompt run:
+In **Command Prompt** run:
 
 ```cmd
 icacls %USERPROFILE%\.ssh\config /inheritance:r
@@ -572,8 +607,6 @@ And you are connected! It should look similar too:
 
 Notice the connection in the very bottom-left corner of your VS Code window. It should have the Connection type (SSH), and the name of the host you are connected to.
 
-**The setup of your local machine is over. All following commands will be run from within your 🚨 virtual machine**🚨 terminal (via VS Code)
-
 <details>
 <summary markdown='span'>Viewing your SSH Configuration</summary>
 
@@ -585,6 +618,12 @@ If you want to view your SSH configuration:
 5. View your configuration file! You may need to edit this configuration if you change computers, or want to work on more than one computer during the bootcamp.
 
 </details>
+
+🚨🚨🚨 **The setup of your local machine is complete. All following terminal commands will be run from within your virtual machine terminal (via VS Code)** 🚨🚨🚨
+
+---
+
+# Part 2: Configure your Virtual Machine 1
 
 
 ## VM gcloud and Application Default Credentials
@@ -656,7 +695,7 @@ ansible --version
 You should get an output similar to (some version numbers might change, that's fine):
 
 ```
-ansible [core 2.17.9]
+ansible [core 2.19.5]
   config file = /etc/ansible/ansible.cfg
   configured module search path = ['/home/tswift/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
   ansible python module location = /usr/lib/python3/dist-packages/ansible
@@ -667,7 +706,7 @@ ansible [core 2.17.9]
   libyaml = True
 ```
 
-❗ If not, raise a ticket with a teacher.
+❗ If not, raise a ticket with a teacher 🙋
 
 ### Ansible Playbook 1
 
@@ -690,7 +729,7 @@ ansible-playbook playbooks/setup_vm_part1.yml
 
 And the playbook should start running!
 
-❗ If an errors occur, raise a ticket with a teacher. You can safely run the playbook again.
+❗ If an errors occur, raise a ticket with a teacher. You can safely run the ansible playbook again.
 
 ### What is the playbook installing?
 
@@ -914,6 +953,8 @@ Once you have finished installing the **dotfiles**, kill your terminal (little t
 
 The terminal should read as `zsh`.
 
+
+# Part 3: Configure your Virtual Machine 2
 
 ## VM configuration with Ansible - Part 2
 

@@ -25,7 +25,7 @@ $WINDOWS_START
 
 Windows has strict permissions for SSH files by default, we need to alter some permissions on the SSH configuration that was created by `gcloud` so VS Code can read the files and manage the SSH connection.
 
-In Command Prompt run:
+In **Command Prompt** run:
 
 ```cmd
 icacls %USERPROFILE%\.ssh\config /inheritance:r
@@ -74,8 +74,6 @@ And you are connected! It should look similar too:
 
 Notice the connection in the very bottom-left corner of your VS Code window. It should have the Connection type (SSH), and the name of the host you are connected to.
 
-**The setup of your local machine is over. All following commands will be run from within your 🚨 virtual machine**🚨 terminal (via VS Code)
-
 <details>
 <summary markdown='span'>Viewing your SSH Configuration</summary>
 
@@ -87,3 +85,9 @@ If you want to view your SSH configuration:
 5. View your configuration file! You may need to edit this configuration if you change computers, or want to work on more than one computer during the bootcamp.
 
 </details>
+
+🚨🚨🚨 **The setup of your local machine is complete. All following terminal commands will be run from within your virtual machine terminal (via VS Code)** 🚨🚨🚨
+
+---
+
+# Part 2: Configure your Virtual Machine 1

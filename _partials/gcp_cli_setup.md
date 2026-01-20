@@ -5,6 +5,7 @@ The `gcloud` Command Line Interface (CLI) is used to communicate with Google Clo
 ### Install gcloud
 
 $MAC_START
+
 Install with `brew`:
 
 ```bash
@@ -24,7 +25,9 @@ gcloud --version
 ```
 
 👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#mac)
+
 $MAC_END
+
 $WINDOWS_START
 
 To install, download the Google Cloud CLI installer from this [link here 🔗](https://cloud.google.com/sdk/docs/install#windows).
@@ -34,7 +37,7 @@ Once it's finished downloading, launch the installer and follow the prompts. You
 On the last screen of the installer there will be four check boxes. Makes sure that the boxes for `Start Google SDK Shell` and `Run gcloud init to configure the Google Cloud CLI` are selected then click **Finish**. This should open a new **Command Prompt** window and ask a series of questions like:
 - **Do you want to log in?** - type `y` and hit enter and following the prompts. It should open a web-browser to log in to your Google account.
 - **Pick cloud project to use** - Select your GCP Project ID that you want to connect with `gcloud`
-- **Select your region and zone** - You can safely enter `n`. It's not important to us at the moment.
+- **Select your region and zone** - You can safely enter `n`. It's not important at the moment.
 
 Once you've completed the `gcloud` setup, close **Command Prompt** and re-open it, then run:
 
@@ -44,7 +47,7 @@ gcloud config list
 
 You should get an output similar to:
 
-```
+```bash
 [accessibility]
 screen_reader = True/False # depends on install options
 [core]
@@ -56,8 +59,11 @@ Your active configurations: [default]
 ```
 
 Now `gcloud` is installed and authenticated 🚀
+
 $WINDOWS_END
+
 $LINUX_START
+
 Add the `APT` repository and install with:
 
 ```bash
@@ -74,4 +80,5 @@ To test your install, open a new terminal and run:
 gcloud --version
 ```
 👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#deb)
+
 $LINUX_END

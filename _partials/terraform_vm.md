@@ -18,17 +18,17 @@ The specifications of the Virtual Machine and Network Settings you'll use for th
 
 ### Cost 💸
 
-Creating and running a Virtual Machine on Google Cloud Platform costs money!
+Creating and running a Virtual Machine on Google Cloud Platform costs money! 💸
 
 If you have created a new Google Cloud Platform account, the cost of the Virtual machine will be covered by the $300 USD credit for the first 90 days if you are diligent with turning off your Virtual Machine (or finish the _Linux and Bash_ challenge today 😎).
 
 ❗ **The cost of running a Virtual Machine with our configuration 24 hours a day, 7 days a week is ~$150 USD per month.** ❗
 
-You can massively reduce the cost by only running the Virtual Machine when you use it. You will _NOT_ be charged for the vCPU's and RAM while the Virtual Machine is off!
+You can massively reduce the cost by only running the Virtual Machine when you use it. You will **NOT** be charged for the vCPU's and RAM while the Virtual Machine is off!
 
 You will always pay for the Storage (equivalent of your hard-drive on your local computer). It's ~$10 USD per month for 100 GB.
 
-The rule of thumb is: if Google can rent the resource out to someone else when your not using it, you only pay for it when you are using the resource. That's why you don't pay for the CPU and RAM when you are not using it, Google can rent it out to someone else, but always pay for Storage, Google can't rent it out to someone else because it has your data on it.
+💡 A rule of thumb is: if a cloud provider can rent the resource out to someone else when your not using it, you only pay for it when you are using the resource. That's why you don't pay for the CPU and RAM when you are not using it, Google can rent it out to someone else - but will always pay for Storage, Google can't rent it out to someone else because it has your data on it.
 
 ### Download terraform files
 
@@ -37,54 +37,74 @@ We almost have all the necessary parts to create your VM using **terraform**. We
 First we'll create a folder and download the terraform files with:
 
 $MAC_START
+
+In a terminal, run the following commands:
+
 ```bash
-mkdir -p ~/wagon-de-bootcamp
-curl -L -o ~/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/main.tf
-curl -L -o ~/wagon-de-bootcamp/provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/provider.tf
-curl -L -o ~/wagon-de-bootcamp/variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/variables.tf
-curl -L -o ~/wagon-de-bootcamp/terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/terraform.tfvars
-curl -L -o ~/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/.terraform.lock.hcl
+mkdir -p ~/code/wagon-de-bootcamp
 ```
+```bash
+curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars \
+&& curl -L -o ~/code/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
+```
+
 $MAC_END
+
 $WINDOWS_START
-Using the Command Prompt (cmd), run the following:
+
+Using the **Command Prompt** (cmd), run the following:
+
+❗ Note: The below commands will only work in **Command Prompt** - they will not work in Windows Powershell.
 
 ```cmd
 mkdir %USERPROFILE%\wagon-de-bootcamp
-
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\main.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/main.tf
-
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\provider.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/provider.tf
-
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\variables.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/variables.tf
-
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/terraform.tfvars
-
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/.terraform.lock.hcl
 ```
+```cmd
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\main.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf && ^
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\provider.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf && ^
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\variables.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf && ^
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars && ^
+curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
+```
+
 $WINDOWS_END
+
 $LINUX_START
+
 ```bash
 mkdir -p ~/code/wagon-de-bootcamp
-curl -L -o ~/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/main.tf
-curl -L -o ~/wagon-de-bootcamp/provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/provider.tf
-curl -L -o ~/wagon-de-bootcamp/variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/variables.tf
-curl -L -o ~/wagon-de-bootcamp/terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/terraform.tfvars
-curl -L -o ~/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/lorcanrae/automated-setup/automation/infra/.terraform.lock.hcl
 ```
-$LINUX_END
+```bash
+curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf \
+&& curl -L -o ~/code/wagon-de-bootcamp/terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars \
+&& curl -L -o ~/code/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
+```
 
+$LINUX_END
 
 ### Set variables
 
 $MAC_START
-Open up the file `~/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
+
+Open up the file `~/code/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
+
 $MAC_END
+
 $WINDOWS_START
+
 Open up the file `C:\Users\<YOUR_USERNAME>\wagon-de-bootcamp\terraform.tfvars` in VS Code or any other code editor.
+
 $WINDOWS_END
+
 $LINUX_START
-Open up the file `~/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
+
+Open up the file `~/code/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
+
 $LINUX_END
 
 It should look like:
@@ -112,7 +132,7 @@ $LINUX_START
 - **instance_user:** in your terminal, run `whoami`
 $LINUX_END
 
-After completing this file, it should look similar to:
+After completing this file, it might look similar to:
 
 ```bash
 project_id    = "wagon-bootcamp"
@@ -122,39 +142,43 @@ instance_name = "lw-de-vm-tswift"
 instance_user = "taylorswift"
 ```
 
-Make sure to save the `terraform.tfvars` file, nagivate into the directory with the terraform files with:
+Make sure to save the `terraform.tfvars` file, navigate into the directory with the terraform files using your terminal with:
 
-```
+```bash
 $MAC_START
-cd ~/wagon-de-bootcamp
+cd ~/code/wagon-de-bootcamp
 $MAC_END
 $WINDOWS_START
 cd %USERPROFILE%\wagon-de-bootcamp
 $WINDOWS_END
 $LINUX_START
-cd ~/wagon-de-bootcamp
+cd ~/code/wagon-de-bootcamp
 $LINUX_END
 ```
 
-And initialise and test the files with:
+Initialise and test the terraform config files with:
 
 ```bash
 terraform init
+```
 
+Then:
+
+```bash
 terraform plan
 ```
 
 And check the output. Towards the bottom there should be a line:
 
-```
+```bash
 Plan: 2 to add, 0 to change, 0 to destroy
 ```
 
-We'll be adding:
+Terraform is telling you what it will create:
 - A compute engine instance
 - A static external IP address
 
-❗ If you have any errors, read the error and debug. If you need some help, raise a ticket with a teacher.
+**❗ If you have any errors, read the error and debug. If you need some help, raise a ticket with a teacher. ❗**
 
 If everything was successful, create your VM with:
 
@@ -164,8 +188,8 @@ terraform apply -auto-approve
 
 It might take a while for Terraform to create the cloud resources. Once you see:
 
-```
+```bash
 Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 ```
 
-Your Virtual Machine should be up and running! Check the GCP Compute Engine console at this [link here](https://console.cloud.google.com/compute/instances) to confirm.
+Your Virtual Machine should be up and running! Check the GCP Compute Engine console at this [link here 🔗](https://console.cloud.google.com/compute/instances) to confirm.
