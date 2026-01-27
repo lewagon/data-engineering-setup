@@ -119,17 +119,17 @@ instance_user = "<YOUR_COMPUTER_USER_NAME>"
 
 We'll need to change some values in this file. Here's were you can find the required values:
 - **project_id:** from the GCP Console at this [link here](https://console.cloud.google.com).
-- **region:** take a look at the GCP Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones). We strongly recommend you choose the closest geographical region.
-- **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`.
+- **region:** take a look at the GCP Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones#available). We generally recommend you choose a geographically nearby region.
+- **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`. The zone you select within a region should not have a functional impact.
 - **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
 $MAC_START
-- **instance_user:** in your terminal, run `whoami`
+- **instance_user:** in your terminal, run `whoami`, and enter the value
 $MAC_END
 $WINDOWS_START
-- **instance_user:** in Command Prompt, run `echo %username%`
+- **instance_user:** in Command Prompt, run `echo %username%`, and enter the value
 $WINDOWS_END
 $LINUX_START
-- **instance_user:** in your terminal, run `whoami`
+- **instance_user:** in your terminal, run `whoami`, and enter the value
 $LINUX_END
 
 After completing this file, it might look similar to:

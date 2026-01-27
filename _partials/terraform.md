@@ -29,7 +29,7 @@ To install terraform, download the **zip archive** from the Terraform install pa
 
 4. Navigate to your home directory (`C:\Users\<YOUR_USERNAME>\`) and create a directory named `terraform_cli`
 
-5. Paste `terraform.exe` in the `cli_apps` directory
+5. Paste `terraform.exe` in the `terraform_cli` directory
 
 ### Add terraform to PATH
 
@@ -42,9 +42,9 @@ To update your path:
 
 3. Under **User variables for <YOUR_USERNAME>** click on the variable named: `Path` to select it, then click on **Edit**
 
-3. In the new pop out window, click **New** on to top right
+3. In the new pop out window, click **New** on the top right
 
-4. Enter: `C:\Users\YOUR_USERNAME\terraform_cli` - Make sure to replace `YOUR_USERNAME` with _your user name_. You can obtain your user name by running `echo %username%` in **Command Prompt**
+4. Into the empty box that was just created, enter: `%USERPROFILE%\terraform_cli`
 
 5. Click **Ok** to close the `Path` variable window, and click **Ok** again to close the Environment Variable window.
 
@@ -54,12 +54,12 @@ $WINDOWS_END
 
 $LINUX_START
 
-Install some basic requirements:
+Install some system requirements requirements:
 ```bash
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
 ```
 
-Terraform is not available to **apt** by default, so we need to manually add the repository.
+Terraform is not available on **apt** by default, so we need to manually add the repository.
 ```bash
 wget -O- https://apt.releases.hashicorp.com/gpg | \
     gpg --dearmor | \
@@ -78,7 +78,7 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
     sudo tee /etc/apt/sources.list.d/hashicorp.list
 ```
 
-Now we can install terraform directly with **apt** 👇
+Now we can install terraform directly with **apt** using:
 ```bash
 sudo apt update
 sudo apt-get install terraform
@@ -98,11 +98,19 @@ The output should look similar to:
 Terraform v1.14.3
 on <your_operating_system>_<your_cpu_architecture>
 
+$MAC_START
+# macOS (M chip) example
+# Terraform 1.14.3
+# on darwin_arm64
+$MAC_END
+$WINDOWS_START
 # Windows example
 # Terraform v1.14.3
 # on windows_amd64
-
+$WINDOWS_END
+$LINUX_START
 # Linux example
 # Terraform v1.14.3
 # on linux_amd64
+$LINUX_END
 ```
