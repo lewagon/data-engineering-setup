@@ -14,8 +14,16 @@
           - "Running Ubuntu version: {{ ansible_distribution_release }}"
           - "On architecture: {{ architecture }}"
 
-    - name: Install apt packages
+    - name: apt update, upgrade, and install
       block:
+        - name: Update and upgrade apt packages
+          ansible.builtin.apt:
+            update_cache: yes
+            upgrade: dist
+          environment:
+            DEBIAN_FRONTEND: noninteractive
+            NEEDRESTART_MODE: a
+
         - name: Install required apt packages
           apt:
             name:
@@ -57,8 +65,8 @@
               - libpython3-dev
               - openjdk-8-jdk-headless
             state: present
-          become: true
-          tags: apt
+      become: true
+      tags: apt
 
     - name: Set zsh as default shell
       user:
