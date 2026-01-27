@@ -62,7 +62,9 @@ A new VS Code window will open. You may be asked to select the platform of the r
 
 ![](/images/vscode_remote_fingerprint.png)
 
-And you are connected! It should look similar too:
+And you are connected 🎉 It should look similar to the below image.
+
+If you don't see a terminal open at the bottom or side of VS Code, you can open a terminal by selecting **Terminal** from the top ribbon menu and selecting **New Terminal** (makes sure to remember the key binding for later 😎)
 
 ![](/images/vscode_remote_connected.png)
 
