@@ -42,7 +42,7 @@ To update your path:
 
 3. Under **User variables for <YOUR_USERNAME>** click on the variable named: `Path` to select it, then click on **Edit**
 
-3. In the new pop out window, click **New** on to top right
+3. In the new pop out window, click **New** on the top right
 
 4. Into the empty box that was just created, enter: `%USERPROFILE%\terraform_cli`
 
