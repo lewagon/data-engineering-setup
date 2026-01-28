@@ -24,9 +24,10 @@
           tags: spark
 
         - name: Install Spark (Async)
-          ansible.builtin.shell: |
-            wget -q https://archive.apache.org/dist/spark/spark-3.5.3/spark-3.5.3-bin-hadoop3.tgz -O /tmp/spark.tgz
-            mkdir -p ~/spark && tar -xzf /tmp/spark.tgz -C ~/spark
+          ansible.builtin.unarchive:
+            src: "https://archive.apache.org/dist/spark/spark-3.5.3/spark-3.5.3-bin-hadoop3.tgz"
+            dest: "/home/{{ my_user }}/spark"
+            remote_src: true
           become_user: "{{ my_user }}"
           become: true
           when: not spark_installed.stat.exists
