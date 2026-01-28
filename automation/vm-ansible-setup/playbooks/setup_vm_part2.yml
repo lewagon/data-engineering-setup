@@ -301,7 +301,10 @@
           tags: github
 
         - name: Check if lewagon/data-engineering-challenges has been forked
-          ansible.builtin.command: gh repo list --json nameWithOwner --jq '.[] | select(.nameWithOwner == "{{ github_username.stdout }}/data-engineering-challenges")'
+          ansible.builtin.command: >
+            gh repo list
+            --json nameWithOwner
+            --jq '.[] | select(.nameWithOwner == "{{ github_username.stdout }}/data-engineering-challenges")'
           become_user: "{{ my_user }}"
           become: true
           register: fork_exists
@@ -328,7 +331,7 @@
           changed_when: false
           tags: github
 
-        - name: Check if ~/code/{{ github_username.stdout }}/data-engineering-challenges exist on the VM
+        - name: Check if data-engineering-challenges repo exists locally
           ansible.builtin.stat:
             path: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
           register: local_repo_exists
