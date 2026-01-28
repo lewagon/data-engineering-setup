@@ -30,13 +30,13 @@ While the playbook is running, let's go through what is being installed and conf
 
 Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. We are going to use Python [3.12.8](https://www.python.org/downloads/release/python-3128/)
 
-- Install **pyenv** and **pyenv-virtualenv**. We'll use **pyenv** to manage the Python versions installed on the VM
+- Install [**pyenv** 🔗](https://github.com/pyenv/pyenv) and [**pyenv-virtualenv** 🔗](https://github.com/pyenv/pyenv-virtualenv). We'll use **pyenv** to manage the Python versions installed on the VM
 - Install Python 3.12.8 with pyenv
-- Install **pipx**: [Pipx](https://pipx.pypa.io/stable/) is used to install python packages we want _globally_ available while still using virtual environments, like Poetry!
+- Install [**pipx** 🔗](https://pipx.pypa.io/stable/): Pipx is used to install python packages we want _globally_ available while still using virtual environments, like Poetry!
 - Installing a few global python packages with **pipx**:
-    - **Poetry:** [Poetry](https://python-poetry.org/) is a modern Python package manager we will use throughout the bootcamp.
-    - **Ruff:** [Ruff](https://docs.astral.sh/ruff/) Is used to format and lint Python code.
-    - **tldr:** [tldr](https://github.com/tldr-pages/tldr) has much more readable version of `man` pages. Useful for quickly finding out how a program works.
+    - [**Poetry** 🔗]((https://python-poetry.org/)): Poetry is a modern Python package manager we will use throughout the bootcamp.
+    - [**Ruff** 🔗]((https://docs.astral.sh/ruff/)): Ruff Is used to format and lint Python code.
+    - [**tldr** 🔗]((https://github.com/tldr-pages/tldr)): tldr has much more readable version of `man` pages. Useful for quickly finding out how a program works.
 
 **VS Code Configuration**
 
@@ -47,7 +47,7 @@ Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. W
     - [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
     - [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
     - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
-    - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+    - [Containers](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers)
     - [Even Better TOML](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)
 - Update the VS Code Python Interpreter path.
 
