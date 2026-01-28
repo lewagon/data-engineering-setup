@@ -20,7 +20,7 @@
       block:
         - name: Update and upgrade apt packages
           ansible.builtin.apt:
-            update_cache: yes
+            update_cache: true
             upgrade: dist
           environment:
             DEBIAN_FRONTEND: noninteractive
@@ -98,17 +98,27 @@
           register: docker_check
           tags: docker
 
+        - name: Create keyrings directory
+          ansible.builtin.file:
+            path: /etc/apt/keyrings
+            state: directory
+            mode: '0755'
+          when: not docker_check.stat.exists
+          tags: docker
+
         - name: Add Docker GPG key
-          ansible.builtin.apt_key:
+          ansible.builtin.get_url:
             url: "https://download.docker.com/linux/ubuntu/gpg"
-            keyring: "/etc/apt/keyrings/docker.gpg"
-            state: present
+            dest: "/etc/apt/keyrings/docker.gpg"
+            mode: '0644'
           when: not docker_check.stat.exists
           tags: docker
 
         - name: Add Docker APT repository
           ansible.builtin.apt_repository:
-            repo: "deb [arch={{ architecture }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+            repo: >
+              deb [arch={{ architecture }} signed-by=/etc/apt/keyrings/docker.gpg]
+              https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
             state: present
           when: not docker_check.stat.exists
           tags: docker
@@ -229,15 +239,18 @@
           tags: terraform
 
         - name: Add HashiCorp GPG key
-          ansible.builtin.apt_key:
+          ansible.builtin.get_url:
             url: "https://apt.releases.hashicorp.com/gpg"
-            keyring: "/usr/share/keyrings/hashicorp-archive-keyring.gpg"
-            state: present
+            dest: "/usr/share/keyrings/hashicorp-archive-keyring.gpg"
+            mode: '0644'
+          when: not terraform_check.stat.exists
           tags: terraform
 
         - name: Add HashiCorp APT repository
           ansible.builtin.apt_repository:
-            repo: "deb [arch={{ architecture }} signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+            repo: >
+              deb [arch={{ architecture }} signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg]
+              https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
             state: present
           when: not terraform_check.stat.exists
           tags: terraform
@@ -273,7 +286,9 @@
 
         - name: Add GitHub CLI APT repository
           ansible.builtin.apt_repository:
-            repo: "deb [arch={{ architecture }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+            repo: >
+              deb [arch={{ architecture }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg]
+              https://cli.github.com/packages stable main
             state: present
           when: not gh_check.stat.exists
           tags: gh_cli
