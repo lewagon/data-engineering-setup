@@ -100,6 +100,7 @@
       block:
         - name: Detect VS Code CLI path
           ansible.builtin.shell: |
+            set -o pipefail
             find /home/{{ my_user }}/.vscode-server/cli/servers/ -maxdepth 5 -type f -name "code" | head -n 1
           register: vscode_cli_path
           changed_when: false
