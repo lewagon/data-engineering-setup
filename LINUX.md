@@ -43,6 +43,12 @@ In this section you will:
 
 Don't worry, we'll go into more detail in each of the individual sections 👌
 
+---
+
+There will be copying and pasting of terminal commands in this Setup Guide. There is no expectation that you understand everything that is happening.
+
+🎯 The goal of the session is to get your VM set up correctly and completely so you can fully focus on learning in future sessions, not dealing with lingering setup issues!
+
 Let's start :rocket:
 
 ---
