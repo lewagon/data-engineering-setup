@@ -2,7 +2,7 @@
 
 We've used two ansible playbooks to configure our Virtual Machine. Let's run some manual checks in the terminal to make sure that everything has installed correctly.
 
-❗ If any of these checks error out, raise a ticket with a teacher.
+❗ If any of these checks error out, raise a ticket with a TA 🙋
 
 #### Python
 
@@ -14,7 +14,7 @@ python --version
 
 Should return:
 
-```
+```bash
 Python 3.12.8
 ```
 
@@ -136,7 +136,7 @@ And then to make sure the kubernetes CLI utility, `kubectl`, works, run the foll
 kubectl get po -A
 ```
 
-Should return something similar too:
+Should return something similar to:
 
 ```
 NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE
@@ -152,11 +152,10 @@ kube-system   storage-provisioner                1/1     Running   1 (41s ago)  
 And because `minikube` is resource intensive, stop it for now with:
 
 ```bash
-# Stop
 minikube delete --all
 ```
 
-Should return:
+And that should return:
 
 ```
 🔥  Deleting "minikube" in docker ...
