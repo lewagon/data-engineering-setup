@@ -189,7 +189,7 @@
           register: pyenv_installed
           tags: pyenv
 
-        - name: Install pyenv
+        - name: Install pyenv # noqa latest[git]
           ansible.builtin.git:
             repo: "https://github.com/pyenv/pyenv.git"
             dest: "/home/{{ my_user }}/.pyenv"
@@ -204,7 +204,7 @@
           register: pyenv_virtualenv_installed
           tags: pyenv
 
-        - name: Install pyenv-virtualenv
+        - name: Install pyenv-virtualenv # noqa latest[git]
           ansible.builtin.git:
             repo: "https://github.com/pyenv/pyenv-virtualenv.git"
             dest: "/home/{{ my_user }}/.pyenv/plugins/pyenv-virtualenv"
@@ -334,7 +334,7 @@
           register: local_repo_exists
           tags: github
 
-        - name: Clone data-engineering-challenges to VM
+        - name: Clone data-engineering-challenges to VM # noqa latest[git]
           ansible.builtin.git:
             repo: "git@github.com:{{ github_username.stdout }}/data-engineering-challenges.git"
             dest: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
@@ -342,6 +342,7 @@
             update: false
             accept_hostkey: true
           become_user: "{{ my_user }}"
+          become: true
           when: not local_repo_exists.stat.exists
           changed_when: true
           tags: github
