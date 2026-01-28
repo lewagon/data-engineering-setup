@@ -124,6 +124,7 @@
             - ms-azuretools.vscode-containers
             - tamasfe.even-better-toml
           when: vscode_cli_path.stdout | length > 0 and vscode_installed_extensions.stdout is defined and (item not in vscode_installed_extensions.stdout)
+          changed_when: true
           become_user: "{{ my_user }}"
           become: true
           tags: vscode
@@ -235,6 +236,7 @@
           become_user: "{{ my_user }}"
           become: true
           when: "'3.12.8' not in python_installed.stdout"
+          changed_when: true
           tags: python
 
     - name: Install pipx
@@ -255,6 +257,7 @@
           become_user: "{{ my_user }}"
           become: true
           when: not pipx_installed.stat.exists
+          changed_when: true
           tags: pipx
 
     - name: Install pipx packages
@@ -276,6 +279,7 @@
           become_user: "{{ my_user }}"
           become: true
           when: "item not in pipx_list.stdout"
+          changed_when: true
           tags: pipx_packages
 
     - name: Ensure Poetry venv is set to in-project
@@ -308,7 +312,9 @@
         - name: Fork lewagon/data-engineering-challenges repo
           ansible.builtin.command: gh repo fork lewagon/data-engineering-challenges --remote
           become_user: "{{ my_user }}"
+          become: true
           when: fork_exists.stdout | trim == ""
+          changed_when: true
           tags: github
 
         - name: Wait for GitHub fork to be fully available
@@ -337,6 +343,7 @@
             accept_hostkey: true
           become_user: "{{ my_user }}"
           when: not local_repo_exists.stat.exists
+          changed_when: true
           tags: github
 
         - name: Check data-engineering-challenges git remotes # noqa command-instead-of-module
@@ -356,6 +363,7 @@
           become_user: "{{ my_user }}"
           become: true
           when: "'upstream' not in existing_remotes.stdout"
+          changed_when: true
           tags: github
 
     - name: Wait for Spark installation to complete - Can take a while. 1 Retry = 60s
