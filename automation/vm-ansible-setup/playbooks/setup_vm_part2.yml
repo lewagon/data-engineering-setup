@@ -26,20 +26,22 @@
       tags: spark
       when: not spark_installed.stat.exists
       block:
-        - name: Install Spark (Async)
+        - name: Ensure Spark directory exists
+          ansible.builtin.file:
+            path: "/home/{{ my_user }}/spark"
+            state: directory
+            mode: "0755"
+            owner: "{{ my_user }}"
+            group: "{{ my_user }}"
+          become: true
+
+        - name: Install Spark
           ansible.builtin.unarchive:
             src: "https://archive.apache.org/dist/spark/spark-{{ spark_version }}/spark-{{ spark_version }}-bin-hadoop3.tgz"
             dest: "/home/{{ my_user }}/spark"
             remote_src: true
           become_user: "{{ my_user }}"
           become: true
-          async: 3600 # Runs in the background for up to 60 minutes
-          poll: 0 # Continue running other tasks
-          register: spark_async
-
-        - name: Debug Spark async job ID
-          ansible.builtin.debug:
-            msg: "Spark async job ID: {{ spark_async.ansible_job_id }}"
 
     - name: Add .zshrc plugins - direnv, pyenv, gcloud
       ansible.builtin.lineinfile:
@@ -138,9 +140,15 @@
               become_user: "{{ my_user }}"
               become: true
 
-            - name: Init settings
+            - name: Parse settings and strip comments
               ansible.builtin.set_fact:
-                vscode_settings: "{{ vscode_settings_raw.content | b64decode | from_json if vscode_settings_raw.content is defined else {} }}"
+                vscode_settings: >-
+                  {{
+                    (vscode_settings_raw.content | default('e30=') | b64decode |
+                    regex_replace('^\s*//.*$', '', multiline=True) |
+                    regex_replace(',\s*\n\s*}', '\n}', multiline=True) |
+                    from_json) | default({})
+                  }}
 
             - name: Ensure files.exclude exists
               ansible.builtin.set_fact:
@@ -158,7 +166,9 @@
                         '.pytest_cache': false,
                         'dist': false,
                         '.git': false,
-                      })
+                        '**/.git': false,
+                      }),
+                      'workbench.panel.defaultLocation': 'bottom'
                     }, recursive=True)
                   }}
 
@@ -298,7 +308,7 @@
           changed_when: false
           failed_when: false
 
-        - name: Fork lewagon/data-engineering-challenges repo
+        - name: Fork lewagon/data-engineering-challenges repo to your GitHub account
           ansible.builtin.command: gh repo fork lewagon/data-engineering-challenges --remote
           become_user: "{{ my_user }}"
           become: true
@@ -323,7 +333,7 @@
             path: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
           register: local_repo_exists
 
-        - name: Clone data-engineering-challenges to VM # noqa latest[git]
+        - name: Clone data-engineering-challenges from your GitHub to VM # noqa latest[git]
           ansible.builtin.git:
             repo: "git@github.com:{{ github_username.stdout }}/data-engineering-challenges.git"
             dest: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
@@ -352,15 +362,3 @@
           become: true
           when: "'upstream' not in existing_remotes.stdout"
           changed_when: true
-
-    - name: Wait for Spark installation to complete - Can take a while. 1 Retry = 60s
-      ansible.builtin.async_status:
-        jid: "{{ spark_async.ansible_job_id }}"
-      become_user: "{{ my_user }}"
-      become: true
-      register: spark_result
-      until: spark_result.finished
-      retries: 150
-      delay: 60
-      when: spark_async.ansible_job_id is defined
-      tags: spark
