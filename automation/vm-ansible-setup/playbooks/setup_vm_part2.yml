@@ -7,6 +7,8 @@
     my_user: "{{ lookup('env', 'USER') }}"
     architecture: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
     ansible_shell_executable: /usr/bin/zsh
+    spark_version: "3.5.3"
+    python_version: "3.12.8"
   tasks:
     - name: Debug Variables
       ansible.builtin.debug:
@@ -15,31 +17,29 @@
           - "Running Ubuntu version: {{ ansible_distribution_release }}"
           - "On architecture: {{ architecture }}"
 
-    - name: Install Spark
-      block:
-        - name: Check if Spark is installed
-          ansible.builtin.stat:
-            path: "/home/{{ my_user }}/spark/spark-3.5.3-bin-hadoop3"
-          register: spark_installed
-          tags: spark
+    - name: Check if Spark is installed
+      ansible.builtin.stat:
+        path: "/home/{{ my_user }}/spark/spark-{{ spark_version }}-bin-hadoop3"
+      register: spark_installed
 
+    - name: Install Spark
+      tags: spark
+      when: not spark_installed.stat.exists
+      block:
         - name: Install Spark (Async)
           ansible.builtin.unarchive:
-            src: "https://archive.apache.org/dist/spark/spark-3.5.3/spark-3.5.3-bin-hadoop3.tgz"
+            src: "https://archive.apache.org/dist/spark/spark-{{ spark_version }}/spark-{{ spark_version }}-bin-hadoop3.tgz"
             dest: "/home/{{ my_user }}/spark"
             remote_src: true
           become_user: "{{ my_user }}"
           become: true
-          when: not spark_installed.stat.exists
           async: 3600 # Runs in the background for up to 60 minutes
           poll: 0 # Continue running other tasks
           register: spark_async
-          tags: spark
 
         - name: Debug Spark async job ID
           ansible.builtin.debug:
             msg: "Spark async job ID: {{ spark_async.ansible_job_id }}"
-          when: not spark_installed.stat.exists
 
     - name: Add .zshrc plugins - direnv, pyenv, gcloud
       ansible.builtin.lineinfile:
@@ -47,7 +47,7 @@
         regexp: "plugins="
         line: "plugins=(git gitfast last-working-dir common-aliases zsh-syntax-highlighting history-substring-search pyenv ssh-agent direnv gcloud)"
         create: true
-        mode: "0644"
+        mode: '0644'
       become_user: "{{ my_user }}"
       become: true
       tags: zshrc
@@ -57,7 +57,7 @@
         path: "~/.zshrc"
         block: |
           # Spark
-          export SPARK_HOME=$HOME/spark/spark-3.5.3-bin-hadoop3
+          export SPARK_HOME=$HOME/spark/spark-{{ spark_version }}-bin-hadoop3
           export PATH=$PATH:$SPARK_HOME/bin
 
           # pyenv
@@ -69,7 +69,7 @@
           export PATH="$HOME/.local/bin:$PATH"
         marker: "# {mark} ANSIBLE CREATED BLOCK: path vars"
         create: true
-        mode: "0644"
+        mode: '0644'
       become_user: "{{ my_user }}"
       become: true
       tags: zshrc
@@ -92,11 +92,12 @@
           }
         marker: "# {mark} ANSIBLE CREATED BLOCK: layout_poetry"
         create: true
-        mode: "0644"
+        mode: '0644'
       become_user: "{{ my_user }}"
       become: true
 
     - name: VS Code Config
+      tags: vscode
       block:
         - name: Detect VS Code CLI path
           ansible.builtin.shell: |
@@ -104,14 +105,12 @@
             find /home/{{ my_user }}/.vscode-server/cli/servers/ -maxdepth 5 -type f -name "code" | head -n 1
           register: vscode_cli_path
           changed_when: false
-          tags: vscode
 
         - name: Check installed VS Code extensions
           ansible.builtin.command: "{{ vscode_cli_path.stdout }} --list-extensions"
           register: vscode_installed_extensions
           changed_when: false
           when: vscode_cli_path.stdout | length > 0
-          tags: vscode
 
         - name: Install additional VS Code extensions
           ansible.builtin.command: "{{ vscode_cli_path.stdout }} --install-extension {{ item }}"
@@ -128,19 +127,8 @@
           changed_when: true
           become_user: "{{ my_user }}"
           become: true
-          tags: vscode
-
-        # - name: Update VS Code python interpreter to poetry venv
-        #   lineinfile:
-        #     path: "~/.vscode-server/data/Machine/settings.json"
-        #     regexp: '    "python.defaultInterpreterPath": "~/.pyenv/shims/python",'
-        #     line: '    "python.defaultInterpreterPath": ".venv/bin/python",'
-        #     create: true
-        #   become_user: "{{ my_user }}"
-        #   tags: vscode
 
         - name: Updated VS Code settings for Python development
-          tags: vscode
           block:
             - name: Read VS Code settings
               ansible.builtin.slurp:
@@ -178,17 +166,17 @@
               ansible.builtin.copy:
                 content: "{{ vscode_settings | to_nice_json }}"
                 dest: "~/.vscode-server/data/Machine/settings.json"
-                mode: "0644"
+                mode: '0644'
               become_user: "{{ my_user }}"
               become: true
 
-    - name: Install pyenv and pyenv-virtualenv
+    - name: Install pyenv
+      tags: python
       block:
         - name: Check if pyenv is installed
           ansible.builtin.stat:
             path: "/home/{{ my_user }}/.pyenv"
           register: pyenv_installed
-          tags: pyenv
 
         - name: Install pyenv # noqa latest[git]
           ansible.builtin.git:
@@ -197,13 +185,14 @@
           become_user: "{{ my_user }}"
           become: true
           when: not pyenv_installed.stat.exists
-          tags: pyenv
 
+    - name: Install pyenv-virtualenv
+      tags: python
+      block:
         - name: Check if pyenv-virtualenv is installed
           ansible.builtin.stat:
             path: "/home/{{ my_user }}/.pyenv/plugins/pyenv-virtualenv"
           register: pyenv_virtualenv_installed
-          tags: pyenv
 
         - name: Install pyenv-virtualenv # noqa latest[git]
           ansible.builtin.git:
@@ -212,11 +201,11 @@
           become_user: "{{ my_user }}"
           become: true
           when: not pyenv_virtualenv_installed.stat.exists
-          tags: pyenv
 
-    - name: Install Python 3.12.8 using pyenv
+    - name: Install Python using pyenv
+      tags: python
       block:
-        - name: Check if Python 3.12.8 is installed
+        - name: Check if Python is installed
           ansible.builtin.command: >
             zsh -c 'export PYENV_ROOT="$HOME/.pyenv";
             export PATH="$PYENV_ROOT/bin:$PATH";
@@ -226,27 +215,25 @@
           become: true
           register: python_installed
           changed_when: false
-          tags: python
 
-        - name: Install Python 3.12.8 with pyenv - takes a while
+        - name: Install Python with pyenv - takes a while
           ansible.builtin.command: >
             zsh -c 'export PYENV_ROOT="$HOME/.pyenv";
             export PATH="$PYENV_ROOT/bin:$PATH";
             eval "$(pyenv init --path)";
-            pyenv install 3.12.8 && pyenv global 3.12.8'
+            pyenv install {{ python_version }} && pyenv global {{ python_version }}'
           become_user: "{{ my_user }}"
           become: true
-          when: "'3.12.8' not in python_installed.stdout"
+          when: python_version not in python_installed.stdout
           changed_when: true
-          tags: python
 
     - name: Install pipx
+      tags: pipx
       block:
         - name: Check if pipx is installed
           ansible.builtin.stat:
             path: "/home/{{ my_user }}/.local/bin/pipx"
           register: pipx_installed
-          tags: pipx
 
         - name: Install pipx
           ansible.builtin.shell: |
@@ -259,9 +246,9 @@
           become: true
           when: not pipx_installed.stat.exists
           changed_when: true
-          tags: pipx
 
     - name: Install pipx packages
+      tags: pipx
       block:
         - name: Check installed pipx packages
           ansible.builtin.command: "/home/{{ my_user }}/.local/bin/pipx list"
@@ -269,7 +256,6 @@
           become: true
           register: pipx_list
           changed_when: false
-          tags: pipx_packages
 
         - name: Install missing pipx packages - poetry, tldr, ruff
           ansible.builtin.command: "/home/{{ my_user }}/.local/bin/pipx install {{ item }}"
@@ -281,7 +267,6 @@
           become: true
           when: "item not in pipx_list.stdout"
           changed_when: true
-          tags: pipx_packages
 
     - name: Ensure Poetry venv is set to in-project
       ansible.builtin.shell: |
@@ -291,16 +276,17 @@
       become: true
       changed_when: false
 
-    - name: Fork and clone lewagon/data-engineering-challenges
-      block:
-        - name: Get GitHub Username using gh CLI
-          ansible.builtin.command: gh api user --jq '.login'
-          become_user: "{{ my_user }}"
-          become: true
-          register: github_username
-          changed_when: false
-          tags: github
+    - name: Get GitHub Username using gh CLI
+      ansible.builtin.command: gh api user --jq '.login'
+      become_user: "{{ my_user }}"
+      become: true
+      register: github_username
+      changed_when: false
+      tags: github
 
+    - name: Fork lewagon/data-engineering-challenges
+      tags: github
+      block:
         - name: Check if lewagon/data-engineering-challenges has been forked
           ansible.builtin.command: >
             gh repo list
@@ -311,7 +297,6 @@
           register: fork_exists
           changed_when: false
           failed_when: false
-          tags: github
 
         - name: Fork lewagon/data-engineering-challenges repo
           ansible.builtin.command: gh repo fork lewagon/data-engineering-challenges --remote
@@ -319,9 +304,8 @@
           become: true
           when: fork_exists.stdout | trim == ""
           changed_when: true
-          tags: github
 
-        - name: Wait for GitHub fork to be fully available
+        - name: Wait for fork to be fully available
           ansible.builtin.command: "gh repo view {{ github_username.stdout }}/data-engineering-challenges"
           become_user: "{{ my_user }}"
           become: true
@@ -330,13 +314,14 @@
           delay: 10
           until: fork_ready.rc == 0
           changed_when: false
-          tags: github
 
+    - name: Clone and configure local repository
+      tags: github
+      block:
         - name: Check if data-engineering-challenges repo exists locally
           ansible.builtin.stat:
             path: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
           register: local_repo_exists
-          tags: github
 
         - name: Clone data-engineering-challenges to VM # noqa latest[git]
           ansible.builtin.git:
@@ -349,7 +334,6 @@
           become: true
           when: not local_repo_exists.stat.exists
           changed_when: true
-          tags: github
 
         - name: Check data-engineering-challenges git remotes # noqa command-instead-of-module
           ansible.builtin.command: git remote -v
@@ -359,7 +343,6 @@
           become: true
           register: existing_remotes
           changed_when: false
-          tags: github
 
         - name: Add upstream remote to data-engineering-challenges # noqa command-instead-of-module
           ansible.builtin.command: git remote add upstream git@github.com:lewagon/data-engineering-challenges.git
@@ -369,7 +352,6 @@
           become: true
           when: "'upstream' not in existing_remotes.stdout"
           changed_when: true
-          tags: github
 
     - name: Wait for Spark installation to complete - Can take a while. 1 Retry = 60s
       ansible.builtin.async_status:
