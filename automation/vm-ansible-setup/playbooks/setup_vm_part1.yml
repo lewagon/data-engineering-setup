@@ -90,27 +90,27 @@
           when: not omz_check.stat.exists
           changed_when: true
 
+    - name: Check if Docker is installed
+      ansible.builtin.stat:
+        path: /usr/bin/docker
+      register: docker_check
+      tags: docker
+
     - name: Install Docker
       tags: docker
+      when: not docker_check.stat.exists
       block:
-        - name: Check if Docker is installed
-          ansible.builtin.stat:
-            path: /usr/bin/docker
-          register: docker_check
-
         - name: Create keyrings directory
           ansible.builtin.file:
             path: /etc/apt/keyrings
             state: directory
             mode: '0755'
-          when: not docker_check.stat.exists
 
         - name: Add Docker GPG key
           ansible.builtin.get_url:
             url: "https://download.docker.com/linux/ubuntu/gpg"
             dest: "/etc/apt/keyrings/docker.gpg"
             mode: '0644'
-          when: not docker_check.stat.exists
 
         - name: Add Docker APT repository
           ansible.builtin.apt_repository:
@@ -118,12 +118,10 @@
               deb [arch={{ architecture }} signed-by=/etc/apt/keyrings/docker.gpg]
               https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
             state: present
-          when: not docker_check.stat.exists
 
         - name: Update APT cache
           ansible.builtin.apt:
             update_cache: true
-          when: not docker_check.stat.exists
 
         - name: Install Docker packages
           ansible.builtin.apt:
@@ -134,18 +132,19 @@
               - docker-buildx-plugin
               - docker-compose-plugin
             state: present
-          when: not docker_check.stat.exists
 
-        - name: Ensure docker group exists
-          ansible.builtin.group:
-            name: docker
-            state: present
+    - name: Ensure docker group exists
+      ansible.builtin.group:
+        name: docker
+        state: present
+      tags: docker
 
-        - name: Add user to the docker group
-          ansible.builtin.user:
-            name: "{{ my_user }}"
-            groups: docker
-            append: true
+    - name: Add user to the docker group
+      ansible.builtin.user:
+        name: "{{ my_user }}"
+        groups: docker
+        append: true
+      tags: docker
 
     - name: Authenticate gcloud with Docker
       tags: docker
@@ -223,20 +222,21 @@
             mode: '0755'
           when: not minikube_check.stat.exists
 
+    - name: Check if terraform is installed
+      ansible.builtin.stat:
+        path: /usr/bin/terraform
+      register: terraform_check
+      tags: terraform
+
     - name: Install terraform
       tags: terraform
+      when: not terraform_check.stat.exists
       block:
-        - name: Check if terraform is installed
-          ansible.builtin.stat:
-            path: /usr/bin/terraform
-          register: terraform_check
-
         - name: Add HashiCorp GPG key
           ansible.builtin.get_url:
             url: "https://apt.releases.hashicorp.com/gpg"
             dest: "/usr/share/keyrings/hashicorp-archive-keyring.gpg"
             mode: '0644'
-          when: not terraform_check.stat.exists
 
         - name: Add HashiCorp APT repository
           ansible.builtin.apt_repository:
@@ -244,33 +244,31 @@
               deb [arch={{ architecture }} signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg]
               https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
             state: present
-          when: not terraform_check.stat.exists
 
         - name: Update APT cache
           ansible.builtin.apt:
             update_cache: true
-          when: not terraform_check.stat.exists
 
         - name: Install terraform
           ansible.builtin.apt:
             name: terraform
             state: present
-          when: not terraform_check.stat.exists
+
+    - name: Check if Github CLI is installed
+      ansible.builtin.stat:
+        path: /usr/bin/gh
+      register: gh_check
+      tags: gh_cli
 
     - name: Install Github CLI
       tags: gh_cli
+      when: not gh_check.stat.exists
       block:
-        - name: Check if Github CLI is installed
-          ansible.builtin.stat:
-            path: /usr/bin/gh
-          register: gh_check
-
         - name: Add GitHub CLI GPG key
           ansible.builtin.get_url:
             url: "https://cli.github.com/packages/githubcli-archive-keyring.gpg"
             dest: "/usr/share/keyrings/githubcli-archive-keyring.gpg"
             mode: '0644'
-          when: not gh_check.stat.exists
 
         - name: Add GitHub CLI APT repository
           ansible.builtin.apt_repository:
@@ -278,10 +276,8 @@
               deb [arch={{ architecture }} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg]
               https://cli.github.com/packages stable main
             state: present
-          when: not gh_check.stat.exists
 
         - name: Install GitHub CLI
           ansible.builtin.apt:
             name: gh
             state: present
-          when: not gh_check.stat.exists
