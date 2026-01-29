@@ -291,7 +291,7 @@ The `gcloud` Command Line Interface (CLI) is used to communicate with Google Clo
 ### Install gcloud
 
 
-#### Check to see if python 3 is available, otherwise install
+#### 1. Check to see if python 3 is available, otherwise install
 
 If you don't know, run:
 
@@ -311,7 +311,7 @@ python3 -v
 
 If you do not have Python 3.10 or higher, install a newer Python version (any version between 3.10 - 3.14, inclusive) using your existing environment manager, or download from [https://www.python.org/downloads/macos/ 🔗](https://www.python.org/downloads/macos/)
 
-#### Download the gcloud sdk installer
+#### 2. Download the gcloud sdk installer
 
 Check if you have an M1 (or higher) or Intel processor by running:
 
@@ -346,7 +346,7 @@ curl -o ~/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rap
 ```
 </details>
 
-#### Install gcloud sdk
+#### 3. Install gcloud sdk
 
 ```bash
 exec zsh
@@ -358,7 +358,7 @@ tar -xf google-cloud-sdk.tar.gz
 
 You can accept all the default options by hitting enter.
 
-❗ At a certain point (the 4th option normally), the installer will ask to download and install python3. You can say **no**.
+❗ At a certain point (usually the 4th option), the installer will ask to download and install python3. You can say **no**.
 
 Once the installer is finished, test the install by running:
 
