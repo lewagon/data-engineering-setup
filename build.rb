@@ -15,7 +15,6 @@ MAC_OS = %w[
   setup/slack_settings
   setup/github
   gcp_setup
-  homebrew
   osx_vscode
   vscode_remote_ssh
   gcp_cli_setup
