@@ -253,77 +253,6 @@ Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/a
 Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _compute engine api_ and select: **Compute Engine API**. On the next page, click on **Enable**. ❗ This API might already be enabled - not a problem if it is!
 
 
-## Homebrew
-### 1. Install:
-On Mac, you need to install [Homebrew](http://brew.sh/) which is a Package Manager.
-It will be used as soon as we need to install some software.
-To do so, open your Terminal and run:
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-This will ask for your confirmation (hit `Enter`) and your **macOS user account password** (the one you use to [log in](https://support.apple.com/en-gb/HT202860) when you reboot your Macbook).
-:warning: When typing a password in the Terminal, you will **not** get a visual feedback (something like `*****`), this is **normal**!! Type the password and confirm by typing `Enter`.
-
-<details>
-  <summary>🛠 If you get a <code>Error: Not a valid ref: refs/remotes/origin/master</code> error</summary>
-
-
-The full error would be:
-
-``` bash
-Error: Not a valid ref: refs/remotes/origin/master :
-fatal: ambiguous argument 'refs/remotes/origin/master': unknown revision or path not in the working tree.
-```
-
-Run the following commands to solve it:
-
-``` bash
-rm -fr $(brew --repo homebrew/core)  # because you can't `brew untap homebrew/core`
-brew tap homebrew/core
-```
-
-</details>
-
-If you already have Homebrew, it will tell you so, that's fine, go on.
-
-### 2. Make sure you are on the latest version:
-
-```bash
-brew update
-```
-
-<details>
-  <summary>🛠 If you get a <code>/usr/local must be writable</code> error</summary>
-
-Just run this:
-
-``` bash
-sudo chown -R $USER:admin /usr/local
-brew update
-```
-
-</details>
-
-### 3. Then install some useful software:
-
-Proceed running the following in the terminal (you can copy / paste all the lines at once).
-
-```bash
-brew upgrade git         || brew install git
-brew upgrade gh          || brew install gh
-brew upgrade wget        || brew install wget
-brew upgrade imagemagick || brew install imagemagick
-brew upgrade jq          || brew install jq
-brew upgrade openssl     || brew install openssl
-brew upgrade tree        || brew install tree
-brew upgrade ncdu        || brew install ncdu
-brew upgrade xz          || brew install xz
-brew upgrade readline    || brew install readline
-```
-
-
 ## Visual Studio Code
 
 ### Installation
@@ -362,25 +291,78 @@ The `gcloud` Command Line Interface (CLI) is used to communicate with Google Clo
 ### Install gcloud
 
 
-Install with `brew`:
+#### Check to see if python 3 is available, otherwise install
+
+If you don't know, run:
 
 ```bash
-brew install --cask google-cloud-sdk
+which -a python3
 ```
 
-Then install `gcloud` with:
+If this only outputs one line containing `/usr/bin/python3`, then python 3 is NOT installed - (this is a placeholder that macOS has by default, if you run it, it will try to install developer tools onto your computer).
+
+If the output is more than one line, check the version of Python you have installed with:
 
 ```bash
-$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/install.sh
+python3 -v
 ```
 
-To test your install, open a new terminal and run:
+❗ **The version installed must be greater than or equal to Python 3.10** ❗
+
+If you do not have Python 3.10 or higher, install a newer Python version (any version between 3.10 - 3.14) using your existing environment manager, or download from [https://www.python.org/downloads/macos/ 🔗](https://www.python.org/downloads/macos/).
+
+#### Download the gcloud sdk installer
+
+Check if you have an M1 (or higher) or Intel processor by running:
+
+```bash
+uname -m
+
+# M1: ARM64
+# Intel: x86_64
+```
+
+Only install one of the following based on your CPU type:
+
+<details>
+<summary>I have an <strong>M chip</strong> processor</summary>
+Download the following gcloud sdk installer:
+
+```bash
+curl -o ~/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-arm.tar.gz
+```
+</details>
+
+<br>
+
+<details>
+<summary>I have an <strong>Intel</strong> processor</summary>
+Download the following gcloud sdk installer:
+
+```bash
+curl -o ~/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-x86_64.tar.gz
+```
+</details>
+
+#### Install gcloud sdk
+
+```bash
+exec zsh
+export CLOUDSDK_PYTHON=$(which python3)
+cd ~
+tar -xf google-cloud-sdk.tar.gz
+./google-cloud-sdk/install.sh
+```
+
+You can accept all the default options by hitting enter.
+
+❗ At a certain point (the 4th option normally), the installer will ask to download and install python3. You can say **no**.
+
+Once the installer is finished, test the install by running:
 
 ```bash
 gcloud --version
 ```
-
-👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#mac)
 
 
 
@@ -396,14 +378,25 @@ To authenticate `gcloud`, run:
 gcloud auth login
 ```
 
-And following the prompts. For pasting into the terminal, your might need to use CTRL + SHIFT + V
+And following the prompts.
 
-You also need to set the GCP project that your are working in. For this section, you'll need your GCP Project ID, which can be found on the GCP Console at this [link here](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
+When selecting what **Google Auth Library** can access, ensure that you allow ✅:
+
+> See, edit, configure and delete your Google Cloud data and see the email address for your Google Account
+
+It's is usually the first check box.
+
+We recommend allowing **Google Auth Library** to: _View and sing in to your Google Cloud SQL instances._
+
+
+
+You also need to set the GCP project that your are working in. For this section, you'll need your **GCP Project ID**, which can be found on the GCP Console at this [link here 🔗](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
 
 To set your project, replace `<YOUR_PROJECT_ID>` with your GCP Project ID and run:
 
 ```bash
 gcloud config set project <YOUR_PROJECT_ID>
+# gcloud config set project my-gcp-project
 ```
 
 Confirm your setup with:
@@ -442,12 +435,16 @@ And follow the prompts. It should open a web-page to login to your Google accoun
 Terraform is a tool for [Infrastructure as Code (IaC) 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) to create, destroy, and manage resources in the cloud.
 
 
-You can use `brew` to install terraform. In your terminal, run:
-
-```bash
-brew tap hashicorp/tap
-brew install hashicorp/tap/terraform
-```
+To install Terraform, navigate to the [Terraform downloads page 🔗](https://developer.hashicorp.com/terraform/install):
+- Under **Binary download**, select the binary that corresponds to your CPU architecture:
+    - M chip: ARM64
+    - Intel: AMD64
+- Save the binary to your `Downloads` folder
+- Open the downloaded file to unzip the archive
+- Move the Terraform binary to path with the following command, you may be asked for your user password:
+    ```bash
+    sudo cp ~/Downloads/terraform_*/terraform /usr/local/bin/
+    ```
 
 
 
@@ -690,14 +687,25 @@ To authenticate `gcloud`, run:
 gcloud auth login
 ```
 
-And following the prompts. For pasting into the terminal, your might need to use CTRL + SHIFT + V
+And following the prompts.
 
-You also need to set the GCP project that your are working in. For this section, you'll need your GCP Project ID, which can be found on the GCP Console at this [link here](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
+When selecting what **Google Auth Library** can access, ensure that you allow ✅:
+
+> See, edit, configure and delete your Google Cloud data and see the email address for your Google Account
+
+It's is usually the first check box.
+
+We recommend allowing **Google Auth Library** to: _View and sing in to your Google Cloud SQL instances._
+
+
+
+You also need to set the GCP project that your are working in. For this section, you'll need your **GCP Project ID**, which can be found on the GCP Console at this [link here 🔗](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
 
 To set your project, replace `<YOUR_PROJECT_ID>` with your GCP Project ID and run:
 
 ```bash
 gcloud config set project <YOUR_PROJECT_ID>
+# gcloud config set project my-gcp-project
 ```
 
 Confirm your setup with:
@@ -861,17 +869,20 @@ To customise this configuration for yourself, you'll need to **fork** the reposi
 
 <details>
 <summary>❗ I started a Le Wagon <strong>Web Development</strong> or <strong>Data Science</strong> bootcamp in 2021 or earlier. ❗</summary>
+
 You may have a older version of the Le Wagon dotfiles. The second Ansible playbook will try to modify some of these dotfiles.
 
-Open a ticket with a TA and do the following:
-- Compare your existing dotfiles with the current Le Wagon [dotfile 🔗](https://github.com/lewagon/dotfiles), particularly the `.zshrc` and `settings.json` - if there is no meaningful difference, continue with the setup.
+
+Open a ticket with a TA and do one of the following:
+- Compare your existing dotfiles with the current Le Wagon [dotfiles 🔗](https://github.com/lewagon/dotfiles), particularly the `.zshrc` and `settings.json` - if there is no meaningful difference, continue with the setup.
 - If you are OK with losing your existing dotfiles - delete your existing dotfiles repository on GitHub and continue with the setup
 - If you do not want to lose your existing dotfiles, we recommend working with branches:
-    - Create a branch of your existing dotfiles setup
-    - On `main` (or a new named branch), pull from `upstream`, resolve any conflicts, commit, and push. It is important that you accept incoming changes to the `.zshrc` and `settings.json` files
+    - On your **laptop**, or wherever you have a **local** copy of **your** copy of dotfiles
+    - Create a branch of your existing dotfiles setup, and push to GitHub - `origin <branchname>`
+    - On `local main` (or a new named branch), pull from `upstream main`, resolve any conflicts, commit, and push. It is important that you accept incoming changes to the `.zshrc` and `settings.json` files
     - Continue with the setup
-        - if you pulled from `upstream main` to a new named branch, change to that branch before executing the dotfiles installer.
-        - Open up the `git_setup.sh` and remove or comment out the lines that push to `origin main`
+        - If you pulled from `upstream main` to a new named branch, change to that branch before executing the dotfiles installer: `install.sh`.
+        - Open `git_setup.sh` in a text editor and comment out or remove the lines that push to `origin main`
 </details>
 
 <br>
