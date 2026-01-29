@@ -14,7 +14,7 @@ If you don't know, run:
 which -a python3
 ```
 
-If this only outputs one line containing `/usr/bin/python3`, then python 3 is NOT installed - (this is a placeholder that macOS has by default, if you run it, it will try to install developer tools onto your computer).
+**If this only outputs one line containing `/usr/bin/python3`, then python 3 is NOT installed** - this is a placeholder that macOS has by default, if you run it, it will try to install xcode onto your computer.
 
 If the output is more than one line, check the version of Python you have installed with:
 
@@ -24,7 +24,7 @@ python3 -v
 
 ❗ **The version installed must be greater than or equal to Python 3.10** ❗
 
-If you do not have Python 3.10 or higher, install a newer Python version (any version between 3.10 - 3.14) using your existing environment manager, or download from [https://www.python.org/downloads/macos/ 🔗](https://www.python.org/downloads/macos/).
+If you do not have Python 3.10 or higher, install a newer Python version (any version between 3.10 - 3.14, inclusive) using your existing environment manager, or download from [https://www.python.org/downloads/macos/ 🔗](https://www.python.org/downloads/macos/)
 
 #### Download the gcloud sdk installer
 
@@ -33,15 +33,16 @@ Check if you have an M1 (or higher) or Intel processor by running:
 ```bash
 uname -m
 
-# M1: ARM64
+# M Chip: arm64
 # Intel: x86_64
 ```
 
-Only install one of the following based on your CPU type:
+Only install **one of the following** based on your CPU type:
 
 <details>
-<summary>I have an <strong>M chip</strong> processor</summary>
-Download the following gcloud sdk installer:
+<summary>💡 I have an <strong>M chip (arm64)</strong> processor</summary>
+
+Download the following `gcloud` sdk installer:
 
 ```bash
 curl -o ~/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-arm.tar.gz
@@ -51,8 +52,9 @@ curl -o ~/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rap
 <br>
 
 <details>
-<summary>I have an <strong>Intel</strong> processor</summary>
-Download the following gcloud sdk installer:
+<summary>💡 I have an <strong>Intel (x86_64)</strong> processor</summary>
+
+Download the following `gcloud` sdk installer:
 
 ```bash
 curl -o ~/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-x86_64.tar.gz
