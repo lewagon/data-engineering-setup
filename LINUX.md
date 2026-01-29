@@ -359,13 +359,13 @@ gcloud auth login
 
 And following the prompts.
 
-When selecting what **Google Auth Library** can access, ensure that you allow ✅:
+When selecting what **Google Auth Library** can access, ensure that you allow:
 
-> See, edit, configure and delete your Google Cloud data and see the email address for your Google Account
+> ✅ See, edit, configure and delete your Google Cloud data and see the email address for your Google Account
 
 It's is usually the first check box.
 
-We recommend allowing **Google Auth Library** to: _View and sing in to your Google Cloud SQL instances._
+We recommend allowing **Google Auth Library** to: _View and sign in to your Google Cloud SQL instances._
 
 
 
@@ -688,13 +688,13 @@ gcloud auth login
 
 And following the prompts.
 
-When selecting what **Google Auth Library** can access, ensure that you allow ✅:
+When selecting what **Google Auth Library** can access, ensure that you allow:
 
-> See, edit, configure and delete your Google Cloud data and see the email address for your Google Account
+> ✅ See, edit, configure and delete your Google Cloud data and see the email address for your Google Account
 
 It's is usually the first check box.
 
-We recommend allowing **Google Auth Library** to: _View and sing in to your Google Cloud SQL instances._
+We recommend allowing **Google Auth Library** to: _View and sign in to your Google Cloud SQL instances._
 
 
 
