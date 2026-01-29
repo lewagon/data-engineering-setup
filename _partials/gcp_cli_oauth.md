@@ -8,15 +8,38 @@ To authenticate `gcloud`, run:
 gcloud auth login
 ```
 
-And following the prompts. For pasting into the terminal, your might need to use CTRL + SHIFT + V
+And following the prompts.
 
-You also need to set the GCP project that your are working in. For this section, you'll need your GCP Project ID, which can be found on the GCP Console at this [link here](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
+When selecting what **Google Auth Library** can access, ensure that you allow:
+
+> ✅ See, edit, configure and delete your Google Cloud data and see the email address for your Google Account
+
+It's is usually the first check box.
+
+We recommend allowing **Google Auth Library** to: _View and sign in to your Google Cloud SQL instances._
+
+$WINDOWS_START
+
+For pasting into the terminal, your might need to use `ctrl + shift + v`
+
+$WINDOWS_END
+
+$LINUX_START
+
+For pasting into the terminal, your might need to use `ctrl + shift + v`
+
+$LINUX_END
+
+You also need to set the GCP project that your are working in. For this section, you'll need your **GCP Project ID**, which can be found on the GCP Console at this [link here 🔗](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
 
 To set your project, replace `<YOUR_PROJECT_ID>` with your GCP Project ID and run:
 
 ```bash
 gcloud config set project <YOUR_PROJECT_ID>
+# gcloud config set project my-gcp-project
 ```
+
+💡 If you get a terminal message saying your project: _lacks an environment tag_ - you can safely ignore it
 
 Confirm your setup with:
 

@@ -6,25 +6,80 @@ The `gcloud` Command Line Interface (CLI) is used to communicate with Google Clo
 
 $MAC_START
 
-Install with `brew`:
+#### 1. Check to see if python 3 is available, otherwise install
+
+If you don't know, run:
 
 ```bash
-brew install --cask google-cloud-sdk
+which -a python3
 ```
 
-Then install `gcloud` with:
+**If this only outputs one line containing `/usr/bin/python3`, then python 3 is NOT installed** - this is a placeholder that macOS has by default, if you run it, it will try to install xcode onto your computer.
+
+If the output is more than one line, check the version of Python you have installed with:
 
 ```bash
-$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/install.sh
+python3 -v
 ```
 
-To test your install, open a new terminal and run:
+❗ **The version installed must be greater than or equal to Python 3.10** ❗
+
+If you do not have Python 3.10 or higher, install a newer Python version (any version between 3.10 - 3.14, inclusive) using your existing environment manager, or download from [https://www.python.org/downloads/macos/ 🔗](https://www.python.org/downloads/macos/)
+
+#### 2. Download the gcloud sdk installer
+
+Check if you have an M1 (or higher) or Intel processor by running:
+
+```bash
+uname -m
+
+# M Chip: arm64
+# Intel: x86_64
+```
+
+Only install **one of the following** based on your CPU type:
+
+<details>
+<summary>💡 I have an <strong>M chip (arm64)</strong> processor</summary>
+
+Download the following `gcloud` sdk installer:
+
+```bash
+curl -o ~/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-arm.tar.gz
+```
+</details>
+
+<br>
+
+<details>
+<summary>💡 I have an <strong>Intel (x86_64)</strong> processor</summary>
+
+Download the following `gcloud` sdk installer:
+
+```bash
+curl -o ~/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-x86_64.tar.gz
+```
+</details>
+
+#### 3. Install gcloud sdk
+
+```bash
+exec zsh
+export CLOUDSDK_PYTHON=$(which python3)
+cd ~
+tar -xf google-cloud-sdk.tar.gz
+./google-cloud-sdk/install.sh
+```
+
+You can accept all the default options by hitting enter.
+
+❗ At a certain point (usually the 4th option), the installer will ask to download and install python3. You can say **no**.
+
+Once the installer is finished, test the install by running:
 
 ```bash
 gcloud --version
 ```
-
-👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#mac)
 
 $MAC_END
 
@@ -36,6 +91,7 @@ Once it's finished downloading, launch the installer and follow the prompts. You
 
 On the last screen of the installer there will be four check boxes. Makes sure that the boxes for `Start Google SDK Shell` and `Run gcloud init to configure the Google Cloud CLI` are selected then click **Finish**. This should open a new **Command Prompt** window and ask a series of questions like:
 - **Do you want to log in?** - type `y` and hit enter and following the prompts. It should open a web-browser to log in to your Google account.
+    - Ensure you _'allow'_ Google Cloud to access different services
 - **Pick cloud project to use** - Select your GCP Project ID that you want to connect with `gcloud`
 - **Select your region and zone** - You can safely enter `n`. It's not important at the moment.
 

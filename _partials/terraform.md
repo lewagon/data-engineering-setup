@@ -4,12 +4,16 @@ Terraform is a tool for [Infrastructure as Code (IaC) 🔗](https://en.wikipedia
 
 $MAC_START
 
-You can use `brew` to install terraform. In your terminal, run:
-
-```bash
-brew tap hashicorp/tap
-brew install hashicorp/tap/terraform
-```
+To install Terraform, navigate to the [Terraform downloads page 🔗](https://developer.hashicorp.com/terraform/install):
+- Under **Binary download**, select the binary that corresponds to your CPU architecture:
+    - M chip (arm64): ARM64
+    - Intel (x86_64): AMD64
+- Save the binary to your `Downloads` folder
+- Open the downloaded file to unzip the archive
+- Move the Terraform binary to path with the following command, you may be asked for your user password:
+    ```bash
+    sudo cp ~/Downloads/terraform_*/terraform /usr/local/bin/
+    ```
 
 $MAC_END
 
@@ -44,7 +48,10 @@ To update your path:
 
 3. In the new pop out window, click **New** on the top right
 
-4. Into the empty box that was just created, enter: `%USERPROFILE%\terraform_cli`
+4. Into the empty box that was just created, enter:
+    ```cmd
+    %USERPROFILE%\terraform_cli
+    ```
 
 5. Click **Ok** to close the `Path` variable window, and click **Ok** again to close the Environment Variable window.
 

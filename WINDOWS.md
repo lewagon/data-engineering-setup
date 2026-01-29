@@ -43,6 +43,12 @@ In this section you will:
 
 Don't worry, we'll go into more detail in each of the individual sections 👌
 
+---
+
+There will be copying and pasting of terminal commands in this Setup Guide. There is no expectation that you understand everything that is happening.
+
+🎯 The goal of the session is to get your VM set up correctly and completely so you can fully focus on learning in future sessions, not dealing with lingering setup issues!
+
 Let's start :rocket:
 
 ---
@@ -240,11 +246,11 @@ In the search box, search for: _cloud resource manager api_ and select the **Clo
 
 **Service Usage**
 
-Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _service usage api_ and select the top result: **Service Usage API**. On the next page, click on **Enable**. ❗ This API might already enabled - not a problem if it is!
+Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _service usage api_ and select the top result: **Service Usage API**. On the next page, click on **Enable**. ❗ This API might already be enabled - not a problem if it is!
 
 **Compute Engine**
 
-Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _compute engine api_ and select: **Compute Engine API**. On the next page, click on **Enable**. ❗ This API might already enabled - not a problem if it is!
+Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _compute engine api_ and select: **Compute Engine API**. On the next page, click on **Enable**. ❗ This API might already be enabled - not a problem if it is!
 
 
 ## Visual Studio Code
@@ -269,9 +275,11 @@ We need to connect VS Code to a virtual machine in the cloud so you will only wo
 
 - Open VS Code > Open the [command palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) > Type `Extensions: Install Extensions`
 
+- In the left pop out panel that appears, type `remote ssh` into the search bar, and select the first result: **Remote - SSH** (by Microsoft)
+
 <img alt="VSCode extensions - Search - Remote" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-extensions-search-remote.png" width=500>
 
-- Install the extension
+- Install the extension by clicking on the install button
 
 <img alt="VS Code extensions - Remote - Details" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-extensions-remote.png" width=500>
 
@@ -292,6 +300,7 @@ Once it's finished downloading, launch the installer and follow the prompts. You
 
 On the last screen of the installer there will be four check boxes. Makes sure that the boxes for `Start Google SDK Shell` and `Run gcloud init to configure the Google Cloud CLI` are selected then click **Finish**. This should open a new **Command Prompt** window and ask a series of questions like:
 - **Do you want to log in?** - type `y` and hit enter and following the prompts. It should open a web-browser to log in to your Google account.
+    - Ensure you _'allow'_ Google Cloud to access different services
 - **Pick cloud project to use** - Select your GCP Project ID that you want to connect with `gcloud`
 - **Select your region and zone** - You can safely enter `n`. It's not important at the moment.
 
@@ -367,7 +376,10 @@ To update your path:
 
 3. In the new pop out window, click **New** on the top right
 
-4. Into the empty box that was just created, enter: `%USERPROFILE%\terraform_cli`
+4. Into the empty box that was just created, enter:
+    ```cmd
+    %USERPROFILE%\terraform_cli
+    ```
 
 5. Click **Ok** to close the `Path` variable window, and click **Ok** again to close the Environment Variable window.
 
@@ -636,15 +648,31 @@ To authenticate `gcloud`, run:
 gcloud auth login
 ```
 
-And following the prompts. For pasting into the terminal, your might need to use CTRL + SHIFT + V
+And following the prompts.
 
-You also need to set the GCP project that your are working in. For this section, you'll need your GCP Project ID, which can be found on the GCP Console at this [link here](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
+When selecting what **Google Auth Library** can access, ensure that you allow:
+
+> ✅ See, edit, configure and delete your Google Cloud data and see the email address for your Google Account
+
+It's is usually the first check box.
+
+We recommend allowing **Google Auth Library** to: _View and sign in to your Google Cloud SQL instances._
+
+
+For pasting into the terminal, your might need to use `ctrl + shift + v`
+
+
+
+You also need to set the GCP project that your are working in. For this section, you'll need your **GCP Project ID**, which can be found on the GCP Console at this [link here 🔗](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
 
 To set your project, replace `<YOUR_PROJECT_ID>` with your GCP Project ID and run:
 
 ```bash
 gcloud config set project <YOUR_PROJECT_ID>
+# gcloud config set project my-gcp-project
 ```
+
+💡 If you get a terminal message saying your project: _lacks an environment tag_ - you can safely ignore it
 
 Confirm your setup with:
 
@@ -679,7 +707,7 @@ And follow the prompts. It should open a web-page to login to your Google accoun
 
 ## VM configuration with Ansible
 
-We'll be using [Ansible](https://docs.ansible.com/ansible/latest/getting_started/introduction.html) to configure your Virtual Machine with some software, configurations, packages, and frameworks that you'll use in the bootcamp.
+We'll be using [Ansible 🔗](https://docs.ansible.com/ansible/latest/getting_started/introduction.html) to configure your Virtual Machine with some software, configurations, packages, and frameworks that you'll use in the bootcamp.
 
 Let's start by confirming that ansible is installed. In your terminal run:
 
@@ -730,15 +758,15 @@ And the playbook should start running!
 ### What is the playbook installing?
 
 While this playbook is running, lets go through what is being installed and configured:
-- Updating system packages. Ubuntu uses the `APT` package manager.
+- Updating system packages. Ubuntu (and other Debian based linux distributions) uses the `apt` package manager
 - Changing the default shell from **bash** to **zsh**, a more customizable shell that is extensible and looks great!
-- Installing the **Oh-My-ZSH** plugin for the **zsh** shell. We'll use it a bit later to add some quality of life plugins and extensions for `zsh`.
-- Installing **Docker** on your Virtual Machine. Docker is an open platform for developing, shipping, and running applications. You will use it throughout the bootcamp
-- Installing some **Kubernetes (k8s)** tooling: Kubernetes is a system designed to for auto-scaling containerized applications.
-    - Installing **kubectl**: `kubectl` is the CLI tool for interacting with kubernetes clusters.
-    - Installing **minikube**: Minikube is a way to quickly spin up a local kubernetes cluster. Great for developing!
-- Installing **terraform**: we've already installed it once, but we need to install it on our VM! **Terraform** is an Infrastructure as Code (IaC) tool.
-- Install the **GitHub CLI**: the CLI tool that we'll use to interact with your GitHub account directly from the terminal.
+- Installing the [**Oh-My-ZSH** 🔗](https://ohmyz.sh/) plugin for the **zsh** shell. We'll use it a bit later to add some quality of life plugins and extensions to `zsh`
+- Installing [**Docker** 🔗](https://www.docker.com/) on your Virtual Machine. Docker is an open platform for developing, shipping, and running applications. You will use it throughout the bootcamp
+- Installing some [**Kubernetes (k8s)** 🔗](https://kubernetes.io/) tooling: Kubernetes is used to managing containerised applications at scale
+    - Installing [**kubectl** 🔗](https://kubernetes.io/docs/reference/kubectl/): `kubectl` is the CLI tool for interacting with kubernetes clusters
+    - Installing [**minikube** 🔗](https://minikube.sigs.k8s.io/docs/): Minikube is a way to quickly spin up a local kubernetes cluster, perfect for learning and developing!
+- Installing [**Terraform** 🔗](https://developer.hashicorp.com/terraform): we've already installed it once, but we need to install it on our VM! **Terraform** is an Infrastructure as Code (IaC) tool
+- Install the [**GitHub CLI** 🔗](https://cli.github.com/): the CLI tool that we'll use to interact with your GitHub account directly from the terminal
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
 
@@ -806,48 +834,24 @@ To customise this configuration for yourself, you'll need to **fork** the reposi
 **Forking** creates a copy of the repository under your account (`your_github_username/dotfiles`), which you can then modify with your personal information, such as your name.
 
 <details>
-<summary><strong>❗ I started a Le Wagon _Web Development_ or _Data Science_ bootcamp in 2021 or earlier.</strong></summary>
+<summary>❗ I started a Le Wagon <strong>Web Development</strong> or <strong>Data Science</strong> bootcamp in 2021 or earlier. ❗</summary>
 
-Open a ticket with a TA and do the following:
-- Compare your existing dotfiles with the current Le Wagon [dotfile 🔗](https://github.com/lewagon/dotfiles), particularly the `.zshrc` and `settings.json` - if there is no meaningful difference, continue with the setup.
-- If you are OK with losing your existing dotfiles - delete your existing dotfiles repository and continue with the setup
-- If you do not want to lose your existing dotfiles, you can either:
-    1. Work with branches
-    2. Create a _psuedo fork_ of the Le Wagon dotfiles repository
+You may have a older version of the Le Wagon dotfiles. The second Ansible playbook will try to modify some of these dotfiles.
 
-**Option 1. I want to work with branches:**
-- Create a branch of your existing dotfiles setup
-- On `main`, pull from `upstream`, resolve conflicts, commit and push. It is important that you accept incoming changes to the `.zshrc` and `settings.json` files
-- Continue with the setup
 
-**Option 2. I want a separate repo for this set of dotfiles:**
-- Cloning the repository to a different target name
-    ```bash
-    mkdir -p ~/dotfiles-wagon && git clone git@github.com:lewagon/dotfiles.git ~/dotfiles-wagon
-    ```
-- Rename the existing `origin` remote to `upstream`
-    ```bash
-    cd ~/dotfiles-wagon && git remote rename origin upstream
-    ```
-- Create a new GitHub repository from directory
-    ```bash
-    cd ~/dotfiles-wagon && gh repo create dotfiles-wagon --source=. --remote=origin
-    ```
-- Verify your remotes:
-    ```bash
-    git remote -v
-
-    # origin  git@github.com:<your_github_username>/dotfiles-wagon.git (fetch)
-    # origin  git@github.com:<your_github_username>/dotfiles-wagon.git (push)
-    # upstream        git@github.com:lewagon/dotfiles.git (fetch)
-    # upstream        git@github.com:lewagon/dotfiles.git (push)
-    ```
-- Delete this current folder
-    ```bash
-    cd ~ && rm -rf ~/dotfiles-wagon
-    ```
-- Continue with the setup - replace occurrences of `dotfiles` in the following commands with `dotfiles-wagon`
+Open a ticket with a TA and do one of the following:
+- Compare your existing dotfiles with the current Le Wagon [dotfiles 🔗](https://github.com/lewagon/dotfiles), particularly the `.zshrc` and `settings.json` - if there is no meaningful difference, continue with the setup.
+- If you are OK with losing your existing dotfiles - delete your existing dotfiles repository on GitHub and continue with the setup
+- If you do not want to lose your existing dotfiles, we recommend working with branches:
+    - On your **laptop**, or wherever you have a **local** copy of **your** copy of dotfiles
+    - Create a branch of your existing dotfiles setup, and push to GitHub - `origin <branchname>`
+    - On `local main` (or a new named branch), pull from `upstream main`, resolve any conflicts, commit, and push. It is important that you accept incoming changes to the `.zshrc` and `settings.json` files
+    - Continue with the setup
+        - If you pulled from `upstream main` to a new named branch, change to that branch before executing the dotfiles installer: `install.sh`.
+        - Open `git_setup.sh` in a text editor and comment out or remove the lines that push to `origin main`
 </details>
+
+<br>
 
 Open your terminal on your VM and run the following command:
 
@@ -873,8 +877,7 @@ Run the `dotfiles` installer with:
 cd ~/code/$GITHUB_USERNAME/dotfiles && zsh install.sh
 ```
 
-Check the emails registered with your GitHub Account. You'll need to pick one
-at the next step:
+Check the emails registered with your GitHub Account. You'll need to pick one on the next step:
 
 ```bash
 gh api user/emails | jq -r '.[].email'
@@ -935,13 +938,13 @@ While the playbook is running, let's go through what is being installed and conf
 
 Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. We are going to use Python [3.12.8](https://www.python.org/downloads/release/python-3128/)
 
-- Install **pyenv** and **pyenv-virtualenv**. We'll use **pyenv** to manage the Python versions installed on the VM
+- Install [**pyenv** 🔗](https://github.com/pyenv/pyenv) and [**pyenv-virtualenv** 🔗](https://github.com/pyenv/pyenv-virtualenv). We'll use **pyenv** to manage the Python versions installed on the VM
 - Install Python 3.12.8 with pyenv
-- Install **pipx**: [Pipx](https://pipx.pypa.io/stable/) is used to install python packages we want _globally_ available while still using virtual environments, like Poetry!
+- Install [**pipx** 🔗](https://pipx.pypa.io/stable/): Pipx is used to install python packages we want _globally_ available while still using virtual environments, like Poetry!
 - Installing a few global python packages with **pipx**:
-    - **Poetry:** [Poetry](https://python-poetry.org/) is a modern Python package manager we will use throughout the bootcamp.
-    - **Ruff:** [Ruff](https://docs.astral.sh/ruff/) Is used to format and lint Python code.
-    - **tldr:** [tldr](https://github.com/tldr-pages/tldr) has much more readable version of `man` pages. Useful for quickly finding out how a program works.
+    - [**Poetry** 🔗]((https://python-poetry.org/)): Poetry is a modern Python package manager we will use throughout the bootcamp.
+    - [**Ruff** 🔗]((https://docs.astral.sh/ruff/)): Ruff Is used to format and lint Python code.
+    - [**tldr** 🔗]((https://github.com/tldr-pages/tldr)): tldr has much more readable version of `man` pages. Useful for quickly finding out how a program works.
 
 **VS Code Configuration**
 
@@ -952,7 +955,7 @@ Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. W
     - [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
     - [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
     - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
-    - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+    - [Containers](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers)
     - [Even Better TOML](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)
 - Update the VS Code Python Interpreter path.
 
@@ -997,7 +1000,7 @@ When the VM is completely off, turn it on again by selecting the check box next 
 
 We've used two ansible playbooks to configure our Virtual Machine. Let's run some manual checks in the terminal to make sure that everything has installed correctly.
 
-❗ If any of these checks error out, raise a ticket with a teacher.
+❗ If any of these checks error out, raise a ticket with a TA 🙋
 
 #### Python
 
@@ -1009,7 +1012,7 @@ python --version
 
 Should return:
 
-```
+```bash
 Python 3.12.8
 ```
 
@@ -1131,7 +1134,7 @@ And then to make sure the kubernetes CLI utility, `kubectl`, works, run the foll
 kubectl get po -A
 ```
 
-Should return something similar too:
+Should return something similar to:
 
 ```
 NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE
@@ -1147,11 +1150,10 @@ kube-system   storage-provisioner                1/1     Running   1 (41s ago)  
 And because `minikube` is resource intensive, stop it for now with:
 
 ```bash
-# Stop
 minikube delete --all
 ```
 
-Should return:
+And that should return:
 
 ```
 🔥  Deleting "minikube" in docker ...
@@ -1213,15 +1215,15 @@ That's all the testing we'll do for now!
 
 ## Let's Make!
 
-Almost there! In the second ansible playbook, the `lewagon/data-engineering-challenges` repository was forked from Le Wagon to you. Let's review how it works.
+Almost there! In the second ansible playbook, the `lewagon/data-engineering-challenges` repository was forked from Le Wagon to your own GitHub account (in the same way as the dotfiles). Let's review how it works.
 
 Our setup will look a bit like this:
 
 ![](/images/repo_overview.png)
 
-This allows you to work on challenges, but if we push any changes to the content, you can still access them!
+This allows you to work on challenges, but if any updates are made to the challenge content, you still have access to them!
 
-Check your remotes match `origin` your data engineering challenges and `upstream` lewagon's!
+Check that the `origin` and `upstream` remotes for your `data-engineering-challenges` repository are pointing at the correct repositories on GitHub, run the following:
 
 ```bash
 cd ~/code/$(gh api user | jq -r '.login')/data-engineering-challenges
@@ -1251,13 +1253,13 @@ make install
 
 This might take a while. You have time to grab a coffee ☕️, take a break, or start the next step while all your poetry environments are installing.
 
-⚠️ If at the very end of this process you get a few errors like: `direnv: error .envrc file not found` or a Python version isn't available (relating to `Dask`) - that is normal and nothing to worry about 👌
+⚠️ If at the very end of this process you get a few errors like: `direnv: error .envrc file not found` or a Python version isn't available (relating to `Dask`) - that is normal and nothing to worry about 👌 If you're concerned by anything, feel free to open a ticket with a TA!
 
 
 
 ## DBeaver
 
-Download and install [DBeaver](https://dbeaver.io/) on your local machine, a free and open source powerful tool to connect to any database, explore the schema and even **run SQL queries**.
+Download and install [DBeaver ("Community" edition) 🔗](https://dbeaver.io/download) on your local machine, a free and open source SQL Client to connect to databases, explore schema, and run **SQL queries**.
 
 
 ## Kitt

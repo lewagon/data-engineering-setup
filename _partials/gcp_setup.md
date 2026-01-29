@@ -139,8 +139,8 @@ In the search box, search for: _cloud resource manager api_ and select the **Clo
 
 **Service Usage**
 
-Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _service usage api_ and select the top result: **Service Usage API**. On the next page, click on **Enable**. ❗ This API might already enabled - not a problem if it is!
+Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _service usage api_ and select the top result: **Service Usage API**. On the next page, click on **Enable**. ❗ This API might already be enabled - not a problem if it is!
 
 **Compute Engine**
 
-Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _compute engine api_ and select: **Compute Engine API**. On the next page, click on **Enable**. ❗ This API might already enabled - not a problem if it is!
+Navigate back to the [APIs and Services 🔗](https://console.cloud.google.com/apis/library) page and search for: _compute engine api_ and select: **Compute Engine API**. On the next page, click on **Enable**. ❗ This API might already be enabled - not a problem if it is!
