@@ -6,8 +6,8 @@ $MAC_START
 
 To install Terraform, navigate to the [Terraform downloads page 🔗](https://developer.hashicorp.com/terraform/install):
 - Under **Binary download**, select the binary that corresponds to your CPU architecture:
-    - M chip: ARM64
-    - Intel: AMD64
+    - M chip (arm64): ARM64
+    - Intel (x86_64): AMD64
 - Save the binary to your `Downloads` folder
 - Open the downloaded file to unzip the archive
 - Move the Terraform binary to path with the following command, you may be asked for your user password:
