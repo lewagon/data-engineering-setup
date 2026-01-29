@@ -401,6 +401,8 @@ gcloud config set project <YOUR_PROJECT_ID>
 # gcloud config set project my-gcp-project
 ```
 
+💡 If you get a terminal message saying your project: _lacks an environment tag_ - you can safely ignore it
+
 Confirm your setup with:
 
 ```bash
@@ -709,6 +711,8 @@ To set your project, replace `<YOUR_PROJECT_ID>` with your GCP Project ID and ru
 gcloud config set project <YOUR_PROJECT_ID>
 # gcloud config set project my-gcp-project
 ```
+
+💡 If you get a terminal message saying your project: _lacks an environment tag_ - you can safely ignore it
 
 Confirm your setup with:
 
