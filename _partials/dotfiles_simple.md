@@ -8,17 +8,20 @@ To customise this configuration for yourself, you'll need to **fork** the reposi
 
 <details>
 <summary>❗ I started a Le Wagon <strong>Web Development</strong> or <strong>Data Science</strong> bootcamp in 2021 or earlier. ❗</summary>
+
 You may have a older version of the Le Wagon dotfiles. The second Ansible playbook will try to modify some of these dotfiles.
 
-Open a ticket with a TA and do the following:
-- Compare your existing dotfiles with the current Le Wagon [dotfile 🔗](https://github.com/lewagon/dotfiles), particularly the `.zshrc` and `settings.json` - if there is no meaningful difference, continue with the setup.
+
+Open a ticket with a TA and do one of the following:
+- Compare your existing dotfiles with the current Le Wagon [dotfiles 🔗](https://github.com/lewagon/dotfiles), particularly the `.zshrc` and `settings.json` - if there is no meaningful difference, continue with the setup.
 - If you are OK with losing your existing dotfiles - delete your existing dotfiles repository on GitHub and continue with the setup
 - If you do not want to lose your existing dotfiles, we recommend working with branches:
-    - Create a branch of your existing dotfiles setup
-    - On `main` (or a new named branch), pull from `upstream`, resolve any conflicts, commit, and push. It is important that you accept incoming changes to the `.zshrc` and `settings.json` files
+    - On your **laptop**, or wherever you have a **local** copy of **your** copy of dotfiles
+    - Create a branch of your existing dotfiles setup, and push to GitHub - `origin <branchname>`
+    - On `local main` (or a new named branch), pull from `upstream main`, resolve any conflicts, commit, and push. It is important that you accept incoming changes to the `.zshrc` and `settings.json` files
     - Continue with the setup
-        - if you pulled from `upstream main` to a new named branch, change to that branch before executing the dotfiles installer.
-        - Open up the `git_setup.sh` and remove or comment out the lines that push to `origin main`
+        - If you pulled from `upstream main` to a new named branch, change to that branch before executing the dotfiles installer: `install.sh`.
+        - Open `git_setup.sh` in a text editor and comment out or remove the lines that push to `origin main`
 </details>
 
 <br>
