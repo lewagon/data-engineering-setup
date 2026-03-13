@@ -25,11 +25,8 @@ MAC_OS = %w[
   setup/gh_cli
   ubuntu_gcloud
   gcp_setup_linux
-  dotfiles
-  dotfiles_new_student
-  dotfiles_new_laptop
-  dotfiles_new_laptop_heading
-  dotfiles_new_laptop
+  dotfiles_simple
+  dotfiles_terminal
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
@@ -63,11 +60,8 @@ WINDOWS = %w[
   setup/gh_cli
   ubuntu_gcloud
   gcp_setup_linux
-  dotfiles
-  dotfiles_new_student
-  dotfiles_new_laptop
-  dotfiles_new_laptop_heading
-  dotfiles_new_laptop
+  dotfiles_simple
+  dotfiles_terminal
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
@@ -101,11 +95,8 @@ LINUX = %w[
   setup/gh_cli
   ubuntu_gcloud
   gcp_setup_linux
-  dotfiles
-  dotfiles_new_student
-  dotfiles_new_laptop
-  dotfiles_new_laptop_heading
-  dotfiles_new_laptop
+  dotfiles_simple
+  dotfiles_terminal
   zsh_default_terminal
   setup/ssh_agent
   ubuntu_docker
