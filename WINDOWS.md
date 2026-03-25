@@ -598,17 +598,17 @@ Host lw-de-vm-tswift.europe-west1-b.wagon-bootcamp
 # End of Google Compute Engine Section
 ```
 
-A bit happening here, most of it is documentation and context. Because of some quirks with Windows, we are in fact going to edit this file by hand. We want to add a new `User YOUR_USERNAME` key-value pair to the SSH connection configuration block. In the indented section above the existing `Hostname` label, add a new `User` label with the value of your Windows username. For example: If the output of `echo %username%` in command prompt was `TaylorSwift`, my updated configuration would be:
+A bit happening here, most of it is documentation and context. Because of some quirks with Windows, we are in fact going to edit this file by hand. We want to add a new `User YOUR_USERNAME` key-value pair to the SSH connection configuration block. In the indented section after `CheckHostIP=no`, add a new `User` label with the value of your Windows username. For example: If the output of `echo %username%` in command prompt was `TaylorSwift`, my updated configuration would be:
 
 ```bash
 Host lw-de-vm-tswift.europe-west1-b.wagon-bootcamp
-    User TaylorSwift # <-- User label added here
     HostName 34.0.248.237
     IdentityFile C:\Users\TaylorSwift\.ssh\google_compute_engine
     UserKnownHostsFile=C:\Users\TaylorSwift\.ssh\google_compute_known_hosts
     HostKeyAlias=compute.1637400398547578470
     IdentitiesOnly=yes
     CheckHostIP=no
+    User TaylorSwift # <-- Add User label here
 ```
 
 
@@ -801,7 +801,7 @@ cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part1.yml
 
 And the playbook should start running!
 
-❗ If an errors occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required.
+❗ If an errors occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required (a cool concept called _Idempotency_ that you'll learn about later 😉).
 
 ### What is the playbook installing?
 
@@ -818,7 +818,7 @@ While this playbook is running, lets go through what is being installed and conf
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
 
-💡 Curious about how Ansible playbooks are defined, take a look at the playbook being run at this [link here 🔗](https://github.com/lewagon/data-engineering-setup/blob/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml)
+💡 Curious about how Ansible playbooks are defined, take a look at the playbooks' source code at this [link here 🔗](https://github.com/lewagon/data-engineering-setup/blob/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml). You might not understand exactly what is happening, but should be able to identify the different tasks.
 
 
 ## GitHub CLI
@@ -976,7 +976,11 @@ cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part2.yml
 
 And the playbook should start running! If you're asked if you want VS Code to behave more like Sublime Text, click accept.
 
-❗ If any errors occur, raise a ticket with a teacher. You can safely run the playbook again.
+❗ **If you created a password for your GitHub SSH key**
+- You may asked to type it in your password when the during the playbook run
+- The task: **Clone data-engineering-challenges from your GitHub to VM** will fail. This is OK and expected with how SSH keys work and how the playbooks are modifying your configuration. To resolve, in your terminal run: `exec zsh`, and then re-run the playbook.
+
+❗ If any other errors occur, or your are unsure, raise a ticket with a teacher. You can safely run the playbook again and again. Generally, if the playbook runs from start to finish with no errors, everything should be good!
 
 ### What is the playbook installing?
 
