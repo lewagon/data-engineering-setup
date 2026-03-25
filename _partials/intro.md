@@ -51,6 +51,4 @@ There will be copying and pasting of terminal commands in this Setup Guide. Ther
 
 Let's start :rocket:
 
----
-
 # Part 1: Local Setup

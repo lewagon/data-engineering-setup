@@ -126,7 +126,7 @@ $MAC_START
 - **instance_user:** in your terminal, run `whoami`, and enter the value
 $MAC_END
 $WINDOWS_START
-- **instance_user:** in Command Prompt, run `echo %username%`, and enter the value
+- **instance_user:** in Command Prompt, run `echo %username%`, and enter the value - try and remember your username, you will need it later on
 $WINDOWS_END
 $LINUX_START
 - **instance_user:** in your terminal, run `whoami`, and enter the value
@@ -178,7 +178,7 @@ Terraform is telling you what it will create:
 - A compute engine instance
 - A static external IP address
 
-**❗ If you have any errors, read the error and debug. If you need some help, raise a ticket with a teacher. ❗**
+**❗ If you have any errors, read the error and debug. If you are unsure, raise a ticket with a teacher. ❗**
 
 If everything was successful, create your VM with:
 
