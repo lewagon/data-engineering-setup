@@ -46,7 +46,7 @@ cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part1.yml
 
 And the playbook should start running!
 
-❗ If an errors occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required.
+❗ If an errors occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required (a cool concept called _Idempotency_ that you'll learn about later 😉).
 
 ### What is the playbook installing?
 
@@ -63,4 +63,4 @@ While this playbook is running, lets go through what is being installed and conf
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
 
-💡 Curious about how Ansible playbooks are defined, take a look at the playbook being run at this [link here 🔗](https://github.com/lewagon/data-engineering-setup/blob/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml)
+💡 Curious about how Ansible playbooks are defined, take a look at the playbooks' source code at this [link here 🔗](https://github.com/lewagon/data-engineering-setup/blob/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml). You might not understand exactly what is happening, but should be able to identify the different tasks.

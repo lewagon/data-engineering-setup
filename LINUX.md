@@ -51,8 +51,6 @@ There will be copying and pasting of terminal commands in this Setup Guide. Ther
 
 Let's start :rocket:
 
----
-
 # Part 1: Local Setup
 
 
@@ -586,7 +584,7 @@ Terraform is telling you what it will create:
 - A compute engine instance
 - A static external IP address
 
-**❗ If you have any errors, read the error and debug. If you need some help, raise a ticket with a teacher. ❗**
+**❗ If you have any errors, read the error and debug. If you are unsure, raise a ticket with a teacher. ❗**
 
 If everything was successful, create your VM with:
 
@@ -658,13 +656,13 @@ Notice the connection in the very bottom-left corner of your VS Code window. It 
 If you want to view your SSH configuration:
 1. Start by clicking the symbol in the bottom-left corner of VS Code
 2. Click on **Connect to Host...**
-3. Click on **Configure SSH Hosts...***
+3. Click on **Configure SSH Hosts...**
 4. Select the configuration file. Usually the file at the top of the list.
 5. View your configuration file! You may need to edit this configuration if you change computers, or want to work on more than one computer during the bootcamp.
 
 </details>
 
-Congratulations, the setup of you local laptop is complete 🎉 We just need to fine tune your Virtual Machine 🪛
+Congratulations, the setup of you local computer is complete 🎉 We just need to fine tune your Virtual Machine 🪛
 
 ---
 
@@ -793,7 +791,7 @@ cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part1.yml
 
 And the playbook should start running!
 
-❗ If an errors occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required.
+❗ If an errors occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required (a cool concept called _Idempotency_ that you'll learn about later 😉).
 
 ### What is the playbook installing?
 
@@ -810,7 +808,7 @@ While this playbook is running, lets go through what is being installed and conf
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
 
-💡 Curious about how Ansible playbooks are defined, take a look at the playbook being run at this [link here 🔗](https://github.com/lewagon/data-engineering-setup/blob/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml)
+💡 Curious about how Ansible playbooks are defined, take a look at the playbooks' source code at this [link here 🔗](https://github.com/lewagon/data-engineering-setup/blob/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml). You might not understand exactly what is happening, but should be able to identify the different tasks.
 
 
 ## GitHub CLI
@@ -883,7 +881,7 @@ Open a ticket with a TA and do one of the following:
 - Compare your existing dotfiles with the current Le Wagon [dotfiles 🔗](https://github.com/lewagon/dotfiles), particularly the `.zshrc` and `settings.json` - if there is no meaningful difference, continue with the setup.
 - If you are OK with losing your existing dotfiles - delete your existing dotfiles repository on GitHub and continue with the setup
 - If you do not want to lose your existing dotfiles, we recommend working with branches:
-    - On your **laptop**, or wherever you have a **local** copy of **your** copy of dotfiles
+    - On your **laptop**, or wherever you have a **local** copy of **your existing version of dotfiles**
     - Create a branch of your existing dotfiles setup, and push to GitHub - `origin <branchname>`
     - On `local main` (or a new named branch), pull from `upstream main`, resolve any conflicts, commit, and push. It is important that you accept incoming changes to the `.zshrc` and `settings.json` files
     - Continue with the setup
@@ -968,7 +966,11 @@ cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part2.yml
 
 And the playbook should start running! If you're asked if you want VS Code to behave more like Sublime Text, click accept.
 
-❗ If any errors occur, raise a ticket with a teacher. You can safely run the playbook again.
+❗ **If you created a password for your GitHub SSH key**
+- You may be asked to type in your password during the playbook run
+- The task: **Clone data-engineering-challenges from your GitHub to VM** will fail. This is OK and expected with how SSH keys work and how the playbooks are modifying your configuration. To resolve, in your terminal run: `exec zsh`, and then re-run the playbook.
+
+❗ If any other errors occur, or your are unsure, raise a ticket with a teacher. You can safely run the playbook again and again. Generally, if the playbook runs from start to finish with no errors, everything should be good!
 
 ### What is the playbook installing?
 

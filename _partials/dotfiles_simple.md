@@ -16,7 +16,7 @@ Open a ticket with a TA and do one of the following:
 - Compare your existing dotfiles with the current Le Wagon [dotfiles 🔗](https://github.com/lewagon/dotfiles), particularly the `.zshrc` and `settings.json` - if there is no meaningful difference, continue with the setup.
 - If you are OK with losing your existing dotfiles - delete your existing dotfiles repository on GitHub and continue with the setup
 - If you do not want to lose your existing dotfiles, we recommend working with branches:
-    - On your **laptop**, or wherever you have a **local** copy of **your** copy of dotfiles
+    - On your **laptop**, or wherever you have a **local** copy of **your existing version of dotfiles**
     - Create a branch of your existing dotfiles setup, and push to GitHub - `origin <branchname>`
     - On `local main` (or a new named branch), pull from `upstream main`, resolve any conflicts, commit, and push. It is important that you accept incoming changes to the `.zshrc` and `settings.json` files
     - Continue with the setup

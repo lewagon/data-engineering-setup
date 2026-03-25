@@ -49,7 +49,7 @@
         regexp: "plugins="
         line: "plugins=(git gitfast last-working-dir common-aliases zsh-syntax-highlighting history-substring-search pyenv ssh-agent direnv gcloud)"
         create: true
-        mode: '0644'
+        mode: "0644"
       become_user: "{{ my_user }}"
       become: true
       tags: zshrc
@@ -71,7 +71,7 @@
           export PATH="$HOME/.local/bin:$PATH"
         marker: "# {mark} ANSIBLE CREATED BLOCK: path vars"
         create: true
-        mode: '0644'
+        mode: "0644"
       become_user: "{{ my_user }}"
       become: true
       tags: zshrc
@@ -94,7 +94,7 @@
           }
         marker: "# {mark} ANSIBLE CREATED BLOCK: layout_poetry"
         create: true
-        mode: '0644'
+        mode: "0644"
       become_user: "{{ my_user }}"
       become: true
 
@@ -176,7 +176,7 @@
               ansible.builtin.copy:
                 content: "{{ vscode_settings | to_nice_json }}"
                 dest: "~/.vscode-server/data/Machine/settings.json"
-                mode: '0644'
+                mode: "0644"
               become_user: "{{ my_user }}"
               become: true
 

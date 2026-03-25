@@ -20,7 +20,11 @@ cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part2.yml
 
 And the playbook should start running! If you're asked if you want VS Code to behave more like Sublime Text, click accept.
 
-❗ If any errors occur, raise a ticket with a teacher. You can safely run the playbook again.
+❗ **If you created a password for your GitHub SSH key**
+- You may be asked to type in your password during the playbook run
+- The task: **Clone data-engineering-challenges from your GitHub to VM** will fail. This is OK and expected with how SSH keys work and how the playbooks are modifying your configuration. To resolve, in your terminal run: `exec zsh`, and then re-run the playbook.
+
+❗ If any other errors occur, or your are unsure, raise a ticket with a teacher. You can safely run the playbook again and again. Generally, if the playbook runs from start to finish with no errors, everything should be good!
 
 ### What is the playbook installing?
 
