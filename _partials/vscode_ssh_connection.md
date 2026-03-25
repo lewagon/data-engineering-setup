@@ -57,17 +57,17 @@ Host lw-de-vm-tswift.europe-west1-b.wagon-bootcamp
 # End of Google Compute Engine Section
 ```
 
-A bit happening here, most of it is documentation and context. Because of some quirks with Windows, we are in fact going to edit this file by hand. We want to add a new `User YOUR_USERNAME` key-value pair to the SSH connection configuration block. In the indented section above the existing `Hostname` label, add a new `User` label with the value of your Windows username. For example: If the output of `echo %username%` in command prompt was `TaylorSwift`, my updated configuration would be:
+A bit happening here, most of it is documentation and context. Because of some quirks with Windows, we are in fact going to edit this file by hand. We want to add a new `User YOUR_USERNAME` key-value pair to the SSH connection configuration block. In the indented section after `CheckHostIP=no`, add a new `User` label with the value of your Windows username. For example: If the output of `echo %username%` in command prompt was `TaylorSwift`, my updated configuration would be:
 
 ```bash
 Host lw-de-vm-tswift.europe-west1-b.wagon-bootcamp
-    User TaylorSwift # <-- User label added here
     HostName 34.0.248.237
     IdentityFile C:\Users\TaylorSwift\.ssh\google_compute_engine
     UserKnownHostsFile=C:\Users\TaylorSwift\.ssh\google_compute_known_hosts
     HostKeyAlias=compute.1637400398547578470
     IdentitiesOnly=yes
     CheckHostIP=no
+    User TaylorSwift # <-- Add User label here
 ```
 
 
