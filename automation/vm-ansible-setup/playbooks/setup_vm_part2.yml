@@ -333,26 +333,13 @@
             path: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
           register: local_repo_exists
 
-        # - name: Clone data-engineering-challenges from your GitHub to VM # noqa latest[git]
-        #   ansible.builtin.git:
-        #     repo: "git@github.com:{{ github_username.stdout }}/data-engineering-challenges.git"
-        #     dest: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
-        #     clone: true
-        #     update: false
-        #     accept_hostkey: true
-        #   become_user: "{{ my_user }}"
-        #   become: true
-        #   when: not local_repo_exists.stat.exists
-        #   changed_when: true
-
         - name: Clone data-engineering-challenges from your GitHub to VM # noqa latest[git]
-          ansible.builtin.shell: |
-            source ~/.zshrc
-            git clone git@github.com: {{ github_username.stdout }}/data-engineering-challenges.git \
-              /home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges
-          args:
-            executable: /usr/bin/zsh
-            creates: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
+          ansible.builtin.git:
+            repo: "git@github.com:{{ github_username.stdout }}/data-engineering-challenges.git"
+            dest: "/home/{{ my_user }}/code/{{ github_username.stdout }}/data-engineering-challenges"
+            clone: true
+            update: false
+            accept_hostkey: true
           become_user: "{{ my_user }}"
           become: true
           when: not local_repo_exists.stat.exists
