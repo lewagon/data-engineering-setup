@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby -wU
+
+require 'open-uri'
+
 CONSTANTS = {
   'PYTHON_VERSION' => '3.8.12',
   # 'PYTHON_CHECKER_URL' => 'https://raw.githubusercontent.com/lewagon/data-setup/master/checks/python_checker.sh',
@@ -115,6 +118,7 @@ LINUX_KC = %w[
 ]
 
 LOCALES = [""]  # english
+ENGLISH_ONLY = %w[].freeze
 
 FILENAMES = {
   "WINDOWS" => ["WINDOWS", WINDOWS],
@@ -132,14 +136,27 @@ DELIMITERS = {
 }
 
 def load_partial(partial, locale)
-  match_data = partial.match(/setup\/(?<partial>[0-9a-z_]+)/)
-  partial = match_data[:partial] if match_data
+  match_setup = partial.match(/setup\/(?<partial>[0-9a-z_]+)/)
+  match_de_setup = partial.match(/de_setup\/(?<partial>[0-9a-z_]+)/)
+  if match_de_setup
+    partial = match_de_setup[:partial]
+  elsif match_setup
+    partial = match_setup[:partial]
+  end
   partial = File.join(locale, partial) unless locale.empty?
   file = File.join("_partials", "#{partial}.md")
-  if match_data
-    require 'open-uri'
+  if match_de_setup
+    content = URI.open(File.join("https://raw.githubusercontent.com/lewagon/data-engineering-setup/main", file))
+            .read
+    # replace data-setup repo relative path by data-engineering-setup repo URL
+    image_paths = content.scan(/\!\[.*\]\((.*)\)/).flatten
+    image_paths.reject { |ip| ip.start_with?("http") }.each { |ip| content.gsub!(ip, "https://github.com/lewagon/data-engineering-setup/blob/main/#{ip}")}
+    # alternative image format
+    image_paths = content.scan(/src="(images\/.*)"/).flatten
+    image_paths.each { |ip| content.gsub!(ip, "https://github.com/lewagon/data-engineering-setup/blob/main/#{ip}")}
+  elsif match_setup
     content = URI.open(File.join("https://raw.githubusercontent.com/lewagon/setup/master", file))
-            .string
+            .read
     # replace data-setup repo relative path by setup repo URL
     image_paths = content.scan(/\!\[.*\]\((.*)\)/).flatten
     image_paths.each { |ip| content.gsub!(ip, "https://github.com/lewagon/setup/blob/master/#{ip}")}
@@ -149,18 +166,23 @@ def load_partial(partial, locale)
   return content
 end
 
-# load partials
-loaded = FILENAMES.map { |filename, (os_name, partials)| partials }.flatten.uniq
-loaded = loaded.map { |partial| LOCALES.map { |locale| [partial, locale]} }.flatten(1)
-loaded = loaded.map { |partial, locale| ["#{partial}.#{locale}", load_partial(partial, locale)] }.to_h
+# load partials (skip non-English locales for ENGLISH_ONLY configurations)
+pairs = FILENAMES.flat_map { |filename, (os_name, partials)|
+  LOCALES.flat_map { |locale|
+    next [] if !locale.empty? && ENGLISH_ONLY.include?(filename)
+    partials.reject { |s| s.start_with?("#") }.map { |partial| [partial, locale] }
+  }
+}.uniq
+loaded = pairs.map { |partial, locale| ["#{partial}.#{locale}", load_partial(partial, locale)] }.to_h
 
 # write files
 LOCALES.each do |locale|
   FILENAMES.each do |filename, (os_name, partials)|
+    next if !locale.empty? && ENGLISH_ONLY.include?(filename)
     filename += ".#{locale}" unless locale.empty?
     filename += ".md"
     File.open(filename, "w:utf-8") do |f|
-      partials.each do |partial|
+      partials.reject { |s| s.start_with?("#") }.each do |partial|
         content = loaded["#{partial}.#{locale}"].clone
         # remove the OS dependant blocks
         removed_blocks = DELIMITERS.keys - [os_name]
