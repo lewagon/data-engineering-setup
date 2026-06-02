@@ -2,17 +2,17 @@
 
 Verifica tu versión de Python con los siguientes comandos:
 ```bash
-zsh -c "$(curl -fsSL <PYTHON_CHECKER_URL>)" <PYTHON_VERSION>
+zsh -c "$(curl -fsSL {{ PYTHON_CHECKER_URL }})" {{ PYTHON_VERSION }}
 ```
 
 Ejecuta el comando siguiente para verificar que hayas instalado los paquetes requeridos correctamente:
 ```bash
-zsh -c "$(curl -fsSL <PIP_CHECKER_URL>)"
+zsh -c "$(curl -fsSL {{ PIP_CHECKER_URL }})"
 ```
 
 Ahora ejecuta el siguiente comando para verificar que puedas cargar estos paquetes:
 ```bash
-python -c "$(curl -fsSL <PIP_LOADER_URL>)"
+python -c "$(curl -fsSL {{ PIP_LOADER_URL }})"
 ```
 
 Asegúrate de que puedas usar Jupyter:
