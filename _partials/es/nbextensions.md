@@ -20,7 +20,7 @@ Abre `custom/custom.css` en el directorio config:
 cd $(jupyter --config-dir)
 mkdir -p custom
 touch custom/custom.css
-<CODE_EDITOR_CMD> custom/custom.css
+{{ CODE_EDITOR_CMD }} custom/custom.css
 ```
 Edita `custom.css` con la siguiente información:
 
@@ -34,7 +34,7 @@ summary::marker {
 }
 ```
 
-Puedes cerrar <CODE_EDITOR>.
+Puedes cerrar {{ CODE_EDITOR }}.
 
 ### Chequeo de `jupyter`
 

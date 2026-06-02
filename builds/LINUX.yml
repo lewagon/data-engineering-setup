@@ -1,0 +1,31 @@
+
+os: linux
+locales: [en]
+partials:
+  - intro
+  - setup/ubuntu_slack
+  - setup/slack_settings
+  - setup/github
+  - ssh_key
+  - gcp_setup
+  - virtual_machine
+  - setup/ubuntu_vscode
+  - vscode_remote_ssh
+  - vscode_extensions
+  - cli_tools
+  - setup/oh_my_zsh
+  - setup/gh_cli
+  - ubuntu_gcloud
+  - gcp_setup_linux
+  - dotfiles_simple
+  - dotfiles_terminal
+  - zsh_default_terminal
+  - setup/ssh_agent
+  - ubuntu_docker
+  - kubernetes
+  - terraform
+  - ubuntu_spark
+  - ubuntu_python
+  - repo_overview
+  - dbeaver
+  - setup/kitt
