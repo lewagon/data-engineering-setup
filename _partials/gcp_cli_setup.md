@@ -81,9 +81,7 @@ Once the installer is finished, test the install by running:
 gcloud --version
 ```
 
-{% endif %}
-
-{% if os == "windows" %}
+{% elsif os == "windows" %}
 
 To install, download the Google Cloud CLI installer from this [link here 🔗](https://cloud.google.com/sdk/docs/install#windows).
 
@@ -116,9 +114,7 @@ Your active configurations: [default]
 
 Now `gcloud` is installed and authenticated 🚀
 
-{% endif %}
-
-{% if os == "linux" %}
+{% elsif os == "linux" %}
 
 Add the `APT` repository and install with:
 

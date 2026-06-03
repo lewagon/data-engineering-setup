@@ -90,13 +90,11 @@ Update pyenv :
 ``` bash
 brew update && brew upgrade pyenv
 ```
-{% endif %}
-{% if os == "linux" %}
+{% elsif os == "linux" %}
 ``` bash
 cd $(pyenv root) && git pull
 ```
-{% endif %}
-{% if os == "windows" %}
+{% elsif os == "windows" %}
 ``` bash
 cd $(pyenv root) && git pull
 ```
@@ -172,13 +170,11 @@ If your computer uses **Apple Intel**, expand the paragraph below and go through
 pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/apple_intel.txt
 ```
 </details>
-{% endif %}
-{% if os == "windows" %}
+{% elsif os == "windows" %}
 ``` bash
 pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/linux.txt
 ```
-{% endif %}
-{% if os == "linux" %}
+{% elsif os == "linux" %}
 ``` bash
 pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/linux.txt
 ```
@@ -293,15 +289,13 @@ gcloud auth configure-docker
 
 {% if os == "macos" %}
 Start the Docker app
-{% endif %}
-{% if os == "linux" %}
+{% elsif os == "linux" %}
 Start Docker :
 
 ``` bash
 sudo service docker start
 ```
-{% endif %}
-{% if os == "windows" %}
+{% elsif os == "windows" %}
 Start Docker :
 
 ``` bash
@@ -319,15 +313,13 @@ docker run hello-world
 
 {% if os == "macos" %}
 Stop the Docker app
-{% endif %}
-{% if os == "linux" %}
+{% elsif os == "linux" %}
 Start Docker :
 
 ``` bash
 sudo service docker stop
 ```
-{% endif %}
-{% if os == "windows" %}
+{% elsif os == "windows" %}
 Start Docker :
 
 ``` bash

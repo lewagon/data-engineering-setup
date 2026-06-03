@@ -292,8 +292,6 @@ The `gcloud` Command Line Interface (CLI) is used to communicate with Google Clo
 
 
 
-
-
 To install, download the Google Cloud CLI installer from this [link here 🔗](https://cloud.google.com/sdk/docs/install#windows).
 
 Once it's finished downloading, launch the installer and follow the prompts. You only need to install `gcloud` for the current user.
@@ -328,8 +326,6 @@ Now `gcloud` is installed and authenticated 🚀
 
 
 
-
-
 ### Application Default Credentials
 
 Application Default Credentials are for authenticating our **code** (Terraform and Python 🐍) to interact with Google services and resources. It's a small distinction between `gcloud` and **code**, but an important one.
@@ -346,8 +342,6 @@ And follow the prompts. It should open a web-page to login to your Google accoun
 ## Terraform
 
 Terraform is a tool for [Infrastructure as Code (IaC) 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) to create, destroy, and manage resources in the cloud.
-
-
 
 
 
@@ -388,8 +382,6 @@ To update your path:
 5. Click **Ok** to close the `Path` variable window, and click **Ok** again to close the Environment Variable window.
 
 6. Close **Command Prompt** and open it again
-
-
 
 
 
@@ -455,8 +447,6 @@ First we'll create a folder and download the terraform files with:
 
 
 
-
-
 Using the **Command Prompt** (cmd), run the following:
 
 ❗ Note: The below commands will only work in **Command Prompt** - they will not work in Windows Powershell.
@@ -474,17 +464,11 @@ curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.git
 
 
 
-
-
 ### Set variables
 
 
 
-
-
 Open up the file `C:\Users\<YOUR_USERNAME>\wagon-de-bootcamp\terraform.tfvars` in VS Code or any other code editor.
-
-
 
 
 
@@ -504,9 +488,7 @@ We'll need to change some values in this file. Here's were you can find the requ
 - **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`. The zone you select within a region should not have a functional impact.
 - **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
 
-
 - **instance_user:** in Command Prompt, run `echo %username%`, and enter the value - try and remember your username, you will need it later on
-
 
 
 After completing this file, it might look similar to:
@@ -523,9 +505,7 @@ Make sure to save the `terraform.tfvars` file, navigate into the directory with 
 
 ```bash
 
-
 cd %USERPROFILE%\wagon-de-bootcamp
-
 
 ```
 
@@ -739,8 +719,6 @@ We recommend allowing **Google Auth Library** to: _View and sign in to your Goog
 
 
 For pasting into the terminal, your might need to use `ctrl + shift + v`
-
-
 
 
 

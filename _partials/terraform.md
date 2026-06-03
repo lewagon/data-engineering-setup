@@ -15,9 +15,7 @@ To install Terraform, navigate to the [Terraform downloads page 🔗](https://de
     sudo cp ~/Downloads/terraform_*/terraform /usr/local/bin/
     ```
 
-{% endif %}
-
-{% if os == "windows" %}
+{% elsif os == "windows" %}
 
 ### Download
 
@@ -57,9 +55,7 @@ To update your path:
 
 6. Close **Command Prompt** and open it again
 
-{% endif %}
-
-{% if os == "linux" %}
+{% elsif os == "linux" %}
 
 Install some system requirements requirements:
 ```bash

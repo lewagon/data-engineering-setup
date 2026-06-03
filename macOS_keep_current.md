@@ -92,8 +92,6 @@ brew update && brew upgrade pyenv
 ```
 
 
-
-
 Install the current python version :
 
 ```bash
@@ -164,8 +162,6 @@ If your computer uses **Apple Intel**, expand the paragraph below and go through
 pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/apple_intel.txt
 ```
 </details>
-
-
 
 
 ## GCP
@@ -279,8 +275,6 @@ gcloud auth configure-docker
 Start the Docker app
 
 
-
-
 Verify that Docker can run the hello-world image :
 
 ``` bash
@@ -291,8 +285,6 @@ docker run hello-world
 
 
 Stop the Docker app
-
-
 
 
 

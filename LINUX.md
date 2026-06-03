@@ -325,10 +325,6 @@ The `gcloud` Command Line Interface (CLI) is used to communicate with Google Clo
 
 
 
-
-
-
-
 Add the `APT` repository and install with:
 
 ```bash
@@ -368,8 +364,6 @@ When selecting what **Google Auth Library** can access, ensure that you allow:
 It's is usually the first check box.
 
 We recommend allowing **Google Auth Library** to: _View and sign in to your Google Cloud SQL instances._
-
-
 
 
 
@@ -422,10 +416,6 @@ And follow the prompts. It should open a web-page to login to your Google accoun
 ## Terraform
 
 Terraform is a tool for [Infrastructure as Code (IaC) 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) to create, destroy, and manage resources in the cloud.
-
-
-
-
 
 
 
@@ -523,10 +513,6 @@ First we'll create a folder and download the terraform files with:
 
 
 
-
-
-
-
 ```bash
 mkdir -p ~/code/wagon-de-bootcamp
 ```
@@ -541,10 +527,6 @@ curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/le
 
 
 ### Set variables
-
-
-
-
 
 
 
@@ -568,8 +550,6 @@ We'll need to change some values in this file. Here's were you can find the requ
 - **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`. The zone you select within a region should not have a functional impact.
 - **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
 
-
-
 - **instance_user:** in your terminal, run `whoami`, and enter the value
 
 
@@ -586,8 +566,6 @@ instance_user = "taylorswift"
 Make sure to save the `terraform.tfvars` file, navigate into the directory with the terraform files using your terminal with:
 
 ```bash
-
-
 
 cd ~/code/wagon-de-bootcamp
 
@@ -727,8 +705,6 @@ When selecting what **Google Auth Library** can access, ensure that you allow:
 It's is usually the first check box.
 
 We recommend allowing **Google Auth Library** to: _View and sign in to your Google Cloud SQL instances._
-
-
 
 
 

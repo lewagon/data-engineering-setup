@@ -22,9 +22,7 @@ We recommend allowing **Google Auth Library** to: _View and sign in to your Goog
 
 For pasting into the terminal, your might need to use `ctrl + shift + v`
 
-{% endif %}
-
-{% if os == "linux" %}
+{% elsif os == "linux" %}
 
 For pasting into the terminal, your might need to use `ctrl + shift + v`
 

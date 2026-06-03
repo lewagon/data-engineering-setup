@@ -87,11 +87,9 @@ type -a pyenv > /dev/null && eval "$(pyenv init --path)"
 Update pyenv :
 
 
-
 ``` bash
 cd $(pyenv root) && git pull
 ```
-
 
 
 Install the current python version :
@@ -143,8 +141,6 @@ pyenv versions
 ```bash
 pip install -U pip
 ```
-
-
 
 
 ``` bash
@@ -260,13 +256,11 @@ gcloud auth configure-docker
 ## Docker
 
 
-
 Start Docker :
 
 ``` bash
 sudo service docker start
 ```
-
 
 
 Verify that Docker can run the hello-world image :
@@ -278,13 +272,11 @@ docker run hello-world
 👉 Make sure that this command completes correctly
 
 
-
 Start Docker :
 
 ``` bash
 sudo service docker stop
 ```
-
 
 
 

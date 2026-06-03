@@ -51,9 +51,7 @@ curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/le
 && curl -L -o ~/code/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
 ```
 
-{% endif %}
-
-{% if os == "windows" %}
+{% elsif os == "windows" %}
 
 Using the **Command Prompt** (cmd), run the following:
 
@@ -70,9 +68,7 @@ curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.github
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
 ```
 
-{% endif %}
-
-{% if os == "linux" %}
+{% elsif os == "linux" %}
 
 ```bash
 mkdir -p ~/code/wagon-de-bootcamp
@@ -93,15 +89,11 @@ curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/le
 
 Open up the file `~/code/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
 
-{% endif %}
-
-{% if os == "windows" %}
+{% elsif os == "windows" %}
 
 Open up the file `C:\Users\<YOUR_USERNAME>\wagon-de-bootcamp\terraform.tfvars` in VS Code or any other code editor.
 
-{% endif %}
-
-{% if os == "linux" %}
+{% elsif os == "linux" %}
 
 Open up the file `~/code/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
 
@@ -124,11 +116,9 @@ We'll need to change some values in this file. Here's were you can find the requ
 - **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
 {% if os == "macos" %}
 - **instance_user:** in your terminal, run `whoami`, and enter the value
-{% endif %}
-{% if os == "windows" %}
+{% elsif os == "windows" %}
 - **instance_user:** in Command Prompt, run `echo %username%`, and enter the value - try and remember your username, you will need it later on
-{% endif %}
-{% if os == "linux" %}
+{% elsif os == "linux" %}
 - **instance_user:** in your terminal, run `whoami`, and enter the value
 {% endif %}
 
@@ -147,11 +137,9 @@ Make sure to save the `terraform.tfvars` file, navigate into the directory with 
 ```bash
 {% if os == "macos" %}
 cd ~/code/wagon-de-bootcamp
-{% endif %}
-{% if os == "windows" %}
+{% elsif os == "windows" %}
 cd %USERPROFILE%\wagon-de-bootcamp
-{% endif %}
-{% if os == "linux" %}
+{% elsif os == "linux" %}
 cd ~/code/wagon-de-bootcamp
 {% endif %}
 ```

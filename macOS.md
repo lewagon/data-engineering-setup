@@ -368,10 +368,6 @@ gcloud --version
 
 
 
-
-
-
-
 ### Authenticate gcloud
 
 We need to authenticate the `gcloud` CLI tool and set the project so it can interact with Google from the terminal.
@@ -391,8 +387,6 @@ When selecting what **Google Auth Library** can access, ensure that you allow:
 It's is usually the first check box.
 
 We recommend allowing **Google Auth Library** to: _View and sign in to your Google Cloud SQL instances._
-
-
 
 
 
@@ -454,10 +448,6 @@ To install Terraform, navigate to the [Terraform downloads page 🔗](https://de
     ```bash
     sudo cp ~/Downloads/terraform_*/terraform /usr/local/bin/
     ```
-
-
-
-
 
 
 
@@ -538,19 +528,11 @@ curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/le
 
 
 
-
-
-
-
 ### Set variables
 
 
 
 Open up the file `~/code/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
-
-
-
-
 
 
 
@@ -573,8 +555,6 @@ We'll need to change some values in this file. Here's were you can find the requ
 - **instance_user:** in your terminal, run `whoami`, and enter the value
 
 
-
-
 After completing this file, it might look similar to:
 
 ```bash
@@ -590,8 +570,6 @@ Make sure to save the `terraform.tfvars` file, navigate into the directory with 
 ```bash
 
 cd ~/code/wagon-de-bootcamp
-
-
 
 ```
 
@@ -729,8 +707,6 @@ When selecting what **Google Auth Library** can access, ensure that you allow:
 It's is usually the first check box.
 
 We recommend allowing **Google Auth Library** to: _View and sign in to your Google Cloud SQL instances._
-
-
 
 
 
