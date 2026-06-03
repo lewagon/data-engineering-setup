@@ -86,26 +86,26 @@ type -a pyenv > /dev/null && eval "$(pyenv init --path)"
 
 Update pyenv :
 
-$MAC_START
+{% if os == "macos" %}
 ``` bash
 brew update && brew upgrade pyenv
 ```
-$MAC_END
-$LINUX_START
+{% endif %}
+{% if os == "linux" %}
 ``` bash
 cd $(pyenv root) && git pull
 ```
-$LINUX_END
-$WINDOWS_START
+{% endif %}
+{% if os == "windows" %}
 ``` bash
 cd $(pyenv root) && git pull
 ```
-$WINDOWS_END
+{% endif %}
 
 Install the current python version :
 
 ```bash
-pyenv install <PYTHON_VERSION>
+pyenv install {{ PYTHON_VERSION }}
 ```
 
 👉 Make sure that the command completes correctly and **restart your terminal**
@@ -119,7 +119,7 @@ pyenv virtualenv-delete lewagon_current
 Create a new virtual environment :
 
 ```bash
-pyenv virtualenv <PYTHON_VERSION> lewagon_current
+pyenv virtualenv {{ PYTHON_VERSION }} lewagon_current
 ```
 
 Set the new virtual environment as default :
@@ -138,8 +138,8 @@ pyenv versions
 
 ``` bash
   system
-  <PYTHON_VERSION>
-  <PYTHON_VERSION>/envs/lewagon_current
+  {{ PYTHON_VERSION }}
+  {{ PYTHON_VERSION }}/envs/lewagon_current
   3.7.6
   3.7.6/envs/lewagon
 * lewagon_current
@@ -152,7 +152,7 @@ pyenv versions
 pip install -U pip
 ```
 
-$MAC_START
+{% if os == "macos" %}
 If your computer uses **Apple Silicon**, expand the paragraph below and go through it. Otherwise ignore it.
 
 <details>
@@ -172,17 +172,17 @@ If your computer uses **Apple Intel**, expand the paragraph below and go through
 pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/apple_intel.txt
 ```
 </details>
-$MAC_END
-$WINDOWS_START
+{% endif %}
+{% if os == "windows" %}
 ``` bash
 pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/linux.txt
 ```
-$WINDOWS_END
-$LINUX_START
+{% endif %}
+{% if os == "linux" %}
 ``` bash
 pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/linux.txt
 ```
-$LINUX_END
+{% endif %}
 
 ## GCP
 
@@ -252,8 +252,7 @@ cat $GOOGLE_APPLICATION_CREDENTIALS
 {
   "type": "service_account",
   "project_id": "your-gcp-project-id",
-  "private_key_id": "a2d4a2d4a2d4a2d4a2d4a2d4a2d4a2d4a2d4a2d4",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInM=\n-----END PRIVATE KEY-----\n",
+  "private_key_id": "...",
   "client_email": "your-service-account@your-service-account.iam.gserviceaccount.com",
   "client_id": "105410541054105410541",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
@@ -292,23 +291,23 @@ gcloud auth configure-docker
 
 ## Docker
 
-$MAC_START
+{% if os == "macos" %}
 Start the Docker app
-$MAC_END
-$LINUX_START
+{% endif %}
+{% if os == "linux" %}
 Start Docker :
 
 ``` bash
 sudo service docker start
 ```
-$LINUX_END
-$WINDOWS_START
+{% endif %}
+{% if os == "windows" %}
 Start Docker :
 
 ``` bash
 sudo service docker start
 ```
-$WINDOWS_END
+{% endif %}
 
 Verify that Docker can run the hello-world image :
 
@@ -318,17 +317,17 @@ docker run hello-world
 
 👉 Make sure that this command completes correctly
 
-$MAC_START
+{% if os == "macos" %}
 Stop the Docker app
-$MAC_END
-$LINUX_START
+{% endif %}
+{% if os == "linux" %}
 Start Docker :
 
 ``` bash
 sudo service docker stop
 ```
-$LINUX_END
-$WINDOWS_START
+{% endif %}
+{% if os == "windows" %}
 Start Docker :
 
 ``` bash
@@ -342,4 +341,4 @@ wsl --shutdown
 ```
 
 If the command still does not work, try to restart your Windows machine
-$WINDOWS_END
+{% endif %}

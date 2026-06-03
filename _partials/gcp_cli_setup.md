@@ -4,7 +4,7 @@ The `gcloud` Command Line Interface (CLI) is used to communicate with Google Clo
 
 ### Install gcloud
 
-$MAC_START
+{% if os == "macos" %}
 
 #### 1. Check to see if python 3 is available, otherwise install
 
@@ -81,9 +81,9 @@ Once the installer is finished, test the install by running:
 gcloud --version
 ```
 
-$MAC_END
+{% endif %}
 
-$WINDOWS_START
+{% if os == "windows" %}
 
 To install, download the Google Cloud CLI installer from this [link here 🔗](https://cloud.google.com/sdk/docs/install#windows).
 
@@ -116,9 +116,9 @@ Your active configurations: [default]
 
 Now `gcloud` is installed and authenticated 🚀
 
-$WINDOWS_END
+{% endif %}
 
-$LINUX_START
+{% if os == "linux" %}
 
 Add the `APT` repository and install with:
 
@@ -137,4 +137,4 @@ gcloud --version
 ```
 👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#deb)
 
-$LINUX_END
+{% endif %}

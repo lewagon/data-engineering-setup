@@ -2,7 +2,7 @@
 
 Terraform is a tool for [Infrastructure as Code (IaC) 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) to create, destroy, and manage resources in the cloud.
 
-$MAC_START
+{% if os == "macos" %}
 
 To install Terraform, navigate to the [Terraform downloads page 🔗](https://developer.hashicorp.com/terraform/install):
 - Under **Binary download**, select the binary that corresponds to your CPU architecture:
@@ -15,9 +15,9 @@ To install Terraform, navigate to the [Terraform downloads page 🔗](https://de
     sudo cp ~/Downloads/terraform_*/terraform /usr/local/bin/
     ```
 
-$MAC_END
+{% endif %}
 
-$WINDOWS_START
+{% if os == "windows" %}
 
 ### Download
 
@@ -57,9 +57,9 @@ To update your path:
 
 6. Close **Command Prompt** and open it again
 
-$WINDOWS_END
+{% endif %}
 
-$LINUX_START
+{% if os == "linux" %}
 
 Install some system requirements requirements:
 ```bash
@@ -91,7 +91,7 @@ sudo apt update
 sudo apt-get install terraform
 ```
 
-$LINUX_END
+{% endif %}
 
 Verify the installation with:
 
@@ -105,19 +105,19 @@ The output should look similar to:
 Terraform v1.14.3
 on <your_operating_system>_<your_cpu_architecture>
 
-$MAC_START
+{% if os == "macos" %}
 # macOS (M chip) example
 # Terraform 1.14.3
 # on darwin_arm64
-$MAC_END
-$WINDOWS_START
+{% endif %}
+{% if os == "windows" %}
 # Windows example
 # Terraform v1.14.3
 # on windows_amd64
-$WINDOWS_END
-$LINUX_START
+{% endif %}
+{% if os == "linux" %}
 # Linux example
 # Terraform v1.14.3
 # on linux_amd64
-$LINUX_END
+{% endif %}
 ```

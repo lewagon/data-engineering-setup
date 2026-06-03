@@ -326,6 +326,9 @@ The `gcloud` Command Line Interface (CLI) is used to communicate with Google Clo
 
 
 
+
+
+
 Add the `APT` repository and install with:
 
 ```bash
@@ -342,6 +345,7 @@ To test your install, open a new terminal and run:
 gcloud --version
 ```
 👉 [Install documentation 🔗](https://cloud.google.com/sdk/docs/install#deb)
+
 
 
 
@@ -367,7 +371,10 @@ We recommend allowing **Google Auth Library** to: _View and sign in to your Goog
 
 
 
+
+
 For pasting into the terminal, your might need to use `ctrl + shift + v`
+
 
 
 You also need to set the GCP project that your are working in. For this section, you'll need your **GCP Project ID**, which can be found on the GCP Console at this [link here 🔗](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
@@ -419,6 +426,9 @@ Terraform is a tool for [Infrastructure as Code (IaC) 🔗](https://en.wikipedia
 
 
 
+
+
+
 Install some system requirements requirements:
 ```bash
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
@@ -450,6 +460,7 @@ sudo apt-get install terraform
 ```
 
 
+
 Verify the installation with:
 
 ```bash
@@ -462,9 +473,13 @@ The output should look similar to:
 Terraform v1.14.3
 on <your_operating_system>_<your_cpu_architecture>
 
+
+
+
 # Linux example
 # Terraform v1.14.3
 # on linux_amd64
+
 ```
 
 
@@ -509,6 +524,9 @@ First we'll create a folder and download the terraform files with:
 
 
 
+
+
+
 ```bash
 mkdir -p ~/code/wagon-de-bootcamp
 ```
@@ -521,12 +539,17 @@ curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/le
 ```
 
 
+
 ### Set variables
 
 
 
 
+
+
+
 Open up the file `~/code/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
+
 
 
 It should look like:
@@ -544,7 +567,11 @@ We'll need to change some values in this file. Here's were you can find the requ
 - **region:** take a look at the GCP Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones#available). We generally recommend you choose a geographically nearby region.
 - **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`. The zone you select within a region should not have a functional impact.
 - **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
+
+
+
 - **instance_user:** in your terminal, run `whoami`, and enter the value
+
 
 After completing this file, it might look similar to:
 
@@ -559,7 +586,11 @@ instance_user = "taylorswift"
 Make sure to save the `terraform.tfvars` file, navigate into the directory with the terraform files using your terminal with:
 
 ```bash
+
+
+
 cd ~/code/wagon-de-bootcamp
+
 ```
 
 Initialise and test the terraform config files with:
@@ -622,6 +653,7 @@ For example, try running:
   $ ssh lw-de-vm-tswift.europe-west1-b.wagon-bootcamp
 # $ ssh lw-de-vm-<GITHUB_USERNAME>.<GCP_ZONE>.<GCP_PROJECT_ID>
 ```
+
 
 
 ### Connect with VS Code
@@ -698,7 +730,10 @@ We recommend allowing **Google Auth Library** to: _View and sign in to your Goog
 
 
 
+
+
 For pasting into the terminal, your might need to use `ctrl + shift + v`
+
 
 
 You also need to set the GCP project that your are working in. For this section, you'll need your **GCP Project ID**, which can be found on the GCP Console at this [link here 🔗](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
@@ -823,7 +858,7 @@ We will use the GitHub CLI (`gh`) to connect to GitHub using *SSH*, a protocol t
 
 First in order to **login**, copy-paste the following command in your terminal:
 
-:warning: **DO NOT edit the `email`**
+:warning: **DO NOT edit the `email`** — Even though `user:email` looks like a placeholder for your actual email address, it isn't — do not replace it.
 
 ```bash
 gh auth login -s 'user:email' -w --git-protocol ssh
@@ -835,7 +870,9 @@ gh auth login -s 'user:email' -w --git-protocol ssh
 
   If you already have SSH keys, you will see instead `Upload your SSH public key to your GitHub account?` With the arrows, select your public key file path and press `Enter`.
 
-- `Enter a passphrase for your new SSH key (Optional)`. Type something you want and that you'll remember. It's a password to protect your private key stored on your hard drive. Then press `Enter`.
+- `Enter a passphrase for your new SSH key (Optional)`:
+  - **FOR MOST PEOPLE:** Just press `Enter` to skip. You don't need a passphrase for the bootcamp and it would prompt you every time you use the key. There is a risk, however, that if someone steals your laptop, they could then push to GitHub.
+  - **IF SECURITY IS REALLY IMPORTANT TO YOU:** Enter a passphrase of your choice and press `Enter`. It's _really_ important that if you enter a passphrase, you write it down somewhere immediately and do not lose/forget it. You will need to enter this frequently.
 
 - `Title for your SSH key`. You can leave it at the proposed "GitHub CLI", press `Enter`.
 

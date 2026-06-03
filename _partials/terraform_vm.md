@@ -36,7 +36,7 @@ We almost have all the necessary parts to create your VM using **terraform**. We
 
 First we'll create a folder and download the terraform files with:
 
-$MAC_START
+{% if os == "macos" %}
 
 In a terminal, run the following commands:
 
@@ -51,9 +51,9 @@ curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/le
 && curl -L -o ~/code/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
 ```
 
-$MAC_END
+{% endif %}
 
-$WINDOWS_START
+{% if os == "windows" %}
 
 Using the **Command Prompt** (cmd), run the following:
 
@@ -70,9 +70,9 @@ curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.github
 curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
 ```
 
-$WINDOWS_END
+{% endif %}
 
-$LINUX_START
+{% if os == "linux" %}
 
 ```bash
 mkdir -p ~/code/wagon-de-bootcamp
@@ -85,27 +85,27 @@ curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/le
 && curl -L -o ~/code/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
 ```
 
-$LINUX_END
+{% endif %}
 
 ### Set variables
 
-$MAC_START
+{% if os == "macos" %}
 
 Open up the file `~/code/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
 
-$MAC_END
+{% endif %}
 
-$WINDOWS_START
+{% if os == "windows" %}
 
 Open up the file `C:\Users\<YOUR_USERNAME>\wagon-de-bootcamp\terraform.tfvars` in VS Code or any other code editor.
 
-$WINDOWS_END
+{% endif %}
 
-$LINUX_START
+{% if os == "linux" %}
 
 Open up the file `~/code/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
 
-$LINUX_END
+{% endif %}
 
 It should look like:
 
@@ -122,15 +122,15 @@ We'll need to change some values in this file. Here's were you can find the requ
 - **region:** take a look at the GCP Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones#available). We generally recommend you choose a geographically nearby region.
 - **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`. The zone you select within a region should not have a functional impact.
 - **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
-$MAC_START
+{% if os == "macos" %}
 - **instance_user:** in your terminal, run `whoami`, and enter the value
-$MAC_END
-$WINDOWS_START
+{% endif %}
+{% if os == "windows" %}
 - **instance_user:** in Command Prompt, run `echo %username%`, and enter the value - try and remember your username, you will need it later on
-$WINDOWS_END
-$LINUX_START
+{% endif %}
+{% if os == "linux" %}
 - **instance_user:** in your terminal, run `whoami`, and enter the value
-$LINUX_END
+{% endif %}
 
 After completing this file, it might look similar to:
 
@@ -145,15 +145,15 @@ instance_user = "taylorswift"
 Make sure to save the `terraform.tfvars` file, navigate into the directory with the terraform files using your terminal with:
 
 ```bash
-$MAC_START
+{% if os == "macos" %}
 cd ~/code/wagon-de-bootcamp
-$MAC_END
-$WINDOWS_START
+{% endif %}
+{% if os == "windows" %}
 cd %USERPROFILE%\wagon-de-bootcamp
-$WINDOWS_END
-$LINUX_START
+{% endif %}
+{% if os == "linux" %}
 cd ~/code/wagon-de-bootcamp
-$LINUX_END
+{% endif %}
 ```
 
 Initialise and test the terraform config files with:

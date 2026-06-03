@@ -86,9 +86,13 @@ type -a pyenv > /dev/null && eval "$(pyenv init --path)"
 
 Update pyenv :
 
+
 ``` bash
 brew update && brew upgrade pyenv
 ```
+
+
+
 
 Install the current python version :
 
@@ -140,6 +144,7 @@ pyenv versions
 pip install -U pip
 ```
 
+
 If your computer uses **Apple Silicon**, expand the paragraph below and go through it. Otherwise ignore it.
 
 <details>
@@ -159,6 +164,9 @@ If your computer uses **Apple Intel**, expand the paragraph below and go through
 pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/apple_intel.txt
 ```
 </details>
+
+
+
 
 ## GCP
 
@@ -228,8 +236,7 @@ cat $GOOGLE_APPLICATION_CREDENTIALS
 {
   "type": "service_account",
   "project_id": "your-gcp-project-id",
-  "private_key_id": "a2d4a2d4a2d4a2d4a2d4a2d4a2d4a2d4a2d4a2d4",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInMIInM=\n-----END PRIVATE KEY-----\n",
+  "private_key_id": "...",
   "client_email": "your-service-account@your-service-account.iam.gserviceaccount.com",
   "client_id": "105410541054105410541",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
@@ -268,7 +275,11 @@ gcloud auth configure-docker
 
 ## Docker
 
+
 Start the Docker app
+
+
+
 
 Verify that Docker can run the hello-world image :
 
@@ -278,24 +289,28 @@ docker run hello-world
 
 👉 Make sure that this command completes correctly
 
+
 Stop the Docker app
+
+
+
 
 
 ### Python setup check up
 
 Check your Python version with the following commands:
 ```bash
-zsh -c "$(curl -fsSL <PYTHON_CHECKER_URL>)" 3.8.12
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/lewagon/data-setup/master/checks/python_checker.sh)" 3.8.12
 ```
 
 Run the following command to check if you successfully installed the required packages:
 ```bash
-zsh -c "$(curl -fsSL <PIP_CHECKER_URL>)"
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/lewagon/data-setup/master/checks/pip_check.sh)"
 ```
 
 Now run the following command to check if you can load these packages:
 ```bash
-python -c "$(curl -fsSL <PIP_LOADER_URL>)"
+python -c "$(curl -fsSL https://raw.githubusercontent.com/lewagon/data-setup/master/checks/pip_check.py)"
 ```
 
 Make sure you can run Jupyter:

@@ -18,17 +18,17 @@ It's is usually the first check box.
 
 We recommend allowing **Google Auth Library** to: _View and sign in to your Google Cloud SQL instances._
 
-$WINDOWS_START
+{% if os == "windows" %}
 
 For pasting into the terminal, your might need to use `ctrl + shift + v`
 
-$WINDOWS_END
+{% endif %}
 
-$LINUX_START
+{% if os == "linux" %}
 
 For pasting into the terminal, your might need to use `ctrl + shift + v`
 
-$LINUX_END
+{% endif %}
 
 You also need to set the GCP project that your are working in. For this section, you'll need your **GCP Project ID**, which can be found on the GCP Console at this [link here 🔗](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
 

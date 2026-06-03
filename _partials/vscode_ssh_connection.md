@@ -20,7 +20,7 @@ For example, try running:
 # $ ssh lw-de-vm-<GITHUB_USERNAME>.<GCP_ZONE>.<GCP_PROJECT_ID>
 ```
 
-$WINDOWS_START
+{% if os == "windows" %}
 ### Confirm Your SSH Settings
 
 Let's take a look at the SSH configuration that was just created and verify it. In VS Code:
@@ -92,7 +92,7 @@ icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r %USERNAME%:(R) && ^
 icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r SYSTEM:(R) && ^
 icacls %USERPROFILE%\.ssh\google_compute_engine
 ```
-$WINDOWS_END
+{% endif %}
 
 ### Connect with VS Code
 

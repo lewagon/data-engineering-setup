@@ -1,0 +1,6 @@
+
+os: windows
+locales: [en]
+partials:
+  - keep_current
+  - python_checkup
