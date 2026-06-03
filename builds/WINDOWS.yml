@@ -6,11 +6,15 @@ partials:
   - setup/windows_slack
   - setup/slack_settings
   - setup/github
-  - ssh_key
+  - name: ssh_key
+    vars:
+      key_name: de-bootcamp
   - gcp_setup
   - virtual_machine
   - win_vscode
-  - vscode_remote_ssh
+  - name: vscode_remote_ssh
+    vars:
+      vm_hostname: de-bootcamp-vm
   - vscode_extensions
   - cli_tools
   - setup/oh_my_zsh

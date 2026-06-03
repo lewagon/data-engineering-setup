@@ -66,7 +66,7 @@ You can now change Host to whatever you would like to see as the name of your co
 
 ```bash
 # For instance
-Host "de-bootcamp-vm"
+Host "{{ vm_hostname }}"
   HostName 34.77.50.76 # replace with your VM's public IP address
   IdentityFile <file path for your ssh key>
   User <username>

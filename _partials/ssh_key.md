@@ -49,8 +49,8 @@ To create a separate SSH key to exclusively use for this bootcamp use the follow
 
 ```bash
 # replace your_email@example.com, this is purely informative and allows you to remember the use of this key
-ssh-keygen -t ed25519 -f ~/.ssh/de-bootcamp -C your_email@example.com
+ssh-keygen -t ed25519 -f ~/.ssh/{{ key_name }} -C your_email@example.com
 ```
 
-Your new SSH Key will be named `de-bootcamp`. Make sure to remember it for later!
+Your new SSH Key will be named `{{ key_name }}`. Make sure to remember it for later!
 </details>
