@@ -1,5 +1,7 @@
 ### Data Engineering Bootcamp Setup
 
+❗ The current recommended DE setup is the [main-automation branch 🔗](https://github.com/lewagon/data-engineering-setup/tree/main-automation) ❗
+
 Please choose your operating system (OS):
 
 <table>
