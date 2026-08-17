@@ -19,7 +19,7 @@ which -a python3
 If the output is more than one line, check the version of Python you have installed with:
 
 ```bash
-python3 -v
+python3 --version
 ```
 
 ❗ **The version installed must be greater than or equal to Python 3.10** ❗
