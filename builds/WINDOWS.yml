@@ -9,10 +9,11 @@ partials:
   - gcp_setup
   - win_vscode
   - vscode_remote_ssh
-  - gcp_cli_setup
-  - gcp_adc_auth
-  - terraform
-  - terraform_vm
+  - vmware_ubuntu_download
+  - vmware_installation
+  - vmware_vm_creation
+  - vmware_vm_launch
+  - vmware_openssh
   - vscode_ssh_connection
   - gcp_auth_vm_heading
   - gcp_cli_oauth

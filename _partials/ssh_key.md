@@ -2,55 +2,70 @@
 
 We want to safely communicate with your virtual machine using [SSH protocol](https://en.wikipedia.org/wiki/Secure_Shell). We need to generate a SSH key to authenticate.
 
-- Open your terminal
+- Open your terminal (the one of your local machine!)
 
-<details>
-  <summary markdown='span'>💡 Windows tip</summary>
+{% if os == "windows" %}
 
 We highly recommend installing [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=fr-fr&gl=FR) from the Windows Store (installed on Windows 11 by default) to perform this operation
-</details>
+
+{% endif %}
 
 - Create a SSH key
 
-<details>
-  <summary markdown='span'>Windows</summary>
+{% if os == "windows" %}
 
 ```bash
-# replace "your_email@example.com" with your GCP account email
-ssh-keygen.exe -t ed25519 -C "your_email@example.com"
+# replace "yourfirstname" with ... your first name
+ssh-keygen.exe -t ed25519 -C "yourfirstname@local"
+```
+
+{% else %}
+
+```bash
+# replace "yourfirstname" with ... your first name
+ssh-keygen -t ed25519 -C "yourfirstname@local"
 ```
 </details>
 
-<details>
-  <summary markdown='span'>MacOS & Linux</summary>
-
-```bash
-# replace "your_email@example.com" with your GCP account email
-ssh-keygen -t ed25519 -C "your_email@example.com"
-```
-</details>
+{% endif %}
 
 
 You should get the following message: `> Generating public/private algorithm key pair.`
-- When you are prompted `> Enter a file in which to save the key`, press Enter
-- You should be asked to `Enter a passphrase` - this is optional if you want additional security. To continue without a passphrase press enter without typing anything when asked to enter a passphrase.
+- When you are prompted `> Enter a file in which to save the key`, type in `vmware` and hit `<Enter>`.
+- You should be asked to `Enter a passphrase` - continue without a passphrase: press `<Enter>` without typing anything when asked to enter a passphrase.
 
-ℹ️ Don't worry if nothing prompt when you type, that is perfectly normal for security reasons.
+- You should be asked to `Enter same passphrase again`, hit `<Enter>` again.
 
-- You should be asked to `Enter same passphrase again`, do it.
+You will see some lines with a sort of graphic output, ending with a line containing `SHA256`. That's expected.
 
-**❗️ You must remember this passphrase.**
+- Now we'll copy the ssh key into the VM:
 
-<details>
-  <summary markdown='span'> ❗️ /home/your_username/.ssh/id_ed25519 already exists.</summary>
-If you receive this message, you may already have an SSH Key with the same name (if you are a Le Wagon Alumni or are using SSH Authentication with Github).
+  ```bash
+  # Replace yourusername by your first name (lowercase)
+  # Replace the numbers by the IP address of your VM obtained a few steps ago
+  ssh-copy-id -i ~/.ssh/vmware yourusername@172.16.999.999
+  ```
 
-To create a separate SSH key to exclusively use for this bootcamp use the following:
+- You will be prompted `Are you sure you want to continue connecting (yes/no/[fingerprint])?`. Type in `yes` and `<Enter>`.
 
-```bash
-# replace "your_email@example.com" with your GCP account email
-ssh-keygen -t ed25519 -f ~/.ssh/de-bootcamp -C "your_email@example.com"
+- Next you will be prompted for your password. That is the password you chose for the VM. We recommended you to use the same as for your physical machine. Type it. Nothing will appear, that's normal. Then `<Enter>`.
+
+- Then it should say:
+
+
+```text
+Number of key(s) added:        1
+
+Now try logging into the machine, with: "ssh -i /Users/yourusername/.ssh/vmware 'yourusername@172.16.999.999'" and check to make sure that only the key(s) you wanted were added.
 ```
 
-Your new SSH Key will be named `de-bootcamp`. Make sure to remember it for later!
-</details>
+- Let's do that: copy the part that says `sssh - i .... 999` (the IP address will be different for you), and paste it in your terminal. Hit `<Enter>`.
+
+- Your prompt will change: you are now inside the VM!
+
+- Check it by running `hostname` followed by `<Enter>`. It should say `myvm` (unless you chose another name for your vm earlier).
+
+All good!
+
+Type `exit` to get back to your local machine.
+
