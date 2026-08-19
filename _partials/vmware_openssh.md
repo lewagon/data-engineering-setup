@@ -4,7 +4,7 @@ We will need this to be able to use SSH to connect to our VM.
 
 > Because we are using VMware locally, we don't really need this. But we want to make a setup that is almost identical as if you were using a VM running on the cloud. That's why we'll use SSH.
 
-Inside your VM, run `hostname -I`. Take note of the IP address that is shown.
+Still **inside your VM**, run `hostname -I`. Take note of the IP address that is shown.
 
 <details>
   <summary>Troubleshooting if it doesn't work
@@ -20,7 +20,7 @@ Inside your VM, run `hostname -I`. Take note of the IP address that is shown.
 
 Now, let's try to connect from your local machine's terminal to be sure everything works.
 
-In your local terminal:
+In **your local terminal**:
 
 ```bash
 # Replace username with your firstname
