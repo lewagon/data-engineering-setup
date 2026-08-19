@@ -9,10 +9,10 @@ Please **read instructions carefully and execute all commands in the following o
 
 We will run a **virtual machine** locally using Broadcom's well known **VMware**. 
 
-Why?
-- This allows us to all run an identical setup, independent of your underlying operating system.
-- It will give us a very similar experience to working with a VM on a cloud platform, but without the cost of running it on the cloud: we use our own machine's power instead.
-- It allows us to all run a VM with Ubuntu, a commonly used Linux distribution for cloud infrastructure.
+**Why?**
+- This allows us to all run an **identical setup**, independent of your underlying operating system.
+- It will give us a very **similar experience to working with a VM on a cloud platform**, but without the cost of running it on the cloud: we use our own machine's power instead.
+- It allows us to all run a VM with **Ubuntu**, a commonly used Linux distribution for cloud infrastructure.
 
 The setup inside the virtual machine is largely automated with [**Ansible** 🔗](https://docs.ansible.com/), an [_Infrastructure as Code_ 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) tool. **Ansible** is used to configure linux machines with specific settings and software. Perfect for fine-tuning the Virtual Machine you will be creating!
 
@@ -21,8 +21,8 @@ There are three main components to the setup!
 ## Part 1: Setup your local computer
 
 In this section you'll setup your local computer and create some accounts. It will include:
-1. Installing the primary communication tool you'll use on the bootcamp: **Slack**!
-2. Create some accounts: Github, Broadcom (to download VMware).
+1. Installing the primary communication tool you'll use during the bootcamp: **Slack**!
+2. Create some accounts: GitHub, Broadcom (to download VMware).
 3. Install **Visual Studio Code (VS Code)**
 4. Create your virtual machine with **VMware** and connect to it with **VS Code**!
 
