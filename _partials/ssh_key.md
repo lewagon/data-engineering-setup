@@ -6,7 +6,7 @@ We want to safely communicate with your virtual machine using [SSH protocol](htt
 
 {% if os == "windows" %}
 
-  We highly recommend installing [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=fr-fr&gl=FR) from the Windows Store (installed on Windows 11 by default) to perform this operation
+  Again, make sure you use *(Windows) PowerShell*.
 
 {% endif %}
 
@@ -16,7 +16,7 @@ We want to safely communicate with your virtual machine using [SSH protocol](htt
 
   ```bash
   # replace "yourfirstname" with ... your first name
-  ssh-keygen.exe -t ed25519 -f ~/.ssh/vmware -C "yourfirstname@local"
+  ssh-keygen.exe -t ed25519 -f $HOME/.ssh/vmware -C "yourfirstname@local"
 
   ```
 
@@ -38,17 +38,31 @@ We want to safely communicate with your virtual machine using [SSH protocol](htt
 
   You will see some lines with a sort of graphic output, ending with a line containing `+----[SHA256]-----+`. That's expected.
 
-- Now we'll **copy the ssh key into the VM**:
+- Now we'll **copy the ssh key into the VM**. Tip: prepare these commands in a text editor like Notepad or VS Code, then copy-pase. Don't try to assemble them in the terminal.
+
+{% if os == "windows" %}
 
   ```bash
   # Replace yourusername by your first name (lowercase)
   # Replace the numbers by the IP address of your VM
-  ssh-copy-id -i ~/.ssh/vmware yourusername@172.16.999.999
+  cat $HOME/.ssh/vmware.pub | ssh yourusername@172.16.999.999 'cat >> .ssh/authorized_keys'
   ```
 
-- You will be prompted `Are you sure you want to continue connecting (yes/no/[fingerprint])?`. Type in `yes` and `<Enter>`.
+{% else %}
 
-- Next you will be prompted for your password. That is the password you chose for the VM. We recommended you to use the same as for your physical machine. Type it. Nothing will appear, that's normal. Then `<Enter>`.
+  ```bash
+  # Replace yourusername by your first name (lowercase)
+  # Replace the numbers by the IP address of your VM
+  ssh-copy-id -i $HOME/.ssh/vmware yourusername@172.16.999.999
+  ```
+
+{% endif %}
+
+- You might be prompted `Are you sure you want to continue connecting (yes/no/[fingerprint])?`. Type in `yes` and `<Enter>`.
+
+- Next you will be prompted for your password. That's the password you chose for the VM. We recommended you to use the same as for your physical machine. Type it. Nothing will appear, that's normal. Then `<Enter>`.
+
+{% if os != "windows" %}
 
 - Then it should say something like:
 
@@ -58,12 +72,14 @@ We want to safely communicate with your virtual machine using [SSH protocol](htt
   Now try logging into the machine, with: "ssh -i'yourusername@172.16.999.999'" and check to make sure that only the key(s) you wanted were added.
   ```
 
-- Let's do that: run this command: (it's almost the same as the `ssh-copy-id` you did before, but just `ssh` instead of `ssh-copy-id`)
+{% endif %}
+
+- Let's try to login: run this command:
 
   ```bash
   # Replace yourusername by your first name (lowercase)
   # Replace the numbers by the IP address of your VM
-  ssh -i ~/.ssh/vmware yourusername@172.16.999.999
+  ssh -i $HOME/.ssh/vmware yourusername@172.16.999.999
   ```
 
 - Your prompt will change: you are now inside the VM!

@@ -8,19 +8,11 @@
 
 - Click on `Add a new host`
 
-{% if os == "windows" %}
-
-- Type `ssh -i C:\Users\<username>\.ssh\vmware <username>@<ip address>`, for instance, my Windows username is `itisi`, so my VM username would also be `itisi`, my VM has an IP of `172.16.999.999`: I'll type `ssh -i C:\Users\itisi\.ssh\vmware itisi@172.16.999.999`
-
-{% else %}
-
 - Type `ssh -i ~/.ssh/vmware <username>@<ip address>`, for instance, my username is `itisi`, my VM has an IP of `172.16.999.999`: I'll type `ssh -i ~/.ssh/vmware itisi@172.16.999.999`
-
-{% endif %}
 
   <img alt="vscode-ssh-connection-command" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-ssh-connection-command.png" width=500>
 
-- When prompted to `Select SSH configuration file to update`, pick the one in your home directory, under the `.ssh` folder, `~/.ssh/config` or `C:\Users\<username>\.ssh\config` basically. Usually VS Code will pick automatically the best option, so their default should work.
+- When prompted to `Select SSH configuration file to update`, pick the one in your home directory, under the `.ssh` folder, {% if os == "macos" %}`/Users/<username>/.ssh/config`{% elsif os == "linux" %}`/home/<username>/.ssh/config`{% elsif os == "windows" %}`C:\Users\<username>\.ssh\config`{% endif %%} basically. Usually VS Code will automatically pick the best option, so the default should work.
 
   <img alt="vscode-add-host-ssh-config" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-add-host-ssh-config.png" width=500>
 
@@ -43,7 +35,7 @@
   <img alt="vscode-terminal" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-terminal.png" width=500>
 
 
-{% if os == "windows" %}
+{% if os == "macos" %}
 
 If the connection fails on macOS Sequoia 14 or newer, try this:
 1. Go to *System Settings* of your Mac.

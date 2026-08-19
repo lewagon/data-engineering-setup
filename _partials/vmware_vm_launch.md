@@ -1,10 +1,20 @@
 ### Launch the VM and Install Ubuntu
 
+{% if os == "macos" %}
+
 Click on the big play button.
 
-From now on you'll have to navigate using the arrows on your keyboard. Old school!
-
 > :rotating_light: If at a certain you click inside the black screen, **it will capture your mouse pointer**. You won't be able to do anything on your machine anymore. In that case, **hit `Ctrl` and `Command`** at the same time on your keyboard.
+
+{% else %}
+
+1. While the machine boots up, you will probably be asked something about side channel mitigations. Just click on *OK*.
+1. Same when asked about removable devices.
+
+{% endif %}
+
+From now on you'll have to navigate using the arrows, the `<Tab>`, and the `<Enter>` key on your keyboard. Old school!
+
 
 #### Configure the machine
 
@@ -20,7 +30,7 @@ We'll guide you through the screens step by step.
 
 1. In the next screen, *Choose the **base** for the installation*, choose *Ubuntu Server* and then *Done* and `<Enter>`.
 
-1. In the next step, **networking**, stick to the default option, and `<Enter>`.
+1. In the next step, **network configuration**, stick to the default option, and `<Enter>`.
 
 1. In the next step, **proxy**, just `<Enter>`.
 

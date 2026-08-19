@@ -1,5 +1,7 @@
 ## VMware installation
 
+VMware will allow us to run virtual machines on our machine.
+
 ### Registration
 
 Browse to [Broadcom's website](https://profile.broadcom.com/web/registration) and create an account.
@@ -8,16 +10,11 @@ Once you created your account, click on the **Login** button, or follow [this li
 
 ### Download and install VMware
 
-Let's download VMware:
-
-1. **Browse** to this link:
 {% if os == "macos" %}
-[download link for VMware Fusion](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Fusion&freeDownloads=true)
-{% elsif os == "linux" %}
-[VMware Workstation Pro](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&freeDownloads=true)
-{% elsif os == "windows" %}
-[VMware Workstation Pro](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&freeDownloads=true)
-{% endif %}.
+1. **Browse** to this link: [download link for VMware Fusion](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Fusion&freeDownloads=true).
+{% else %}
+1. **Browse** to this link: [VMware Workstation Pro](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&freeDownloads=true).
+{% endif %}
 
 1. Click on the link for the **26H1** version for your platform. This will take you to the next page.
 

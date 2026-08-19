@@ -35,12 +35,12 @@ Let's download:
 
 - If you have **Apple Silicon**: download [this ISO image](https://cdimage.ubuntu.com/ubuntu/releases/24.04/release/ubuntu-24.04.4-live-server-arm64.iso) to your Downloads folder.
 
-- If you have an **Intel-based Mac**: download [this ISO image](https://releases.ubuntu.com/jammy/ubuntu-24.04.4-live-server-amd64.iso) to your Downloads folder.
+- If you have an **Intel-based Mac**: download [this ISO image](https://releases.ubuntu.com/noble/ubuntu-24.04.4-live-server-amd64.iso) to your Downloads folder.
 
 
 {% else %}
 
-Your machine most probably has an Intel or AMD processor. Then download [this ISO image](https://releases.ubuntu.com/jammy/ubuntu-24.04.4-live-server-amd64.iso) to your Downloads folder.
+Your machine most probably has an Intel or AMD processor. Then download [this ISO image](https://releases.ubuntu.com/noble/ubuntu-24.04.4-live-server-amd64.iso) to your Downloads folder.
 
 In the (rather unlikely) case you'd have an ARM based processor (Snapdragon X), download [this ISO image](https://cdimage.ubuntu.com/ubuntu/releases/24.04/release/ubuntu-24.04.4-live-server-arm64.iso) to your Downloads folder.
 

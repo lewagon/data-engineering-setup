@@ -20,6 +20,15 @@ Still **inside your VM**, run `hostname -I`. Take note of the IP address that is
 
 Now, let's try to connect from your local machine's terminal to be sure everything works.
 
+{% if os == "windows" %}
+
+The following instructions assume you are using **Powershell** or **Windows Powershell**, not the basic *Command Prompt*. Normally you should already have one of both on your Windows machine.
+
+:warning: **If you have WSL** on your Windows machine, make sure to open a (Windows) Powershell prompt, not an Ubuntu or other linux prompt!
+
+{% endif %}
+
+
 In **your local terminal**:
 
 ```bash
@@ -28,7 +37,9 @@ In **your local terminal**:
 ssh username@ipaddress
 ```
 
-You should see your prompt change.
+You might be asked *Are you sure you want to continue connecting (yes/no/[fingerprint])?*. Type in `yes` and `<Enter>`.
+
+You should see your prompt change. If asked for a password, type the password you chose for your VM and `<Enter>`. Nothing will appear on the screen while you type, that's normal. 
 
 Let's check if you're in the VM:
 
