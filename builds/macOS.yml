@@ -16,7 +16,7 @@ partials:
   - vmware_openssh
   - ssh_key
   - vscode_ssh_connection
-  - gcp_auth_vm_heading
+  - data_setup/ubuntu_gcloud
   - gcp_cli_oauth
   - gcp_adc_auth
   - ubuntu_ansible_part1
