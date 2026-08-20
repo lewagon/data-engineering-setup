@@ -2,7 +2,13 @@
 
 We'll be using [Ansible 🔗](https://docs.ansible.com/ansible/latest/getting_started/introduction.html) to configure your Virtual Machine with some software, configurations, packages, and frameworks that you'll use in the bootcamp.
 
-Let's start by confirming that ansible is installed. In your terminal run:
+Let's start by installing ansible:
+
+```bash
+sudo apt install ansible-core
+```
+
+Then, in your terminal run:
 
 ```bash
 ansible --version
@@ -55,9 +61,6 @@ While this playbook is running, lets go through what is being installed and conf
 - Changing the default shell from **bash** to **zsh**, a more customizable shell that is extensible and looks great!
 - Installing the [**Oh-My-ZSH** 🔗](https://ohmyz.sh/) plugin for the **zsh** shell. We'll use it a bit later to add some quality of life plugins and extensions to `zsh`
 - Installing [**Docker** 🔗](https://www.docker.com/) on your Virtual Machine. Docker is an open platform for developing, shipping, and running applications. You will use it throughout the bootcamp
-- Installing some [**Kubernetes (k8s)** 🔗](https://kubernetes.io/) tooling: Kubernetes is used to managing containerised applications at scale
-    - Installing [**kubectl** 🔗](https://kubernetes.io/docs/reference/kubectl/): `kubectl` is the CLI tool for interacting with kubernetes clusters
-    - Installing [**minikube** 🔗](https://minikube.sigs.k8s.io/docs/): Minikube is a way to quickly spin up a local kubernetes cluster, perfect for learning and developing!
 - Installing [**Terraform** 🔗](https://developer.hashicorp.com/terraform): we've already installed it once, but we need to install it on our VM! **Terraform** is an Infrastructure as Code (IaC) tool
 - Install the [**GitHub CLI** 🔗](https://cli.github.com/): the CLI tool that we'll use to interact with your GitHub account directly from the terminal
 

@@ -24,9 +24,8 @@ upstream        git@github.com:lewagon/data-engineering-challenges.git (fetch)
 upstream        git@github.com:lewagon/data-engineering-challenges.git (push)
 ```
 
-From the `data-engineering-challenges` folder root **on your VM**, we'll run `make install`, which triggers 3 operations:
+From the `data-engineering-challenges` folder root **on your VM**, we'll run `make install`, which triggers 2 operations:
 
-- `make install-poetry`: `cd` (**c**hange **d**irectory) into each challenge folder, and run `poetry install` inside each! (takes a while)
 - `make allow-envrc`: allow `direnv` to execute inside each folder (otherwise you have to manually "allow" it)
 - `make own-repo`: allows your user to be the linux "owner" of all files in this challenge folder
 
@@ -38,4 +37,4 @@ make install
 
 This might take a while. You have time to grab a coffee ☕️, take a break, or start the next step while all your poetry environments are installing.
 
-⚠️ If at the very end of this process you get a few errors like: `direnv: error .envrc file not found` or a Python version isn't available (relating to `Dask`) - that is normal and nothing to worry about 👌 If you're concerned by anything, feel free to open a ticket with a TA!
+⚠️ If at the very end of this process you get a few errors like: `direnv: error .envrc file not found` - that is normal and nothing to worry about 👌 If you're concerned by anything, feel free to open a ticket with a TA!

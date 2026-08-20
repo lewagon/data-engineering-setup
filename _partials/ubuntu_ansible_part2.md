@@ -24,7 +24,7 @@ And the playbook should start running! If you're asked if you want VS Code to be
 - You may be asked to type in your password during the playbook run
 - The task: **Clone data-engineering-challenges from your GitHub to VM** will fail. This is OK and expected with how SSH keys work and how the playbooks are modifying your configuration. To resolve, in your terminal run: `exec zsh`, and then re-run the playbook.
 
-❗ If any other errors occur, or your are unsure, raise a ticket with a teacher. You can safely run the playbook again and again. Generally, if the playbook runs from start to finish with no errors, everything should be good!
+❗ If any other errors occur, or you are unsure, raise a ticket with a teacher. You can safely run the playbook again and again. Generally, if the playbook runs from start to finish with no errors, everything should be good!
 
 ### What is the playbook installing?
 
@@ -32,7 +32,7 @@ While the playbook is running, let's go through what is being installed and conf
 
 **Python and Poetry**
 
-Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. We are going to use Python [3.12.8](https://www.python.org/downloads/release/python-3128/)
+Ubuntu 24.04 has Python pre-installed, but not the version we're going to use. We are going to use Python [3.12.8](https://www.python.org/downloads/release/python-3128/)
 
 - Install [**pyenv** 🔗](https://github.com/pyenv/pyenv) and [**pyenv-virtualenv** 🔗](https://github.com/pyenv/pyenv-virtualenv). We'll use **pyenv** to manage the Python versions installed on the VM
 - Install Python 3.12.8 with pyenv
@@ -63,7 +63,6 @@ Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. W
     - **gcloud**: Auto-complete for the gcloud CLI tool
     - **ssh-agent**: Saves your SSH password so you only have to enter it once per session.
     - **direnv**: A tool to load `.envrc` files when you `cd` into a directory. Great for loading environment variables.
-- Installing **Spark**: A distributed data processing framework
 
 **Data Engineering Challenges Repository**
 

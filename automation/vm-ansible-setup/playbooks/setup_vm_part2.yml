@@ -17,32 +17,6 @@
           - "Running Ubuntu version: {{ ansible_distribution_release }}"
           - "On architecture: {{ architecture }}"
 
-    - name: Check if Spark is installed
-      ansible.builtin.stat:
-        path: "/home/{{ my_user }}/spark/spark-{{ spark_version }}-bin-hadoop3"
-      register: spark_installed
-
-    - name: Install Spark
-      tags: spark
-      when: not spark_installed.stat.exists
-      block:
-        - name: Ensure Spark directory exists
-          ansible.builtin.file:
-            path: "/home/{{ my_user }}/spark"
-            state: directory
-            mode: "0755"
-            owner: "{{ my_user }}"
-            group: "{{ my_user }}"
-          become: true
-
-        - name: Install Spark
-          ansible.builtin.unarchive:
-            src: "https://archive.apache.org/dist/spark/spark-{{ spark_version }}/spark-{{ spark_version }}-bin-hadoop3.tgz"
-            dest: "/home/{{ my_user }}/spark"
-            remote_src: true
-          become_user: "{{ my_user }}"
-          become: true
-
     - name: Add .zshrc plugins - direnv, pyenv, gcloud
       ansible.builtin.lineinfile:
         path: "~/.zshrc"
@@ -54,14 +28,10 @@
       become: true
       tags: zshrc
 
-    - name: Add Spark, pyenv, pipx to PATH
+    - name: Add pyenv, pipx to PATH
       ansible.builtin.blockinfile:
         path: "~/.zshrc"
         block: |
-          # Spark
-          export SPARK_HOME=$HOME/spark/spark-{{ spark_version }}-bin-hadoop3
-          export PATH=$PATH:$SPARK_HOME/bin
-
           # pyenv
           export PYENV_ROOT="$HOME/.pyenv"
           [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"

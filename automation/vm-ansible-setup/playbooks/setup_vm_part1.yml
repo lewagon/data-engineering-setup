@@ -196,36 +196,6 @@
           when: gcp_ar_check.rc != 0
           changed_when: true
 
-    - name: Install kubectl
-      tags: kubectl
-      block:
-        - name: Check if kubectl is installed
-          ansible.builtin.stat:
-            path: /usr/local/bin/kubectl
-          register: kubectl_check
-
-        - name: Download kubectl binary and add to path
-          ansible.builtin.get_url:
-            url: "https://dl.k8s.io/release/{{ lookup('url', 'https://dl.k8s.io/release/stable.txt') }}/bin/linux/amd64/kubectl"
-            dest: "/usr/local/bin/kubectl"
-            mode: '0755'
-          when: not kubectl_check.stat.exists
-
-    - name: Install minikube
-      tags: minikube
-      block:
-        - name: Check if minikube is installed
-          ansible.builtin.stat:
-            path: /usr/local/bin/minikube
-          register: minikube_check
-
-        - name: Download minikube binary and add to path
-          ansible.builtin.get_url:
-            url: "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
-            dest: "/usr/local/bin/minikube"
-            mode: '0755'
-          when: not minikube_check.stat.exists
-
     - name: Check if terraform is installed
       ansible.builtin.stat:
         path: /usr/bin/terraform

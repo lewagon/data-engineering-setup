@@ -97,73 +97,6 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 
-#### Kubernetes
-
-We can start by testing `minikube`:
-
-```bash
-# Start
-minikube start
-```
-
-Should return:
-
-```
-😄  minikube v1.35.0 on Ubuntu 22.04 (amd64)
-✨  Automatically selected the docker driver. Other choices: none, ssh
-📌  Using Docker driver with root privileges
-👍  Starting "minikube" primary control-plane node in "minikube" cluster
-🚜  Pulling base image v0.0.46 ...
-💾  Downloading Kubernetes v1.32.0 preload ...
-    > gcr.io/k8s-minikube/kicbase...:  500.31 MiB / 500.31 MiB  100.00% 88.19 M
-    > preloaded-images-k8s-v18-v1...:  333.57 MiB / 333.57 MiB  100.00% 32.20 M
-🔥  Creating docker container (CPUs=2, Memory=3900MB) ...
-🐳  Preparing Kubernetes v1.32.0 on Docker 27.4.1 ...
-    ▪ Generating certificates and keys ...
-    ▪ Booting up control plane ...
-    ▪ Configuring RBAC rules ...
-🔗  Configuring bridge CNI (Container Networking Interface) ...
-🔎  Verifying Kubernetes components...
-    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
-🌟  Enabled addons: storage-provisioner, default-storageclass
-🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
-```
-
-And then to make sure the kubernetes CLI utility, `kubectl`, works, run the following in your terminal:
-
-```bash
-# Get pods
-kubectl get po -A
-```
-
-Should return something similar to:
-
-```
-NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE
-kube-system   coredns-668d6bf9bc-mg7b6           1/1     Running   0             72s
-kube-system   etcd-minikube                      1/1     Running   0             78s
-kube-system   kube-apiserver-minikube            1/1     Running   0             76s
-kube-system   kube-controller-manager-minikube   1/1     Running   0             76s
-kube-system   kube-proxy-stk77                   1/1     Running   0             72s
-kube-system   kube-scheduler-minikube            1/1     Running   0             76s
-kube-system   storage-provisioner                1/1     Running   1 (41s ago)   75s
-```
-
-And because `minikube` is resource intensive, stop it for now with:
-
-```bash
-minikube delete --all
-```
-
-And that should return:
-
-```
-🔥  Deleting "minikube" in docker ...
-🔥  Removing /home/<your_username>/.minikube/machines/minikube ...
-💀  Removed all traces of the "minikube" cluster.
-🔥  Successfully deleted all profiles
-```
-
 #### Terraform
 
 🧪 To test:
@@ -178,38 +111,5 @@ Should return:
 Terraform v1.14.3
 on linux_amd64
 ```
-
-#### Spark
-
-🧪 To test:
-
-```bash
-spark-shell
-```
-
-Should take you into the spark shell that looks like:
-
-```
-Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-25/03/18 08:54:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-Spark context Web UI available at http://lw-de-vm.europe-north1-b.c.wagon-de.internal:4040
-Spark context available as 'sc' (master = local[*], app id = local-1742288096829).
-Spark session available as 'spark'.
-Welcome to
-      ____              __
-     / __/__  ___ _____/ /__
-    _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 3.5.3
-      /_/
-
-Using Scala version 2.12.18 (OpenJDK 64-Bit Server VM, Java 1.8.0_442)
-Type in expressions to have them evaluated.
-Type :help for more information.
-
-scala>
-```
-
-Type `:quit` and hit enter to exit the spark-shell and continue.
 
 That's all the testing we'll do for now!
