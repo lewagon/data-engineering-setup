@@ -54,7 +54,7 @@ You will be asked for a password, enter your password for the VM user. This is b
 
 And the playbook should start running!
 
-❗ If an errors occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required (a cool concept called _Idempotency_ that you'll learn about later 😉).
+❗ If an error occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required (a cool concept called _Idempotency_ that you'll learn about later 😉).
 
 ### What is the playbook installing?
 
