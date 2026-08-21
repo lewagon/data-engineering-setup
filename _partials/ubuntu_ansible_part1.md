@@ -47,8 +47,10 @@ curl -L -o ~/vm-ansible-setup/ansible.cfg https://raw.githubusercontent.com/lewa
 And run with:
 
 ```bash
-cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part1.yml
+cd ~/vm-ansible-setup && ansible-playbook -K playbooks/setup_vm_part1.yml
 ```
+
+You will be asked for a password, enter your password for the VM user. This is because some of the installation steps require `sudo` access.
 
 And the playbook should start running!
 

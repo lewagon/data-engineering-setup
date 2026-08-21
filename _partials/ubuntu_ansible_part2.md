@@ -15,7 +15,7 @@ curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubuse
 And run with:
 
 ```bash
-cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part2.yml
+cd ~/vm-ansible-setup && ansible-playbook -K playbooks/setup_vm_part2.yml
 ```
 
 And the playbook should start running! If you're asked if you want VS Code to behave more like Sublime Text, click accept.
