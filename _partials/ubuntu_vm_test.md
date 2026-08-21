@@ -105,7 +105,7 @@ For more examples and ideas, visit:
 terraform --version
 ```
 
-Should return:
+Should return something similar to:
 
 ```
 Terraform v1.14.3

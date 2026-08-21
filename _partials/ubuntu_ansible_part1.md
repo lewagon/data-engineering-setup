@@ -61,7 +61,7 @@ While this playbook is running, lets go through what is being installed and conf
 - Changing the default shell from **bash** to **zsh**, a more customizable shell that is extensible and looks great!
 - Installing the [**Oh-My-ZSH** 🔗](https://ohmyz.sh/) plugin for the **zsh** shell. We'll use it a bit later to add some quality of life plugins and extensions to `zsh`
 - Installing [**Docker** 🔗](https://www.docker.com/) on your Virtual Machine. Docker is an open platform for developing, shipping, and running applications. You will use it throughout the bootcamp
-- Installing [**Terraform** 🔗](https://developer.hashicorp.com/terraform): we've already installed it once, but we need to install it on our VM! **Terraform** is an Infrastructure as Code (IaC) tool
+- Installing [**Terraform** 🔗](https://developer.hashicorp.com/terraform). **Terraform** is an Infrastructure as Code (IaC) tool
 - Install the [**GitHub CLI** 🔗](https://cli.github.com/): the CLI tool that we'll use to interact with your GitHub account directly from the terminal
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
