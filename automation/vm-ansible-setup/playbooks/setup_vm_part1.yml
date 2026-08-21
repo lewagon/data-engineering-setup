@@ -5,7 +5,9 @@
   become: true
   vars:
     my_user: "{{ lookup('env', 'USER') }}"
-    architecture: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+    architecture: "{{ 'amd64' if ansible_architecture == 'x86_64'
+                      else 'arm64' if ansible_architecture == 'aarch64'
+                      else ansible_architecture }}"
   tasks:
     - name: Debug Variables
       ansible.builtin.debug:
