@@ -38,12 +38,21 @@
 {% if os == "macos" %}
 
 If the connection fails on macOS Sequoia 14 or newer, try this:
+1. Check your macOS version, make sure you upgraded to 26.6.2 or newer. To check: *Menu - Apple icon - About This Mac*.
+1. Check your VS Code version, make sure you upgraded to 1.134 or newer. To check: *Menu - Code - About Visual Studio Code*.
+1. Restart VS Code and reconnect to the VM.
+
+If that didn't help:
+1. Quit VS Code with `Cmd-Q`, or *Quit* from the *Code* menu.
 1. Go to *System Settings* of your Mac.
 1. Go to the *Privacy & Security* tab.
 1. Select *Local Networks* from the list.
-1. Find *VS Code* and make sure the toggle is blue.
+1. Find *Visual Studio Code* and make sure the toggle is blue.
 1. Close *System Settings*.
-1. Close VS Code completely (Quit from the Code menu).
+1. Restart VS Code and reconnect to the VM.
+
+If that didn't help:
+1. Quit VS Code with `Cmd-Q`, or *Quit* from the *Code* menu.
 1. Then from your local terminal:
    ```bash
    ~/Library/Caches/com.microsoft.VSCode
