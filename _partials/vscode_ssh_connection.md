@@ -37,7 +37,10 @@
 
 {% if os == "macos" %}
 
-If the connection fails on macOS Sequoia 14 or newer, try this:
+<details>
+  <summary>If the connections fails on macOS Sequoia 14 or newer, expand this
+  </summary>
+
 1. Check your macOS version, make sure you upgraded to 26.6.2 or newer. To check: *Menu - Apple icon - About This Mac*.
 1. Check your VS Code version, make sure you upgraded to 1.134 or newer. To check: *Menu - Code - About Visual Studio Code*.
 1. Restart VS Code and reconnect to the VM.
@@ -58,6 +61,8 @@ If that didn't help:
    ~/Library/Caches/com.microsoft.VSCode
    ```
 1. Restart VS Code and reconnect to the VM.
+
+</details>
 
 {% endif %}
 
