@@ -7,21 +7,24 @@ A part of the setup will be done on your **local machine** but most of the confi
 
 Please **read instructions carefully and execute all commands in the following order**. If you get stuck, don't hesitate to ask a teacher for help :raising_hand:
 
-This setup is largely automated with [**Terraform** 🔗](https://developer.hashicorp.com/terraform) and [**Ansible** 🔗](https://docs.ansible.com/). **Terraform** and **Ansible** are [_Infrastructure as Code_ 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) tools.
-- **Terraform** excels at creating and destroying cloud resources - like virtual machines, IP addresses, databases and more!
-- **Ansible** is used to configure linux machines with specific settings and software. Perfect for fine-tuning the Virtual Machine you will be creating with Terraform!
+We will run a **virtual machine** locally using Broadcom's well known **VMware**. 
+
+**Why?**
+- This allows us to all run an **identical setup**, independent of your underlying operating system.
+- It will give us a very **similar experience to working with a VM on a cloud platform**, but without the cost of running it on the cloud: we use our own machine's power instead.
+- It allows us to all run a VM with **Ubuntu**, a commonly used Linux distribution for cloud infrastructure.
+
+The setup inside the virtual machine is largely automated with [**Ansible** 🔗](https://docs.ansible.com/), an [_Infrastructure as Code_ 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) tool. **Ansible** is used to configure linux machines with specific settings and software. Perfect for fine-tuning the Virtual Machine you will be creating!
 
 There are three main components to the setup!
 
 ## Part 1: Setup your local computer
 
 In this section you'll setup your local computer and create some accounts. It will include:
-1. Installing the primary communication tool you'll use on the bootcamp: **Slack**!
-2. Create some accounts: Github, Google Cloud Platform (GCP)
+1. Installing the primary communication tool you'll use during the bootcamp: **Slack**!
+2. Create some accounts: GitHub, Broadcom (to download VMware).
 3. Install **Visual Studio Code (VS Code)**
-4. Install and authentication the GCP command line tool: `gcloud`
-5. Install **Terraform** on your local computer
-6. Create your virtual machine with **Terraform** and connect to it with **VS Code**!
+4. Create your virtual machine with **VMware** and connect to it with **VS Code**!
 
 ## Part 2: Configure your Virtual Machine Part 1
 
@@ -110,16 +113,8 @@ Have you signed up to GitHub? If not, [do it right away](https://github.com/join
 
 ### Project setup
 
-**👌 Note: Skip to the next section if you already have a GCP project**
-
-- Go to [Google Cloud](https://console.cloud.google.com/) and create an account if you do not already have one
-- In the Cloud Console, on the project list, select or create a Cloud project
-
-![](images/gcp-create-project.png)
-
-- Give it a name such as `Wagon Bootcamp` for example
-- ❗ It is important that your project **does not** have an organisation ❗
-- Notice the `ID` automatically created for the project, e.g. `wagon-bootcamp-123456`
+- Browse to the [Google Cloud Console](https://console.cloud.google.com/) and login with your Google / Gmail account.
+- In the Cloud Console, on the project list, select the Cloud project you were invited to.
 
 ![](images/gcp_project.png)
 
@@ -138,90 +133,6 @@ Then switch the language to english:
 - Select **English**
 - Select **United States**
 - Click on **Select**
-
-### Billing account
-
-**👌 Note: Skip to the next section if you already have a valid billing account**
-
-You will now link your account to your credit card. This step is required or you will not be able to use the services provided by GCP. Do not worry, you will be able to consume most GCP services through free credits throughout the bootcamp.
-
-![](images/gcp-billing.png)
-
-- Click on **Billing**
-- Click on **MANAGE BILLING ACCOUNTS**
-- Click on **ADD BILLING ACCOUNT**
-- Give a name to your billing account, e.g. `My Billing Account`
-- Click on "I have read..." and agree the to the terms of service
-- Click on **CONTINUE**
-- Select your account type: `Individual`
-- Fill your name and address
-
-You should see that you have a free credit of "$300 credits over the next 90days".
-
-- Click on card details
-- Enter your credit card info
-- Click on **START MY FREE TRIAL**
-
-Once this is done, verify that your billing account is linked to your GCP project.
-
-- Select your project
-- Go to **Billing**
-- Select **LINK A BILLING ACCOUNT**
-- Select `My Billing Account`
-- Click on **SET ACCOUNT**
-
-You should now see:
-
-```
-Free trial status: $300 credit and 91 days remaining - with a full account, you'll get unlimited access to all of Google Cloud Platform.
-```
-
-<details>
-  <summary>👉 If you do not own a credit card 👈</summary>
-
-
-If you do not own a credit card, an alternative is to setup a **Revolut** account.
-Revolut is a financial app that will allow you to create a virtual credit card linked to your mobile phone billing account.
-
-Skip this step if you own a credit card and use your credit card for the setup.
-
-Download the Revolut app, or go to [revolut](https://www.revolut.com/a-radically-better-account) and follow the steps to download the app (enter your mobile phone number and click on Get Started).
-
-- Open the Revolut app
-- Enter your mobile phone number
-- Enter the verification code received by SMS
-- The app will ask for your country, address, first and last name, date of birth, email address
-- The app will also ask for a selfie and request your profession
-- The app will require a photo of your identification card or passport
-
-Once this is done, select the standard (free) plan. No need to add the card to Apple pay, or ask for a the delivery of a physical card, or add money securely.
-
-You now have a virtual card which we will use for the GCP setup.
-
-In the main view of the Revolut the app
-- Click on Ready to use
-- Click on the card
-- Click on Show card details
-- Note down the references of the virtual credit card and use them in order to proceed with the GCP setup
-
-</details>
-
-<details>
-  <summary>👉 If you receive an email from Google saying "Urgent: your billing account XXXXXX-XXXXXX-XXXXXX has been suspended" 👈</summary>
-
-
-This may happen especially in case you just setup a Revolut account.
-
-- Click on PROCEED TO VERIFICATION
-- You will be asked to send a picture of your credit card (only the last 4 digits, no other info)
-- In case you used **Revolut**, you can send a screenshot of your virtual credit card (do not forget to remove the validity date from the screenshot)
-- Explain that you are attending the Le Wagon bootcamp, do not own a credit card, and have just created a Revolut account in order to setup GCP for the bootcamp using a virtual credit card
-
-You may receive a validation or requests for more information within 30 minutes.
-
-Once the verification goes through, you should receive an email stating that "Your Google Cloud Platform billing account XXXXXX-XXXXXX-XXXXXX has been fully reinstated and is ready to use.".
-
-</details>
 
 ## GCP APIs
 
@@ -285,405 +196,355 @@ We need to connect VS Code to a virtual machine in the cloud so you will only wo
 That's the only extension you should install on your _local_ machine, we will install additional VS Code extensions on your _virtual machine_.
 
 
-## Google Cloud CLI
+## Download Ubuntu ISO
 
-The `gcloud` Command Line Interface (CLI) is used to communicate with Google Cloud Platform services through your terminal.
-
-### Install gcloud
+In a later step we will install Ubuntu on our VM, so we need an installation image (ISO). Let's start downloading it already because it is almost 3 Gb!
 
 
 
-To install, download the Google Cloud CLI installer from this [link here 🔗](https://cloud.google.com/sdk/docs/install#windows).
+Your machine most probably has an Intel or AMD processor. Then download [this ISO image](https://releases.ubuntu.com/noble/ubuntu-24.04.4-live-server-amd64.iso) to your Downloads folder.
 
-Once it's finished downloading, launch the installer and follow the prompts. You only need to install `gcloud` for the current user.
+In the (rather unlikely) case you'd have an ARM based processor (Snapdragon X), download [this ISO image](https://cdimage.ubuntu.com/ubuntu/releases/24.04/release/ubuntu-24.04.4-live-server-arm64.iso) to your Downloads folder.
 
-On the last screen of the installer there will be four check boxes. Makes sure that the boxes for `Start Google SDK Shell` and `Run gcloud init to configure the Google Cloud CLI` are selected then click **Finish**. This should open a new **Command Prompt** window and ask a series of questions like:
-- **Do you want to log in?** - type `y` and hit enter and following the prompts. It should open a web-browser to log in to your Google account.
-    - Ensure you _'allow'_ Google Cloud to access different services
-- **Pick cloud project to use** - Select your GCP Project ID that you want to connect with `gcloud`
-- **Select your region and zone** - You can safely enter `n`. It's not important at the moment.
 
-Once you've completed the `gcloud` setup, close **Command Prompt** and re-open it, then run:
+
+While the image is downloading, continue with the next step.
+
+
+
+
+
+
+
+
+
+## VMware installation
+
+VMware will allow us to run virtual machines on our machine.
+
+### Registration
+
+Browse to [Broadcom's website](https://profile.broadcom.com/web/registration) and create an account.
+
+Once you created your account, click on the **Login** button, or follow [this link](https://access.broadcom.com), to sign in.
+
+### Download and install VMware
+
+
+1. **Browse** to this link: [VMware Workstation Pro](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&freeDownloads=true).
+
+
+1. Click on the link for the **26H1** version for your platform. This will take you to the next page.
+
+1. Below the filters but above the file list, you will have to **agree to the Terms and Conditions**. You can only check the box after you followed the link to the Terms and Conditions.
+
+1. The first time you download VMware, you will be asked for some **additional registration details**. Complete these.
+
+1. Then **click on the download button** (a blue cloud icon). If you don't see the download button, scroll far enough to the right.
+
+1. Once the download finished, **open the file, and install** the application.
+
+
+
+## Create the VM
+
+
+
+1. In the application, **click on the button with the big `+` and *Create a New Virtual Machine**.
+1. Stick to the pre-selected *Typical* configuration, and click on *Next*.
+1. In the next step, browse to the **ISO** you downloaded earlier, and click on *Next*.
+1. Leave the default options for the **VM name**, and click on *Next*.
+1. Leave the default options for the **VM location**, and click on *Next*.
+1. Increase the **disk capacity** to *30 Gb*, and click on *Next*.
+1. In the **Ready to Create Virtual Machine**, click on *Finish*.
+
+
+
+
+### Launch the VM and Install Ubuntu
+
+
+
+1. While the machine boots up, you will probably be asked something about side channel mitigations. Just click on *OK*.
+1. Same when asked about removable devices.
+
+
+
+From now on you'll have to navigate using the arrows, the `<Tab>`, and the `<Enter>` key on your keyboard. Old school!
+
+
+#### Configure the machine
+
+We'll guide you through the screens step by step.
+
+1. Stick to the default option to **launch Ubuntu**, the first option, and hit `<Enter>` on your keyboard.
+
+1. You'll see lots of messages appear. After a bit you'll be prompted to choose a **language**. Choose *English* and `<Enter>`.
+
+1. You will be asked if you want to update to 26.04. No because we want to stick to Ubuntu 24.04. Choose ***Continue without updating*** and `<Enter>`.
+
+1. In the next step, select your **keyboard** layout, or use `Identify keyboard` if you don't know. Finally select *Done* and hit `<Enter>`.
+
+1. In the next screen, *Choose the **base** for the installation*, choose *Ubuntu Server* and then *Done* and `<Enter>`.
+
+1. In the next step, **network configuration**, stick to the default option, and `<Enter>`.
+
+1. In the next step, **proxy**, just `<Enter>`.
+
+1. Then it will start **testing** if it can connect to the internet to check the Ubuntu archives. Wait until above the rectangle it says *This mirror location passed tests*. Then hit `<Enter>`.
+
+1. In the next step, **storage**, just hit `<Enter>`.
+
+1. In the **summary** screen, hit `<Enter>`.
+
+1. Then you'll be asked to **continue**. Use the arrows to select *Continue* and then `<Enter>`.
+
+#### Create a user account
+
+In the next step, we'll give our machine a name, and define your username and password.
+
+> :rotating_light: Write down everything you input here! :rotating_light:
+
+When you completed a field, use `<Enter>` to jump to the next one.
+
+- **Your name**: This is just a friendly name. Your first name will do.
+- **Your server name**: use `myvm`.
+- **Username**: use your first name, in lowercase.
+- **Password**: up to you, pick something easy you'll remember like the password for your physical machine or something short. Nobody has access to your VM unless they already have access to your physical machine anyway.
+
+#### Continue the configuration
+
+1. In the next screen, **Ubuntu Pro**, keep the default option to *Skip for now*. We don't need it.
+
+1. In the screen asking about **OpenSSH**, make sure to have an X next to *Install OpenSSH Server* by hitting `<Space>` on your keyboard. Then arrow down to select *Done* and `<Enter>`.
+
+1. In the next screen, it asks to install popular **snaps**. We don't want that. Just arrow down to select *Done* and `<Enter>`.
+
+#### Now wait: Ubuntu is being installed
+
+At this point, you will see a long list of messages scroll by while Ubuntu is being installed. Time to wait. It might take many minutes, sometimes without a change on the screen. If you're in doubt, arrow down to see the *Full log* and hit `<Enter>`. This one should change more frequently.
+
+At a certain point you'll see *Installation complete* in the orange bar at the top of the screen. If you're in the full log, select *Close* and `<Enter>`.
+
+Finish by selecting *Reboot Now* and `<Enter>`. This will reboot your VM, not your physical machine.
+
+When it says *Please remove the installation medium*, hit `<Enter>`, even if it gives a warning about being unable to unmount the cdrom.
+
+Your machine will now reboot.
+
+#### Logging in to the machine
+
+After the reboot it will ask for your login. That is the **username** you specified. Your first name in lowercase is what we suggested.
+
+Then your **password**. Normally the same as your physical machine. Type it in. Nothing will appear, that's normal. It doesn't show anything for security reasons: someone watching along won't even know how long your password is!
+
+After hitting `<Enter>`, you should be logged in. You'll see a lot of the text, and at the end you should see the prompt of your VM:
 
 ```bash
-gcloud config list
+yourusername@myvm:~$
 ```
 
-You should get an output similar to:
+Congratulations! You have installed your VM and logged into it!
+
+
+
+### Setting up OpenSSH
+
+We will need this to be able to use SSH to connect to our VM.
+
+> Because we are using VMware locally, we don't really need this. But we want to make a setup that is almost identical as if you were using a VM running on the cloud. That's why we'll use SSH.
+
+Still **inside your VM**, run `hostname -I`. Take note of the IP address that is shown.
+
+<details>
+  <summary>Troubleshooting if it doesn't work
+  </summary>
+
+  Make sure OpenSSH is running: `sudo systemctl status ssh`.
+
+  If the server isn’t running, start it using: `sudo systemctl start ssh`.
+
+  If it's not installed, install it using: `sudo apt install openssh-server`. Then go back in the reverse order.
+
+</details>
+
+Now, let's try to connect from your local machine's terminal to be sure everything works.
+
+
+
+The following instructions assume you are using **Powershell** or **Windows Powershell**, not the basic *Command Prompt*. Normally you should already have one of both on your Windows machine.
+
+:warning: **If you have WSL** on your Windows machine, make sure to open a (Windows) Powershell prompt, not an Ubuntu or other linux prompt!
+
+
+
+
+In **your local terminal**:
 
 ```bash
-[accessibility]
-screen_reader = True/False # depends on install options
-[core]
-account = your_email@domain.com
-disable_usage_reporting = True/False # depends on install options
-project = your_gcp_project
-
-Your active configurations: [default]
+# Replace username with your firstname
+# Replace ipadddress with the IP address you obtained above
+ssh username@ipaddress
 ```
 
-Now `gcloud` is installed and authenticated 🚀
+You might be asked *Are you sure you want to continue connecting (yes/no/[fingerprint])?*. Type in `yes` and `<Enter>`.
 
+You should see your prompt change. If asked for a password, type the password you chose for your VM and `<Enter>`. Nothing will appear on the screen while you type, that's normal. 
 
-
-
-### Application Default Credentials
-
-Application Default Credentials are for authenticating our **code** (Terraform and Python 🐍) to interact with Google services and resources. It's a small distinction between `gcloud` and **code**, but an important one.
-
-To authenticate your **Application Default Credentials**, in your terminal run:
+Let's check if you're in the VM:
 
 ```bash
-gcloud auth application-default login
+hostname
 ```
 
-And follow the prompts. It should open a web-page to login to your Google account.
+This should return the name you gave to your VM: `myvm`.
 
-
-## Terraform
-
-Terraform is a tool for [Infrastructure as Code (IaC) 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) to create, destroy, and manage resources in the cloud.
-
-
-
-### Download
-
-To install terraform, download the **zip archive** from the Terraform install page at this [link here 🔗](https://developer.hashicorp.com/terraform/install).
-
-❗ If you are using Windows 10 or 11, download the **AMD64** version (64 bit version). ❗
-
-1. Using file explorer to go to the location you downloaded the **terraform zip archive**
-
-2. **Unzip** the archive and two files should appear: `terraform.exe` and `license.txt`.
-
-3. Copy `terraform.exe`
-
-4. Navigate to your home directory (`C:\Users\<YOUR_USERNAME>\`) and create a directory named `terraform_cli`
-
-5. Paste `terraform.exe` in the `terraform_cli` directory
-
-### Add terraform to PATH
-
-We need to manually add **Terraform** to the `PATH` environment variable. The `PATH` variable contains a list of directories that your computer looks in for programs that we run from the command prompt.
-
-To update your path:
-1. Open Windows Search and search for: **Environment variables**
-
-2. Select and open **Edit environment variables for your account**
-
-3. Under **User variables for <YOUR_USERNAME>** click on the variable named: `Path` to select it, then click on **Edit**
-
-3. In the new pop out window, click **New** on the top right
-
-4. Into the empty box that was just created, enter:
-    ```cmd
-    %USERPROFILE%\terraform_cli
-    ```
-
-5. Click **Ok** to close the `Path` variable window, and click **Ok** again to close the Environment Variable window.
-
-6. Close **Command Prompt** and open it again
-
-
-
-Verify the installation with:
+Finally, exit, to disconnect from the VM and go back to your physical machine:
 
 ```bash
-terraform --version
-```
-
-The output should look similar to:
-
-```bash
-Terraform v1.14.3
-on <your_operating_system>_<your_cpu_architecture>
-
-
-
-# Windows example
-# Terraform v1.14.3
-# on windows_amd64
-
-
-```
-
-
-## Provisioning your Virtual Machine with Terraform
-
-You can create Cloud Resources like Virtual Machines in different ways:
-- Through the Google Cloud [Compute Engine Console 🔗](https://console.cloud.google.com/compute/overview)
-- Using `gcloud`
-- With **Infrastructure as Code** tools like Terraform
-
-We'll be creating our Virtual Machine with Terraform
-
-We're almost at the point of creating your Virtual Machine.
-
-The specifications of the Virtual Machine and Network Settings you'll use for the bootcamp are:
-- Operation System: Ubuntu 22.04 LTS
-- CPU: 4 Virtual CPU cores (2 physical CPU cores)
-- RAM: 16 GB
-- Storage (Persistent Disk): 100 GB balanced
-- Static External IP address - so it's easier to login.
-
-### Cost 💸
-
-Creating and running a Virtual Machine on Google Cloud Platform costs money! 💸
-
-If you have created a new Google Cloud Platform account, the cost of the Virtual machine will be covered by the $300 USD credit for the first 90 days if you are diligent with turning off your Virtual Machine (or finish the _Linux and Bash_ challenge today 😎).
-
-❗ **The cost of running a Virtual Machine with our configuration 24 hours a day, 7 days a week is ~$150 USD per month.** ❗
-
-You can massively reduce the cost by only running the Virtual Machine when you use it. You will **NOT** be charged for the vCPU's and RAM while the Virtual Machine is off!
-
-You will always pay for the Storage (equivalent of your hard-drive on your local computer). It's ~$10 USD per month for 100 GB.
-
-💡 A rule of thumb is: if a cloud provider can rent the resource out to someone else when your not using it, you only pay for it when you are using the resource. That's why you don't pay for the CPU and RAM when you are not using it, Google can rent it out to someone else - but will always pay for Storage, Google can't rent it out to someone else because it has your data on it.
-
-### Download terraform files
-
-We almost have all the necessary parts to create your VM using **terraform**. We need to download the terraform files and change a few values.
-
-First we'll create a folder and download the terraform files with:
-
-
-
-Using the **Command Prompt** (cmd), run the following:
-
-❗ Note: The below commands will only work in **Command Prompt** - they will not work in Windows Powershell.
-
-```cmd
-mkdir %USERPROFILE%\wagon-de-bootcamp
-```
-```cmd
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\main.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\provider.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\variables.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
+exit
 ```
 
 
 
-### Set variables
+## SSH key
+
+We want to safely communicate with your virtual machine using [SSH protocol](https://en.wikipedia.org/wiki/Secure_Shell). We need to generate a SSH key to authenticate.
+
+- Open your **local** terminal.
 
 
 
-Open up the file `C:\Users\<YOUR_USERNAME>\wagon-de-bootcamp\terraform.tfvars` in VS Code or any other code editor.
+  Again, make sure you use *(Windows) PowerShell*.
 
 
 
-It should look like:
-
-```bash
-project_id    = "<YOUR_GCP_PROJECT>"
-region        = "<YOUR_GCP_REGION>"
-zone          = "<YOUR_GCP_ZONE>"
-instance_name = "<YOUR_GCP_INSTANCE_NAME>"
-instance_user = "<YOUR_COMPUTER_USER_NAME>"
-```
-
-We'll need to change some values in this file. Here's were you can find the required values:
-- **project_id:** from the GCP Console at this [link here](https://console.cloud.google.com).
-- **region:** take a look at the GCP Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones#available). We generally recommend you choose a geographically nearby region.
-- **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`. The zone you select within a region should not have a functional impact.
-- **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
-
-- **instance_user:** in Command Prompt, run `echo %username%`, and enter the value - try and remember your username, you will need it later on
+- Create a **SSH key**
 
 
-After completing this file, it might look similar to:
 
-```bash
-project_id    = "wagon-bootcamp"
-region        = "europe-west1"
-zone          = "europe-west1-b"
-instance_name = "lw-de-vm-tswift"
-instance_user = "taylorswift"
-```
+  ```bash
+  # replace "yourfirstname" with ... your first name
+  ssh-keygen.exe -t ed25519 -f $HOME/.ssh/vmware -C "yourfirstname@local"
 
-Make sure to save the `terraform.tfvars` file, navigate into the directory with the terraform files using your terminal with:
+  ```
 
-```bash
 
-cd %USERPROFILE%\wagon-de-bootcamp
 
-```
 
-Initialise and test the terraform config files with:
+  You should get the following message: `> Generating public/private algorithm key pair.`
 
-```bash
-terraform init
-```
+- You should be asked to `Enter passphrase for "..."` - continue without a passphrase: press `<Enter>` without typing anything when asked to enter a passphrase.
 
-Then:
+- You should be asked to `Enter same passphrase again`, hit `<Enter>` again.
 
-```bash
-terraform plan
-```
+  You will see some lines with a sort of graphic output, ending with a line containing `+----[SHA256]-----+`. That's expected.
 
-And check the output. Towards the bottom there should be a line:
+- Now we'll **copy the ssh key into the VM**. Tip: prepare these commands in a text editor like Notepad or VS Code, then copy-pase. Don't try to assemble them in the terminal.
 
-```bash
-Plan: 2 to add, 0 to change, 0 to destroy
-```
 
-Terraform is telling you what it will create:
-- A compute engine instance
-- A static external IP address
 
-**❗ If you have any errors, read the error and debug. If you are unsure, raise a ticket with a teacher. ❗**
+  ```bash
+  # Replace yourusername by your first name (lowercase)
+  # Replace the numbers by the IP address of your VM
+  cat $HOME/.ssh/vmware.pub | ssh yourusername@172.16.999.999 'cat >> .ssh/authorized_keys'
+  ```
 
-If everything was successful, create your VM with:
 
-```bash
-terraform apply -auto-approve
-```
 
-It might take a while for Terraform to create the cloud resources. Once you see:
+- You might be prompted `Are you sure you want to continue connecting (yes/no/[fingerprint])?`. Type in `yes` and `<Enter>`.
 
-```bash
-Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
-```
+- Next you will be prompted for your password. That's the password you chose for the VM. We recommended you to use the same as for your physical machine. Type it. Nothing will appear, that's normal. Then `<Enter>`.
 
-Your Virtual Machine should be up and running! Check the GCP Compute Engine console at this [link here 🔗](https://console.cloud.google.com/compute/instances) to confirm.
+
+
+- Let's try to login: run this command:
+
+  ```bash
+  # Replace yourusername by your first name (lowercase)
+  # Replace the numbers by the IP address of your VM
+  ssh -i $HOME/.ssh/vmware yourusername@172.16.999.999
+  ```
+
+- Your prompt will change: you are now inside the VM!
+
+- Check it by running `hostname` followed by `<Enter>`. It should say `myvm` (unless you chose another name for your vm earlier).
+
+All good!
+
+Type `exit` to get back to your local machine.
+
 
 
 ## Virtual Machine connection
 
-### Create SSH keys
+### Configuring the remote connection
 
-We need to connect VS Code to our Virtual Machine in the cloud so you will only work on that machine during the bootcamp. We'll use the [Remote - SSH Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) that we previously installed.
+- Open VS Code > Open the [command palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) > Type `Remote-SSH: Connect to Host...`
 
-To create the VS Code SSH configuration, run the following in your terminal:
+  <img alt="vscode-connect-to-host" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-connect-to-host.png" width=500>
 
-```bash
-gcloud compute config-ssh
-```
+- Click on `Add a new host`
 
-`gcloud` may tell you it needs to create a directory to continue. Accept and you should get an output similar to:
+- Type `ssh -i ~/.ssh/vmware <username>@<ip address>`, for instance, my username is `itisi`, my VM has an IP of `172.16.999.999`: I'll type `ssh -i ~/.ssh/vmware itisi@172.16.999.999`
 
-```bash
-You should now be able to use ssh/scp with your instances.
-For example, try running:
+  <img alt="vscode-ssh-connection-command" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-ssh-connection-command.png" width=500>
 
-  $ ssh lw-de-vm-tswift.europe-west1-b.wagon-bootcamp
-# $ ssh lw-de-vm-<GITHUB_USERNAME>.<GCP_ZONE>.<GCP_PROJECT_ID>
-```
+- When prompted to `Select SSH configuration file to update`, pick the one in your home directory, under the `.ssh` folder, `C:\Users\<username>\.ssh\config` basically. Usually VS Code will automatically pick the best option, so the default should work.
+
+  <img alt="vscode-add-host-ssh-config" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-add-host-ssh-config.png" width=500>
+
+- You should get a pop-up on the bottom right notifying you the host has been added
+
+  <img alt="vscode-host-added" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-host-added.png" width=500>
+
+- Open again the [command palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) > Type `Remote-SSH: Connect to Host...` > Pick your VM IP address
+
+  <img alt="vscode-add-new-host" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-add-new-host.png" width=500>
+
+- The first time, VSCode might ask you for a security permission like below, say yes / continue.
+
+  <img alt="vscode-remote-connection-confirm" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-remote-connection-confirm.png" width=500>
+
+- Open again the [command palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) > Type `Terminal: Create New Terminal (in active workspace)` > You now have a Bash terminal in your virtual machine!
+
+  <img alt="vscode-command-palette-new-terminal" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-command-palette-new-terminal.png" width=500>
+  <br>
+  <img alt="vscode-terminal" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-terminal.png" width=500>
 
 
-### Confirm Your SSH Settings
 
-Let's take a look at the SSH configuration that was just created and verify it. In VS Code:
 
-1. Open the **command palette** with `ctrl + shift + P` and type in: _remote ssh config_
-2. Select the option: **Remote-SSH: Open SSH Configuration File...**
-3. In the next menu, select: the file that looks like: **C:\Users\YOUR_USERNAME\.ssh\config**
-4. And a file should open that looks similar too:
+### Giving the remote connection a human-friendly name
 
-```bash
-# Google Compute Engine Section
-#
-# The following has been auto-generated by "gcloud compute config-ssh"
-# to make accessing your Google Compute Engine virtual machines easier.
-#
-# To remove this blob, run:
-#
-#   gcloud compute config-ssh --remove
-#
-# You can also manually remove this blob by deleting everything from
-# here until the comment that contains the string "End of Google Compute
-# Engine Section".
-#
-# You should not hand-edit this section, unless you are deleting it.
-#
-Host lw-de-vm-tswift.europe-west1-b.wagon-bootcamp
-    HostName 34.0.248.237
-    IdentityFile C:\Users\TaylorSwift\.ssh\google_compute_engine
-    UserKnownHostsFile=C:\Users\TaylorSwift\.ssh\google_compute_known_hosts
-    HostKeyAlias=compute.1637400398547578470
-    IdentitiesOnly=yes
-    CheckHostIP=no
-
-# End of Google Compute Engine Section
-```
-
-A bit happening here, most of it is documentation and context. Because of some quirks with Windows, we are in fact going to edit this file by hand. We want to add a new `User YOUR_USERNAME` key-value pair to the SSH connection configuration block. In the indented section after `CheckHostIP=no`, add a new `User` label with the value of your Windows username. For example: If the output of `echo %username%` in command prompt was `TaylorSwift`, my updated configuration would be:
+Still on your *local* computer, lets create a more readable version of your machine to connect to!
 
 ```bash
-Host lw-de-vm-tswift.europe-west1-b.wagon-bootcamp
-    HostName 34.0.248.237
-    IdentityFile C:\Users\TaylorSwift\.ssh\google_compute_engine
-    UserKnownHostsFile=C:\Users\TaylorSwift\.ssh\google_compute_known_hosts
-    HostKeyAlias=compute.1637400398547578470
-    IdentitiesOnly=yes
-    CheckHostIP=no
-    User TaylorSwift # <-- Add User label here
+code ~/.ssh/config
 ```
 
+You should see something like the following:
 
-### SSH File Permissions
-
-Windows has strict permissions for SSH files by default, we need to alter some permissions on the SSH configuration that was created by `gcloud` so VS Code can read the files and manage the SSH connection.
-
-In **Command Prompt**, copy and execute the entire block of commands:
-
-```cmd
-icacls %USERPROFILE%\.ssh\config /inheritance:r && ^
-icacls %USERPROFILE%\.ssh\config /grant:r %USERNAME%:(R) && ^
-icacls %USERPROFILE%\.ssh\config /grant:r SYSTEM:(R) && ^
-icacls %USERPROFILE%\.ssh\config
+```bash
+Host <machine ip>
+  HostName <machine ip>
+  IdentityFile <file path for your ssh key>
+  User <username>
 ```
 
-And:
+You can now change Host to whatever you would like to see as the name of your connection or in terminal with `ssh <Host>`!
 
-```cmd
-icacls %USERPROFILE%\.ssh\google_compute_engine /inheritance:r && ^
-icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r %USERNAME%:(R) && ^
-icacls %USERPROFILE%\.ssh\google_compute_engine /grant:r SYSTEM:(R) && ^
-icacls %USERPROFILE%\.ssh\google_compute_engine
+❗️ It is important that the `Host` alias does not contain any whitespaces ❗️
+
+```bash
+# For instance
+Host "vmware-myvm"
+  HostName 172.16.999.999 # replace with your VM's public IP address
+  IdentityFile <file path for your ssh key>
+  User <username>
 ```
 
-
-### Connect with VS Code
-
-To connect to your Virtual Machine, click on the small symbol at the very bottom-left corner of VS Code:
-
-![](/images/vscode_remote_highlight.png)
-
-It should bring up a menu, click on **Connect to Host...**:
-
-![](/images/vscode_remote_menu.png)
-
-Click on the name of your Virtual Machine:
-
-![](/images/vscode_remote_hosts.png)
-
-A new VS Code window will open. You may be asked to select the platform of the remote host, select **Linux**. You will then be asked to _fingerprint_ the connection. VS Code is asking if you trust the remote host you are trying to connect to. Hit enter to continue.
-
-![](/images/vscode_remote_fingerprint.png)
-
-And you are connected 🎉 It should look similar to the below image.
-
-If you don't see a terminal open at the bottom or side of VS Code, you can open a terminal by selecting **Terminal** from the top ribbon menu and selecting **New Terminal** (makes sure to remember the key binding for later 😎)
-
-![](/images/vscode_remote_connected.png)
-
-Notice the connection in the very bottom-left corner of your VS Code window. It should have the Connection type (SSH), and the name of the host you are connected to.
-
-<details>
-<summary markdown='span'>Viewing your SSH Configuration</summary>
-
-If you want to view your SSH configuration:
-1. Start by clicking the symbol in the bottom-left corner of VS Code
-2. Click on **Connect to Host...**
-3. Click on **Configure SSH Hosts...**
-4. Select the configuration file. Usually the file at the top of the list.
-5. View your configuration file! You may need to edit this configuration if you change computers, or want to work on more than one computer during the bootcamp.
-
-</details>
-
-Congratulations, the setup of you local computer is complete 🎉 We just need to fine tune your Virtual Machine 🪛
+Congratulations, the setup of your local computer is complete 🎉 We just need to fine tune your Virtual Machine 🪛
 
 ---
 
@@ -692,9 +553,16 @@ Congratulations, the setup of you local computer is complete 🎉 We just need t
 🚨🚨🚨 **All following terminal commands will be run from within your virtual machine terminal, via VS Code** 🚨🚨🚨
 
 
-## VM gcloud and Application Default Credentials
+## Google Cloud CLI
 
-We'll be doing some of the steps again, but that's because the virtual machine is a completely new computer! Luckily for us, `gcloud` comes pre-installed on the virtual machine.
+Install the `gcloud` CLI to communicate with [Google Cloud Platform](https://cloud.google.com/) through your terminal:
+```bash
+sudo apt-get update && sudo apt-get install ca-certificates gnupg curl
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+sudo apt-get update && sudo apt-get install google-cloud-cli
+```
+👉 [Install documentation](https://cloud.google.com/sdk/docs/install#deb)
 
 
 ### Authenticate gcloud
@@ -769,7 +637,13 @@ And follow the prompts. It should open a web-page to login to your Google accoun
 
 We'll be using [Ansible 🔗](https://docs.ansible.com/ansible/latest/getting_started/introduction.html) to configure your Virtual Machine with some software, configurations, packages, and frameworks that you'll use in the bootcamp.
 
-Let's start by confirming that ansible is installed. In your terminal run:
+Let's start by installing ansible:
+
+```bash
+sudo apt install ansible-core
+```
+
+Then, in your terminal run:
 
 ```bash
 ansible --version
@@ -808,12 +682,14 @@ curl -L -o ~/vm-ansible-setup/ansible.cfg https://raw.githubusercontent.com/lewa
 And run with:
 
 ```bash
-cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part1.yml
+cd ~/vm-ansible-setup && ansible-playbook -K playbooks/setup_vm_part1.yml
 ```
+
+You will be asked for a password, enter your password for the VM user. This is because some of the installation steps require `sudo` access.
 
 And the playbook should start running!
 
-❗ If an errors occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required (a cool concept called _Idempotency_ that you'll learn about later 😉).
+❗ If an error occur, raise a ticket with a teacher. The ansible playbooks are designed so that they can be run again, and again, and again and only make the changes that are required (a cool concept called _Idempotency_ that you'll learn about later 😉).
 
 ### What is the playbook installing?
 
@@ -822,10 +698,7 @@ While this playbook is running, lets go through what is being installed and conf
 - Changing the default shell from **bash** to **zsh**, a more customizable shell that is extensible and looks great!
 - Installing the [**Oh-My-ZSH** 🔗](https://ohmyz.sh/) plugin for the **zsh** shell. We'll use it a bit later to add some quality of life plugins and extensions to `zsh`
 - Installing [**Docker** 🔗](https://www.docker.com/) on your Virtual Machine. Docker is an open platform for developing, shipping, and running applications. You will use it throughout the bootcamp
-- Installing some [**Kubernetes (k8s)** 🔗](https://kubernetes.io/) tooling: Kubernetes is used to managing containerised applications at scale
-    - Installing [**kubectl** 🔗](https://kubernetes.io/docs/reference/kubectl/): `kubectl` is the CLI tool for interacting with kubernetes clusters
-    - Installing [**minikube** 🔗](https://minikube.sigs.k8s.io/docs/): Minikube is a way to quickly spin up a local kubernetes cluster, perfect for learning and developing!
-- Installing [**Terraform** 🔗](https://developer.hashicorp.com/terraform): we've already installed it once, but we need to install it on our VM! **Terraform** is an Infrastructure as Code (IaC) tool
+- Installing [**Terraform** 🔗](https://developer.hashicorp.com/terraform). **Terraform** is an Infrastructure as Code (IaC) tool
 - Install the [**GitHub CLI** 🔗](https://cli.github.com/): the CLI tool that we'll use to interact with your GitHub account directly from the terminal
 
 The playbook is also running checks to see if things are installed or not. This is so you can safely re-run the playbook without any problems.
@@ -889,7 +762,7 @@ gh auth status
 
 ## Dotfiles
 
-Let's enhance the developer experience on your Virtual Machine by install Le Wagon's pre-configured [dotfiles 🔗](https://github.com/lewagon/dotfiles) for your terminal, zsh and VS Code.
+Let's enhance the developer experience on your Virtual Machine by installing Le Wagon's pre-configured [dotfiles 🔗](https://github.com/lewagon/dotfiles) for your terminal, zsh and VS Code.
 
 To customise this configuration for yourself, you'll need to **fork** the repository to your own Github account.
 
@@ -979,13 +852,13 @@ We'll be using a second **Ansible** playbook to further configure your Virtual M
 Start by downloading the ansible playbook:
 
 ```bash
-curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml
+curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/vmware-automation/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml
 ```
 
 And run with:
 
 ```bash
-cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part2.yml
+cd ~/vm-ansible-setup && ansible-playbook -K playbooks/setup_vm_part2.yml
 ```
 
 And the playbook should start running! If you're asked if you want VS Code to behave more like Sublime Text, click accept.
@@ -994,7 +867,7 @@ And the playbook should start running! If you're asked if you want VS Code to be
 - You may be asked to type in your password during the playbook run
 - The task: **Clone data-engineering-challenges from your GitHub to VM** will fail. This is OK and expected with how SSH keys work and how the playbooks are modifying your configuration. To resolve, in your terminal run: `exec zsh`, and then re-run the playbook.
 
-❗ If any other errors occur, or your are unsure, raise a ticket with a teacher. You can safely run the playbook again and again. Generally, if the playbook runs from start to finish with no errors, everything should be good!
+❗ If any other errors occur, or you are unsure, raise a ticket with a teacher. You can safely run the playbook again and again. Generally, if the playbook runs from start to finish with no errors, everything should be good!
 
 ### What is the playbook installing?
 
@@ -1002,7 +875,7 @@ While the playbook is running, let's go through what is being installed and conf
 
 **Python and Poetry**
 
-Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. We are going to use Python [3.12.8](https://www.python.org/downloads/release/python-3128/)
+Ubuntu 24.04 has Python pre-installed, but not the version we're going to use. We are going to use Python [3.12.8](https://www.python.org/downloads/release/python-3128/)
 
 - Install [**pyenv** 🔗](https://github.com/pyenv/pyenv) and [**pyenv-virtualenv** 🔗](https://github.com/pyenv/pyenv-virtualenv). We'll use **pyenv** to manage the Python versions installed on the VM
 - Install Python 3.12.8 with pyenv
@@ -1033,7 +906,6 @@ Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. W
     - **gcloud**: Auto-complete for the gcloud CLI tool
     - **ssh-agent**: Saves your SSH password so you only have to enter it once per session.
     - **direnv**: A tool to load `.envrc` files when you `cd` into a directory. Great for loading environment variables.
-- Installing **Spark**: A distributed data processing framework
 
 **Data Engineering Challenges Repository**
 
@@ -1051,16 +923,26 @@ This second ansible playbook requires GitHub authorisation to fork the `lewagon/
 
 Once the playbook has finished running, you need to completely shutdown your Virtual Machine so that some of the configuration updates properly (specifically **pyenv** and **Docker**).
 
-To shutdown your VM, navigate to the GCP Compute Engine Instances [console page 🔗](https://console.cloud.google.com/compute/instances).
+To shutdown your VM, go back to VMware.
 
-Select your VM instance and click on the stop button:
+In the menu, find *Virtual Machine*, and click on *Restart*.
 
-![](/images/gcp_vm_stop.png)
+Wait until the VM shows that it's rebooted. You won't have to login, because we can connect with VS Code through SSH.
 
-Wait for a few minutes until the VM shows that it is completely off. You may need to refresh the page, the GCP Console (web GUI) doesn't dynamically update.
+It is possible that a certain point your IP address changes, and you're unable to connect.
 
-When the VM is completely off, turn it on again by selecting the check box next to your instance and clicking **START/RESUME**. Give it a minute to turn on, then connect via VS Code.
+In that case:
 
+- In VMware, login to the machine. Your username should be your (lowercase) firstname. The password the same as your physical machine.
+- Once logged in, run `hostname -I`. That will show your (new) IP address.
+
+Back in VS Code:
+
+- `Cmd-Shift-P` on macOS or `Ctrl-Shift-P` on Windows/Linux.
+- Type in: _remote ssh config_.
+- Select the option: **Remote-SSH: Open SSH Configuration File...**
+- The first option is probably the correct one.
+- Edit the file to replace the IP address.
 
 ## Check your Virtual Machine Setup
 
@@ -1161,73 +1043,6 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 
-#### Kubernetes
-
-We can start by testing `minikube`:
-
-```bash
-# Start
-minikube start
-```
-
-Should return:
-
-```
-😄  minikube v1.35.0 on Ubuntu 22.04 (amd64)
-✨  Automatically selected the docker driver. Other choices: none, ssh
-📌  Using Docker driver with root privileges
-👍  Starting "minikube" primary control-plane node in "minikube" cluster
-🚜  Pulling base image v0.0.46 ...
-💾  Downloading Kubernetes v1.32.0 preload ...
-    > gcr.io/k8s-minikube/kicbase...:  500.31 MiB / 500.31 MiB  100.00% 88.19 M
-    > preloaded-images-k8s-v18-v1...:  333.57 MiB / 333.57 MiB  100.00% 32.20 M
-🔥  Creating docker container (CPUs=2, Memory=3900MB) ...
-🐳  Preparing Kubernetes v1.32.0 on Docker 27.4.1 ...
-    ▪ Generating certificates and keys ...
-    ▪ Booting up control plane ...
-    ▪ Configuring RBAC rules ...
-🔗  Configuring bridge CNI (Container Networking Interface) ...
-🔎  Verifying Kubernetes components...
-    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
-🌟  Enabled addons: storage-provisioner, default-storageclass
-🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
-```
-
-And then to make sure the kubernetes CLI utility, `kubectl`, works, run the following in your terminal:
-
-```bash
-# Get pods
-kubectl get po -A
-```
-
-Should return something similar to:
-
-```
-NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE
-kube-system   coredns-668d6bf9bc-mg7b6           1/1     Running   0             72s
-kube-system   etcd-minikube                      1/1     Running   0             78s
-kube-system   kube-apiserver-minikube            1/1     Running   0             76s
-kube-system   kube-controller-manager-minikube   1/1     Running   0             76s
-kube-system   kube-proxy-stk77                   1/1     Running   0             72s
-kube-system   kube-scheduler-minikube            1/1     Running   0             76s
-kube-system   storage-provisioner                1/1     Running   1 (41s ago)   75s
-```
-
-And because `minikube` is resource intensive, stop it for now with:
-
-```bash
-minikube delete --all
-```
-
-And that should return:
-
-```
-🔥  Deleting "minikube" in docker ...
-🔥  Removing /home/<your_username>/.minikube/machines/minikube ...
-💀  Removed all traces of the "minikube" cluster.
-🔥  Successfully deleted all profiles
-```
-
 #### Terraform
 
 🧪 To test:
@@ -1236,45 +1051,12 @@ And that should return:
 terraform --version
 ```
 
-Should return:
+Should return something similar to:
 
 ```
 Terraform v1.14.3
 on linux_amd64
 ```
-
-#### Spark
-
-🧪 To test:
-
-```bash
-spark-shell
-```
-
-Should take you into the spark shell that looks like:
-
-```
-Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-25/03/18 08:54:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-Spark context Web UI available at http://lw-de-vm.europe-north1-b.c.wagon-de.internal:4040
-Spark context available as 'sc' (master = local[*], app id = local-1742288096829).
-Spark session available as 'spark'.
-Welcome to
-      ____              __
-     / __/__  ___ _____/ /__
-    _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 3.5.3
-      /_/
-
-Using Scala version 2.12.18 (OpenJDK 64-Bit Server VM, Java 1.8.0_442)
-Type in expressions to have them evaluated.
-Type :help for more information.
-
-scala>
-```
-
-Type `:quit` and hit enter to exit the spark-shell and continue.
 
 That's all the testing we'll do for now!
 
@@ -1304,22 +1086,6 @@ origin  git@github.com:<your_github_username>/data-engineering-challenges.git (p
 upstream        git@github.com:lewagon/data-engineering-challenges.git (fetch)
 upstream        git@github.com:lewagon/data-engineering-challenges.git (push)
 ```
-
-From the `data-engineering-challenges` folder root **on your VM**, we'll run `make install`, which triggers 3 operations:
-
-- `make install-poetry`: `cd` (**c**hange **d**irectory) into each challenge folder, and run `poetry install` inside each! (takes a while)
-- `make allow-envrc`: allow `direnv` to execute inside each folder (otherwise you have to manually "allow" it)
-- `make own-repo`: allows your user to be the linux "owner" of all files in this challenge folder
-
-Let's make!
-
-```bash
-make install
-```
-
-This might take a while. You have time to grab a coffee ☕️, take a break, or start the next step while all your poetry environments are installing.
-
-⚠️ If at the very end of this process you get a few errors like: `direnv: error .envrc file not found` or a Python version isn't available (relating to `Dask`) - that is normal and nothing to worry about 👌 If you're concerned by anything, feel free to open a ticket with a TA!
 
 
 
