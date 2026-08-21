@@ -187,11 +187,11 @@ We need to connect VS Code to a virtual machine in the cloud so you will only wo
 
 - In the left pop out panel that appears, type `remote ssh` into the search bar, and select the first result: **Remote - SSH** (by Microsoft)
 
-<img alt="VSCode extensions - Search - Remote" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-extensions-search-remote.png" width=500>
+  <img alt="VSCode extensions - Search - Remote" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-extensions-search-remote.png" width=500>
 
 - Install the extension by clicking on the install button
 
-<img alt="VS Code extensions - Remote - Details" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-extensions-remote.png" width=500>
+  <img alt="VS Code extensions - Remote - Details" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-extensions-remote.png" width=500>
 
 That's the only extension you should install on your _local_ machine, we will install additional VS Code extensions on your _virtual machine_.
 

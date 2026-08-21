@@ -185,11 +185,11 @@ We need to connect VS Code to a virtual machine in the cloud so you will only wo
 
 - In the left pop out panel that appears, type `remote ssh` into the search bar, and select the first result: **Remote - SSH** (by Microsoft)
 
-<img alt="VSCode extensions - Search - Remote" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-extensions-search-remote.png" width=500>
+  <img alt="VSCode extensions - Search - Remote" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-extensions-search-remote.png" width=500>
 
 - Install the extension by clicking on the install button
 
-<img alt="VS Code extensions - Remote - Details" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-extensions-remote.png" width=500>
+  <img alt="VS Code extensions - Remote - Details" src="https://wagon-public-datasets.s3.amazonaws.com/data-engineering/setup/vscode-extensions-remote.png" width=500>
 
 That's the only extension you should install on your _local_ machine, we will install additional VS Code extensions on your _virtual machine_.
 
@@ -555,7 +555,10 @@ Type `exit` to get back to your local machine.
 
 
 
-If the connection fails on macOS Sequoia 14 or newer, try this:
+<details>
+  <summary>If the connections fails on macOS Sequoia 14 or newer, expand this
+  </summary>
+
 1. Check your macOS version, make sure you upgraded to 26.6.2 or newer. To check: *Menu - Apple icon - About This Mac*.
 1. Check your VS Code version, make sure you upgraded to 1.134 or newer. To check: *Menu - Code - About Visual Studio Code*.
 1. Restart VS Code and reconnect to the VM.
@@ -576,6 +579,8 @@ If that didn't help:
    ~/Library/Caches/com.microsoft.VSCode
    ```
 1. Restart VS Code and reconnect to the VM.
+
+</details>
 
 
 
