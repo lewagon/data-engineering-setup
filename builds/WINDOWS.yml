@@ -3,8 +3,6 @@ os: windows
 locales: [en]
 partials:
   - intro
-  - setup/windows_slack
-  - setup/slack_settings
   - setup/github
   - gcp_setup
   - win_vscode
