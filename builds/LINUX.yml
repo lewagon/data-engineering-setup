@@ -3,8 +3,6 @@ os: linux
 locales: [en]
 partials:
   - intro
-  - setup/ubuntu_slack
-  - setup/slack_settings
   - setup/github
   - gcp_setup
   - setup/ubuntu_vscode
