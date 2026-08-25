@@ -21,10 +21,9 @@ There are three main components to the setup!
 ## Part 1: Setup your local computer
 
 In this section you'll setup your local computer and create some accounts. It will include:
-1. Installing the primary communication tool you'll use during the bootcamp: **Slack**!
-2. Create some accounts: GitHub, Broadcom (to download VMware).
-3. Install **Visual Studio Code (VS Code)**
-4. Create your virtual machine with **VMware** and connect to it with **VS Code**!
+1. Create some accounts: GitHub, Broadcom (to download VMware).
+1. Install **Visual Studio Code (VS Code)**
+1. Create your virtual machine with **VMware** and connect to it with **VS Code**!
 
 ## Part 2: Configure your Virtual Machine Part 1
 
