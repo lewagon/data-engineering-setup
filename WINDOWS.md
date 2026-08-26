@@ -21,10 +21,9 @@ There are three main components to the setup!
 ## Part 1: Setup your local computer
 
 In this section you'll setup your local computer and create some accounts. It will include:
-1. Installing the primary communication tool you'll use during the bootcamp: **Slack**!
-2. Create some accounts: GitHub, Broadcom (to download VMware).
-3. Install **Visual Studio Code (VS Code)**
-4. Create your virtual machine with **VMware** and connect to it with **VS Code**!
+1. Create some accounts: GitHub, Broadcom (to download VMware).
+1. Install **Visual Studio Code (VS Code)**
+1. Create your virtual machine with **VMware** and connect to it with **VS Code**!
 
 ## Part 2: Configure your Virtual Machine Part 1
 
@@ -1054,15 +1053,5 @@ upstream        git@github.com:lewagon/data-engineering-challenges.git (push)
 ## DBeaver
 
 Download and install [DBeaver ("Community" edition) 🔗](https://dbeaver.io/download) on your local machine, a free and open source SQL Client to connect to databases, explore schema, and run **SQL queries**.
-
-
-## Kitt
-
-You should have received an email from Le Wagon inviting you to sign up on [Kitt](https://kitt.lewagon.com) (our learning platform). When submitting your onboarding form on Kitt, you should have received two additional invitations:
-
-- One from Slack, inviting you to the Le Wagon Alumni slack community (where you'll chat with your buddies and all the previous alumni). Click on **Join** and fill the information.
-- One from GitHub, inviting you to `lewagon` team. **Accept it** otherwise you won't be able to access the lecture slides.
-
-If you haven't, please contact your teaching team.
 
 
