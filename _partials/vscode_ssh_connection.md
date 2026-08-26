@@ -54,6 +54,19 @@ If that didn't help:
 1. Close *System Settings*.
 1. Restart VS Code and reconnect to the VM.
 
+Another reported workaround is to start VS Code from the terminal, not from the Application menu:
+
+```bash
+code
+```
+
+or
+
+```bash
+/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code
+```
+
+
 If that didn't help:
 1. Quit VS Code with `Cmd-Q`, or *Quit* from the *Code* menu.
 1. Then from your local terminal:
