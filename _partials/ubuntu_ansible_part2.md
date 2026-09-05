@@ -9,7 +9,7 @@ We'll be using a second **Ansible** playbook to further configure your Virtual M
 Start by downloading the ansible playbook:
 
 ```bash
-curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/vmware-automation/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml
+curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/refs/heads/vmware-automation/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml
 ```
 
 And run with:
