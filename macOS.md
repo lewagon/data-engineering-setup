@@ -713,9 +713,9 @@ mkdir -p ~/vm-ansible-setup/playbooks
 ```
 
 ```bash
-curl -L -o ~/vm-ansible-setup/ansible.cfg https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/ansible.cfg \
-&& curl -L -o ~/vm-ansible-setup/hosts https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/hosts \
-&& curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part1.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml
+curl -L -o ~/vm-ansible-setup/ansible.cfg https://raw.githubusercontent.com/lewagon/data-engineering-setup/refs/heads/vmware-automation/automation/vm-ansible-setup/ansible.cfg \
+&& curl -L -o ~/vm-ansible-setup/hosts https://raw.githubusercontent.com/lewagon/data-engineering-setup/refs/heads/vmware-automation/automation/vm-ansible-setup/hosts \
+&& curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part1.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/refs/heads/vmware-automation/automation/vm-ansible-setup/playbooks/setup_vm_part1.yml
 ```
 
 And run with:
@@ -891,7 +891,7 @@ We'll be using a second **Ansible** playbook to further configure your Virtual M
 Start by downloading the ansible playbook:
 
 ```bash
-curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/vmware-automation/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml
+curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/refs/heads/vmware-automation/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml
 ```
 
 And run with:
@@ -982,6 +982,7 @@ Back in VS Code:
 - Select the option: **Remote-SSH: Open SSH Configuration File...**
 - The first option is probably the correct one.
 - Edit the file to replace the IP address.
+
 
 ## Check your Virtual Machine Setup
 
