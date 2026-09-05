@@ -563,7 +563,7 @@ If that didn't help:
 Still on your *local* computer, lets create a more readable version of your machine to connect to!
 
 ```bash
-code ~/.ssh/config
+code $HOME/.ssh/config
 ```
 
 You should see something like the following:
