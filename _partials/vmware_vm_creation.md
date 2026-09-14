@@ -13,7 +13,7 @@ Next we'll **customize the VM** a bit. By default it uses 4 Gb of your RAM and 2
 
     1. Click on *Customize settings* and then click on *Save*.
     1. Click on *Hard Disk*.
-    1. Increase the size to *30 Gb*, click on *Apply* and close the dialog box.
+    1. Increase the size to *64 Gb*, click on *Apply* and close the dialog box.
 
 1. **Increase the memory**: do this only i you have more than 8 Gb of RAM on your machine:
 
