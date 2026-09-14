@@ -216,7 +216,7 @@ Once you created your account, click on the **Login** button, or follow [this li
 1. In the next step, browse to the **ISO** you downloaded earlier, and click on *Next*.
 1. Leave the default options for the **VM name**, and click on *Next*.
 1. Leave the default options for the **VM location**, and click on *Next*.
-1. Increase the **disk capacity** to *64 Gb*, and click on *Next*.
+1. Increase the **disk capacity** to *30 Gb*, and click on *Next*.
 1. In the **Ready to Create Virtual Machine**, click on *Finish*.
 
 
