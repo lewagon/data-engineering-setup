@@ -680,7 +680,7 @@ To customise this configuration for yourself, you'll need to **fork** the reposi
 <details>
 <summary>❗ I started a Le Wagon <strong>Web Development</strong> or <strong>Data Science</strong> bootcamp in 2021 or earlier. ❗</summary>
 
-You may have a older version of the Le Wagon dotfiles. The second Ansible playbook will try to modify some of these dotfiles.
+You may have a older version of the Le Wagon dotfiles.
 
 
 Open a ticket with a TA and do one of the following:
