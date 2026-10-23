@@ -7,21 +7,23 @@ A part of the setup will be done on your **local machine** but most of the confi
 
 Please **read instructions carefully and execute all commands in the following order**. If you get stuck, don't hesitate to ask a teacher for help :raising_hand:
 
-This setup is largely automated with [**Terraform** 🔗](https://developer.hashicorp.com/terraform) and [**Ansible** 🔗](https://docs.ansible.com/). **Terraform** and **Ansible** are [_Infrastructure as Code_ 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) tools.
-- **Terraform** excels at creating and destroying cloud resources - like virtual machines, IP addresses, databases and more!
-- **Ansible** is used to configure linux machines with specific settings and software. Perfect for fine-tuning the Virtual Machine you will be creating with Terraform!
+We will run a **virtual machine** locally using Broadcom's well known **VMware**. 
+
+**Why?**
+- This allows us to all run an **identical setup**, independent of your underlying operating system.
+- It will give us a very **similar experience to working with a VM on a cloud platform**, but without the cost of running it on the cloud: we use our own machine's power instead.
+- It allows us to all run a VM with **Ubuntu**, a commonly used Linux distribution for cloud infrastructure.
+
+The setup inside the virtual machine is largely automated with [**Ansible** 🔗](https://docs.ansible.com/), an [_Infrastructure as Code_ 🔗](https://en.wikipedia.org/wiki/Infrastructure_as_code) tool. **Ansible** is used to configure linux machines with specific settings and software. Perfect for fine-tuning the Virtual Machine you will be creating!
 
 There are three main components to the setup!
 
 ## Part 1: Setup your local computer
 
 In this section you'll setup your local computer and create some accounts. It will include:
-1. Installing the primary communication tool you'll use on the bootcamp: **Slack**!
-2. Create some accounts: Github, Google Cloud Platform (GCP)
-3. Install **Visual Studio Code (VS Code)**
-4. Install and authentication the GCP command line tool: `gcloud`
-5. Install **Terraform** on your local computer
-6. Create your virtual machine with **Terraform** and connect to it with **VS Code**!
+1. Create some accounts: GitHub, Broadcom (to download VMware).
+1. Install **Visual Studio Code (VS Code)**
+1. Create your virtual machine with **VMware** and connect to it with **VS Code**!
 
 ## Part 2: Configure your Virtual Machine Part 1
 

@@ -9,13 +9,13 @@ We'll be using a second **Ansible** playbook to further configure your Virtual M
 Start by downloading the ansible playbook:
 
 ```bash
-curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml
+curl -L -o ~/vm-ansible-setup/playbooks/setup_vm_part2.yml https://raw.githubusercontent.com/lewagon/data-engineering-setup/refs/heads/vmware-automation/automation/vm-ansible-setup/playbooks/setup_vm_part2.yml
 ```
 
 And run with:
 
 ```bash
-cd ~/vm-ansible-setup && ansible-playbook playbooks/setup_vm_part2.yml
+cd ~/vm-ansible-setup && ansible-playbook -K playbooks/setup_vm_part2.yml
 ```
 
 And the playbook should start running! If you're asked if you want VS Code to behave more like Sublime Text, click accept.
@@ -24,7 +24,7 @@ And the playbook should start running! If you're asked if you want VS Code to be
 - You may be asked to type in your password during the playbook run
 - The task: **Clone data-engineering-challenges from your GitHub to VM** will fail. This is OK and expected with how SSH keys work and how the playbooks are modifying your configuration. To resolve, in your terminal run: `exec zsh`, and then re-run the playbook.
 
-❗ If any other errors occur, or your are unsure, raise a ticket with a teacher. You can safely run the playbook again and again. Generally, if the playbook runs from start to finish with no errors, everything should be good!
+❗ If any other errors occur, or you are unsure, raise a ticket with a teacher. You can safely run the playbook again and again. Generally, if the playbook runs from start to finish with no errors, everything should be good!
 
 ### What is the playbook installing?
 
@@ -32,7 +32,7 @@ While the playbook is running, let's go through what is being installed and conf
 
 **Python and Poetry**
 
-Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. We are going to use Python [3.12.8](https://www.python.org/downloads/release/python-3128/)
+Ubuntu 24.04 has Python pre-installed, but not the version we're going to use. We are going to use Python [3.12.8](https://www.python.org/downloads/release/python-3128/)
 
 - Install [**pyenv** 🔗](https://github.com/pyenv/pyenv) and [**pyenv-virtualenv** 🔗](https://github.com/pyenv/pyenv-virtualenv). We'll use **pyenv** to manage the Python versions installed on the VM
 - Install Python 3.12.8 with pyenv
@@ -63,7 +63,6 @@ Ubuntu 22.04 has Python pre-installed, but not the version we're going to use. W
     - **gcloud**: Auto-complete for the gcloud CLI tool
     - **ssh-agent**: Saves your SSH password so you only have to enter it once per session.
     - **direnv**: A tool to load `.envrc` files when you `cd` into a directory. Great for loading environment variables.
-- Installing **Spark**: A distributed data processing framework
 
 **Data Engineering Challenges Repository**
 
@@ -81,12 +80,23 @@ This second ansible playbook requires GitHub authorisation to fork the `lewagon/
 
 Once the playbook has finished running, you need to completely shutdown your Virtual Machine so that some of the configuration updates properly (specifically **pyenv** and **Docker**).
 
-To shutdown your VM, navigate to the GCP Compute Engine Instances [console page 🔗](https://console.cloud.google.com/compute/instances).
+To shutdown your VM, go back to VMware.
 
-Select your VM instance and click on the stop button:
+In the menu, find *Virtual Machine*, and click on *Restart*.
 
-![](/images/gcp_vm_stop.png)
+Wait until the VM shows that it's rebooted. You won't have to login, because we can connect with VS Code through SSH.
 
-Wait for a few minutes until the VM shows that it is completely off. You may need to refresh the page, the GCP Console (web GUI) doesn't dynamically update.
+It is possible that a certain point your IP address changes, and you're unable to connect.
 
-When the VM is completely off, turn it on again by selecting the check box next to your instance and clicking **START/RESUME**. Give it a minute to turn on, then connect via VS Code.
+In that case:
+
+- In VMware, login to the machine. Your username should be your (lowercase) firstname. The password the same as your physical machine.
+- Once logged in, run `hostname -I`. That will show your (new) IP address.
+
+Back in VS Code:
+
+- `Cmd-Shift-P` on macOS or `Ctrl-Shift-P` on Windows/Linux.
+- Type in: _remote ssh config_.
+- Select the option: **Remote-SSH: Open SSH Configuration File...**
+- The first option is probably the correct one.
+- Edit the file to replace the IP address.

@@ -1,6 +1,8 @@
 
 branches:
   setup: master
+  data-setup: master
 
 aliases:
   de_setup: data-engineering-setup
+  data_setup: data-setup

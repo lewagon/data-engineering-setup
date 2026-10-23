@@ -2,55 +2,91 @@
 
 We want to safely communicate with your virtual machine using [SSH protocol](https://en.wikipedia.org/wiki/Secure_Shell). We need to generate a SSH key to authenticate.
 
-- Open your terminal
+- Open your **local** terminal.
 
-<details>
-  <summary markdown='span'>💡 Windows tip</summary>
+{% if os == "windows" %}
 
-We highly recommend installing [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=fr-fr&gl=FR) from the Windows Store (installed on Windows 11 by default) to perform this operation
-</details>
+  Again, make sure you use *(Windows) PowerShell*.
 
-- Create a SSH key
+{% endif %}
 
-<details>
-  <summary markdown='span'>Windows</summary>
+- Create a **SSH key**
 
-```bash
-# replace "your_email@example.com" with your GCP account email
-ssh-keygen.exe -t ed25519 -C "your_email@example.com"
-```
-</details>
+{% if os == "windows" %}
 
-<details>
-  <summary markdown='span'>MacOS & Linux</summary>
+  ```bash
+  # replace "yourfirstname" with ... your first name
+  ssh-keygen.exe -t ed25519 -f $HOME/.ssh/vmware -C "yourfirstname@local"
 
-```bash
-# replace "your_email@example.com" with your GCP account email
-ssh-keygen -t ed25519 -C "your_email@example.com"
-```
-</details>
+  ```
+
+{% else %}
+
+  ```bash
+  # replace "yourfirstname" with ... your first name
+  ssh-keygen -t ed25519 -f ~/.ssh/vmware -C "yourfirstname@local"
+  ```
+
+{% endif %}
 
 
-You should get the following message: `> Generating public/private algorithm key pair.`
-- When you are prompted `> Enter a file in which to save the key`, press Enter
-- You should be asked to `Enter a passphrase` - this is optional if you want additional security. To continue without a passphrase press enter without typing anything when asked to enter a passphrase.
+  You should get the following message: `> Generating public/private algorithm key pair.`
 
-ℹ️ Don't worry if nothing prompt when you type, that is perfectly normal for security reasons.
+- You should be asked to `Enter passphrase for "..."` - continue without a passphrase: press `<Enter>` without typing anything when asked to enter a passphrase.
 
-- You should be asked to `Enter same passphrase again`, do it.
+- You should be asked to `Enter same passphrase again`, hit `<Enter>` again.
 
-**❗️ You must remember this passphrase.**
+  You will see some lines with a sort of graphic output, ending with a line containing `+----[SHA256]-----+`. That's expected.
 
-<details>
-  <summary markdown='span'> ❗️ /home/your_username/.ssh/id_ed25519 already exists.</summary>
-If you receive this message, you may already have an SSH Key with the same name (if you are a Le Wagon Alumni or are using SSH Authentication with Github).
+- Now we'll **copy the ssh key into the VM**. Tip: prepare these commands in a text editor like Notepad or VS Code, then copy-pase. Don't try to assemble them in the terminal.
 
-To create a separate SSH key to exclusively use for this bootcamp use the following:
+{% if os == "windows" %}
 
-```bash
-# replace "your_email@example.com" with your GCP account email
-ssh-keygen -t ed25519 -f ~/.ssh/de-bootcamp -C "your_email@example.com"
-```
+  ```bash
+  # Replace yourusername by your first name (lowercase)
+  # Replace the numbers by the IP address of your VM
+  cat $HOME/.ssh/vmware.pub | ssh yourusername@172.16.999.999 'cat >> .ssh/authorized_keys'
+  ```
 
-Your new SSH Key will be named `de-bootcamp`. Make sure to remember it for later!
-</details>
+{% else %}
+
+  ```bash
+  # Replace yourusername by your first name (lowercase)
+  # Replace the numbers by the IP address of your VM
+  ssh-copy-id -i $HOME/.ssh/vmware yourusername@172.16.999.999
+  ```
+
+{% endif %}
+
+- You might be prompted `Are you sure you want to continue connecting (yes/no/[fingerprint])?`. Type in `yes` and `<Enter>`.
+
+- Next you will be prompted for your password. That's the password you chose for the VM. We recommended you to use the same as for your physical machine. Type it. Nothing will appear, that's normal. Then `<Enter>`.
+
+{% if os != "windows" %}
+
+- Then it should say something like:
+
+  ```text
+  Number of key(s) added:        1
+
+  Now try logging into the machine, with: "ssh -i'yourusername@172.16.999.999'" and check to make sure that only the key(s) you wanted were added.
+  ```
+
+{% endif %}
+
+- Let's try to login: run this command:
+
+  ```bash
+  # Replace yourusername by your first name (lowercase)
+  # Replace the numbers by the IP address of your VM
+  ssh -i $HOME/.ssh/vmware yourusername@172.16.999.999
+  ```
+
+- Your prompt will change: you are now inside the VM!
+
+- Check it by running `hostname` followed by `<Enter>`. It should say `myvm` (unless you chose another name for your vm earlier).
+
+All good!
+
+Type `exit` to get back to your local machine.
+

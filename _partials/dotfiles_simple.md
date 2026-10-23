@@ -1,6 +1,6 @@
 ## Dotfiles
 
-Let's enhance the developer experience on your Virtual Machine by install Le Wagon's pre-configured [dotfiles 🔗](https://github.com/lewagon/dotfiles) for your terminal, zsh and VS Code.
+Let's enhance the developer experience on your Virtual Machine by installing Le Wagon's pre-configured [dotfiles 🔗](https://github.com/lewagon/dotfiles) for your terminal, zsh and VS Code.
 
 To customise this configuration for yourself, you'll need to **fork** the repository to your own Github account.
 
