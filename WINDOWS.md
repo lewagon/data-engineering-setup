@@ -514,7 +514,10 @@ Congratulations, the setup of your local computer is complete 🎉 We just need 
 🚨🚨🚨 **All following terminal commands will be run from within your virtual machine terminal, via VS Code** 🚨🚨🚨
 
 
+
 ## Google Cloud CLI
+
+### Install `gcloud`
 
 Install the `gcloud` CLI to communicate with [Google Cloud Platform](https://cloud.google.com/) through your terminal:
 ```bash
