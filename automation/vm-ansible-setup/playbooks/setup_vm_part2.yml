@@ -309,7 +309,7 @@
           failed_when: false
 
         - name: Fork lewagon/data-engineering-challenges repo to your GitHub account
-          ansible.builtin.command: gh repo fork lewagon/data-engineering-challenges --remote
+          ansible.builtin.command: gh repo fork lewagon/data-engineering-challenges --clone=false
           become_user: "{{ my_user }}"
           become: true
           when: fork_exists.stdout | trim == ""
