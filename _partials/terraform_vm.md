@@ -34,24 +34,9 @@ You will always pay for the Storage (equivalent of your hard-drive on your local
 
 We almost have all the necessary parts to create your VM using **terraform**. We need to download the terraform files and change a few values.
 
-First we'll create a folder and download the terraform files with:
+First we'll create a folder and download the terraform file.
 
-{% if os == "macos" %}
-
-In a terminal, run the following commands:
-
-```bash
-mkdir -p ~/code/wagon-de-bootcamp
-```
-```bash
-curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf \
-&& curl -L -o ~/code/wagon-de-bootcamp/variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf \
-&& curl -L -o ~/code/wagon-de-bootcamp/provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf \
-&& curl -L -o ~/code/wagon-de-bootcamp/terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars \
-&& curl -L -o ~/code/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
-```
-
-{% elsif os == "windows" %}
+{% if os == "windows" %}
 
 Using the **Command Prompt** (cmd), run the following:
 
@@ -59,45 +44,42 @@ Using the **Command Prompt** (cmd), run the following:
 
 ```cmd
 mkdir %USERPROFILE%\wagon-de-bootcamp
+cd %USERPROFILE%\wagon-de-bootcamp
 ```
+
+Check that you are in the `wagon-de-bootcamp` folder. Then:
+
 ```cmd
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\main.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\provider.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\variables.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
+curl -L -o main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf && ^
+curl -L -o provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf && ^
+curl -L -o variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf && ^
+curl -L -o terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars && ^
+curl -L -o .terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
 ```
 
-{% elsif os == "linux" %}
+{% else %}
+
+In your **terminal**:
 
 ```bash
-mkdir -p ~/code/wagon-de-bootcamp
+mkdir -p ~/code/wagon-de-bootcamp && cd $_
 ```
+
+Check that you are in the `wagon-de-bootcamp` folder. Then:
+
 ```bash
-curl -L -o ~/code/wagon-de-bootcamp/main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf \
-&& curl -L -o ~/code/wagon-de-bootcamp/provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf \
-&& curl -L -o ~/code/wagon-de-bootcamp/variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf \
-&& curl -L -o ~/code/wagon-de-bootcamp/terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars \
-&& curl -L -o ~/code/wagon-de-bootcamp/.terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
+curl -L -o main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf \
+&& curl -L -o provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf \
+&& curl -L -o variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf \
+&& curl -L -o terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars \
+&& curl -L -o .terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
 ```
 
 {% endif %}
 
 ### Set variables
 
-{% if os == "macos" %}
-
-Open up the file `~/code/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
-
-{% elsif os == "windows" %}
-
-Open up the file `C:\Users\<YOUR_USERNAME>\wagon-de-bootcamp\terraform.tfvars` in VS Code or any other code editor.
-
-{% elsif os == "linux" %}
-
-Open up the file `~/code/wagon-de-bootcamp/terraform.tfvars` in VS Code or any other code editor.
-
-{% endif %}
+Open up the file `terraform.tfvars` in VS Code or any other code editor.
 
 It should look like:
 
@@ -132,17 +114,7 @@ instance_name = "lw-de-vm-tswift"
 instance_user = "taylorswift"
 ```
 
-Make sure to save the `terraform.tfvars` file, navigate into the directory with the terraform files using your terminal with:
-
-```bash
-{% if os == "macos" %}
-cd ~/code/wagon-de-bootcamp
-{% elsif os == "windows" %}
-cd %USERPROFILE%\wagon-de-bootcamp
-{% elsif os == "linux" %}
-cd ~/code/wagon-de-bootcamp
-{% endif %}
-```
+Make sure to save the `terraform.tfvars` file, and that you are still inside your `wagon-de-bootcamp` folder.
 
 Initialise and test the terraform config files with:
 

@@ -444,7 +444,7 @@ You will always pay for the Storage (equivalent of your hard-drive on your local
 
 We almost have all the necessary parts to create your VM using **terraform**. We need to download the terraform files and change a few values.
 
-First we'll create a folder and download the terraform files with:
+First we'll create a folder and download the terraform file.
 
 
 
@@ -454,24 +454,24 @@ Using the **Command Prompt** (cmd), run the following:
 
 ```cmd
 mkdir %USERPROFILE%\wagon-de-bootcamp
+cd %USERPROFILE%\wagon-de-bootcamp
 ```
+
+Check that you are in the `wagon-de-bootcamp` folder. Then:
+
 ```cmd
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\main.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\provider.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\variables.tf" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\terraform.tfvars" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars && ^
-curl -L -o "%USERPROFILE%\wagon-de-bootcamp\.terraform.lock.hcl" https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
+curl -L -o main.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/main.tf && ^
+curl -L -o provider.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/provider.tf && ^
+curl -L -o variables.tf https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/variables.tf && ^
+curl -L -o terraform.tfvars https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/terraform.tfvars && ^
+curl -L -o .terraform.lock.hcl https://raw.githubusercontent.com/lewagon/data-engineering-setup/main-automation/automation/infra/.terraform.lock.hcl
 ```
 
 
 
 ### Set variables
 
-
-
-Open up the file `C:\Users\<YOUR_USERNAME>\wagon-de-bootcamp\terraform.tfvars` in VS Code or any other code editor.
-
-
+Open up the file `terraform.tfvars` in VS Code or any other code editor.
 
 It should look like:
 
@@ -502,13 +502,7 @@ instance_name = "lw-de-vm-tswift"
 instance_user = "taylorswift"
 ```
 
-Make sure to save the `terraform.tfvars` file, navigate into the directory with the terraform files using your terminal with:
-
-```bash
-
-cd %USERPROFILE%\wagon-de-bootcamp
-
-```
+Make sure to save the `terraform.tfvars` file, and that you are still inside your `wagon-de-bootcamp` folder.
 
 Initialise and test the terraform config files with:
 
@@ -937,6 +931,7 @@ gh repo fork lewagon/dotfiles --clone
 Next, we need to make sure we use the version of the dotfiles that are made for our `pyenv` based setup:
 
 ```bash
+cd ~/code/$GITHUB_USERNAME/dotfiles
 git fetch upstream
 git checkout -b master-pyenv upstream/master-pyenv --no-track
 ```
@@ -974,6 +969,8 @@ Once you have finished installing the **dotfiles**, kill your terminal (little t
 ![](/images/vscode_after_ansible1.png)
 
 The terminal should read as `zsh`.
+
+If it doesn't change, go in your VS Code settings, search for "integrated default profile linux" and set it to `zsh`.
 
 
 # Part 3: Configure your Virtual Machine 2
