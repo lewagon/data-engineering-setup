@@ -48,6 +48,7 @@ gh repo fork lewagon/dotfiles --clone
 Next, we need to make sure we use the version of the dotfiles that are made for our `pyenv` based setup:
 
 ```bash
+cd ~/code/$GITHUB_USERNAME/dotfiles
 git fetch upstream
 git checkout -b master-pyenv upstream/master-pyenv --no-track
 ```
