@@ -9,11 +9,13 @@
 - Go to [Google Cloud](https://console.cloud.google.com/) and create an account if you do not already have one
 - In the Cloud Console, on the project list, select or create a Cloud project
 
+⚠️ **Important:** When creating a new project, you will see a **Parent resource** field. Leave this set to **"No organization"**. Do **not** select or create an organization. Choosing an organization applies restrictions that can prevent you from using Google Cloud services during the bootcamp. ⚠️ 
+
 ![](images/gcp-create-project.png)
 
-- Give it a name such as `Wagon Bootcamp` for example
-- ❗ It is important that your project **does not** have an organisation ❗
-- Notice the `ID` automatically created for the project, e.g. `wagon-bootcamp-123456`
+- Give it a name such as `Wagon Bootcamp` followed by your name
+- ❗ Make sure to leave **Parent resource** set to **"No organization"** ❗
+- Notice the `ID` automatically created for the project, e.g. `wagon-bootcamp-your-name-123456`
 
 ![](images/gcp_project.png)
 
