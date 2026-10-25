@@ -1,10 +1,10 @@
 ## Google Cloud Platform setup
 
-[GCP](https://cloud.google.com/) is a cloud solution that you are going to use in order to work on a virtual machine.
+[Google Cloud](https://cloud.google.com/) is a cloud solution that you are going to use in order to work on a virtual machine.
 
 ### Project setup
 
-**👌 Note: Skip to the next section if you already have a GCP project**
+**👌 Note: Skip to the next section if you already have a Google Cloud project**
 
 - Go to [Google Cloud](https://console.cloud.google.com/) and create an account if you do not already have one
 - In the Cloud Console, on the project list, select or create a Cloud project
@@ -19,7 +19,7 @@
 
 ### Account language
 
-In order to facilitate the following of the instructions during the bootcamp, open your GCP account preferences:
+In order to facilitate the following of the instructions during the bootcamp, open your Google Cloud account preferences:
 
 https://myaccount.google.com/language
 
@@ -37,7 +37,7 @@ Then switch the language to english:
 
 **👌 Note: Skip to the next section if you already have a valid billing account**
 
-You will now link your account to your credit card. This step is required or you will not be able to use the services provided by GCP. Do not worry, you will be able to consume most GCP services through free credits throughout the bootcamp.
+You will now link your account to your credit card. This step is required or you will not be able to use the services provided by Google Cloud. Do not worry, you will be able to consume most Google Cloud services through free credits throughout the bootcamp.
 
 ![](images/gcp-billing.png)
 
@@ -56,7 +56,7 @@ You should see that you have a free credit of "$300 credits over the next 90days
 - Enter your credit card info
 - Click on **START MY FREE TRIAL**
 
-Once this is done, verify that your billing account is linked to your GCP project.
+Once this is done, verify that your billing account is linked to your Google Cloud project.
 
 - Select your project
 - Go to **Billing**
@@ -90,13 +90,13 @@ Download the Revolut app, or go to [revolut](https://www.revolut.com/a-radically
 
 Once this is done, select the standard (free) plan. No need to add the card to Apple pay, or ask for a the delivery of a physical card, or add money securely.
 
-You now have a virtual card which we will use for the GCP setup.
+You now have a virtual card which we will use for the Google Cloud setup.
 
 In the main view of the Revolut the app
 - Click on Ready to use
 - Click on the card
 - Click on Show card details
-- Note down the references of the virtual credit card and use them in order to proceed with the GCP setup
+- Note down the references of the virtual credit card and use them in order to proceed with the Google Cloud setup
 
 </details>
 
@@ -109,7 +109,7 @@ This may happen especially in case you just setup a Revolut account.
 - Click on PROCEED TO VERIFICATION
 - You will be asked to send a picture of your credit card (only the last 4 digits, no other info)
 - In case you used **Revolut**, you can send a screenshot of your virtual credit card (do not forget to remove the validity date from the screenshot)
-- Explain that you are attending the Le Wagon bootcamp, do not own a credit card, and have just created a Revolut account in order to setup GCP for the bootcamp using a virtual credit card
+- Explain that you are attending the Le Wagon bootcamp, do not own a credit card, and have just created a Revolut account in order to setup Google Cloud for the bootcamp using a virtual credit card
 
 You may receive a validation or requests for more information within 30 minutes.
 
@@ -117,15 +117,15 @@ Once the verification goes through, you should receive an email stating that "Yo
 
 </details>
 
-## GCP APIs
+## Google Cloud APIs
 
-When you create a GCP Project, not every service is enabled by default. To enable a service (like using a VM or storing a Docker image in Artifact Registry) you have to enable the GCP API for that service.
+When you create a Google Cloud Project, not every service is enabled by default. To enable a service (like using a VM or storing a Docker image in Artifact Registry) you have to enable the Google Cloud API for that service.
 
 ### Default APIs
 
 Go to your project [APIs dashboard 🔗](https://console.cloud.google.com/apis/dashboard), you can see a bunch of APIs are already enabled:
 
-<img alt='GCP APIs dashboard' src="images/gcp_apis_dashboard.png" width=200>
+<img alt='Google Cloud APIs dashboard' src="images/gcp_apis_dashboard.png" width=200>
 
 ### Enable additional APIs
 

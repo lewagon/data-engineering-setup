@@ -19,7 +19,7 @@ In this section you'll setup your local computer and create some accounts. It wi
 1. Installing the primary communication tool you'll use on the bootcamp: **Slack**!
 2. Create some accounts: Github, Google Cloud Platform (GCP)
 3. Install **Visual Studio Code (VS Code)**
-4. Install and authentication the GCP command line tool: `gcloud`
+4. Install and authentication the Google Cloud command line tool: `gcloud`
 5. Install **Terraform** on your local computer
 6. Create your virtual machine with **Terraform** and connect to it with **VS Code**!
 

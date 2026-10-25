@@ -41,7 +41,7 @@ Run `docker run hello-world`, you should see something like:
 <details>
   <summary markdown='span'>❗️ Permission denied while trying to connect to the Docker daemon socket. ❗️ </summary>
 
-If you receive an error similar to the one below, navigate to the [GCP Compute Engine Console](https://console.cloud.google.com/compute/instances) and shut down your VM by selecting the tick box next to your VM instance and clicking STOP (closing and reopening VSCode is not enough).
+If you receive an error similar to the one below, navigate to the [Google Cloud Compute Engine Console](https://console.cloud.google.com/compute/instances) and shut down your VM by selecting the tick box next to your VM instance and clicking STOP (closing and reopening VSCode is not enough).
 
 ![](images/docker_permission_denied_socket.png)
 
@@ -54,7 +54,7 @@ It will take a few minutes for your VM to turn off. Once it's fully off, turn yo
 
 **👌 Note: Skip to the next section if you already have an Artifact Registry repository**
 
-[Artifact Registry](https://cloud.google.com/artifact-registry) is a GCP service you will use to store artifacts such as Docker images. The storage units are called repositories.
+[Artifact Registry](https://cloud.google.com/artifact-registry) is a Google Cloud service you will use to store artifacts such as Docker images. The storage units are called repositories.
 
 - Enable the service within your project using the `gcloud` CLI:
     ```bash
