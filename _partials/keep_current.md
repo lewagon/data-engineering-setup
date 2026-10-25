@@ -180,7 +180,7 @@ pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs
 ```
 {% endif %}
 
-## GCP
+## Google Cloud
 
 Make sure that the `gcloud` command is linked to the email address of your Google Cloud Platform account :
 
@@ -188,7 +188,7 @@ Make sure that the `gcloud` command is linked to the email address of your Googl
 gcloud auth list
 ```
 
-👉 This lists the email address of your GCP account :
+👉 This lists the email address of your Google Cloud account :
 
 ``` bash
       Credentialed Accounts
@@ -199,44 +199,44 @@ To set the active account, run:
     $ gcloud config set account `ACCOUNT`
 ```
 
-Verify the name of your gcp project :
+Verify the name of your Google Cloud project :
 
 ``` bash
 gcloud config list
 ```
 
-👉 This lists both the email address of your GCP account and your GCP project :
+👉 This lists both the email address of your Google Cloud account and your Google Cloud project :
 
 
 ``` bash
 [core]
 account = your.email_address@your.email.provider
 disable_usage_reporting = True
-project = your-gcp-project-id
+project = your-google-cloud-project-id
 
 Your active configuration is: [default]
 ```
 
-Verify the email created for the service account allowing your code to identify to GCP :
+Verify the email created for the service account allowing your code to identify to Google Cloud :
 
 ``` bash
 gcloud iam service-accounts list
 ```
 
-👉 This lists the GCP email address of the service account that allows your code to identify to GCP
+👉 This lists the Google Cloud email address of the service account that allows your code to identify to Google Cloud
 
 ``` bash
 DISPLAY NAME          EMAIL                                                              DISABLED
-your-gcp-project-id   your-service-account@your-service-account.iam.gserviceaccount.com  False
+your-google-cloud-project-id   your-service-account@your-service-account.iam.gserviceaccount.com  False
 ```
 
-Go to [GCP IAM & Admin / Service Accounts](https://console.cloud.google.com/iam-admin/serviceaccounts):
+Go to [Google Cloud IAM & Admin / Service Accounts](https://console.cloud.google.com/iam-admin/serviceaccounts):
 - Select your project
 - Click on the service account email
 - Go to `PERMISSIONS`
 - Make sure that the service account email has a `Role` set to `Owner`
 
-Verify that you have configured your machine to allow your code to identify to GCP. The service account credentials json key file should be linked to the correct service account email :
+Verify that you have configured your machine to allow your code to identify to Google Cloud. The service account credentials json key file should be linked to the correct service account email :
 
 ``` bash
 cat $GOOGLE_APPLICATION_CREDENTIALS
@@ -247,7 +247,7 @@ cat $GOOGLE_APPLICATION_CREDENTIALS
 ``` bash
 {
   "type": "service_account",
-  "project_id": "your-gcp-project-id",
+  "project_id": "your-google-cloud-project-id",
   "private_key_id": "...",
   "client_email": "your-service-account@your-service-account.iam.gserviceaccount.com",
   "client_id": "105410541054105410541",
@@ -259,18 +259,18 @@ cat $GOOGLE_APPLICATION_CREDENTIALS
 ```
 
 Make sure that the file contains the correct :
-- project id : your-gcp-project-id
+- project id : your-google-cloud-project-id
 - service account email address : your-service-account@your-service-account.iam.gserviceaccount.com
 
 👉 If this does not display anything or if the email inside of the file is not the one of your service account, go back to the setup
 
-Make sure that Docker recognizes the GCP ressources :
+Make sure that Docker recognizes the Google Cloud ressources :
 
 ``` bash
 gcloud auth configure-docker
 ```
 
-👉 This lists the image name prefixes recognized by Docker as targetted to GCP
+👉 This lists the image name prefixes recognized by Docker as targetted to Google Cloud
 
 ``` bash
 {

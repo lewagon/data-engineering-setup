@@ -16,7 +16,7 @@ We highly recommend installing [Windows Terminal](https://apps.microsoft.com/sto
   <summary markdown='span'>Windows</summary>
 
 ```bash
-# replace "your_email@example.com" with your GCP account email
+# replace "your_email@example.com" with your Google Cloud account email
 ssh-keygen.exe -t ed25519 -C "your_email@example.com"
 ```
 </details>
@@ -25,7 +25,7 @@ ssh-keygen.exe -t ed25519 -C "your_email@example.com"
   <summary markdown='span'>MacOS & Linux</summary>
 
 ```bash
-# replace "your_email@example.com" with your GCP account email
+# replace "your_email@example.com" with your Google Cloud account email
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 </details>
@@ -48,7 +48,7 @@ If you receive this message, you may already have an SSH Key with the same name 
 To create a separate SSH key to exclusively use for this bootcamp use the following:
 
 ```bash
-# replace "your_email@example.com" with your GCP account email
+# replace "your_email@example.com" with your Google Cloud account email
 ssh-keygen -t ed25519 -f ~/.ssh/de-bootcamp -C "your_email@example.com"
 ```
 

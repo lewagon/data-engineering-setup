@@ -81,12 +81,12 @@ This second ansible playbook requires GitHub authorisation to fork the `lewagon/
 
 Once the playbook has finished running, you need to completely shutdown your Virtual Machine so that some of the configuration updates properly (specifically **pyenv** and **Docker**).
 
-To shutdown your VM, navigate to the GCP Compute Engine Instances [console page 🔗](https://console.cloud.google.com/compute/instances).
+To shutdown your VM, navigate to the Google Cloud Compute Engine Instances [console page 🔗](https://console.cloud.google.com/compute/instances).
 
 Select your VM instance and click on the stop button:
 
 ![](/images/gcp_vm_stop.png)
 
-Wait for a few minutes until the VM shows that it is completely off. You may need to refresh the page, the GCP Console (web GUI) doesn't dynamically update.
+Wait for a few minutes until the VM shows that it is completely off. You may need to refresh the page, the Google Cloud Console (web GUI) doesn't dynamically update.
 
 When the VM is completely off, turn it on again by selecting the check box next to your instance and clicking **START/RESUME**. Give it a minute to turn on, then connect via VS Code.

@@ -1,0 +1,5 @@
+
+# os: macos
+locales: [en]
+partials:
+  - gcp_setup

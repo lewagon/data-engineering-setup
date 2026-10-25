@@ -28,13 +28,13 @@ For pasting into the terminal, your might need to use `ctrl + shift + v`
 
 {% endif %}
 
-You also need to set the GCP project that your are working in. For this section, you'll need your **GCP Project ID**, which can be found on the GCP Console at this [link here 🔗](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
+You also need to set the Google Cloud project that your are working in. For this section, you'll need your **Google Cloud Project ID**, which can be found on the Google Cloud Console at this [link here 🔗](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
 
-To set your project, replace `<YOUR_PROJECT_ID>` with your GCP Project ID and run:
+To set your project, replace `<YOUR_PROJECT_ID>` with your Google Cloud Project ID and run:
 
 ```bash
 gcloud config set project <YOUR_PROJECT_ID>
-# gcloud config set project my-gcp-project
+# gcloud config set project my-google-cloud-project
 ```
 
 💡 If you get a terminal message saying your project: _lacks an environment tag_ - you can safely ignore it
@@ -49,9 +49,9 @@ You should get an output similar to:
 
 ```bash
 [core]
-account = taylorswift@domain.com # Should be your GCP email
+account = taylorswift@domain.com # Should be your Google Cloud email
 disable_usage_reporting = True
-project = my-gcp-project # Should be your GCP Project ID
+project = my-google-cloud-project # Should be your Google Cloud Project ID
 
 Your active configuration is: [default]
 ```

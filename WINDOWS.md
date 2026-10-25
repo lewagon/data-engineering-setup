@@ -19,7 +19,7 @@ In this section you'll setup your local computer and create some accounts. It wi
 1. Installing the primary communication tool you'll use on the bootcamp: **Slack**!
 2. Create some accounts: Github, Google Cloud Platform (GCP)
 3. Install **Visual Studio Code (VS Code)**
-4. Install and authentication the GCP command line tool: `gcloud`
+4. Install and authentication the Google Cloud command line tool: `gcloud`
 5. Install **Terraform** on your local computer
 6. Create your virtual machine with **Terraform** and connect to it with **VS Code**!
 
@@ -106,26 +106,28 @@ Have you signed up to GitHub? If not, [do it right away](https://github.com/join
 
 ## Google Cloud Platform setup
 
-[GCP](https://cloud.google.com/) is a cloud solution that you are going to use in order to work on a virtual machine.
+[Google Cloud](https://cloud.google.com/) is a cloud solution that you are going to use in order to work on a virtual machine.
 
 ### Project setup
 
-**👌 Note: Skip to the next section if you already have a GCP project**
+**👌 Note: Skip to the next section if you already have a Google Cloud project**
 
 - Go to [Google Cloud](https://console.cloud.google.com/) and create an account if you do not already have one
 - In the Cloud Console, on the project list, select or create a Cloud project
 
+⚠️ **Important:** When creating a new project, you will see a **Parent resource** field. Leave this set to **"No organization"**. Do **not** select or create an organization. Choosing an organization applies restrictions that can prevent you from using Google Cloud services during the bootcamp. ⚠️ 
+
 ![](images/gcp-create-project.png)
 
-- Give it a name such as `Wagon Bootcamp` for example
-- ❗ It is important that your project **does not** have an organisation ❗
-- Notice the `ID` automatically created for the project, e.g. `wagon-bootcamp-123456`
+- Give it a name such as `Wagon Bootcamp` followed by your name
+- ❗ Make sure to leave **Parent resource** set to **"No organization"** ❗
+- Notice the `ID` automatically created for the project, e.g. `wagon-bootcamp-your-name-123456`
 
 ![](images/gcp_project.png)
 
 ### Account language
 
-In order to facilitate the following of the instructions during the bootcamp, open your GCP account preferences:
+In order to facilitate the following of the instructions during the bootcamp, open your Google Cloud account preferences:
 
 https://myaccount.google.com/language
 
@@ -143,7 +145,7 @@ Then switch the language to english:
 
 **👌 Note: Skip to the next section if you already have a valid billing account**
 
-You will now link your account to your credit card. This step is required or you will not be able to use the services provided by GCP. Do not worry, you will be able to consume most GCP services through free credits throughout the bootcamp.
+You will now link your account to your credit card. This step is required or you will not be able to use the services provided by Google Cloud. Do not worry, you will be able to consume most Google Cloud services through free credits throughout the bootcamp.
 
 ![](images/gcp-billing.png)
 
@@ -162,7 +164,7 @@ You should see that you have a free credit of "$300 credits over the next 90days
 - Enter your credit card info
 - Click on **START MY FREE TRIAL**
 
-Once this is done, verify that your billing account is linked to your GCP project.
+Once this is done, verify that your billing account is linked to your Google Cloud project.
 
 - Select your project
 - Go to **Billing**
@@ -196,13 +198,13 @@ Download the Revolut app, or go to [revolut](https://www.revolut.com/a-radically
 
 Once this is done, select the standard (free) plan. No need to add the card to Apple pay, or ask for a the delivery of a physical card, or add money securely.
 
-You now have a virtual card which we will use for the GCP setup.
+You now have a virtual card which we will use for the Google Cloud setup.
 
 In the main view of the Revolut the app
 - Click on Ready to use
 - Click on the card
 - Click on Show card details
-- Note down the references of the virtual credit card and use them in order to proceed with the GCP setup
+- Note down the references of the virtual credit card and use them in order to proceed with the Google Cloud setup
 
 </details>
 
@@ -215,7 +217,7 @@ This may happen especially in case you just setup a Revolut account.
 - Click on PROCEED TO VERIFICATION
 - You will be asked to send a picture of your credit card (only the last 4 digits, no other info)
 - In case you used **Revolut**, you can send a screenshot of your virtual credit card (do not forget to remove the validity date from the screenshot)
-- Explain that you are attending the Le Wagon bootcamp, do not own a credit card, and have just created a Revolut account in order to setup GCP for the bootcamp using a virtual credit card
+- Explain that you are attending the Le Wagon bootcamp, do not own a credit card, and have just created a Revolut account in order to setup Google Cloud for the bootcamp using a virtual credit card
 
 You may receive a validation or requests for more information within 30 minutes.
 
@@ -223,15 +225,15 @@ Once the verification goes through, you should receive an email stating that "Yo
 
 </details>
 
-## GCP APIs
+## Google Cloud APIs
 
-When you create a GCP Project, not every service is enabled by default. To enable a service (like using a VM or storing a Docker image in Artifact Registry) you have to enable the GCP API for that service.
+When you create a Google Cloud Project, not every service is enabled by default. To enable a service (like using a VM or storing a Docker image in Artifact Registry) you have to enable the Google Cloud API for that service.
 
 ### Default APIs
 
 Go to your project [APIs dashboard 🔗](https://console.cloud.google.com/apis/dashboard), you can see a bunch of APIs are already enabled:
 
-<img alt='GCP APIs dashboard' src="images/gcp_apis_dashboard.png" width=200>
+<img alt='Google Cloud APIs dashboard' src="images/gcp_apis_dashboard.png" width=200>
 
 ### Enable additional APIs
 
@@ -300,7 +302,7 @@ Once it's finished downloading, launch the installer and follow the prompts. You
 On the last screen of the installer there will be four check boxes. Makes sure that the boxes for `Start Google SDK Shell` and `Run gcloud init to configure the Google Cloud CLI` are selected then click **Finish**. This should open a new **Command Prompt** window and ask a series of questions like:
 - **Do you want to log in?** - type `y` and hit enter and following the prompts. It should open a web-browser to log in to your Google account.
     - Ensure you _'allow'_ Google Cloud to access different services
-- **Pick cloud project to use** - Select your GCP Project ID that you want to connect with `gcloud`
+- **Pick cloud project to use** - Select your Google Cloud Project ID that you want to connect with `gcloud`
 - **Select your region and zone** - You can safely enter `n`. It's not important at the moment.
 
 Once you've completed the `gcloud` setup, close **Command Prompt** and re-open it, then run:
@@ -484,8 +486,8 @@ instance_user = "<YOUR_COMPUTER_USER_NAME>"
 ```
 
 We'll need to change some values in this file. Here's were you can find the required values:
-- **project_id:** from the GCP Console at this [link here](https://console.cloud.google.com).
-- **region:** take a look at the GCP Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones#available). We generally recommend you choose a geographically nearby region.
+- **project_id:** from the Google Cloud Console at this [link here](https://console.cloud.google.com).
+- **region:** take a look at the Google Cloud Region and Zone documentation at this [link here](https://cloud.google.com/compute/docs/regions-zones#available). We generally recommend you choose a geographically nearby region.
 - **zone:** Zone is a subset of region. it is almost always the same as **region** appended with `-a`, `-b`, or `-c`. The zone you select within a region should not have a functional impact.
 - **instance_name:** we recommend naming your VM: `lw-de-vm-<YOUR_GITHUB_USERNAME>`. Replacing `<YOUR_GITHUB_USERNAME>` with your GitHub username.
 
@@ -540,7 +542,7 @@ It might take a while for Terraform to create the cloud resources. Once you see:
 Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 ```
 
-Your Virtual Machine should be up and running! Check the GCP Compute Engine console at this [link here 🔗](https://console.cloud.google.com/compute/instances) to confirm.
+Your Virtual Machine should be up and running! Check the Google Cloud Compute Engine console at this [link here 🔗](https://console.cloud.google.com/compute/instances) to confirm.
 
 
 ## Virtual Machine connection
@@ -562,7 +564,7 @@ You should now be able to use ssh/scp with your instances.
 For example, try running:
 
   $ ssh lw-de-vm-tswift.europe-west1-b.wagon-bootcamp
-# $ ssh lw-de-vm-<GITHUB_USERNAME>.<GCP_ZONE>.<GCP_PROJECT_ID>
+# $ ssh lw-de-vm-<GITHUB_USERNAME>.<GOOGLE_CLOUD_ZONE>.<GOOGLE_CLOUD_PROJECT_ID>
 ```
 
 
@@ -717,13 +719,13 @@ For pasting into the terminal, your might need to use `ctrl + shift + v`
 
 
 
-You also need to set the GCP project that your are working in. For this section, you'll need your **GCP Project ID**, which can be found on the GCP Console at this [link here 🔗](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
+You also need to set the Google Cloud project that your are working in. For this section, you'll need your **Google Cloud Project ID**, which can be found on the Google Cloud Console at this [link here 🔗](https://console.cloud.google.com). Makes sure you copy the _Project ID_ and **not** the _Project number_.
 
-To set your project, replace `<YOUR_PROJECT_ID>` with your GCP Project ID and run:
+To set your project, replace `<YOUR_PROJECT_ID>` with your Google Cloud Project ID and run:
 
 ```bash
 gcloud config set project <YOUR_PROJECT_ID>
-# gcloud config set project my-gcp-project
+# gcloud config set project my-google-cloud-project
 ```
 
 💡 If you get a terminal message saying your project: _lacks an environment tag_ - you can safely ignore it
@@ -738,9 +740,9 @@ You should get an output similar to:
 
 ```bash
 [core]
-account = taylorswift@domain.com # Should be your GCP email
+account = taylorswift@domain.com # Should be your Google Cloud email
 disable_usage_reporting = True
-project = my-gcp-project # Should be your GCP Project ID
+project = my-google-cloud-project # Should be your Google Cloud Project ID
 
 Your active configuration is: [default]
 ```
@@ -1056,13 +1058,13 @@ This second ansible playbook requires GitHub authorisation to fork the `lewagon/
 
 Once the playbook has finished running, you need to completely shutdown your Virtual Machine so that some of the configuration updates properly (specifically **pyenv** and **Docker**).
 
-To shutdown your VM, navigate to the GCP Compute Engine Instances [console page 🔗](https://console.cloud.google.com/compute/instances).
+To shutdown your VM, navigate to the Google Cloud Compute Engine Instances [console page 🔗](https://console.cloud.google.com/compute/instances).
 
 Select your VM instance and click on the stop button:
 
 ![](/images/gcp_vm_stop.png)
 
-Wait for a few minutes until the VM shows that it is completely off. You may need to refresh the page, the GCP Console (web GUI) doesn't dynamically update.
+Wait for a few minutes until the VM shows that it is completely off. You may need to refresh the page, the Google Cloud Console (web GUI) doesn't dynamically update.
 
 When the VM is completely off, turn it on again by selecting the check box next to your instance and clicking **START/RESUME**. Give it a minute to turn on, then connect via VS Code.
 

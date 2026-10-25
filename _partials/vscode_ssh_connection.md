@@ -17,7 +17,7 @@ You should now be able to use ssh/scp with your instances.
 For example, try running:
 
   $ ssh lw-de-vm-tswift.europe-west1-b.wagon-bootcamp
-# $ ssh lw-de-vm-<GITHUB_USERNAME>.<GCP_ZONE>.<GCP_PROJECT_ID>
+# $ ssh lw-de-vm-<GITHUB_USERNAME>.<GOOGLE_CLOUD_ZONE>.<GOOGLE_CLOUD_PROJECT_ID>
 ```
 
 {% if os == "windows" %}
