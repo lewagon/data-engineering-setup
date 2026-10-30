@@ -273,6 +273,7 @@
             - poetry
             - tldr
             - ruff
+            - black
           become_user: "{{ my_user }}"
           become: true
           when: "item not in pipx_list.stdout"
